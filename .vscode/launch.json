@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GotApplication<got-services>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.sa.bbva.got.GotApplication",
+            "projectName": "got-services",
+            "args": ""
+        }
+    ]
+}

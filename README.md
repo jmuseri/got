@@ -1,29 +1,67 @@
-# README #
+# GOT - Gestion OnLine de Tramites - Rest Services
+Gestion OnLine de Tramites - Services Application.  
+© 2019. Sistemas Activos. All rights reserved.
 
-This README would normally document whatever steps are necessary to get your application up and running.
+[![Latest Stable Version](docs/images/stable-version.png)](#)
+[![Latest Unstable Version](docs/images/unstable-version.png)](#)
 
-### What is this repository for? ###
+## Description
+Servicios para la gestion de tramites online en Web Empresas BBVA.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Versions
+| Version  |    Date    | Description                    |  Author     |   Revision   |
+|----------|:-----------|:-------------------------------|:------------|--------------|
+| 0.0.1    | 2019/05/15 | Initial Application Template   |    SA       |      0       |
 
-### How do I get set up? ###
+## Content
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### General
+* [Customer](#markdown-header-customer)
+* [Key Features](#markdown-header-key-features)
+* [Screenshots](#markdown-header-screenshots)
+* [Getting Start and Installation](#markdown-header-getting-start-and-installation)
+* [How to run tests](#markdown-header-how-to-run-tests)
+* [Deployment instructions](#markdown-header-deployment-instructions)
+* [Quick Links](#markdown-header-quick-links)
+* [Get Help](#markdown-header-get-help)
+* [Additional Information](#markdown-header-additional-information)
 
-### Contribution guidelines ###
+### Documentation
+* [Development Requirements](docs/markdown/requirements.md)
+* [Architecture](docs/markdown/architecture.md)
+* [DataBase](docs/markdown/database.md)
+* [API Services Documentation](docs/markdown/api.md)
+* [Technical Documentation](docs/markdown/technical.md)
+* [Delivery Documentation](docs/markdown/delivery.md)
+* [Documentation Guide](docs/markdown/documentation-guide.md)
 
-* Writing tests
-* Code review
-* Other guidelines
+## Customer
+**BBVA** Banco Frances   
 
-### Who do I talk to? ###
+Manager Reference: 
+* Daniel Hernandez  
 
-* Repo owner or admin
-* Other community or team contact
+Technical Reference: 
+* Javier da Silva 
+* Matias Hernandez
+
+## Key Features
+
+## Screenshots
+
+## Getting Start and Installation
+
+## How to run tests
+
+## Getting Start and Installation
+
+## Deployment instructions
+
+## Get Help
+
+## Contributing
+
+## Additional Information
+
+---
+[Go to Top](#markdown-header-pagossucursal)  
