@@ -10,9 +10,9 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 ## Versions
 | Version  |    Date    | Description                    |  Author     |   Revision   |
 |----------|:-----------|:-------------------------------|:------------|--------------|
-| 0.0.1    | 2019/05/15 | Initial Application Template   |    GG       |      0       |
-| 0.0.2    | 2019/05/22 | Services Template              |    GG       |      0       |
-| 0.0.3    | 2019/05/27 | Response Services              |    GG       |      0       |
+| 0.0.1    | 2019/05/15 | Initial Application Template   |    SA       |      0       |
+| 0.0.2    | 2019/05/22 | Services Template              |    SA       |      0       |
+| 0.0.3    | 2019/05/27 | Response Services              |    SA       |      0       |
 
 ## Content
 
@@ -65,4 +65,4 @@ Technical Reference:
 ## Additional Information
 
 ---
-[Go to Top](#markdown-header-pagossucursal)  
+[Go to Top](#markdown-header-got-gestion-online-de-tramites-rest-services)  
