@@ -3,5 +3,6 @@
 *.project
 *.factorypath
 *.classpath
+*.settings
 /target/
 /build/
