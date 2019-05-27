@@ -19,7 +19,7 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 ### General
 * [Customer](#markdown-header-customer)
 * [Key Features](#markdown-header-key-features)
-* [Screenshots](#markdown-header-screenshots)
+* [Requirements](#markdown-header-requirements)
 * [Getting Start and Installation](#markdown-header-getting-start-and-installation)
 * [How to run tests](#markdown-header-how-to-run-tests)
 * [Deployment instructions](#markdown-header-deployment-instructions)
@@ -48,13 +48,21 @@ Technical Reference:
 
 ## Key Features
 
-## Screenshots
+* Maven
+* Spring Boot Framework
+* Swagger UI Documentation
+* JPA Persistence
+* Lonbok library to reduce code
+* Tests
+
+## Requirements
+
+* Label text Configuration
+* Use just GET & POST request methods (Webseal limitation)
 
 ## Getting Start and Installation
 
 ## How to run tests
-
-## Getting Start and Installation
 
 ## Deployment instructions
 
