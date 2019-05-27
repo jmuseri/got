@@ -2,7 +2,7 @@
 Gestion OnLine de Tramites - Services Application.  
 © 2019. Sistemas Activos. All rights reserved.
 
-[![Latest Stable Version](docs/images/stable-version.png)](#)[![Latest Unstable Version](docs/images/unstable-version.png)](#)
+[![Latest Stable Version](docs/images/stable-version.png)](#)  [![Latest Unstable Version](docs/images/unstable-version.png)](#)
 
 ## Description
 Servicios para la gestion de tramites online en Web Empresas BBVA.
