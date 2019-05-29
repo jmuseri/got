@@ -1,10 +1,14 @@
 package com.sa.bbva.got.model;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+@Data
+@XmlRootElement
 @Entity
 public class Product {
     @Id
