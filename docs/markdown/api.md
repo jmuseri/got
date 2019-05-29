@@ -27,13 +27,13 @@ GOT APIs are based on RESTFul Services Protocol.
 
 ### Funcional
 #### tramite
-* ![get](../images/method-get.png "get")    [/funcional/tramite](/docs/markdown/api/accion-api.md)  *(Listar los trámites)*
+* ![get](../images/method-get.png "get")    [/funcional/tramite](/docs/markdown/api/accion-api.md) *(Listar los trámites)*
+* ![get](../images/method-get.png "get")    [/funcional/tramite?activo=true](/docs/markdown/api/accion-api.md) *(Listar los trámites activos)*
 * ![get](../images/method-get.png "get")    [/funcional/tramite?sector=1](/docs/markdown/api/accion-api.md)  *(Listar los trámites activos por sector)*
-* ![get](../images/method-get.png "get")    [/funcional/tramite?activo=true](/docs/markdown/api/accion-api.md)  *(Listar los trámites activos)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/new](/docs/markdown/api/accion-api.md)  *(Alta de trámite con autorizados, sector, detalle)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md)  *(Modificación de un trámite)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md)  *(Baja de un trámite)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/cabecera/new](/docs/markdown/api/accion-api.md)  *(Alta de un trámite solo cabecera)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md) *(Modificación de un trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md) *(Baja de un trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/cabecera/new](/docs/markdown/api/accion-api.md) *(Alta de un trámite solo cabecera)*
 #### autorizado
 * ![get](../images/method-get.png "get")    [/funcional/autorizado?cliente=1](/docs/markdown/api/accion-api.md)  *(Listar autorizados por cliente)* 
 * ![get](../images/method-get.png "get")    [/funcional/autorizado?tramite=1](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 
@@ -68,7 +68,7 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/parametria/campoDisponible/update](/docs/markdown/api/accion-api.md)  *(Modificación de campos disponibles)*
 * ![post](../images/method-post.png "post") [/parametria/campoDisponible/delete](/docs/markdown/api/accion-api.md)  *(Baja de campos disponibles)*
 #### tramiteTipo-campoDisponible
-* ![get](../images/method-get.png "get")    [/parametria/tramiteTipo/campoDisponibles?tramite=1](/docs/markdown/api/accion-api.md)  *(Listar los campos disponibles para un tipo de trámite)*
+* ![get](../images/method-get.png "get")    [/parametria/tramiteTipo/campoDisponible?tramite=1](/docs/markdown/api/accion-api.md)  *(Listar los campos disponibles para un tipo de trámite)*
 * ![post](../images/method-post.png "post") [/parametria/tramiteTipo/campoDisponible/new](/docs/markdown/api/accion-api.md)  *(Alta relación tipo de trámite con un campo disponible)*
 * ![post](../images/method-post.png "post") [/parametria/tramiteTipo/campoDisponible/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación tipo de trámite con un campo disponible)*
 * ![post](../images/method-post.png "post") [/parametria/tramiteTipo/campoDisponible/update](/docs/markdown/api/accion-api.md)  *(Modificación de relación tipo de trámite con un campo disponible)*
