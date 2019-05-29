@@ -29,9 +29,16 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .build().apiInfo(metaData());
     }
 
+    @Bean
+    public Docket funcionalApi() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("Funcional").select()
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).paths(regex("/funcional.*"))
+                .build().apiInfo(metaData());
+    }
+
     private ApiInfo metaData() {
         return new ApiInfoBuilder().title("GOT - Gestion Online de Tramites - API RESTful")
-                .description("\"Gestion Online de Tramites Services \"").version("0.0.3")
+                .description("\"Gestion Online de Tramites Services \"").version("0.1.0")
                 .license("Apache License Version 2.0").licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
                 .build();
     }

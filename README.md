@@ -13,6 +13,7 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 | 0.0.1    | 2019/05/15 | Initial Application Template   |    SA       |      0       |
 | 0.0.2    | 2019/05/22 | Services Template              |    SA       |      0       |
 | 0.0.3    | 2019/05/27 | Response Services              |    SA       |      0       |
+| 0.1.0    | 2019/05/29 | Groups & Sector api added      |    SA       |      0       |
 
 ## Content
 
