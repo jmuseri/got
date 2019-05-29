@@ -25,15 +25,17 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket parametriaApi() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("Parametria").select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).paths(regex("/parametria.*"))
-                .build().apiInfo(metaData());
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers.parametria"))
+                .paths(regex("/*.*")).build().apiInfo(metaData());
+        // .paths(regex("/parametria.*")).build().apiInfo(metaData());
     }
 
     @Bean
     public Docket funcionalApi() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("Funcional").select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).paths(regex("/funcional.*"))
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers.funcional")).paths(regex("/*.*"))
                 .build().apiInfo(metaData());
+        // .paths(regex("/funcional.*")).build().apiInfo(metaData());
     }
 
     private ApiInfo metaData() {

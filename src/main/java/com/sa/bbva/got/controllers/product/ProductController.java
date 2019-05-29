@@ -1,4 +1,4 @@
-package com.sa.bbva.got.controllers;
+package com.sa.bbva.got.controllers.product;
 
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Product;
