@@ -181,18 +181,20 @@ fechaModif: Date
 'user "1" --> "*" user_group : "A user may be \nin many groups"
 'group "1" --> "0..N" user_group : "A group may \ncontain many users"
 
-Tramite -- TipoTramite
-Tramite -- Sector
-Tramite -- EstadoTramite
-Tramite --> Autorizado
-Tramite --> TramiteDetalle
+Tramite "*" <-- "1" TipoTramite
+Tramite "*" -- "1" Sector
+Tramite "*" -- "1" EstadoTramite
+Tramite "1" --> "*" Autorizado
+Tramite "1" --> "*" TramiteDetalle
 
-TipoTramite -- Comision
-TipoTramite -- Sector
-TipoTramite -- TipoTramiteCampo
+TipoTramite "*" -- "1" Comision
+TipoTramite "*" -- "1" Sector 
+TipoTramite "1" --> "*" TipoTramiteCampo
 
-TipoTramiteCampo -- CampoDisponible
-TipoTramiteCampo -- TramiteDetalle
+TramiteDetalle "1" -- "1" TipoTramiteCampo
+
+TipoTramiteCampo "*" -- "1" CampoDisponible
+ 
 
 
 
