@@ -84,7 +84,12 @@ public class SectorController {
     public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
         try {
             Sector storedSector = parametriaService.getSectorById(id);
+            storedSector.setCanal(sector.getCanal());
+            storedSector.setSector(sector.getSector());
             storedSector.setDescription(sector.getDescription());
+            storedSector.setUsuModif(sector.getUsuModif());
+            storedSector.setFechaModif(sector.getFechaModif());
+            parametriaService.saveSector(storedSector);
             StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;

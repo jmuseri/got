@@ -10,34 +10,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParametriaServiceImpl implements ParametriaService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private SectorRepository productRepository;
+    private SectorRepository sectorRepository;
 
     @Autowired
-    public void setProductRepository(SectorRepository productRepository) {
-        this.productRepository = productRepository;
+    public void setSectorRepository(SectorRepository sectorRepository) {
+        this.sectorRepository = sectorRepository;
     }
 
     @Override
     public Iterable<Sector> listAllSectors() {
         logger.debug("listAllSectors called");
-        return productRepository.findAll();
+        return sectorRepository.findAll();
     }
 
     @Override
     public Sector getSectorById(Integer id) {
         logger.debug("getSectorById called");
-        return productRepository.findById(id).orElse(null);
+        return sectorRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Sector saveSector(Sector product) {
+    public Sector saveSector(Sector sector) {
         logger.debug("saveSector called");
-        return productRepository.save(product);
+        return sectorRepository.save(sector);
     }
 
     @Override
     public void deleteSector(Integer id) {
         logger.debug("deleteSector called");
-        productRepository.deleteById(id);
+        sectorRepository.deleteById(id);
     }
 }
