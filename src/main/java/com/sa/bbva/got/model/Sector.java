@@ -15,19 +15,19 @@ public class Sector {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(notes = "The database generated sector ID")
     private Integer id;
-    @ApiModelProperty(notes = "The sector canal")
+    @ApiModelProperty(notes = "The sector canal", required = true)
     private String canal;
-    @ApiModelProperty(notes = "The sector description")
+    @ApiModelProperty(notes = "The sector name", required = true)
     private String sector;
-    @ApiModelProperty(notes = "The sector name")
+    @ApiModelProperty(notes = "The sector description")
     private String description;
     @ApiModelProperty(notes = "The creator user")
     private String usuAlta;
     @ApiModelProperty(notes = "The creation date", required = true)
     private Date fechaAlta;
-    @ApiModelProperty(notes = "The creator user")
+    @ApiModelProperty(notes = "The update user")
     private String usuModif;
-    @ApiModelProperty(notes = "The creation date", required = true)
+    @ApiModelProperty(notes = "The update date", required = true)
     private Date fechaModif;
 
 }

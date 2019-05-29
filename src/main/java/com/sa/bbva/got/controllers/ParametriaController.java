@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/parametria")
-@Api(value = "functional", description = "Paramtric Operations in GOT")
+@Api(value = "functional", description = "Parametria Operations in GOT")
 public class ParametriaController {
 
     private ParametriaService parametriaService;
@@ -34,7 +34,7 @@ public class ParametriaController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/sector/list", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> list(Model model) {
         try {
             Iterable<Sector> sectorList = parametriaService.listAllSectors();
@@ -49,7 +49,7 @@ public class ParametriaController {
     }
 
     @ApiOperation(value = "Search a sector with an ID", response = Sector.class)
-    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/sector/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
         try {
             Sector sector = parametriaService.getSectorById(id);
@@ -64,7 +64,7 @@ public class ParametriaController {
     }
 
     @ApiOperation(value = "Add a sector")
-    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/sector/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
             parametriaService.saveSector(sector);
@@ -80,7 +80,7 @@ public class ParametriaController {
     }
 
     @ApiOperation(value = "Update a sector")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, produces = "application/json")
+    @RequestMapping(value = "/sector/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
         try {
             Sector storedSector = parametriaService.getSectorById(id);
@@ -97,7 +97,7 @@ public class ParametriaController {
     }
 
     @ApiOperation(value = "Delete a sector")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    @RequestMapping(value = "/sector/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
         try {
             parametriaService.deleteSector(id);

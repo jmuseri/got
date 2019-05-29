@@ -15,10 +15,17 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
+    /*
+     * @Bean public Docket productApi() { return new
+     * Docket(DocumentationType.SWAGGER_2).groupName("Products").select()
+     * .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).
+     * paths(regex("/product.*")) .build().apiInfo(metaData()); }
+     */
+
     @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).paths(regex("/product.*"))
+    public Docket parametriaApi() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("Parametria").select()
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).paths(regex("/parametria.*"))
                 .build().apiInfo(metaData());
     }
 
