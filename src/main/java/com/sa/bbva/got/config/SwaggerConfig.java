@@ -15,16 +15,32 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
+    /*
+     * @Bean public Docket productApi() { return new
+     * Docket(DocumentationType.SWAGGER_2).groupName("Products").select()
+     * .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).
+     * paths(regex("/product.*")) .build().apiInfo(metaData()); }
+     */
+
     @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).paths(regex("/product.*"))
+    public Docket parametriaApi() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("Parametria").select()
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers.parametria"))
+                .paths(regex("/*.*")).build().apiInfo(metaData());
+        // .paths(regex("/parametria.*")).build().apiInfo(metaData());
+    }
+
+    @Bean
+    public Docket funcionalApi() {
+        return new Docket(DocumentationType.SWAGGER_2).groupName("Funcional").select()
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers.funcional")).paths(regex("/*.*"))
                 .build().apiInfo(metaData());
+        // .paths(regex("/funcional.*")).build().apiInfo(metaData());
     }
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder().title("GOT - Gestion Online de Tramites - API RESTful")
-                .description("\"Gestion Online de Tramites Services \"").version("0.0.3")
+                .description("\"Gestion Online de Tramites Services \"").version("0.1.0")
                 .license("Apache License Version 2.0").licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
                 .build();
     }

@@ -11,7 +11,7 @@
 	
 	<groupId>com.sa.bbva</groupId>
 	<artifactId>got-services</artifactId>
-	<version>0.0.3</version>
+	<version>0.1.0</version>
 	<packaging>jar</packaging>
 	<name>GOT Services Application</name>
 	<description>GOT - Gestion Online de Tramites - Rest Services</description>
