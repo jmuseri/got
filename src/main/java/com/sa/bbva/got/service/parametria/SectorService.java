@@ -1,8 +1,8 @@
-package com.sa.bbva.got.service;
+package com.sa.bbva.got.service.parametria;
 
 import com.sa.bbva.got.model.Sector;
 
-public interface ParametriaService {
+public interface SectorService {
     Iterable<Sector> listAllSectors();
 
     Iterable<Sector> listActiveSectors();

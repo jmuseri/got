@@ -1,4 +1,4 @@
-package com.sa.bbva.got.service;
+package com.sa.bbva.got.service.parametria;
 
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.repository.SectorRepositoryImpl;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ParametriaServiceImpl implements ParametriaService {
+public class SectorServiceImpl implements SectorService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private SectorRepositoryImpl sectorRepository;
 

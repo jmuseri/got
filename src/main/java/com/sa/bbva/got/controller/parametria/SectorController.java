@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.service.ParametriaService;
+import com.sa.bbva.got.service.parametria.SectorService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,12 +25,12 @@ import org.slf4j.LoggerFactory;
 @Api(value = "functional", description = "Parametria/Sector Operations in GOT")
 public class SectorController {
 
-    private ParametriaService parametriaService;
+    private SectorService sectorService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public void setParametriaService(ParametriaService parametriaService) {
-        this.parametriaService = parametriaService;
+    public void setSectorService(SectorService sectorService) {
+        this.sectorService = sectorService;
     }
 
     @ApiOperation(value = "View a list of available sectors", response = Iterable.class)
@@ -44,11 +44,11 @@ public class SectorController {
     @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
         try {
             if (!activo) {
-                Iterable<Sector> sectorList = parametriaService.listAllSectors();
+                Iterable<Sector> sectorList = sectorService.listAllSectors();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;    
             } else {
-                Iterable<Sector> sectorList = parametriaService.listActiveSectors();
+                Iterable<Sector> sectorList = sectorService.listActiveSectors();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;    
             }
@@ -64,7 +64,7 @@ public class SectorController {
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
         try {
-            Sector sector = parametriaService.getSectorById(id);
+            Sector sector = sectorService.getSectorById(id);
             ResponseEntity<?> response = new ResponseEntity<>(sector, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -79,7 +79,7 @@ public class SectorController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
-            parametriaService.saveSector(sector);
+            sectorService.saveSector(sector);
             StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -95,13 +95,13 @@ public class SectorController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
         try {
-            Sector storedSector = parametriaService.getSectorById(id);
+            Sector storedSector = sectorService.getSectorById(id);
             storedSector.setCanal(sector.getCanal());
             storedSector.setSector(sector.getSector());
             storedSector.setDescription(sector.getDescription());
             storedSector.setUsuModif(sector.getUsuModif());
             storedSector.setFechaModif(sector.getFechaModif());
-            parametriaService.saveSector(storedSector);
+            sectorService.saveSector(storedSector);
             StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -117,7 +117,7 @@ public class SectorController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
         try {
-            parametriaService.deleteSector(id);
+            sectorService.deleteSector(id);
             StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;

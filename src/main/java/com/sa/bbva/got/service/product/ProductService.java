@@ -1,4 +1,4 @@
-package com.sa.bbva.got.service;
+package com.sa.bbva.got.service.product;
 
 import com.sa.bbva.got.model.Product;
 

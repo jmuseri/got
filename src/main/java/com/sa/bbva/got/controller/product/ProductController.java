@@ -2,7 +2,7 @@ package com.sa.bbva.got.controller.product;
 
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Product;
-import com.sa.bbva.got.service.ProductService;
+import com.sa.bbva.got.service.product.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
