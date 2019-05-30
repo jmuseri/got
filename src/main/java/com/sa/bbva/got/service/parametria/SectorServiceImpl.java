@@ -1,7 +1,7 @@
 package com.sa.bbva.got.service.parametria;
 
 import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.repository.SectorRepositoryImpl;
+import com.sa.bbva.got.repository.SectorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class SectorServiceImpl implements SectorService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private SectorRepositoryImpl sectorRepository;
+    private SectorRepository sectorRepository;
 
     @Autowired
-    public void setSectorRepository(SectorRepositoryImpl sectorRepository) {
+    public void setSectorRepository(SectorRepository sectorRepository) {
         this.sectorRepository = sectorRepository;
     }
 
