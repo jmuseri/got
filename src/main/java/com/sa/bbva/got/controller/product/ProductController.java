@@ -1,9 +1,8 @@
-package com.sa.bbva.got.controllers.parametria;
+package com.sa.bbva.got.controller.product;
 
 import com.sa.bbva.got.bean.StatusResponse;
-import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.services.ParametriaService;
-
+import com.sa.bbva.got.model.Product;
+import com.sa.bbva.got.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -17,19 +16,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/parametria/sector")
-@Api(value = "functional", description = "Parametria/Sector Operations in GOT")
-public class SectorController {
+@RequestMapping("/product")
+@Api(value = "functional", description = "Functional Operations in GOT")
+public class ProductController {
 
-    private ParametriaService parametriaService;
+    private ProductService productService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public void setParametriaService(ParametriaService parametriaService) {
-        this.parametriaService = parametriaService;
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
-    @ApiOperation(value = "View a list of available sectors", response = Iterable.class)
+    @ApiOperation(value = "View a list of available products", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
@@ -37,8 +36,8 @@ public class SectorController {
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> list(Model model) {
         try {
-            Iterable<Sector> sectorList = parametriaService.listAllSectors();
-            ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
+            Iterable<Product> productList = productService.listAllProducts();
+            ResponseEntity<?> response = new ResponseEntity<>(productList, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
@@ -48,12 +47,12 @@ public class SectorController {
         }
     }
 
-    @ApiOperation(value = "Search a sector with an ID", response = Sector.class)
+    @ApiOperation(value = "Search a product with an ID", response = Product.class)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
+    public ResponseEntity<?> showProduct(@PathVariable Integer id, Model model) {
         try {
-            Sector sector = parametriaService.getSectorById(id);
-            ResponseEntity<?> response = new ResponseEntity<>(sector, HttpStatus.OK);
+            Product product = productService.getProductById(id);
+            ResponseEntity<?> response = new ResponseEntity<>(product, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
@@ -63,33 +62,31 @@ public class SectorController {
         }
     }
 
-    @ApiOperation(value = "Add a sector")
+    @ApiOperation(value = "Add a product")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
+    public ResponseEntity<?> saveProduct(@RequestBody Product product) {
         try {
-            parametriaService.saveSector(sector);
-            StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
+            productService.saveProduct(product);
+            StatusResponse status = new StatusResponse("ok", "Product saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Sector not saved", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Product not saved", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
     }
 
-    @ApiOperation(value = "Update a sector")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
+    @ApiOperation(value = "Update a product")
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
         try {
-            Sector storedSector = parametriaService.getSectorById(id);
-            storedSector.setCanal(sector.getCanal());
-            storedSector.setSector(sector.getSector());
-            storedSector.setDescription(sector.getDescription());
-            storedSector.setUsuModif(sector.getUsuModif());
-            storedSector.setFechaModif(sector.getFechaModif());
-            parametriaService.saveSector(storedSector);
+            Product storedProduct = productService.getProductById(id);
+            storedProduct.setDescription(product.getDescription());
+            storedProduct.setImageUrl(product.getImageUrl());
+            storedProduct.setPrice(product.getPrice());
+            productService.saveProduct(storedProduct);
             StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -101,17 +98,17 @@ public class SectorController {
         }
     }
 
-    @ApiOperation(value = "Delete a sector")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
+    @ApiOperation(value = "Delete a product")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            parametriaService.deleteSector(id);
-            StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);
+            productService.deleteProduct(id);
+            StatusResponse status = new StatusResponse("ok", "Product deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Sector not deleted", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Product not deleted", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }

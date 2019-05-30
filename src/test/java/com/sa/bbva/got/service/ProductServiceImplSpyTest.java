@@ -1,7 +1,7 @@
-package com.sa.bbva.got.services;
+package com.sa.bbva.got.service;
 
 import com.sa.bbva.got.model.Product;
-import com.sa.bbva.got.repositories.ProductRepository;
+import com.sa.bbva.got.repository.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

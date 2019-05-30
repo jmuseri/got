@@ -2,8 +2,8 @@ package com.sa.bbva.got.bootstrap;
 
 import com.sa.bbva.got.model.Product;
 import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.repositories.ProductRepository;
-import com.sa.bbva.got.repositories.SectorRepository;
+import com.sa.bbva.got.repository.ProductRepository;
+import com.sa.bbva.got.repository.SectorRepository;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
