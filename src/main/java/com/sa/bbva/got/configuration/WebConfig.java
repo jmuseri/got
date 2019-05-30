@@ -1,4 +1,4 @@
-package com.sa.bbva.got.config;
+package com.sa.bbva.got.configuration;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

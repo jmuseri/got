@@ -21,6 +21,8 @@ public class Sector {
     private String sector;
     @ApiModelProperty(notes = "The sector description")
     private String description;
+    @ApiModelProperty(notes = "The sector state")
+    private boolean activo;
     @ApiModelProperty(notes = "The creator user")
     private String usuAlta;
     @ApiModelProperty(notes = "The creation date", required = true)

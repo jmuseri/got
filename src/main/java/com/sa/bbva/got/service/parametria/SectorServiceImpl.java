@@ -1,14 +1,14 @@
-package com.sa.bbva.got.services;
+package com.sa.bbva.got.service.parametria;
 
 import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.repositories.SectorRepository;
+import com.sa.bbva.got.repository.SectorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ParametriaServiceImpl implements ParametriaService {
+public class SectorServiceImpl implements SectorService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private SectorRepository sectorRepository;
 
@@ -21,6 +21,12 @@ public class ParametriaServiceImpl implements ParametriaService {
     public Iterable<Sector> listAllSectors() {
         logger.debug("listAllSectors called");
         return sectorRepository.findAll();
+    }
+
+    @Override
+    public Iterable<Sector> listActiveSectors() {
+        logger.debug("listActiveSectors called");
+        return sectorRepository.findAllByActivo();
     }
 
     @Override

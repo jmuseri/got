@@ -51,11 +51,11 @@ GOT APIs are based on RESTFul Services Protocol.
 
 ### Parametría
 #### sector
-* ![get](../images/method-get.png "get")    [/parametria/sector/list](/docs/markdown/api/accion-api.md)  *(Listar los sectores)*
-* ![get](../images/method-get.png "get")    [/parametria/sector/list?activo=true](/docs/markdown/api/accion-api.md)  *(Listar los sectores activos)*
+* ![get](../images/method-get.png "get")    [/parametria/sector/list?activo={false/true}](/docs/markdown/api/accion-api.md)  *(Listar todos los sectores/Listar los sectores activos)*
 * ![post](../images/method-post.png "post") [/parametria/sector/add](/docs/markdown/api/accion-api.md)  *(Alta de un sector)*
 * ![post](../images/method-post.png "post") [/parametria/sector/update](/docs/markdown/api/accion-api.md)  *(Modificación de un sector)*
 * ![post](../images/method-post.png "post") [/parametria/sector/delete](/docs/markdown/api/accion-api.md)  *(Baja de un sector)*
+* ![get](../images/method-get.png "get")    [/parametria/sector/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un sector por Id)***
 #### tramiteTipo
 * ![get](../images/method-get.png "get")    [/parametria/tramiteTipo/list](/docs/markdown/api/accion-api.md)  *(Listar todos los tipos de trámites)*
 * ![get](../images/method-get.png "get")    [/parametria/tramiteTipo/list?activo=true](/docs/markdown/api/accion-api.md)  *(Listar los tipos de trámites activos)*

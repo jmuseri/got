@@ -1,4 +1,4 @@
-package com.sa.bbva.got.config;
+package com.sa.bbva.got.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +18,14 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     /*
      * @Bean public Docket productApi() { return new
      * Docket(DocumentationType.SWAGGER_2).groupName("Products").select()
-     * .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers")).
+     * .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controller")).
      * paths(regex("/product.*")) .build().apiInfo(metaData()); }
      */
 
     @Bean
     public Docket parametriaApi() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("Parametria").select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers.parametria"))
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controller.parametria"))
                 .paths(regex("/*.*")).build().apiInfo(metaData());
         // .paths(regex("/parametria.*")).build().apiInfo(metaData());
     }
@@ -33,7 +33,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket funcionalApi() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("Funcional").select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controllers.funcional")).paths(regex("/*.*"))
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controller.funcional")).paths(regex("/*.*"))
                 .build().apiInfo(metaData());
         // .paths(regex("/funcional.*")).build().apiInfo(metaData());
     }

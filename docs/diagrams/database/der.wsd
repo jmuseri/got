@@ -142,6 +142,7 @@ primary_key(id:) <b><color:blue>long</color></b>
 canal: String
 sector: String
 descripcion: String
+activo: boolean
 usuAlta: String
 fechaAlta: Date
 usuModif: String

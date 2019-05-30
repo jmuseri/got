@@ -1,4 +1,4 @@
-package com.sa.bbva.got.common;
+package com.sa.bbva.got.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;

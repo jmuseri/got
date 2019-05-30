@@ -1,4 +1,4 @@
-package com.sa.bbva.got.services;
+package com.sa.bbva.got.service;
 
 import java.util.List;
 
