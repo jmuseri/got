@@ -1,15 +1,19 @@
 package com.sa.bbva.got.service.parametria;
 
+import java.util.List;
+
 import com.sa.bbva.got.model.Sector;
 
 public interface SectorService {
-    Iterable<Sector> listAllSectors();
+    Iterable<Sector> listAll();
 
-    Iterable<Sector> listActiveSectors();
+    Iterable<Sector> listActive();
 
-    Sector getSectorById(Integer id);
+    Sector getById(Integer id);
 
-    Sector saveSector(Sector sector);
+    Sector save(Sector sector);
 
-    void deleteSector(Integer id);
+    void save(List<Sector> sectors);
+
+    void delete(Integer id);
 }

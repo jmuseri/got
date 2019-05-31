@@ -44,11 +44,11 @@ public class SectorController {
     @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
         try {
             if (!activo) {
-                Iterable<Sector> sectorList = sectorService.listAllSectors();
+                Iterable<Sector> sectorList = sectorService.listAll();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;    
             } else {
-                Iterable<Sector> sectorList = sectorService.listActiveSectors();
+                Iterable<Sector> sectorList = sectorService.listActive();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;    
             }
@@ -64,7 +64,7 @@ public class SectorController {
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
         try {
-            Sector sector = sectorService.getSectorById(id);
+            Sector sector = sectorService.getById(id);
             ResponseEntity<?> response = new ResponseEntity<>(sector, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -79,7 +79,7 @@ public class SectorController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
-            sectorService.saveSector(sector);
+            sectorService.save(sector);
             StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -95,13 +95,13 @@ public class SectorController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
         try {
-            Sector storedSector = sectorService.getSectorById(id);
+            Sector storedSector = sectorService.getById(id);
             storedSector.setCanal(sector.getCanal());
             storedSector.setSector(sector.getSector());
             storedSector.setDescription(sector.getDescription());
             storedSector.setUsuModif(sector.getUsuModif());
             storedSector.setFechaModif(sector.getFechaModif());
-            sectorService.saveSector(storedSector);
+            sectorService.save(storedSector);
             StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -117,7 +117,7 @@ public class SectorController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
         try {
-            sectorService.deleteSector(id);
+            sectorService.delete(id);
             StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
