@@ -1,5 +1,7 @@
 package com.sa.bbva.got.service.parametria;
 
+import java.util.List;
+
 import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.repository.ComisionRepository;
 import org.slf4j.Logger;
@@ -33,6 +35,12 @@ public class ComisionServiceImpl implements ComisionService {
     public Comision save(Comision comision) {
         logger.debug("saveProduct called");
         return this.comisionRepository.save(comision);
+    }
+
+    @Override
+    public void save(List<Comision> comision) {
+        logger.debug("saveSector called");
+        comisionRepository.saveAll(comision);
     }
 
     @Override

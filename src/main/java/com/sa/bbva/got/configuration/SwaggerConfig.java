@@ -25,8 +25,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket parametriaApi() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("Parametria").select()
-                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controller.parametria"))
-                .paths(regex("/*.*")).build().apiInfo(metaData());
+                .apis(RequestHandlerSelectors.basePackage("com.sa.bbva.got.controller.parametria")).paths(regex("/*.*"))
+                .build().apiInfo(metaData());
         // .paths(regex("/parametria.*")).build().apiInfo(metaData());
     }
 

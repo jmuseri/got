@@ -77,6 +77,7 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/parametria/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de comisión)*
 * ![post](../images/method-post.png "post") [/parametria/comision/update](/docs/markdown/api/accion-api.md)  *(Modificación de comisión)*
 * ![post](../images/method-post.png "post") [/parametria/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de comisión)*
+* ![get](../images/method-get.png "get")    [/parametria/comision/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener una comision por Id)***
 #### tramiteTipo-comision
 * ![get](../images/method-get.png "get")    [/parametria/tramiteTipo/comision/show/{1}](/docs/markdown/api/accion-api.md)  *(Consulta comision para un tipo de trámite)*
 * ![post](../images/method-post.png "post") [/parametria/tramiteTipo/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de relacion comisión y tipo de trámite)*

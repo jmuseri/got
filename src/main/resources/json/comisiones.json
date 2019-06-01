@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "param1": "S",
+      "param2": "R",
+      "param3": "26",
+      "param4": "",
+      "param5": "",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 2,
+      "param1": "N",
+      "param2": "P",
+      "param3": "26",
+      "param4": "100",
+      "param5": "",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    }   
+  ]

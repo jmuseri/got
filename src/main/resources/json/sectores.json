@@ -1,0 +1,24 @@
+[
+    {
+      "id": 1,
+      "canal": "web",
+      "sector": "FNC",
+      "description": "BBVA Net Cash",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 2,
+      "canal": "web",
+      "sector": "FN",
+      "description": "Frances Net",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    }
+  ]

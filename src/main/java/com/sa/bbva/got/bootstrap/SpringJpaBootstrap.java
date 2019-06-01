@@ -2,8 +2,10 @@ package com.sa.bbva.got.bootstrap;
 
 import com.sa.bbva.got.model.Product;
 import com.sa.bbva.got.model.Sector;
+import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.repository.ProductRepository;
 import com.sa.bbva.got.service.parametria.SectorService;
+import com.sa.bbva.got.service.parametria.ComisionService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +26,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     private ProductRepository productRepository;
     private SectorService sectorService;
+    private ComisionService comisionService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
@@ -36,26 +39,50 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void setSectorService(SectorService sectorService) {
         this.sectorService = sectorService;
     }
-    
+
+    @Autowired
+    public void setComisionService(ComisionService comisionService) {
+        this.comisionService = comisionService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadProducts();
-        loadSectors();
+        loadSectores();
+        loadComisiones();
     }
 
-    private void loadSectors() {
+    private void loadSectores() {
         /*
          * Read json sector test and write to db
          */
         ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<Sector>> typeReference = new TypeReference<List<Sector>>(){};
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/sectors.json");
+        TypeReference<List<Sector>> typeReference = new TypeReference<List<Sector>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/sectores.json");
         try {
-            List<Sector> sectors = mapper.readValue(inputStream,typeReference);
+            List<Sector> sectors = mapper.readValue(inputStream, typeReference);
             sectorService.save(sectors);
-            System.out.println("Sectors Saved!");
-        } catch (IOException e){
-            System.out.println("Unable to save sectors: " + e.getMessage());
+            System.out.println("Sectores Saved!");
+        } catch (IOException e) {
+            System.out.println("Unable to save sectores: " + e.getMessage());
+        }
+    }
+
+    private void loadComisiones() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<Comision>> typeReference = new TypeReference<List<Comision>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/comisiones.json");
+        try {
+            List<Comision> comisiones = mapper.readValue(inputStream, typeReference);
+            comisionService.save(comisiones);
+            System.out.println("Comisiones Saved!");
+        } catch (IOException e) {
+            System.out.println("Unable to save comisiones: " + e.getMessage());
         }
     }
 
