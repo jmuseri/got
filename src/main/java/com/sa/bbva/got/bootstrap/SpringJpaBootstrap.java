@@ -2,10 +2,12 @@ package com.sa.bbva.got.bootstrap;
 
 import com.sa.bbva.got.model.Product;
 import com.sa.bbva.got.model.Sector;
+import com.sa.bbva.got.model.CampoDisponible;
 import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.repository.ProductRepository;
 import com.sa.bbva.got.service.parametria.SectorService;
+import com.sa.bbva.got.service.parametria.CampoDisponibleService;
 import com.sa.bbva.got.service.parametria.ComisionService;
 import com.sa.bbva.got.service.parametria.EstadoTramiteService;
 
@@ -30,6 +32,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private SectorService sectorService;
     private ComisionService comisionService;
     private EstadoTramiteService estadoTramiteService;
+    private CampoDisponibleService campoDisponibleService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
@@ -53,12 +56,18 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.estadoTramiteService = estadoTramiteService;
     }
 
+    @Autowired
+    public void setCampoDisponibleService(CampoDisponibleService campoDisponibleService) {
+        this.campoDisponibleService = campoDisponibleService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadProducts();
         loadSectores();
         loadComisiones();
         loadEstadosTramite();
+        loadCamposDisponible();
     }
 
     private void loadSectores() {
@@ -109,6 +118,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             System.out.println("EstadosTramite Saved!");
         } catch (IOException e) {
             System.out.println("Unable to save estadosTramite: " + e.getMessage());
+        }
+    }
+
+    private void loadCamposDisponible() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<CampoDisponible>> typeReference = new TypeReference<List<CampoDisponible>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/camposDisponible.json");
+        try {
+            List<CampoDisponible> campoDisponible = mapper.readValue(inputStream, typeReference);
+            campoDisponibleService.save(campoDisponible);
+            System.out.println("CamposDisponible Saved!");
+        } catch (IOException e) {
+            System.out.println("Unable to save camposDisponible: " + e.getMessage());
         }
     }
 

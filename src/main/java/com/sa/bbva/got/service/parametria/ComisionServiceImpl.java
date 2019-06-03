@@ -21,31 +21,31 @@ public class ComisionServiceImpl implements ComisionService {
 
     @Override
     public Iterable<Comision> listAll() {
-        logger.debug("listAllProducts called");
+        logger.debug("listAll called");
         return this.comisionRepository.findAll();
     }
 
     @Override
     public Comision getById(Integer id) {
-        logger.debug("getProductById called");
+        logger.debug("getById called");
         return this.comisionRepository.findById(id).orElse(null);
     }
 
     @Override
     public Comision save(Comision comision) {
-        logger.debug("saveProduct called");
+        logger.debug("save called");
         return this.comisionRepository.save(comision);
     }
 
     @Override
     public void save(List<Comision> comision) {
-        logger.debug("saveSector called");
+        logger.debug("save called");
         comisionRepository.saveAll(comision);
     }
 
     @Override
     public void delete(Integer id) {
-        logger.debug("deleteProduct called");
+        logger.debug("delete called");
         this.comisionRepository.deleteById(id);
     }
 }

@@ -21,37 +21,37 @@ public class SectorServiceImpl implements SectorService {
 
     @Override
     public Iterable<Sector> listAll() {
-        logger.debug("listAllSectors called");
+        logger.debug("listAll called");
         return sectorRepository.findAll();
     }
 
     @Override
     public Iterable<Sector> listActive() {
-        logger.debug("listActiveSectors called");
+        logger.debug("listActive called");
         return sectorRepository.findAllByActivo();
     }
 
     @Override
     public Sector getById(Integer id) {
-        logger.debug("getSectorById called");
+        logger.debug("getById called");
         return sectorRepository.findById(id).orElse(null);
     }
 
     @Override
     public Sector save(Sector sector) {
-        logger.debug("saveSector called");
+        logger.debug("save called");
         return sectorRepository.save(sector);
     }
 
     @Override
     public void save(List<Sector> sectors) {
-        logger.debug("saveSector called");
+        logger.debug("save called");
         sectorRepository.saveAll(sectors);
     }
 
     @Override
     public void delete(Integer id) {
-        logger.debug("deleteSector called");
+        logger.debug("delete called");
         sectorRepository.deleteById(id);
     }
 }

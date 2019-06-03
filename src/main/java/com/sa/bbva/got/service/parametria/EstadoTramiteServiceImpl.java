@@ -21,31 +21,31 @@ public class EstadoTramiteServiceImpl implements EstadoTramiteService {
 
     @Override
     public Iterable<EstadoTramite> listAll() {
-        logger.debug("listAllProducts called");
+        logger.debug("listAll called");
         return this.estadoTramiteRepository.findAll();
     }
 
     @Override
     public EstadoTramite getById(Integer id) {
-        logger.debug("getProductById called");
+        logger.debug("getById called");
         return this.estadoTramiteRepository.findById(id).orElse(null);
     }
 
     @Override
     public EstadoTramite save(EstadoTramite estadoTramite) {
-        logger.debug("saveProduct called");
+        logger.debug("save called");
         return this.estadoTramiteRepository.save(estadoTramite);
     }
 
     @Override
     public void save(List<EstadoTramite> estadoTramite) {
-        logger.debug("saveSector called");
+        logger.debug("save called");
         estadoTramiteRepository.saveAll(estadoTramite);
     }
 
     @Override
     public void delete(Integer id) {
-        logger.debug("deleteProduct called");
+        logger.debug("delete called");
         this.estadoTramiteRepository.deleteById(id);
     }
 }
