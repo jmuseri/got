@@ -48,7 +48,7 @@ public class SectorController {
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;
             } else {
-                Iterable<Sector> sectorList = sectorService.listActive();
+                Iterable<Sector> sectorList = sectorService.listActive(activo);
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;
             }

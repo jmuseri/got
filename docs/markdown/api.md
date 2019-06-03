@@ -28,7 +28,7 @@ GOT APIs are based on RESTFul Services Protocol.
 ### Funcional
 #### tramite
 * ![get](../images/method-get.png "get")    [/funcional/tramite/list](/docs/markdown/api/accion-api.md) *(Listar los trámites)*
-* ![get](../images/method-get.png "get")    [/funcional/tramite/list?activo=true](/docs/markdown/api/accion-api.md) *(Listar los trámites activos)*
+* ![get](../images/method-get.png "get")    [/funcional/tramite/list?activo={true/false}](/docs/markdown/api/accion-api.md) *(Listar los trámites activos)*
 * ![get](../images/method-get.png "get")    [/funcional/tramite/list?sector=1](/docs/markdown/api/accion-api.md)  *(Listar los trámites activos por sector)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/add](/docs/markdown/api/accion-api.md)  *(Alta de trámite con autorizados, sector, detalle)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md) *(Modificación de un trámite)*
@@ -37,14 +37,14 @@ GOT APIs are based on RESTFul Services Protocol.
 #### tramite-autorizado
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de relación un autorizado a un trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación un autorizado a un trámite)*
+* ![get](../images/method-get.png "get")    [/funcional/tramite/autorizado/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 
 #### autorizado
 * ![get](../images/method-get.png "get")    [/funcional/autorizado/list?cliente=1](/docs/markdown/api/accion-api.md)  *(Listar autorizados por cliente)* 
-* ![get](../images/method-get.png "get")    [/funcional/autorizado/list?tramite=1](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 
 * ![post](../images/method-post.png "post") [/funcional/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de un autorizado)*
 * ![post](../images/method-post.png "post") [/funcional/autorizado/update](/docs/markdown/api/accion-api.md)  *(Modificación de un autorizado)*
 * ![post](../images/method-post.png "post") [/funcional/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de un autorizado)*
 #### tramite-detalle
-* ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/list?tramite=1](/docs/markdown/api/accion-api.md)  *(Listar detalle de trámite)*
+* ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar detalle de trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/detalle/add](/docs/markdown/api/accion-api.md)  *(Alta de detalle de trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/detalle/update](/docs/markdown/api/accion-api.md)  *(Modificación de detalle de trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/detalle/delete](/docs/markdown/api/accion-api.md)  *(Baja de detalle de trámite)*

@@ -9,13 +9,22 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface SectorRepository extends CrudRepository<Sector, Integer> {
 
-    default Iterable<Sector> findAllByActivo() {
+    default Iterable<Sector> findAllByActivo(boolean activo) {
         Iterable<Sector> sectorList = this.findAll();
         Iterator<Sector> sectorIterator = sectorList.iterator();
-        while (sectorIterator.hasNext()) {
-            Sector element = sectorIterator.next();
-            if (!element.isActivo()) {
-                sectorIterator.remove();
+        if (activo) {
+            while (sectorIterator.hasNext()) {
+                Sector element = sectorIterator.next();
+                if (!element.isActivo()) {
+                    sectorIterator.remove();
+                }
+            }
+        } else {
+            while (sectorIterator.hasNext()) {
+                Sector element = sectorIterator.next();
+                if (element.isActivo()) {
+                    sectorIterator.remove();
+                }
             }
         }
         return sectorList;
