@@ -83,12 +83,24 @@ public class EstadoTramiteController {
     public ResponseEntity<?> updateEstadoTramite(@PathVariable Integer id, @RequestBody EstadoTramite estadoTramite) {
         try {
             EstadoTramite stored = estadoTramiteService.getById(id);
-            stored.setNombre(estadoTramite.getNombre());
-            stored.setDescripcion(estadoTramite.getDescripcion());
-            stored.setUsuAlta(estadoTramite.getUsuAlta());
-            stored.setFechaAlta(estadoTramite.getFechaAlta());
-            stored.setUsuModif(estadoTramite.getUsuModif());
-            stored.setFechaModif(estadoTramite.getFechaModif());
+            if (null != estadoTramite.getNombre()) {
+                stored.setNombre(estadoTramite.getNombre());
+            }
+            if (null != estadoTramite.getDescripcion()) {
+                stored.setDescripcion(estadoTramite.getDescripcion());
+            }
+            if (null != estadoTramite.getUsuAlta()) {
+                stored.setUsuAlta(estadoTramite.getUsuAlta());
+            }
+            if (null != estadoTramite.getFechaAlta()) {
+                stored.setFechaAlta(estadoTramite.getFechaAlta());
+            }
+            if (null != estadoTramite.getUsuModif()) {
+                stored.setUsuModif(estadoTramite.getUsuModif());
+            }
+            if (null != estadoTramite.getFechaModif()) {
+                stored.setFechaModif(estadoTramite.getFechaModif());
+            }
             estadoTramiteService.save(stored);
             StatusResponse status = new StatusResponse("ok", "EstadoTramite updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

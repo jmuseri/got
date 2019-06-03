@@ -26,9 +26,9 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public Iterable<Sector> listActive(boolean activo) {
+    public Iterable<Sector> listActive() {
         logger.debug("listActive called");
-        return sectorRepository.findAllByActivo(activo);
+        return sectorRepository.findAllByActivoIsTrue();
     }
 
     @Override

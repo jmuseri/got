@@ -48,7 +48,7 @@ public class SectorController {
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;
             } else {
-                Iterable<Sector> sectorList = sectorService.listActive(activo);
+                Iterable<Sector> sectorList = sectorService.listActive();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;
             }
@@ -95,15 +95,30 @@ public class SectorController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
         try {
-            Sector storedSector = sectorService.getById(id);
-            storedSector.setCanal(sector.getCanal());
-            storedSector.setSector(sector.getSector());
-            storedSector.setDescripcion(sector.getDescripcion());
-            storedSector.setUsuAlta(sector.getUsuAlta());
-            storedSector.setFechaAlta(sector.getFechaAlta());
-            storedSector.setUsuModif(sector.getUsuModif());
-            storedSector.setFechaModif(sector.getFechaModif());
-            sectorService.save(storedSector);
+            Sector stored = sectorService.getById(id);
+            if (null != sector.getCanal()) {
+                stored.setCanal(sector.getCanal());
+            }
+            if (null != sector.getSector()) {
+                stored.setSector(sector.getSector());
+            }
+            stored.setActivo(sector.isActivo());
+            if (null != sector.getDescripcion()) {
+                stored.setDescripcion(sector.getDescripcion());
+            }
+            if (null != sector.getUsuAlta()) {
+                stored.setUsuAlta(sector.getUsuAlta());
+            }
+            if (null != sector.getFechaAlta()) {
+                stored.setFechaAlta(sector.getFechaAlta());
+            }
+            if (null != sector.getUsuModif()) {
+                stored.setUsuModif(sector.getUsuModif());
+            }
+            if (null != sector.getFechaModif()) {
+                stored.setFechaModif(sector.getFechaModif());
+            }
+            sectorService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;

@@ -83,15 +83,33 @@ public class ComisionController {
     public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody Comision comision) {
         try {
             Comision stored = comisionService.getById(id);
-            stored.setParam1(comision.getParam1());
-            stored.setParam2(comision.getParam2());
-            stored.setParam3(comision.getParam3());
-            stored.setParam4(comision.getParam4());
-            stored.setParam5(comision.getParam5());
-            stored.setUsuAlta(comision.getUsuAlta());
-            stored.setFechaAlta(comision.getFechaAlta());
-            stored.setUsuModif(comision.getUsuModif());
-            stored.setFechaModif(comision.getFechaModif());
+            if (null != comision.getParam1()) {
+                stored.setParam1(comision.getParam1());
+            }
+            if (null != comision.getParam2()) {
+                stored.setParam2(comision.getParam2());
+            }
+            if (null != comision.getParam3()) {
+                stored.setParam3(comision.getParam3());
+            }
+            if (null != comision.getParam4()) {
+                stored.setParam4(comision.getParam4());
+            }
+            if (null != comision.getParam5()) {
+                stored.setParam5(comision.getParam5());
+            }
+            if (null != comision.getUsuAlta()) {
+                stored.setUsuAlta(comision.getUsuAlta());
+            }
+            if (null != comision.getFechaAlta()) {
+                stored.setFechaAlta(comision.getFechaAlta());
+            }
+            if (null != comision.getUsuModif()) {
+                stored.setUsuModif(comision.getUsuModif());
+            }
+            if (null != comision.getFechaModif()) {
+                stored.setFechaModif(comision.getFechaModif());
+            }
             comisionService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Comision updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

@@ -7,7 +7,7 @@ import com.sa.bbva.got.model.Sector;
 public interface SectorService {
     Iterable<Sector> listAll();
 
-    Iterable<Sector> listActive(boolean activo);
+    Iterable<Sector> listActive();
 
     Sector getById(Integer id);
 

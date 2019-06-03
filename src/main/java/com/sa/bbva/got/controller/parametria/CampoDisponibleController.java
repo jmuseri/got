@@ -84,14 +84,28 @@ public class CampoDisponibleController {
             @RequestBody CampoDisponible campoDisponible) {
         try {
             CampoDisponible stored = campoDisponibleService.getById(id);
-            stored.setNombre(campoDisponible.getNombre());
-            stored.setDescripcion(campoDisponible.getDescripcion());
-            stored.setTipoDato(campoDisponible.getTipoDato());
+            if (null != campoDisponible.getNombre()) {
+                stored.setNombre(campoDisponible.getNombre());
+            }
+            if (null != campoDisponible.getDescripcion()) {
+                stored.setDescripcion(campoDisponible.getDescripcion());
+            }
+            if (null != campoDisponible.getTipoDato()) {
+                stored.setTipoDato(campoDisponible.getTipoDato());
+            }
             stored.setActivo(campoDisponible.isActivo());
-            stored.setUsuAlta(campoDisponible.getUsuAlta());
-            stored.setFechaAlta(campoDisponible.getFechaAlta());
-            stored.setUsuModif(campoDisponible.getUsuModif());
-            stored.setFechaModif(campoDisponible.getFechaModif());
+            if (null != campoDisponible.getUsuAlta()) {
+                stored.setUsuAlta(campoDisponible.getUsuAlta());
+            }
+            if (null != campoDisponible.getFechaAlta()) {
+                stored.setFechaAlta(campoDisponible.getFechaAlta());
+            }
+            if (null != campoDisponible.getUsuModif()) {
+                stored.setUsuModif(campoDisponible.getUsuModif());
+            }
+            if (null != campoDisponible.getFechaModif()) {
+                stored.setFechaModif(campoDisponible.getFechaModif());
+            }
             campoDisponibleService.save(stored);
             StatusResponse status = new StatusResponse("ok", "CampoDisponible updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

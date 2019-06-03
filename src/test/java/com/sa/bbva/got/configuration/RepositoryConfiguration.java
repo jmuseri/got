@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableAutoConfiguration
 @EntityScan(basePackages = { "com.sa.bbva.got.model" })
-@EnableJpaRepositories(basePackages = { "com.sa.bbva.got.repositories" })
+@EnableJpaRepositories(basePackages = { "com.sa.bbva.got.repository" })
 @EnableTransactionManagement
 public class RepositoryConfiguration {
 }
