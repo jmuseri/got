@@ -1,13 +1,8 @@
 package com.sa.bbva.got.controller.parametria;
 
-import java.text.ParseException;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.sa.bbva.got.bean.StatusResponse;
-import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.service.parametria.SectorService;
-
+import com.sa.bbva.got.model.EstadoTramite;
+import com.sa.bbva.got.service.parametria.EstadoTramiteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -21,37 +16,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/parametria/sector")
-@Api(value = "parametria", description = "Parametria/Sector Operations in GOT")
-public class SectorController {
+@RequestMapping("/estadoTramite")
+@Api(value = "parametria", description = "Parametria/EstadoTramite Operations in GOT")
+public class EstadoTramiteController {
 
-    private SectorService sectorService;
+    private EstadoTramiteService estadoTramiteService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public void setSectorService(SectorService sectorService) {
-        this.sectorService = sectorService;
+    public void setEstadoTramiteService(EstadoTramiteService estadoTramiteService) {
+        this.estadoTramiteService = estadoTramiteService;
     }
 
-    @ApiOperation(value = "View a list of available sectors", response = Iterable.class)
+    @ApiOperation(value = "View a list of available estadoTramite", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-
-    public ResponseEntity<?> list(HttpServletRequest req,
-            @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
+    public ResponseEntity<?> list(Model model) {
         try {
-            if (!activo) {
-                Iterable<Sector> sectorList = sectorService.listAll();
-                ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
-                return response;
-            } else {
-                Iterable<Sector> sectorList = sectorService.listActive();
-                ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
-                return response;
-            }
+            Iterable<EstadoTramite> comisionList = estadoTramiteService.listAll();
+            ResponseEntity<?> response = new ResponseEntity<>(comisionList, HttpStatus.OK);
+            return response;
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
@@ -60,12 +47,12 @@ public class SectorController {
         }
     }
 
-    @ApiOperation(value = "Search a sector with an ID", response = Sector.class)
+    @ApiOperation(value = "Search an estadoTramite with an ID", response = EstadoTramite.class)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
+    public ResponseEntity<?> showEstadoTramite(@PathVariable Integer id, Model model) {
         try {
-            Sector sector = sectorService.getById(id);
-            ResponseEntity<?> response = new ResponseEntity<>(sector, HttpStatus.OK);
+            EstadoTramite comision = estadoTramiteService.getById(id);
+            ResponseEntity<?> response = new ResponseEntity<>(comision, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
@@ -75,57 +62,56 @@ public class SectorController {
         }
     }
 
-    @ApiOperation(value = "Add a sector")
+    @ApiOperation(value = "Add an estadoTramite")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
+    public ResponseEntity<?> saveEstadoTramite(@RequestBody EstadoTramite estadoTramite) {
         try {
-            sectorService.save(sector);
-            StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
+            estadoTramiteService.save(estadoTramite);
+            StatusResponse status = new StatusResponse("ok", "EstadoTramite saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Sector not saved", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "EstadoTramite not saved", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
     }
 
-    @ApiOperation(value = "Update a sector")
+    @ApiOperation(value = "Update an estadoTramite")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
+    public ResponseEntity<?> updateEstadoTramite(@PathVariable Integer id, @RequestBody EstadoTramite estadoTramite) {
         try {
-            Sector storedSector = sectorService.getById(id);
-            storedSector.setCanal(sector.getCanal());
-            storedSector.setSector(sector.getSector());
-            storedSector.setDescripcion(sector.getDescripcion());
-            storedSector.setUsuAlta(sector.getUsuAlta());
-            storedSector.setFechaAlta(sector.getFechaAlta());
-            storedSector.setUsuModif(sector.getUsuModif());
-            storedSector.setFechaModif(sector.getFechaModif());
-            sectorService.save(storedSector);
-            StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
+            EstadoTramite stored = estadoTramiteService.getById(id);
+            stored.setNombre(estadoTramite.getNombre());
+            stored.setDescripcion(estadoTramite.getDescripcion());
+            stored.setUsuAlta(estadoTramite.getUsuAlta());
+            stored.setFechaAlta(estadoTramite.getFechaAlta());
+            stored.setUsuModif(estadoTramite.getUsuModif());
+            stored.setFechaModif(estadoTramite.getFechaModif());
+            estadoTramiteService.save(stored);
+            StatusResponse status = new StatusResponse("ok", "Comision updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Product not saved", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Comision not saved", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
     }
 
-    @ApiOperation(value = "Delete a sector")
+    @ApiOperation(value = "Delete an estadoTramite")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            sectorService.delete(id);
-            StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);
+            estadoTramiteService.delete(id);
+            StatusResponse status = new StatusResponse("ok", "EstadoTramite deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Sector not deleted", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "EstadoTramite not deleted", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }

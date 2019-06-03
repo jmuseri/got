@@ -28,7 +28,7 @@ public class Comision {
     private String param4;
     @ApiModelProperty(notes = "The comision param5")
     private String param5;
-    @ApiModelProperty(notes = "The creator user")
+    @ApiModelProperty(notes = "The creator user", required = true)
     private String usuAlta;
     @ApiModelProperty(notes = "The creation date", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")

@@ -3,9 +3,11 @@ package com.sa.bbva.got.bootstrap;
 import com.sa.bbva.got.model.Product;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Comision;
+import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.repository.ProductRepository;
 import com.sa.bbva.got.service.parametria.SectorService;
 import com.sa.bbva.got.service.parametria.ComisionService;
+import com.sa.bbva.got.service.parametria.EstadoTramiteService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,6 +29,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private ProductRepository productRepository;
     private SectorService sectorService;
     private ComisionService comisionService;
+    private EstadoTramiteService estadoTramiteService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
@@ -45,11 +48,17 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.comisionService = comisionService;
     }
 
+    @Autowired
+    public void setEstadoTramiteService(EstadoTramiteService estadoTramiteService) {
+        this.estadoTramiteService = estadoTramiteService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadProducts();
         loadSectores();
         loadComisiones();
+        loadEstadosTramite();
     }
 
     private void loadSectores() {
@@ -83,6 +92,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             System.out.println("Comisiones Saved!");
         } catch (IOException e) {
             System.out.println("Unable to save comisiones: " + e.getMessage());
+        }
+    }
+
+    private void loadEstadosTramite() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<EstadoTramite>> typeReference = new TypeReference<List<EstadoTramite>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/estadosTramite.json");
+        try {
+            List<EstadoTramite> estadosTramite = mapper.readValue(inputStream, typeReference);
+            estadoTramiteService.save(estadosTramite);
+            System.out.println("EstadosTramite Saved!");
+        } catch (IOException e) {
+            System.out.println("Unable to save estadosTramite: " + e.getMessage());
         }
     }
 

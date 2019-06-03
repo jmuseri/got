@@ -73,7 +73,8 @@ Technical Reference:
 * http://localhost:8080 in browser
 * or mvn clean package -Dmaven.test.skip=true
 * or mvn clean package -DskipTests
-* java -jar target/got-services-0.1.0.jar
+* java -jar target/got-services-0.1.0.jar  and
+* http://localhost:8080/swagger-ui.html shows API documentation
 
 
 ## How to run tests

@@ -15,8 +15,8 @@ public class ComisionServiceImpl implements ComisionService {
     private ComisionRepository comisionRepository;
 
     @Autowired
-    public void setRepository(ComisionRepository productRepository) {
-        this.comisionRepository = productRepository;
+    public void setRepository(ComisionRepository comisionRepository) {
+        this.comisionRepository = comisionRepository;
     }
 
     @Override

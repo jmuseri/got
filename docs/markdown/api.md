@@ -82,6 +82,12 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![get](../images/method-get.png "get")    [/parametria/tramiteTipo/comision/show/{1}](/docs/markdown/api/accion-api.md)  *(Consulta comision para un tipo de trámite)*
 * ![post](../images/method-post.png "post") [/parametria/tramiteTipo/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de relacion comisión y tipo de trámite)*
 * ![post](../images/method-post.png "post") [/parametria/tramiteTipo/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de relacion comisión y tipo de trámite)*
+#### estadoTramite
+* ![get](../images/method-get.png "get")    [/parametria/estadoTramite/list](/docs/markdown/api/accion-api.md) ***(Listar estadoTramite)***
+* ![post](../images/method-post.png "post") [/parametria/estadoTramite/add](/docs/markdown/api/accion-api.md)  ***(Alta de estadoTramite)***
+* ![post](../images/method-post.png "post") [/parametria/estadoTramite/update](/docs/markdown/api/accion-api.md) ***(Modificación de estadoTramite)***
+* ![post](../images/method-post.png "post") [/parametria/estadoTramite/delete](/docs/markdown/api/accion-api.md)  ***(Baja de estadoTramite)***
+* ![get](../images/method-get.png "get")    [/parametria/estadoTramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un estadoTramite por Id)***
 
 ---
 ## /

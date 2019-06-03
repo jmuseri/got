@@ -82,17 +82,17 @@ public class ComisionController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody Comision comision) {
         try {
-            Comision storedComision = comisionService.getById(id);
-            storedComision.setParam1(comision.getParam1());
-            storedComision.setParam2(comision.getParam2());
-            storedComision.setParam3(comision.getParam3());
-            storedComision.setParam4(comision.getParam4());
-            storedComision.setParam5(comision.getParam5());
-            storedComision.setUsuAlta(comision.getUsuAlta());
-            storedComision.setFechaAlta(comision.getFechaAlta());
-            storedComision.setUsuModif(comision.getUsuModif());
-            storedComision.setFechaModif(comision.getFechaModif());
-            comisionService.save(storedComision);
+            Comision stored = comisionService.getById(id);
+            stored.setParam1(comision.getParam1());
+            stored.setParam2(comision.getParam2());
+            stored.setParam3(comision.getParam3());
+            stored.setParam4(comision.getParam4());
+            stored.setParam5(comision.getParam5());
+            stored.setUsuAlta(comision.getUsuAlta());
+            stored.setFechaAlta(comision.getFechaAlta());
+            stored.setUsuModif(comision.getUsuModif());
+            stored.setFechaModif(comision.getFechaModif());
+            comisionService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Comision updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
