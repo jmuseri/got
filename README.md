@@ -41,11 +41,12 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 **BBVA** Banco Frances   
 
 Manager Reference: 
-* Daniel Hernandez  
+* Daniel Hernandez      daniel.hernandez1@bbva.com
 
 Technical Reference: 
-* Javier da Silva 
-* Matias Hernandez
+* Javier da Silva       javier.dasilva@bbva.com       
+* Matias Hernandez      matias.hernandez@bbva.com
+* Juan Pablo Garcia     juanp.garcia@bbva.com
 
 ## Key Features
 
@@ -58,16 +59,33 @@ Technical Reference:
 
 ## Requirements
 
+* Use just GET & POST request methods (Webseal limit)
 * Label text Configuration
-* Use just GET & POST request methods (Webseal limitation)
 
 ## Getting Start and Installation
+
+* Download project from:
+    
+    git clone https://sistemas_activos@bitbucket.org/sa_bbva_got/got.git
+
+* mvn clean
+* mvn spring-boot:run
+* http://localhost:8080 in browser
+* or mvn clean package -Dmaven.test.skip=true
+* or mvn clean package -DskipTests
+* java -jar target/got-services-0.1.0.jar
+
 
 ## How to run tests
 
 ## Deployment instructions
 
 ## Get Help
+
+Sistemas Activos srl
+
+* German Gambera  german.gambera@sistemasactivos.com
+* Eduardo Gauna   eduardo.gauna@sistemasactivos.com
 
 ## Contributing
 
