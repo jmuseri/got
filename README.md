@@ -88,8 +88,8 @@ Technical Reference:
 
 Sistemas Activos srl
 
-* German Gambera  german.gambera@sistemasactivos.com
-* Eduardo Gauna   eduardo.gauna@sistemasactivos.com
+* German Gambera  [german.gambera@sistemasactivos.com]()
+* Eduardo Gauna   [eduardo.gauna@sistemasactivos.com]()
 
 ## Contributing
 
