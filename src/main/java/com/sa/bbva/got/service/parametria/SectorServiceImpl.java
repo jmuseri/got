@@ -1,5 +1,7 @@
 package com.sa.bbva.got.service.parametria;
 
+import java.util.List;
+
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.repository.SectorRepository;
 import org.slf4j.Logger;
@@ -18,32 +20,38 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public Iterable<Sector> listAllSectors() {
-        logger.debug("listAllSectors called");
+    public Iterable<Sector> listAll() {
+        logger.debug("listAll called");
         return sectorRepository.findAll();
     }
 
     @Override
-    public Iterable<Sector> listActiveSectors() {
-        logger.debug("listActiveSectors called");
-        return sectorRepository.findAllByActivo();
+    public Iterable<Sector> listActive() {
+        logger.debug("listActive called");
+        return sectorRepository.findAllByActivoIsTrue();
     }
 
     @Override
-    public Sector getSectorById(Integer id) {
-        logger.debug("getSectorById called");
+    public Sector getById(Integer id) {
+        logger.debug("getById called");
         return sectorRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Sector saveSector(Sector sector) {
-        logger.debug("saveSector called");
+    public Sector save(Sector sector) {
+        logger.debug("save called");
         return sectorRepository.save(sector);
     }
 
     @Override
-    public void deleteSector(Integer id) {
-        logger.debug("deleteSector called");
+    public void save(List<Sector> sectors) {
+        logger.debug("save called");
+        sectorRepository.saveAll(sectors);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        logger.debug("delete called");
         sectorRepository.deleteById(id);
     }
 }

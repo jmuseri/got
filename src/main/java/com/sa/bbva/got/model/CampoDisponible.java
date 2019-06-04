@@ -13,18 +13,17 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Entity
-public class Sector {
+public class CampoDisponible {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(notes = "The database generated sector ID")
+    @ApiModelProperty(notes = "The database campoDisponible ID", required = true)
     private Integer id;
-    @ApiModelProperty(notes = "The sector canal", required = true)
-    private String canal;
-    @ApiModelProperty(notes = "The sector name", required = true)
-    private String sector;
-    @ApiModelProperty(notes = "The sector description")
+    @ApiModelProperty(notes = "The campoDisponible name", required = true)
+    private String nombre;
+    @ApiModelProperty(notes = "The campoDisponible description")
     private String descripcion;
-    @ApiModelProperty(notes = "The sector state")
+    @ApiModelProperty(notes = "The campoDisponible tipoDato", required = true)
+    private String tipoDato;
+    @ApiModelProperty(notes = "The campoDisponible activo")
     private boolean activo;
     @ApiModelProperty(notes = "The creator user", required = true)
     private String usuAlta;
@@ -36,5 +35,4 @@ public class Sector {
     @ApiModelProperty(notes = "The update date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaModif;
-
 }

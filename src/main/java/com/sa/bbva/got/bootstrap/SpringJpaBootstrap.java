@@ -1,9 +1,19 @@
 package com.sa.bbva.got.bootstrap;
 
-import com.sa.bbva.got.model.Product;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sa.bbva.got.model.CampoDisponible;
+import com.sa.bbva.got.model.Comision;
+import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
-import com.sa.bbva.got.repository.ProductRepository;
-import com.sa.bbva.got.repository.SectorRepository;
+import com.sa.bbva.got.service.parametria.CampoDisponibleService;
+import com.sa.bbva.got.service.parametria.ComisionService;
+import com.sa.bbva.got.service.parametria.EstadoTramiteService;
+import com.sa.bbva.got.service.parametria.SectorService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,71 +22,110 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private ProductRepository productRepository;
-    private SectorRepository sectorRepository;
+    private SectorService sectorService;
+    private ComisionService comisionService;
+    private EstadoTramiteService estadoTramiteService;
+    private CampoDisponibleService campoDisponibleService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
     @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public void setSectorService(SectorService sectorService) {
+        this.sectorService = sectorService;
     }
 
     @Autowired
-    public void setSectorRepository(SectorRepository sectorRepository) {
-        this.sectorRepository = sectorRepository;
+    public void setComisionService(ComisionService comisionService) {
+        this.comisionService = comisionService;
+    }
+
+    @Autowired
+    public void setEstadoTramiteService(EstadoTramiteService estadoTramiteService) {
+        this.estadoTramiteService = estadoTramiteService;
+    }
+
+    @Autowired
+    public void setCampoDisponibleService(CampoDisponibleService campoDisponibleService) {
+        this.campoDisponibleService = campoDisponibleService;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadProducts();
-        loadSectors();
+        loadSectores();
+        loadComisiones();
+        loadEstadosTramite();
+        loadCamposDisponible();
     }
 
-    private void loadSectors() {
-        Sector sector1 = new Sector();
-        sector1.setCanal("canal 1");
-        sector1.setSector("sector 1");
-        sector1.setDescription("description 1");
-        sector1.setUsuAlta("usu1");
-        sector1.setFechaAlta(new Date());
-        sector1.setUsuModif("usu1");
-        sector1.setFechaModif(new Date());
-        sectorRepository.save(sector1);
-        log.info("Saved sector1 - id: " + sector1.getId());
-
-        Sector sector2 = new Sector();
-        sector2.setCanal("canal 2");
-        sector2.setSector("sector 2");
-        sector2.setDescription("description 2");
-        sector2.setUsuAlta("usu2");
-        sector2.setFechaAlta(new Date());
-        sector2.setUsuModif("usu2");
-        sector2.setFechaModif(new Date());
-        sectorRepository.save(sector2);
-        log.info("Saved sector2 - id: " + sector2.getId());
+    private void loadSectores() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<Sector>> typeReference = new TypeReference<List<Sector>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/sectores.json");
+        try {
+            List<Sector> sectors = mapper.readValue(inputStream, typeReference);
+            sectorService.save(sectors);
+            log.info("Sectores Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save sectores: " + e.getMessage());
+        }
     }
 
-    private void loadProducts() {
-        Product shirt = new Product();
-        shirt.setDescription("Shirt");
-        shirt.setPrice(new BigDecimal("18.95"));
-        shirt.setProductId("235268845711068308");
-        productRepository.save(shirt);
-        log.info("Saved Shirt - id: " + shirt.getId());
+    private void loadComisiones() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<Comision>> typeReference = new TypeReference<List<Comision>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/comisiones.json");
+        try {
+            List<Comision> comisiones = mapper.readValue(inputStream, typeReference);
+            comisionService.save(comisiones);
+            log.info("Comisiones Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save comisiones: " + e.getMessage());
+        }
+    }
 
-        Product mug = new Product();
-        mug.setDescription("Mug");
-        mug.setProductId("168639393495335947");
-        mug.setPrice(new BigDecimal("11.95"));
-        productRepository.save(mug);
-        log.info("Saved Mug - id:" + mug.getId());
+    private void loadEstadosTramite() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<EstadoTramite>> typeReference = new TypeReference<List<EstadoTramite>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/estadosTramite.json");
+        try {
+            List<EstadoTramite> estadosTramite = mapper.readValue(inputStream, typeReference);
+            estadoTramiteService.save(estadosTramite);
+            log.info("EstadosTramite Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save estadosTramite: " + e.getMessage());
+        }
+    }
+
+    private void loadCamposDisponible() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<CampoDisponible>> typeReference = new TypeReference<List<CampoDisponible>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/camposDisponible.json");
+        try {
+            List<CampoDisponible> campoDisponible = mapper.readValue(inputStream, typeReference);
+            campoDisponibleService.save(campoDisponible);
+            log.info("CamposDisponible Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save camposDisponible: " + e.getMessage());
+        }
     }
 
 }
