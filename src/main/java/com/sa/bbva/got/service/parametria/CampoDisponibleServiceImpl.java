@@ -21,31 +21,31 @@ public class CampoDisponibleServiceImpl implements CampoDisponibleService {
 
     @Override
     public Iterable<CampoDisponible> listAll() {
-        logger.debug("listAllProducts called");
+        logger.debug("listAll called");
         return this.campoDisponibleRepository.findAll();
     }
 
     @Override
     public CampoDisponible getById(Integer id) {
-        logger.debug("getProductById called");
+        logger.debug("getById called");
         return this.campoDisponibleRepository.findById(id).orElse(null);
     }
 
     @Override
     public CampoDisponible save(CampoDisponible campoDisponible) {
-        logger.debug("saveProduct called");
+        logger.debug("save called");
         return this.campoDisponibleRepository.save(campoDisponible);
     }
 
     @Override
     public void save(List<CampoDisponible> estadoTramite) {
-        logger.debug("saveSector called");
+        logger.debug("savecalled");
         campoDisponibleRepository.saveAll(estadoTramite);
     }
 
     @Override
     public void delete(Integer id) {
-        logger.debug("deleteProduct called");
+        logger.debug("delete called");
         this.campoDisponibleRepository.deleteById(id);
     }
 }

@@ -119,12 +119,12 @@ public class SectorController {
                 stored.setFechaModif(sector.getFechaModif());
             }
             sectorService.save(stored);
-            StatusResponse status = new StatusResponse("ok", "Product updated successfully", null);
+            StatusResponse status = new StatusResponse("ok", "Sector updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Product not saved", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Sector not saved", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }

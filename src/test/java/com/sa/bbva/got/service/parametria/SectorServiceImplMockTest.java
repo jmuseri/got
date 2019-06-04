@@ -1,4 +1,4 @@
-package com.sa.bbva.got.service.sector;
+package com.sa.bbva.got.service.parametria;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;

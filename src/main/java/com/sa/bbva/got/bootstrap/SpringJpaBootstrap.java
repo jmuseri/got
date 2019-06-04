@@ -1,15 +1,19 @@
 package com.sa.bbva.got.bootstrap;
 
-import com.sa.bbva.got.model.Product;
-import com.sa.bbva.got.model.Sector;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sa.bbva.got.model.CampoDisponible;
 import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.model.EstadoTramite;
-import com.sa.bbva.got.repository.ProductRepository;
-import com.sa.bbva.got.service.parametria.SectorService;
+import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.service.parametria.CampoDisponibleService;
 import com.sa.bbva.got.service.parametria.ComisionService;
 import com.sa.bbva.got.service.parametria.EstadoTramiteService;
+import com.sa.bbva.got.service.parametria.SectorService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,28 +22,15 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
-import java.io.InputStream;
-import java.util.List;
-import java.io.IOException;
-import java.math.BigDecimal;
-
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private ProductRepository productRepository;
     private SectorService sectorService;
     private ComisionService comisionService;
     private EstadoTramiteService estadoTramiteService;
     private CampoDisponibleService campoDisponibleService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
-
-    @Autowired
-    public void setProductRepository(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     @Autowired
     public void setSectorService(SectorService sectorService) {
@@ -63,7 +54,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadProducts();
         loadSectores();
         loadComisiones();
         loadEstadosTramite();
@@ -81,9 +71,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         try {
             List<Sector> sectors = mapper.readValue(inputStream, typeReference);
             sectorService.save(sectors);
-            System.out.println("Sectores Saved!");
+            log.info("Sectores Saved!");
         } catch (IOException e) {
-            System.out.println("Unable to save sectores: " + e.getMessage());
+            log.error("Unable to save sectores: " + e.getMessage());
         }
     }
 
@@ -98,9 +88,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         try {
             List<Comision> comisiones = mapper.readValue(inputStream, typeReference);
             comisionService.save(comisiones);
-            System.out.println("Comisiones Saved!");
+            log.info("Comisiones Saved!");
         } catch (IOException e) {
-            System.out.println("Unable to save comisiones: " + e.getMessage());
+            log.error("Unable to save comisiones: " + e.getMessage());
         }
     }
 
@@ -115,9 +105,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         try {
             List<EstadoTramite> estadosTramite = mapper.readValue(inputStream, typeReference);
             estadoTramiteService.save(estadosTramite);
-            System.out.println("EstadosTramite Saved!");
+            log.info("EstadosTramite Saved!");
         } catch (IOException e) {
-            System.out.println("Unable to save estadosTramite: " + e.getMessage());
+            log.error("Unable to save estadosTramite: " + e.getMessage());
         }
     }
 
@@ -132,26 +122,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         try {
             List<CampoDisponible> campoDisponible = mapper.readValue(inputStream, typeReference);
             campoDisponibleService.save(campoDisponible);
-            System.out.println("CamposDisponible Saved!");
+            log.info("CamposDisponible Saved!");
         } catch (IOException e) {
-            System.out.println("Unable to save camposDisponible: " + e.getMessage());
+            log.error("Unable to save camposDisponible: " + e.getMessage());
         }
-    }
-
-    private void loadProducts() {
-        Product shirt = new Product();
-        shirt.setDescription("Shirt");
-        shirt.setPrice(new BigDecimal("18.95"));
-        shirt.setProductId("235268845711068308");
-        productRepository.save(shirt);
-        log.info("Saved Shirt - id: " + shirt.getId());
-
-        Product mug = new Product();
-        mug.setDescription("Mug");
-        mug.setProductId("168639393495335947");
-        mug.setPrice(new BigDecimal("11.95"));
-        productRepository.save(mug);
-        log.info("Saved Mug - id:" + mug.getId());
     }
 
 }
