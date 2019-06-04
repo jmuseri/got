@@ -21,7 +21,7 @@ GOT APIs are based on RESTFul Services Protocol.
 ## API Catalog
 
 ### General
-* ![get](../images/method-get.png "get")  [/](#markdown-header-api-/) *(Redirect to Documentation)*
+* ![get](../images/method-get.png "get")  [/](#markdown-header-api-/swagger-ui.html) *(Redirect to Documentation)*
 
 * ![get](../images/method-get.png "get")  [/swagger-ui.html](#markdown-header-api-/swagger-ui.html) *(API Documentation)*
 

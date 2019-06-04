@@ -42,9 +42,11 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 **BBVA** Banco Frances   
 
 Manager Reference: 
+
 * Daniel Hernandez      daniel.hernandez1@bbva.com
 
 Technical Reference: 
+
 * Javier da Silva       javier.dasilva@bbva.com       
 * Matias Hernandez      matias.hernandez@bbva.com
 * Juan Pablo Garcia     juanp.garcia@bbva.com
