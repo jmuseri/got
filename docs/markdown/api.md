@@ -89,7 +89,12 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/parametria/estadoTramite/update](/docs/markdown/api/accion-api.md) ***(Modificación de estadoTramite)***
 * ![post](../images/method-post.png "post") [/parametria/estadoTramite/delete](/docs/markdown/api/accion-api.md)  ***(Baja de estadoTramite)***
 * ![get](../images/method-get.png "get")    [/parametria/estadoTramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un estadoTramite por Id)***
-
+#### tipoTramite
+* ![get](../images/method-get.png "get")    [/parametria/tipoTramite/list](/docs/markdown/api/accion-api.md) ***(Listar tipoTramite)***
+* ![post](../images/method-post.png "post") [/parametria/tipoTramite/add](/docs/markdown/api/accion-api.md)  ***(Alta de tipoTramite)***
+* ![post](../images/method-post.png "post") [/parametria/tipoTramite/update](/docs/markdown/api/accion-api.md) ***(Modificación de tipoTramite)***
+* ![post](../images/method-post.png "post") [/parametria/tipoTramite/delete](/docs/markdown/api/accion-api.md)  ***(Baja de tipoTramite)***
+* ![get](../images/method-get.png "get")    [/parametria/tipoTramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un tipoTramite por Id)***
 ---
 ## /
 ## /swagger-ui.html
