@@ -28,6 +28,8 @@ public class TipoTramite {
     private boolean requiereDocumentacion;
     @ApiModelProperty(notes = "The tipoTramite activo")
     private boolean activo;
+    @ApiModelProperty(notes = "The tipoTramite autorizado")
+    private String autorizado;
     // @ApiModelProperty(notes = "The tipoTramite sector")
     // private Sector sectorInicial;
     // @ApiModelProperty(notes = "The tipoTramite campos")
