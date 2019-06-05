@@ -26,6 +26,12 @@ public class TipoTramiteServiceImpl implements TipoTramiteService {
     }
 
     @Override
+    public Iterable<TipoTramite> listActive() {
+        logger.debug("listActive called");
+        return tipoTramiteRepository.findAllByActivoIsTrue();
+    }
+
+    @Override
     public TipoTramite getById(Integer id) {
         logger.debug("getById called");
         return this.tipoTramiteRepository.findById(id).orElse(null);
