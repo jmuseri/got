@@ -1,5 +1,9 @@
 package com.sa.bbva.got.controller.parametria;
 
+import java.text.ParseException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.TipoTramite;
 import com.sa.bbva.got.service.parametria.TipoTramiteService;
@@ -34,11 +38,19 @@ public class TipoTramiteController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(Model model) {
+
+    public ResponseEntity<?> list(HttpServletRequest req,
+            @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
         try {
-            Iterable<TipoTramite> tipoTramiteList = tipoTramiteService.listAll();
-            ResponseEntity<?> response = new ResponseEntity<>(tipoTramiteList, HttpStatus.OK);
-            return response;
+            if (!activo) {
+                Iterable<TipoTramite> tipoTramiteList = tipoTramiteService.listAll();
+                ResponseEntity<?> response = new ResponseEntity<>(tipoTramiteList, HttpStatus.OK);
+                return response;
+            } else {
+                Iterable<TipoTramite> tipoTramiteList = tipoTramiteService.listActive();
+                ResponseEntity<?> response = new ResponseEntity<>(tipoTramiteList, HttpStatus.OK);
+                return response;
+            }
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
@@ -86,15 +98,12 @@ public class TipoTramiteController {
             if (null != tipoTramite.getDescripcion()) {
                 stored.setDescripcion(tipoTramite.getDescripcion());
             }
-            if (tipoTramite.isRequiereDocumentacion()) {
-                stored.setRequiereDocumentacion(tipoTramite.isRequiereDocumentacion());
-            }
-            if (tipoTramite.isActivo()) {
-                stored.setActivo(tipoTramite.isActivo());
-            }
-            if (tipoTramite.isAutorizado()) {
-                stored.setAutorizado(tipoTramite.isAutorizado());
-            }
+            
+            stored.setCobraComision(tipoTramite.isCobraComision());
+            stored.setRequiereDocumentacion(tipoTramite.isRequiereDocumentacion());
+            stored.setActivo(tipoTramite.isActivo());
+            stored.setAutorizado(tipoTramite.isAutorizado());
+
             if (null != tipoTramite.getHorasResolucion()) {
                 stored.setHorasResolucion(tipoTramite.getHorasResolucion());
             }
