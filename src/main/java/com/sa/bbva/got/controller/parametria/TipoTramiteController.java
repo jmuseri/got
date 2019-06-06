@@ -98,6 +98,9 @@ public class TipoTramiteController {
             if (null != tipoTramite.getDescripcion()) {
                 stored.setDescripcion(tipoTramite.getDescripcion());
             }
+            if (null != tipoTramite.getComision()) {
+                stored.setComision(tipoTramite.getComision());
+            }
             
             stored.setCobraComision(tipoTramite.isCobraComision());
             stored.setRequiereDocumentacion(tipoTramite.isRequiereDocumentacion());

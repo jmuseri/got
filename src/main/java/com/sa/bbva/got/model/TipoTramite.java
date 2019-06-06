@@ -22,8 +22,12 @@ public class TipoTramite {
     private String descripcion;
     @ApiModelProperty(notes = "The tipoTramite cobraComision")
     private boolean cobraComision;
-    // @ApiModelProperty(notes = "The tipoTramite comision")
-    // private Comision comision;
+    
+    @ApiModelProperty(notes = "The tipoTramite comision")
+    @ManyToOne
+    @JoinColumn(name = "comision")
+    private Comision comision;
+
     @ApiModelProperty(notes = "The tipoTramite requiereDocumentacion")
     private boolean requiereDocumentacion;
     @ApiModelProperty(notes = "The tipoTramite activo")
