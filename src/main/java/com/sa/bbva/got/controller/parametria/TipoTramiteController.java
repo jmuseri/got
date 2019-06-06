@@ -107,6 +107,10 @@ public class TipoTramiteController {
             stored.setActivo(tipoTramite.isActivo());
             stored.setAutorizado(tipoTramite.isAutorizado());
 
+            if (null != tipoTramite.getSectorInicial()) {
+                stored.setSectorInicial(tipoTramite.getSectorInicial());
+            }
+
             if (null != tipoTramite.getHorasResolucion()) {
                 stored.setHorasResolucion(tipoTramite.getHorasResolucion());
             }

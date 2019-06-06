@@ -34,9 +34,15 @@ public class TipoTramite {
     private boolean activo;
     @ApiModelProperty(notes = "The tipoTramite autorizado")
     private boolean autorizado;
-    // @ApiModelProperty(notes = "The tipoTramite sector")
-    // private Sector sectorInicial;
+    
+    @ApiModelProperty(notes = "The tipoTramite sector")
+    @ManyToOne
+    @JoinColumn(name = "sectorInicial")
+    private Sector sectorInicial;
+
     // @ApiModelProperty(notes = "The tipoTramite campos")
+    // @ManyToOne
+    // @JoinColumn(name = "campos")
     // private TipoTramiteCampo campos;
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;
