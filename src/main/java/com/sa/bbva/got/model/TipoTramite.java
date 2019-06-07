@@ -22,17 +22,27 @@ public class TipoTramite {
     private String descripcion;
     @ApiModelProperty(notes = "The tipoTramite cobraComision")
     private boolean cobraComision;
-    // @ApiModelProperty(notes = "The tipoTramite comision")
-    // private Comision comision;
+    
+    @ApiModelProperty(notes = "The tipoTramite comision")
+    @ManyToOne
+    @JoinColumn(name = "comision")
+    private Comision comision;
+
     @ApiModelProperty(notes = "The tipoTramite requiereDocumentacion")
     private boolean requiereDocumentacion;
     @ApiModelProperty(notes = "The tipoTramite activo")
     private boolean activo;
     @ApiModelProperty(notes = "The tipoTramite autorizado")
     private boolean autorizado;
-    // @ApiModelProperty(notes = "The tipoTramite sector")
-    // private Sector sectorInicial;
+    
+    @ApiModelProperty(notes = "The tipoTramite sector")
+    @ManyToOne
+    @JoinColumn(name = "sectorInicial")
+    private Sector sectorInicial;
+
     // @ApiModelProperty(notes = "The tipoTramite campos")
+    // @ManyToOne
+    // @JoinColumn(name = "campos")
     // private TipoTramiteCampo campos;
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;

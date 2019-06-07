@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/comision")
+@RequestMapping("/parametria/comision")
 @Api(value = "parametria", description = "Parametria/Comision Operations in GOT")
 public class ComisionController {
 

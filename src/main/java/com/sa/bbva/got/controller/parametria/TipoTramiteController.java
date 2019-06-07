@@ -98,11 +98,18 @@ public class TipoTramiteController {
             if (null != tipoTramite.getDescripcion()) {
                 stored.setDescripcion(tipoTramite.getDescripcion());
             }
+            if (null != tipoTramite.getComision()) {
+                stored.setComision(tipoTramite.getComision());
+            }
             
             stored.setCobraComision(tipoTramite.isCobraComision());
             stored.setRequiereDocumentacion(tipoTramite.isRequiereDocumentacion());
             stored.setActivo(tipoTramite.isActivo());
             stored.setAutorizado(tipoTramite.isAutorizado());
+
+            if (null != tipoTramite.getSectorInicial()) {
+                stored.setSectorInicial(tipoTramite.getSectorInicial());
+            }
 
             if (null != tipoTramite.getHorasResolucion()) {
                 stored.setHorasResolucion(tipoTramite.getHorasResolucion());

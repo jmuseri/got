@@ -20,5 +20,38 @@
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
       "fechaModif": null
+    },
+    {
+      "id": 3,
+      "canal": "Sucursales",
+      "sector": "OFI",
+      "descripcion": "Oficial de cuentas",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 4,
+      "canal": "Operaciones",
+      "sector": "RIE",
+      "descripcion": "Riesgos",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 5,
+      "canal": "web",
+      "sector": "FNCTKN",
+      "descripcion": "BBVA Net Cash - Gestion de tokens",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
     }
   ]

@@ -146,11 +146,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         };
         InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tipoTramite.json");
         try {
-            List<TipoTramite> tipoTramite = mapper.readValue(inputStream, typeReference);
-            tipoTramiteService.save(tipoTramite);
+            List<TipoTramite> tipoTramites = mapper.readValue(inputStream, typeReference);
+            tipoTramiteService.save(tipoTramites);
             log.info("TipoTramite Saved!");
         } catch (IOException e) {
-            log.error("Unable to save tipoTramite: " + e.getMessage());
+            log.error("Unable to save tipoTramites: " + e.getMessage());
         }
     }
 }
