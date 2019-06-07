@@ -1,0 +1,57 @@
+package com.sa.bbva.got.service.parametria;
+
+import java.util.List;
+
+import com.sa.bbva.got.model.TipoTramiteCampo;
+import com.sa.bbva.got.repository.TipoTramiteCampoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TipoTramiteCampoServiceImpl implements TipoTramiteCampoService {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private TipoTramiteCampoRepository tipoTramiteCampoRepository;
+
+    @Autowired
+    public void setRepository(TipoTramiteCampoRepository tipoTramiteCampoRepository) {
+        this.tipoTramiteCampoRepository = tipoTramiteCampoRepository;
+    }
+
+    @Override
+    public Iterable<TipoTramiteCampo> listAll() {
+        logger.debug("listAll called");
+        return this.tipoTramiteCampoRepository.findAll();
+    }
+
+    @Override
+    public Iterable<TipoTramiteCampo> listActive() {
+        logger.debug("listActive called");
+        return tipoTramiteCampoRepository.findAllByActivoIsTrue();
+    }
+
+    @Override
+    public TipoTramiteCampo getById(Integer id) {
+        logger.debug("getById called");
+        return this.tipoTramiteCampoRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public TipoTramiteCampo save(TipoTramiteCampo tipoTramiteCampo) {
+        logger.debug("save called");
+        return this.tipoTramiteCampoRepository.save(tipoTramiteCampo);
+    }
+
+    @Override
+    public void save(List<TipoTramiteCampo> tipoTramiteCampo) {
+        logger.debug("save called");
+        tipoTramiteCampoRepository.saveAll(tipoTramiteCampo);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        logger.debug("delete called");
+        this.tipoTramiteCampoRepository.deleteById(id);
+    }
+}

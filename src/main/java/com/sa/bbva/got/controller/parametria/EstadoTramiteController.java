@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/estadoTramite")
+@RequestMapping("/parametria/estadoTramite")
 @Api(value = "parametria", description = "Parametria/EstadoTramite Operations in GOT")
 public class EstadoTramiteController {
 
