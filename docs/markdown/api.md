@@ -66,23 +66,23 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de relacion comisión y tipo de trámite)*
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de relacion comisión y tipo de trámite)*
 #### campoDisponible
-* ![get](../images/method-get.png "get")    [/parametria/campoDisponible/list](/docs/markdown/api/accion-api.md)  *(Listar campos disponibles)* 
-* ![post](../images/method-post.png "post") [/parametria/campoDisponible/add](/docs/markdown/api/accion-api.md)  *(Alta de campos disponibles)* 
-* ![post](../images/method-post.png "post") [/parametria/campoDisponible/update](/docs/markdown/api/accion-api.md)  *(Modificación de campos disponibles)* 
-* ![post](../images/method-post.png "post") [/parametria/campoDisponible/delete](/docs/markdown/api/accion-api.md)  *(Baja de campos disponibles)* 
-* ![get](../images/method-get.png "get")    [/parametria/campoDisponible/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un campoDisponible por Id)*** 
+* ![get](../images/method-get.png "get")    [/parametria/campoDisponible/list](/docs/markdown/api/accion-api.md)  *(Listar campos disponibles)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/campoDisponible/add](/docs/markdown/api/accion-api.md)  *(Alta de campos disponibles)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/campoDisponible/update](/docs/markdown/api/accion-api.md)  *(Modificación de campos disponibles)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/campoDisponible/delete](/docs/markdown/api/accion-api.md)  *(Baja de campos disponibles)* 🗸
+* ![get](../images/method-get.png "get")    [/parametria/campoDisponible/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un campoDisponible por Id)*** 🗸
 #### sector
-* ![get](../images/method-get.png "get")    [/parametria/sector/list?activo={false/true}](/docs/markdown/api/accion-api.md)  *(Listar todos los sectores/Listar los sectores activos)* 
-* ![post](../images/method-post.png "post") [/parametria/sector/add](/docs/markdown/api/accion-api.md)  *(Alta de un sector)* 
-* ![post](../images/method-post.png "post") [/parametria/sector/update](/docs/markdown/api/accion-api.md)  *(Modificación de un sector)* 
-* ![post](../images/method-post.png "post") [/parametria/sector/delete](/docs/markdown/api/accion-api.md)  *(Baja de un sector)* 
-* ![get](../images/method-get.png "get")    [/parametria/sector/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un sector por Id)*** 
+* ![get](../images/method-get.png "get")    [/parametria/sector/list?activo={false/true}](/docs/markdown/api/accion-api.md)  *(Listar todos los sectores/Listar los sectores activos)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/sector/add](/docs/markdown/api/accion-api.md)  *(Alta de un sector)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/sector/update](/docs/markdown/api/accion-api.md)  *(Modificación de un sector)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/sector/delete](/docs/markdown/api/accion-api.md)  *(Baja de un sector)* 🗸
+* ![get](../images/method-get.png "get")    [/parametria/sector/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un sector por Id)*** 🗸
 #### comision
-* ![get](../images/method-get.png "get")    [/parametria/comision/list](/docs/markdown/api/accion-api.md)  *(Listar comisiones)* 
-* ![post](../images/method-post.png "post") [/parametria/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de comisión)* 
-* ![post](../images/method-post.png "post") [/parametria/comision/update](/docs/markdown/api/accion-api.md)  *(Modificación de comisión)* 
-* ![post](../images/method-post.png "post") [/parametria/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de comisión)* 
-* ![get](../images/method-get.png "get")    [/parametria/comision/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener una comision por Id)*** 
+* ![get](../images/method-get.png "get")    [/parametria/comision/list](/docs/markdown/api/accion-api.md)  *(Listar comisiones)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de comisión)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/comision/update](/docs/markdown/api/accion-api.md)  *(Modificación de comisión)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de comisión)* 🗸
+* ![get](../images/method-get.png "get")    [/parametria/comision/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener una comision por Id)*** 🗸
 #### estadoTramite
 * ![get](../images/method-get.png "get")    [/parametria/estadoTramite/list](/docs/markdown/api/accion-api.md) ***(Listar estadoTramite)*** 🗸
 * ![post](../images/method-post.png "post") [/parametria/estadoTramite/add](/docs/markdown/api/accion-api.md)  ***(Alta de estadoTramite)*** 🗸
