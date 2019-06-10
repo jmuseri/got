@@ -57,7 +57,7 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/delete](/docs/markdown/api/accion-api.md)  *(Baja de un tipo de trámite)* 🗸
 * ![get](../images/method-get.png "get")    [/parametria/tipoTramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un tipoTramite por Id)*** 🗸
 #### tipoTramite-campoDisponible
-* ![get](../images/method-get.png "get")    [/parametria/tipoTramite/campoDisponible/list?tramite=1](/docs/markdown/api/accion-api.md)  *(Listar los campos disponibles para un tipo de trámite)*
+* ![get](../images/method-get.png "get")    [/parametria/tipoTramite/campoDisponible/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar los campos disponibles para un tipo de trámite)*
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/campoDisponible/add](/docs/markdown/api/accion-api.md)  *(Alta relación tipo de trámite con un campo disponible)*
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/campoDisponible/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación tipo de trámite con un campo disponible)*
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/campoDisponible/update](/docs/markdown/api/accion-api.md)  *(Modificación de relación tipo de trámite con un campo disponible)*
