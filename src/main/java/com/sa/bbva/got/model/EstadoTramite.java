@@ -15,6 +15,7 @@ import lombok.Data;
 @Entity
 public class EstadoTramite {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(notes = "The database estadoTramite ID", required = true)
     private Integer id;
     @ApiModelProperty(notes = "The estadoTramite name")

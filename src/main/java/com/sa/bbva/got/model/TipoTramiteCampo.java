@@ -13,19 +13,30 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Entity
-public class CampoDisponible {
+public class TipoTramiteCampo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(notes = "The database campoDisponible ID", required = true)
+    @ApiModelProperty(notes = "The database generated tipoTramite ID")
     private Integer id;
-    @ApiModelProperty(notes = "The campoDisponible name", required = true)
-    private String nombre;
-    @ApiModelProperty(notes = "The campoDisponible description")
-    private String descripcion;
-    @ApiModelProperty(notes = "The campoDisponible tipoDato", required = true)
-    private String tipoDato;
-    @ApiModelProperty(notes = "The campoDisponible activo")
+
+    @ApiModelProperty(notes = "The tipoTramite tipoTramite")
+    @ManyToOne
+    @JoinColumn(name = "tipoTramite")
+    private TipoTramite tipoTramite;
+
+    @ApiModelProperty(notes = "The tipoTramite campoDisponible")
+    @ManyToOne
+    @JoinColumn(name = "campoDisponible")
+    private CampoDisponible campoDisponible;
+
+    @ApiModelProperty(notes = "The tipoTramite obligatorio")
+    private boolean obligatorio;
+    @ApiModelProperty(notes = "The tipoTramite activo")
     private boolean activo;
+    @ApiModelProperty(notes = "The tipoTramite nombre")
+    private String nombre;
+    @ApiModelProperty(notes = "The tipoTramite leyenda")
+    private String leyenda;
     @ApiModelProperty(notes = "The creator user", required = true)
     private String usuAlta;
     @ApiModelProperty(notes = "The creation date", required = true)

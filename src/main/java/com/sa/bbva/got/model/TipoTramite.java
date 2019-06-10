@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+import java.util.List;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -40,10 +41,11 @@ public class TipoTramite {
     @JoinColumn(name = "sectorInicial")
     private Sector sectorInicial;
 
-    // @ApiModelProperty(notes = "The tipoTramite campos")
-    // @ManyToOne
-    // @JoinColumn(name = "campos")
-    // private TipoTramiteCampo campos;
+    @ApiModelProperty(notes = "The tipoTramite campos")
+    @ManyToOne(targetEntity = TipoTramiteCampo.class, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "campos")
+    private List<TipoTramiteCampo> campos;
+    
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;
     @ApiModelProperty(notes = "The tipoTramite horasVencimiento")

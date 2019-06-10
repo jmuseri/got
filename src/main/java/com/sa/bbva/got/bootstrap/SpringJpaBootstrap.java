@@ -11,11 +11,13 @@ import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.TipoTramite;
+import com.sa.bbva.got.model.TipoTramiteCampo;
 import com.sa.bbva.got.service.parametria.CampoDisponibleService;
 import com.sa.bbva.got.service.parametria.ComisionService;
 import com.sa.bbva.got.service.parametria.EstadoTramiteService;
 import com.sa.bbva.got.service.parametria.SectorService;
 import com.sa.bbva.got.service.parametria.TipoTramiteService;
+import com.sa.bbva.got.service.parametria.TipoTramiteCampoService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +34,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private EstadoTramiteService estadoTramiteService;
     private CampoDisponibleService campoDisponibleService;
     private TipoTramiteService tipoTramiteService;
+    private TipoTramiteCampoService tipoTramiteCampoService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
@@ -60,6 +63,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.tipoTramiteService = tipoTramiteService;
     }
 
+    @Autowired
+    public void setTipoTramiteCampoService(TipoTramiteCampoService tipoTramiteCampoService) {
+        this.tipoTramiteCampoService = tipoTramiteCampoService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadSectores();
@@ -67,6 +75,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadEstadosTramite();
         loadCamposDisponible();
         loadTipoTramite();
+        loadTipoTramiteCampo();
     }
 
     private void loadSectores() {
@@ -151,6 +160,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.info("TipoTramite Saved!");
         } catch (IOException e) {
             log.error("Unable to save tipoTramites: " + e.getMessage());
+        }
+    }
+
+    private void loadTipoTramiteCampo() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<TipoTramiteCampo>> typeReference = new TypeReference<List<TipoTramiteCampo>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tipoTramiteCampo.json");
+        try {
+            List<TipoTramiteCampo> tipoTramitesCampo = mapper.readValue(inputStream, typeReference);
+            tipoTramiteCampoService.save(tipoTramitesCampo);
+            log.info("TipoTramiteCampo Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save tipoTramitesCampo: " + e.getMessage());
         }
     }
 }
