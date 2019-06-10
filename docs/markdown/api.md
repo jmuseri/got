@@ -62,9 +62,9 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/campoDisponible/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación tipo de trámite con un campo disponible)*
 * ![post](../images/method-post.png "post") [/parametria/tipoTramite/campoDisponible/update](/docs/markdown/api/accion-api.md)  *(Modificación de relación tipo de trámite con un campo disponible)*
 #### tipoTramite-comision
-* ![get](../images/method-get.png "get")    [/parametria/tipoTramite/comision/show/{1}](/docs/markdown/api/accion-api.md)  *(Consulta comision para un tipo de trámite)*
-* ![post](../images/method-post.png "post") [/parametria/tipoTramite/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de relacion comisión y tipo de trámite)*
-* ![post](../images/method-post.png "post") [/parametria/tipoTramite/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de relacion comisión y tipo de trámite)*
+* ![get](../images/method-get.png "get")    [/parametria/tipoTramite/comision/show/{1}](/docs/markdown/api/accion-api.md)  *(Consulta comision para un tipo de trámite)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/tipoTramite/comision/add](/docs/markdown/api/accion-api.md)  *(Alta de relacion comisión y tipo de trámite)* 🗸
+* ![post](../images/method-post.png "post") [/parametria/tipoTramite/comision/delete](/docs/markdown/api/accion-api.md)  *(Baja de relacion comisión y tipo de trámite)* 🗸
 #### campoDisponible
 * ![get](../images/method-get.png "get")    [/parametria/campoDisponible/list](/docs/markdown/api/accion-api.md)  *(Listar campos disponibles)* 🗸
 * ![post](../images/method-post.png "post") [/parametria/campoDisponible/add](/docs/markdown/api/accion-api.md)  *(Alta de campos disponibles)* 🗸

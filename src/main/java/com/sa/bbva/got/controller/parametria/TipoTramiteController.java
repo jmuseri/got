@@ -38,7 +38,6 @@ public class TipoTramiteController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-
     public ResponseEntity<?> list(HttpServletRequest req,
             @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
         try {
@@ -147,6 +146,88 @@ public class TipoTramiteController {
         try {
             tipoTramiteService.delete(id);
             StatusResponse status = new StatusResponse("ok", "TipoTramite deleted successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TipoTramite not deleted", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Search a comision-tipoTramite with an ID", response = TipoTramite.class)
+    @RequestMapping(value = "/comision/show/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> showTComisionipoTramite(@PathVariable Integer id, Model model) {
+        try {
+            TipoTramite tipoTramite = tipoTramiteService.getById(id);
+            ResponseEntity<?> response = new ResponseEntity<>(tipoTramite.comision, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Add a comision to tipoTramite")
+    @RequestMapping(value = "/comision/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> saveTipoTramite(@RequestBody TipoTramite tipoTramite) {
+        try {
+            if (!tipoTramite.comision || null == tipoTramite.comision) {
+                StatusResponse status = new StatusResponse("error", "Comision void", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }
+            TipoTramite savedTipoTramite = tipoTramiteService.getById(tipoTramite.id);
+            if (!savedTipoTramite) {
+                StatusResponse status = new StatusResponse("error", "TipoTramite doesn't exist", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }
+            if (savedTipoTramite.comision && null != savedTipoTramite.comision) {
+                StatusResponse status = new StatusResponse("error", "Comision in TipoTramite already exists", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }
+            Comision comision = comisionService.getById(tipoTramite.comision.id);
+            if (!comision || null == comision) {
+                StatusResponse status = new StatusResponse("error", "Comision doesn't exist", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }
+            savedTipoTramite.comision = comision;
+            tipoTramiteService.save(savedTipoTramite);
+            StatusResponse status = new StatusResponse("ok", "Comision to TipoTramite added successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Comision to TipoTramite not added", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Delete a comision in tipoTramite")
+    @RequestMapping(value = "/comision/delete/{id}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> deleteComision(@PathVariable Integer id) {
+        try {
+            TipoTramite savedTipoTramite = tipoTramiteService.getById(tipoTramite.id);
+            if (!savedTipoTramite) {
+                StatusResponse status = new StatusResponse("error", "TipoTramite doesn't exist", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }
+            if (|savedTipoTramite.comision || null != savedTipoTramite.comision) {
+                StatusResponse status = new StatusResponse("error", "Comision in TipoTramite doesn't exist", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }           
+            savedTipoTramite.comision = null;
+            tipoTramiteService.save(saveTipoTramite);
+            StatusResponse status = new StatusResponse("ok", "Comision in TipoTramite deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
