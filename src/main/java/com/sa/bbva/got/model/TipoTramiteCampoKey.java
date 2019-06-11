@@ -11,7 +11,6 @@ import lombok.Data;
 @XmlRootElement
 @Embeddable
 public class TipoTramiteCampoKey implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Column(name = "tipo_tramite_id")
