@@ -3,6 +3,7 @@ package com.sa.bbva.got.service.parametria;
 import java.util.List;
 
 import com.sa.bbva.got.model.TipoTramiteCampo;
+import com.sa.bbva.got.model.TipoTramiteCampoKey;
 import com.sa.bbva.got.repository.TipoTramiteCampoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +33,15 @@ public class TipoTramiteCampoServiceImpl implements TipoTramiteCampoService {
     }
 
     @Override
-    public TipoTramiteCampo getById(Integer id) {
+    public TipoTramiteCampo getById(int id) {
         logger.debug("getById called");
         return this.tipoTramiteCampoRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public TipoTramiteCampo getById(TipoTramiteCampoKey id) {
+        logger.debug("getById called");
+        return this.tipoTramiteCampoRepository.findById(id);
     }
 
     @Override
@@ -50,8 +57,9 @@ public class TipoTramiteCampoServiceImpl implements TipoTramiteCampoService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(TipoTramiteCampo tipoTramiteCampo) {
         logger.debug("delete called");
-        this.tipoTramiteCampoRepository.deleteById(id);
+        // this.tipoTramiteCampoRepository.deleteById(id);
+        this.tipoTramiteCampoRepository.delete(tipoTramiteCampo);
     }
 }
