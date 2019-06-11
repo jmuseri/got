@@ -4,9 +4,10 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Entity
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TipoTramite {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +25,7 @@ public class TipoTramite {
     private String descripcion;
     @ApiModelProperty(notes = "The tipoTramite cobraComision")
     private boolean cobraComision;
-    
+
     @ApiModelProperty(notes = "The tipoTramite comision")
     @ManyToOne
     @JoinColumn(name = "comision")
@@ -35,17 +37,37 @@ public class TipoTramite {
     private boolean activo;
     @ApiModelProperty(notes = "The tipoTramite autorizado")
     private boolean autorizado;
-    
+
     @ApiModelProperty(notes = "The tipoTramite sector")
     @ManyToOne
     @JoinColumn(name = "sectorInicial")
     private Sector sectorInicial;
 
-    @ApiModelProperty(notes = "The tipoTramite campos")
-    @ManyToOne(targetEntity = TipoTramiteCampo.class, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "campos")
-    private List<TipoTramiteCampo> campos;
-    
+    /*
+     * @ApiModelProperty(notes = "The tipoTramite campos")
+     * 
+     * @ManyToMany(targetEntity = TipoTramiteCampo.class, cascade = {
+     * CascadeType.ALL }, fetch = FetchType.EAGER)
+     * 
+     * @JoinColumn(name = "campos") private List<TipoTramiteCampo> campos;
+     */
+
+    /*
+     * @JoinTable(name = "tipo_trammite_campo", joinColumns = @JoinColumn(name =
+     * "tipo_traammite_id"), inverseJoinColumns = @JoinColumn(name =
+     * "campo_disponible_id"))
+     * 
+     * @JsonManagedReference
+     * 
+     * @JsonInclude(JsonInclude.Include.NON_EMPTY)
+     * 
+     * @ApiModelProperty(notes = "The tipoTramite campos") private
+     * Set<TipoTramiteCampo> campos;
+     */
+
+    @OneToMany(mappedBy = "id.tipoTramiteId", fetch = FetchType.LAZY)
+    Set<TipoTramiteCampo> campos;
+
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;
     @ApiModelProperty(notes = "The tipoTramite horasVencimiento")

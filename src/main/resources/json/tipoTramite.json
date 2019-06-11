@@ -7,9 +7,7 @@
     "requiereDocumentacion": false,
     "activo": false,
     "autorizado": true,
-    "sectorInicial": {
-                      "id": 1
-                     },
+    "sectorInicial": { "id": 1 },
     "campos": null,
     "horasResolucion": 48,
     "horasVencimiento": 96,

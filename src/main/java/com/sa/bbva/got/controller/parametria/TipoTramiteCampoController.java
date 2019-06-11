@@ -92,16 +92,18 @@ public class TipoTramiteCampoController {
 
     @ApiOperation(value = "Update a tipoTramiteCampo")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateTipoTramite(@PathVariable Integer id, @RequestBody TipoTramiteCampo tipoTramiteCampo) {
+    public ResponseEntity<?> updateTipoTramite(@PathVariable Integer id,
+            @RequestBody TipoTramiteCampo tipoTramiteCampo) {
         try {
             TipoTramiteCampo stored = tipoTramiteCampoService.getById(id);
-            if (null != tipoTramiteCampo.getTipoTramite()) {
-                stored.setTipoTramite(tipoTramiteCampo.getTipoTramite());
-            }
+            /*
+             * if (null != tipoTramiteCampo.getTipoTramite()) {
+             * stored.setTipoTramite(tipoTramiteCampo.getTipoTramite()); }
+             */
             if (null != tipoTramiteCampo.getCampoDisponible()) {
                 stored.setCampoDisponible(tipoTramiteCampo.getCampoDisponible());
             }
-            
+
             stored.setObligatorio(tipoTramiteCampo.isObligatorio());
             stored.setActivo(tipoTramiteCampo.isActivo());
 
