@@ -35,7 +35,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
     private ApiInfo metaData() {
         return new ApiInfoBuilder().title("GOT - Gestion Online de Tramites - API RESTful")
-                .description("\"Gestion Online de Tramites Services \"").version("0.1.0")
+                .description("\"Gestion Online de Tramites Services \"").version("0.1.5")
                 .license("Apache License Version 2.0").licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
                 .build();
     }
