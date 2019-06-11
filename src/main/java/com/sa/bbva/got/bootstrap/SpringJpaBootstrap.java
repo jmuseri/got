@@ -18,8 +18,8 @@ import com.sa.bbva.got.service.parametria.CampoDisponibleService;
 import com.sa.bbva.got.service.parametria.ComisionService;
 import com.sa.bbva.got.service.parametria.EstadoTramiteService;
 import com.sa.bbva.got.service.parametria.SectorService;
-import com.sa.bbva.got.service.parametria.TipoTramiteCampoService;
 import com.sa.bbva.got.service.parametria.TipoTramiteService;
+import com.sa.bbva.got.service.parametria.TipoTramiteCampoService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
