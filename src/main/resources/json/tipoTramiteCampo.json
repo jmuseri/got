@@ -1,0 +1,156 @@
+[
+  {
+    "id": {
+      "tipoTramiteId": 19,
+      "campoDisponibleId": 16
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 19,
+      "campoDisponibleId": 14
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CANTIDADFIRMA",
+    "leyenda": "Cantidad de firmas a certificar",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 20,
+      "campoDisponibleId": 16
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 20,
+      "campoDisponibleId": 14
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CANTIDADCHEQUES",
+    "leyenda": "Cantidad de cheques a certificar",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 21,
+      "campoDisponibleId": 16
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 21,
+      "campoDisponibleId": 17
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTAEXTRACTO",
+    "leyenda": "Elegí la cuenta para la obtención de los resúmenes",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 21,
+      "campoDisponibleId": 18
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "RANGORESUMEN",
+    "leyenda": "Elegí el rango de los resúmenes",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 22,
+      "campoDisponibleId": 16
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 22,
+      "campoDisponibleId": 18
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "DETALLE",
+    "leyenda": "Indique más detalles",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 23,
+      "campoDisponibleId": 15
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CANTIDADTOKEN",
+    "leyenda": "Cantidad de tokens?",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 23,
+      "campoDisponibleId": 10
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "SUCURSALRETIRO",
+    "leyenda": "Sucursal de retiro",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  }
+]

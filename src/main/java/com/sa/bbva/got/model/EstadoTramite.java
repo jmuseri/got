@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
 
@@ -13,8 +14,10 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Entity
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EstadoTramite {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(notes = "The database estadoTramite ID", required = true)
     private Integer id;
     @ApiModelProperty(notes = "The estadoTramite name")

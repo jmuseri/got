@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/campoDisponible")
+@RequestMapping("/parametria/campoDisponible")
 @Api(value = "parametria", description = "Parametria/CampoDisponible Operations in GOT")
 public class CampoDisponibleController {
 
