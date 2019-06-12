@@ -13,7 +13,9 @@ import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.TipoTramite;
 import com.sa.bbva.got.model.TipoTramiteCampo;
+import com.sa.bbva.got.model.TramiteDetalle;
 import com.sa.bbva.got.service.funcional.AutorizadoService;
+import com.sa.bbva.got.service.funcional.TramiteDetalleService;
 import com.sa.bbva.got.service.parametria.CampoDisponibleService;
 import com.sa.bbva.got.service.parametria.ComisionService;
 import com.sa.bbva.got.service.parametria.EstadoTramiteService;
@@ -38,6 +40,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private TipoTramiteService tipoTramiteService;
     private TipoTramiteCampoService tipoTramiteCampoService;
     private AutorizadoService autorizadoService;
+    private TramiteDetalleService tramiteDetalleService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
@@ -75,6 +78,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void setAutorizadoService(AutorizadoService autorizadoService) {
         this.autorizadoService = autorizadoService;
     }
+    
+    @Autowired
+    public void setTramiteDetalleService(TramiteDetalleService tramiteDetalleService) {
+        this.tramiteDetalleService = tramiteDetalleService;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -85,6 +93,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadTipoTramite();
         loadTipoTramiteCampo();
         loadAutorizado();
+        loadTramiteDetalle();
     }
 
     private void loadSectores() {
@@ -203,6 +212,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.info("Autorizado Saved!");
         } catch (IOException e) {
             log.error("Unable to save autorizado: " + e.getMessage());
+        }
+    }
+
+    private void loadTramiteDetalle() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<TramiteDetalle>> typeReference = new TypeReference<List<TramiteDetalle>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramiteDetalle.json");
+        try {
+            List<TramiteDetalle> tramiteDetalle = mapper.readValue(inputStream, typeReference);
+            tramiteDetalleService.save(tramiteDetalle);
+            log.info("TramiteDetalle Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save TramiteDetalle: " + e.getMessage());
         }
     }
 }

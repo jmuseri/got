@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
 
@@ -13,22 +14,23 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Entity
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Autorizado {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(notes = "The database generated comision ID")
+    @ApiModelProperty(notes = "The database generated autorizado ID")
     private Integer id;
-    @ApiModelProperty(notes = "The comision idCliente")
+    @ApiModelProperty(notes = "The autorizado idCliente")
     private Integer idCliente;
     // @ApiModelProperty(notes = "The autorizado tramites list")
     // private List<Tramite> tramites;
-    @ApiModelProperty(notes = "The comision tipoDocumento")
+    @ApiModelProperty(notes = "The autorizado tipoDocumento")
     private String tipoDocumento;
-    @ApiModelProperty(notes = "The comision nroDocumento")
+    @ApiModelProperty(notes = "The autorizado nroDocumento")
     private String nroDocumento;
-    @ApiModelProperty(notes = "The comision nombre")
+    @ApiModelProperty(notes = "The autorizado nombre")
     private String nombre;
-    @ApiModelProperty(notes = "The comision apellido")
+    @ApiModelProperty(notes = "The autorizado apellido")
     private String apellido;
     @ApiModelProperty(notes = "The creator user", required = true)
     private String usuAlta;
