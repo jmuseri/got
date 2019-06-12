@@ -21,8 +21,8 @@ GOT APIs are based on RESTFul Services Protocol.
 ## API Catalog
 
 ### General
-* ![get](../images/method-get.png "get")  [/](#markdown-header-api-/swagger-ui.html) *(Redirect to Documentation)*
-* ![get](../images/method-get.png "get")  [/swagger-ui.html](#markdown-header-api-/swagger-ui.html) *(API Documentation)*
+* ![get](../images/method-get.png "get")  [/](#markdown-header-api-/swagger-ui.html) *(Redirect to Documentation)* 🗸
+* ![get](../images/method-get.png "get")  [/swagger-ui.html](#markdown-header-api-/swagger-ui.html) *(API Documentation)* 🗸
 
 ### Funcional
 #### tramite
@@ -34,9 +34,9 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md) *(Baja de un trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/cabecera/add](/docs/markdown/api/accion-api.md) *(Alta de un trámite solo cabecera)*
 #### tramite-autorizado
+* ![get](../images/method-get.png "get")    [/funcional/tramite/autorizado/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de relación un autorizado a un trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación un autorizado a un trámite)*
-* ![get](../images/method-get.png "get")    [/funcional/tramite/autorizado/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 
 #### autorizado
 * ![get](../images/method-get.png "get")    [/funcional/autorizado/list?cliente=1](/docs/markdown/api/accion-api.md)  *(Listar autorizados por cliente)* 
 * ![post](../images/method-post.png "post") [/funcional/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de un autorizado)*
