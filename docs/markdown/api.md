@@ -38,10 +38,12 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de relación un autorizado a un trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación un autorizado a un trámite)*
 #### autorizado
+* ![get](../images/method-get.png "get")    [/funcional/autorizado/list](/docs/markdown/api/accion-api.md)  *(Listar todos los autorizados)* 
 * ![get](../images/method-get.png "get")    [/funcional/autorizado/list?cliente=1](/docs/markdown/api/accion-api.md)  *(Listar autorizados por cliente)* 
 * ![post](../images/method-post.png "post") [/funcional/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de un autorizado)*
 * ![post](../images/method-post.png "post") [/funcional/autorizado/update](/docs/markdown/api/accion-api.md)  *(Modificación de un autorizado)*
 * ![post](../images/method-post.png "post") [/funcional/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de un autorizado)*
+* ![get](../images/method-get.png "get")    [/funcional/autorizado/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un autorizado por Id)*** 🗸
 #### tramite-detalle
 * ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar detalle de trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/detalle/add](/docs/markdown/api/accion-api.md)  *(Alta de detalle de trámite)*
