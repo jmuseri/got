@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "tipoTramite": null,
+      "idCliente": null,
+      "sectorInicio": null,
+      "detalle": null,
+      "cuentaCobro": "Cuenta",
+      "estado": {"id": 8},
+      "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
+      "fechaVencimiento": "2019-06-01T12:24:50.045Z",
+      "usuAlta": "Usuario",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 2,
+      "tipoTramite": null,
+      "idCliente": null,
+      "sectorInicio": null,
+      "detalle": null,
+      "cuentaCobro": "Cuenta1",
+      "estado": 8,
+      "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
+      "fechaVencimiento": "2019-06-01T12:24:50.045Z",
+      "usuAlta": "Usuario1",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 3,
+      "tipoTramite": null,
+      "idCliente": null,
+      "sectorInicio": null,
+      "detalle": null,
+      "cuentaCobro": "Cuenta2",
+      "estado": 8,
+      "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
+      "fechaVencimiento": "2019-06-01T12:24:50.045Z",
+      "usuAlta": "Usuario2",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 4,
+      "tipoTramite": null,
+      "idCliente": null,
+      "sectorInicio": null,
+      "detalle": null,
+      "cuentaCobro": "Cuenta3",
+      "estado": null,
+      "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
+      "fechaVencimiento": "2019-06-01T12:24:50.045Z",
+      "usuAlta": "Usuario3",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    }
+  ]

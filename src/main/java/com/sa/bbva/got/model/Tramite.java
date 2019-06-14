@@ -31,11 +31,8 @@ public class Tramite {
     @ApiModelProperty(notes = "The tramite idCliente")
     private Integer idCliente;
 
-    @OneToMany
-    @MapsId("autorizados_id")
-    @JoinColumn(name = "autorizados_id")
-    @ApiModelProperty(notes = "The tramite autorizados")
-    private Set<Autorizado> autorizados;
+    // @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // Set<Autorizado> autorizados;
 
     @ManyToOne
     @ApiModelProperty(notes = "The tramite sectorInicio")
@@ -55,8 +52,7 @@ public class Tramite {
     private String cuentaCobro;
 
     @ManyToOne
-    @MapsId("estado_id")
-    @JoinColumn(name = "estado_id")
+    @JoinColumn(name = "estado")
     @ApiModelProperty(notes = "The tramite estado")
     private EstadoTramite estado;
 

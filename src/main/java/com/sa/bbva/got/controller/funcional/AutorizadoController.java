@@ -83,10 +83,20 @@ public class AutorizadoController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody Autorizado autorizado) {
         try {
-            Autorizado stored = autorizadoService.getById(id);
-            if (null != autorizado.getIdCliente()) {
-                stored.setIdCliente(autorizado.getIdCliente());
+            if (null == autorizado || null == autorizado.getId()
+            || autorizado.getId().getTramiteId() == 0
+            || autorizado.getId().getClienteId() == 0) {
+                StatusResponse status = new StatusResponse("error", "Error Input data", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
             }
+            Autorizado stored = autorizadoService.getById(id);
+            if (null == stored) {
+                StatusResponse status = new StatusResponse("error", "Autorizado doesn't exist", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+                return response;
+            }
+            
             if (null != autorizado.getTipoDocumento()) {
                 stored.setTipoDocumento(autorizado.getTipoDocumento());
             }

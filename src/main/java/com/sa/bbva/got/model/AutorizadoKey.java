@@ -10,13 +10,13 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Embeddable
-public class TramiteDetalleKey implements Serializable {
+public class AutorizadoKey implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "tramite_id")
     Long tramiteId;
 
-    @Column(name = "tipo_tramite_campo_id")
-    TipoTramiteCampoKey tipoTramiteCampoId;
+    @Column(name = "cliente_id")
+    Long clienteId;
 
 }

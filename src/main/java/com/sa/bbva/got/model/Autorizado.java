@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -16,29 +15,39 @@ import lombok.Data;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Autorizado {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty(notes = "The database generated autorizado ID")
-    private Integer id;
+    @EmbeddedId
+    private AutorizadoKey id;
+
+    @JoinColumn(name = "cliente_id")
     @ApiModelProperty(notes = "The autorizado idCliente")
     private Integer idCliente;
-    // @ApiModelProperty(notes = "The autorizado tramites list")
-    // private List<Tramite> tramites;
+
+    // @JoinColumn(name = "tramite_id")
+    // @ApiModelProperty(notes = "The autorizado tramites")
+    // private Set<Tramite> tramites;
+
     @ApiModelProperty(notes = "The autorizado tipoDocumento")
     private String tipoDocumento;
+
     @ApiModelProperty(notes = "The autorizado nroDocumento")
     private String nroDocumento;
+
     @ApiModelProperty(notes = "The autorizado nombre")
     private String nombre;
+
     @ApiModelProperty(notes = "The autorizado apellido")
     private String apellido;
+
     @ApiModelProperty(notes = "The creator user", required = true)
     private String usuAlta;
+
     @ApiModelProperty(notes = "The creation date", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaAlta;
+
     @ApiModelProperty(notes = "The update user")
     private String usuModif;
+
     @ApiModelProperty(notes = "The update date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaModif;

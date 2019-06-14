@@ -1,32 +1,14 @@
 [
   {
-    "id": 1,
-    "campo": {
-      "tipoTramiteCampoId": 16
+    "id": {
+      "tramiteId": 19,
+      "tipoTramiteCampoId": {
+        "tipoTramiteId": 19,
+        "campoDisponibleId": 16
+      }
     },
+    "campo": null,
     "valor": "Valor1",
-    "usuAlta": "system",
-    "fechaAlta": "2019-06-01T12:24:50.045Z",
-    "usuModif": null,
-    "fechaModif": null
-  },
-  {
-    "id": 2,
-    "campo": {
-      "tipoTramiteCampoId": 16
-    },
-    "valor": "Valor2",
-    "usuAlta": "system",
-    "fechaAlta": "2019-06-01T12:24:50.045Z",
-    "usuModif": null,
-    "fechaModif": null
-  },
-  {
-    "id": 3,
-    "campo": {
-      "tipoTramiteCampoId": 16
-    },
-    "valor": "Valor3",
     "usuAlta": "system",
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,

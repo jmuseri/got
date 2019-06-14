@@ -20,27 +20,18 @@ public class TramiteDetalle {
     @EmbeddedId
     private TramiteDetalleKey id;
 
-    // @ManyToOne
-    // @MapsId("tramite_id")
-    // @JoinColumn(name = "tramite_id")
-    // @ApiModelProperty(notes = "The tramiteDetalle tramite")
-    // private Tramite tramite;
-
-    // @ManyToOne
-    // @MapsId("tipo_tramite_campo_id")
-    // @JoinColumns({
-    //     @JoinColumn(name = "tipo_tramite_id"),
-    //     @JoinColumn(name = "tipo_tramite_campo_id")
-    // })
-    // @ApiModelProperty(notes = "The tramiteDetalle campo")
-    // private TipoTramiteCampo campo;
+    @ManyToOne
+    @MapsId("tramite_id")
+    @JoinColumn(name = "tramite_id")
+    @ApiModelProperty(notes = "The tramiteDetalle tramite")
+    private Tramite tramite;
 
     @ApiModelProperty(notes = "The tipoTramite campo")
-    @ManyToOne
+    @OneToOne
     @MapsId("tipo_tramite_campo_id")
     @JoinColumns({
-        @JoinColumn(name = "tipo_tramite_id"),
-        @JoinColumn(name = "tipo_tramite_campo_id")
+        @JoinColumn(name = "campo_disponible_id"),
+        @JoinColumn(name = "tipo_tramite_id")
     })
     private TipoTramiteCampo campo;
 
