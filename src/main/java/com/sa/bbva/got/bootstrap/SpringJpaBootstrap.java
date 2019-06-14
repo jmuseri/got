@@ -98,9 +98,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadCamposDisponible();
         loadTipoTramite();
         loadTipoTramiteCampo();
-        // loadAutorizado();
-        loadTramiteDetalle();
         loadTramite();
+        loadTramiteDetalle();
+        // loadAutorizado();
     }
 
     private void loadSectores() {

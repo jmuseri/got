@@ -23,28 +23,26 @@ public class Tramite {
     private Integer id;
 
     @ManyToOne
-    @MapsId("tipo_tramite_id")
-    @JoinColumn(name = "tipo_tramite_id")
     @ApiModelProperty(notes = "The tramite tipoTramite")
     private TipoTramite tipoTramite;
 
     @ApiModelProperty(notes = "The tramite idCliente")
     private Integer idCliente;
 
-    // @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    // Set<Autorizado> autorizados;
+    @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Autorizado> autorizados;
 
     @ManyToOne
+    @JoinColumn(name = "sectorInicial")
     @ApiModelProperty(notes = "The tramite sectorInicio")
     private Sector sectorInicio;
 
     @ManyToOne
+    @JoinColumn(name = "sectorActual")
     @ApiModelProperty(notes = "The tramite sectorActual")
     private Sector sectorActual;
 
-    @OneToMany
-    @MapsId("tramite_detalle_id")
-    @JoinColumn(name = "tramite_detalle_id")
+    @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ApiModelProperty(notes = "The tramite detalle")
     private Set<TramiteDetalle> detalle;
 

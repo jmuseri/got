@@ -87,9 +87,9 @@ public class TramiteDetalleController {
             // if (null != tramiteDetalle.getTramite()) {
             //     stored.setTramite(tramiteDetalle.getTramite());
             // }
-            if (null != tramiteDetalle.getCampo()) {
-                stored.setCampo(tramiteDetalle.getCampo());
-            }
+            //if (null != tramiteDetalle.getCampo()) {
+            //    stored.setCampo(tramiteDetalle.getCampo());
+            //}
             if (null != tramiteDetalle.getValor()) {
                 stored.setValor(tramiteDetalle.getValor());
             }
