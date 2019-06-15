@@ -30,7 +30,7 @@ public class Tramite {
     private Integer idCliente;
 
     @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Autorizado> autorizados;
+    private Set<Autorizado> autorizado;
 
     @ManyToOne
     @JoinColumn(name = "sectorInicial")

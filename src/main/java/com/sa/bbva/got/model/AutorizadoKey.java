@@ -14,9 +14,9 @@ public class AutorizadoKey implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "tramite_id")
-    Long tramiteId;
+    Integer tramiteId;
 
     @Column(name = "cliente_id")
-    Long clienteId;
+    Integer clienteId;
 
 }

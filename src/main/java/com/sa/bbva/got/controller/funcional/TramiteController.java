@@ -92,9 +92,9 @@ public class TramiteController {
             if (null != tramite.getIdCliente()) {
                 stored.setIdCliente(tramite.getIdCliente());
             }
-            // if (null != tramite.getAutorizados()) {
-            //     stored.setAutorizados(tramite.getAutorizados());
-            // }
+            if (null != tramite.getAutorizado()) {
+                stored.setAutorizado(tramite.getAutorizado());
+            }
             if (null != tramite.getSectorInicio()) {
                 stored.setSectorInicio(tramite.getSectorInicio());
             }

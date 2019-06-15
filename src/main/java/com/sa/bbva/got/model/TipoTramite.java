@@ -49,7 +49,7 @@ public class TipoTramite {
 
     @OneToMany(mappedBy = "id.tipoTramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ApiModelProperty(notes = "The campos sector")
-    Set<TipoTramiteCampo> campos;
+    private Set<TipoTramiteCampo> campos;
 
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;

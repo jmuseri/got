@@ -1,8 +1,10 @@
 [
     {
-      "id": 1,
-      "idCliente": 3534520,
-      "tipoDocumento": 0,
+      "id": {
+        "tramiteId": 24,
+        "clienteId": 3534520
+      },
+      "tipoDocumento": "0",
       "nroDocumento": 34498316,
       "nombre": "Matias",
       "apellido": "Hernandez",
@@ -12,9 +14,11 @@
       "fechaModif": null
     },
     {
-      "id": 2,
-      "idCliente": 3534520,
-      "tipoDocumento": 0,
+      "id": {
+        "tramiteId": 25,
+        "clienteId": 3534520
+      },
+      "tipoDocumento": "0",
       "nroDocumento": 34456784,
       "nombre": "Juan",
       "apellido": "Perez",
@@ -22,17 +26,5 @@
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
       "fechaModif": null
-    },
-    {
-      "id": 3,
-      "idCliente": 3145787,
-      "tipoDocumento": 0,
-      "nroDocumento": 21457854,
-      "nombre": "Carlos",
-      "apellido": "Fernandez",
-      "usuAlta": "system",
-      "fechaAlta": "2019-06-01T12:24:50.045Z",
-      "usuModif": null,
-      "fechaModif": null
-    }  
+    }
   ]

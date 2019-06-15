@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -17,14 +18,6 @@ import lombok.Data;
 public class Autorizado {
     @EmbeddedId
     private AutorizadoKey id;
-
-    @JoinColumn(name = "cliente_id")
-    @ApiModelProperty(notes = "The autorizado idCliente")
-    private Integer idCliente;
-
-    // @JoinColumn(name = "tramite_id")
-    // @ApiModelProperty(notes = "The autorizado tramites")
-    // private Set<Tramite> tramites;
 
     @ApiModelProperty(notes = "The autorizado tipoDocumento")
     private String tipoDocumento;

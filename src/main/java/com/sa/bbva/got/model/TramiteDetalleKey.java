@@ -13,10 +13,10 @@ import lombok.Data;
 public class TramiteDetalleKey implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "tipo_tramite_id")
-    Long tipoTramiteId;
+    @Column(name = "tramite_id")
+    private Integer tramiteId;
 
     @Column(name = "tipo_tramite_campo_id")
-    TipoTramiteCampoKey tipoTramiteCampoId;
+    private TipoTramiteCampoKey tipoTramiteCampoId;
 
 }

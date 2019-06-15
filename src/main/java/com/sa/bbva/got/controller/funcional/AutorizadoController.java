@@ -83,9 +83,7 @@ public class AutorizadoController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody Autorizado autorizado) {
         try {
-            if (null == autorizado || null == autorizado.getId()
-            || autorizado.getId().getTramiteId() == 0
-            || autorizado.getId().getClienteId() == 0) {
+            if (null == autorizado || null == autorizado.getId() || autorizado.getId().getClienteId() == 0) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
@@ -96,7 +94,7 @@ public class AutorizadoController {
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            
+
             if (null != autorizado.getTipoDocumento()) {
                 stored.setTipoDocumento(autorizado.getTipoDocumento());
             }
