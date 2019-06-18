@@ -1,6 +1,7 @@
 package com.sa.bbva.got.controller.funcional;
 
 import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.sa.bbva.got.bean.StatusResponse;
@@ -43,6 +44,9 @@ public class TramiteController {
         this.tramiteDetalleService = tramiteDetalleService;
     }
 
+    /*
+     * /funcional/tramite/..
+     */
     @ApiOperation(value = "View a list of available tramite", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -182,13 +186,16 @@ public class TramiteController {
         }
     }
 
+    /*
+     * /funcional/tramite/detalle/..
+     */
     @ApiOperation(value = "View a list of available tramiteDetalle", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/detalle/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> listDetalle(Model model) {
+    public ResponseEntity<?> listAllTramiteDetalle(Model model) {
         try {
             Iterable<TramiteDetalle> tramiteDetalleList = tramiteDetalleService.listAll();
             ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalleList, HttpStatus.OK);
@@ -201,11 +208,11 @@ public class TramiteController {
         }
     }
 
-    @ApiOperation(value = "Search a tramiteDetalle with an ID", response = TramiteDetalle.class)
-    @RequestMapping(value = "/detalle/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showTramiteDetalle(@PathVariable Integer id, Model model) {
+    @ApiOperation(value = "Search a tramiteDetalle with a Tramite ID", response = TramiteDetalle.class)
+    @RequestMapping(value = "/detalle/list/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listTramiteDetalle(@PathVariable Integer id, Model model) {
         try {
-            TramiteDetalle tramiteDetalle = tramiteDetalleService.getById(id);
+            Iterable<TramiteDetalle> tramiteDetalle = tramiteService.getById(id).getDetalle();
             ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalle, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -233,25 +240,12 @@ public class TramiteController {
     }
 
     @ApiOperation(value = "Update a tramiteDetalle")
-    @RequestMapping(value = "/detalle/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateTramiteDetalle(@PathVariable Integer id,
-            @RequestBody TramiteDetalle tramiteDetalle) {
+    @RequestMapping(value = "/detalle/update", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> updateTramiteDetalle(@RequestBody TramiteDetalle tramiteDetalle) {
         try {
-            TramiteDetalle stored = tramiteDetalleService.getById(id);
-            // if (null != tramiteDetalle.getTramite()) {
-            // stored.setTramite(tramiteDetalle.getTramite());
-            // }
-            // if (null != tramiteDetalle.getCampo()) {
-            // stored.setCampo(tramiteDetalle.getCampo());
-            // }
+            TramiteDetalle stored = tramiteDetalleService.getById(tramiteDetalle.getId());
             if (null != tramiteDetalle.getValor()) {
                 stored.setValor(tramiteDetalle.getValor());
-            }
-            if (null != tramiteDetalle.getUsuAlta()) {
-                stored.setUsuAlta(tramiteDetalle.getUsuAlta());
-            }
-            if (null != tramiteDetalle.getFechaAlta()) {
-                stored.setFechaAlta(tramiteDetalle.getFechaAlta());
             }
             if (null != tramiteDetalle.getUsuModif()) {
                 stored.setUsuModif(tramiteDetalle.getUsuModif());
@@ -272,12 +266,27 @@ public class TramiteController {
     }
 
     @ApiOperation(value = "Delete a tramiteDetalle")
-    @RequestMapping(value = "/detalle/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteTramiteDetalle(@PathVariable Integer id) {
+    @RequestMapping(value = "/detalle/delete", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> deleteTramiteDetalle(@RequestBody TramiteDetalle tramiteDetalle) {
         try {
-            tramiteDetalleService.delete(id);
+            tramiteDetalleService.delete(tramiteDetalle.getId());
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TramiteDetalle not deleted", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Search a tramiteDetalle with an ID")
+    @RequestMapping(value = "/detalle/show", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> showTramiteDetalle(@RequestBody TramiteDetalle tramiteDetalle) {
+        try {
+            TramiteDetalle tramiteDetalleSaved = this.tramiteDetalleService.getById(tramiteDetalle.getId());
+            ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalleSaved, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);

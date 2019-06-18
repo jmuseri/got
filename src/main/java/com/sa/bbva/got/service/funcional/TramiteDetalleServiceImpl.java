@@ -3,6 +3,7 @@ package com.sa.bbva.got.service.funcional;
 import java.util.List;
 
 import com.sa.bbva.got.model.TramiteDetalle;
+import com.sa.bbva.got.model.TramiteDetalleKey;
 import com.sa.bbva.got.repository.TramiteDetalleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,9 @@ public class TramiteDetalleServiceImpl implements TramiteDetalleService {
     }
 
     @Override
-    public TramiteDetalle getById(Integer id) {
+    public TramiteDetalle getById(TramiteDetalleKey id) {
         logger.debug("getById called");
-        return this.tramiteDetalleRepository.findById(id).orElse(null);
+        return this.tramiteDetalleRepository.findById(id);
     }
 
     @Override
@@ -44,8 +45,9 @@ public class TramiteDetalleServiceImpl implements TramiteDetalleService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(TramiteDetalleKey id) {
         logger.debug("delete called");
-        this.tramiteDetalleRepository.deleteById(id);
+        TramiteDetalle entity = this.tramiteDetalleRepository.findById(id);
+        this.tramiteDetalleRepository.delete(entity);
     }
 }
