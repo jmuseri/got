@@ -33,7 +33,6 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md) *(Modificación de un trámite)* 🗸
 * ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md) *(Baja de un trámite)* 🗸
 * ![get](../images/method-get.png "get")    [/funcional/tramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un tramite por Id)*** 🗸
-* ![post](../images/method-post.png "post") [/funcional/tramite/cabecera/add](/docs/markdown/api/accion-api.md) *(Alta de un trámite solo cabecera)*
 #### tramite-detalle
 * ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar detalle de trámite)*
 * ![post](../images/method-post.png "post") [/funcional/tramite/detalle/add](/docs/markdown/api/accion-api.md)  *(Alta de detalle de trámite)*
