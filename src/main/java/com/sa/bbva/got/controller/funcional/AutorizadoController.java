@@ -36,7 +36,7 @@ public class AutorizadoController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(@RequestParam(value = "cliente", required = false) Integer clienteId, Model model) {        
+    public ResponseEntity<?> list(@RequestParam(value = "cliente", required = false) Integer clienteId, Model model) {
         try {
             Iterable<Autorizado> autorizadoList;
             if (clienteId != null) {
@@ -54,11 +54,10 @@ public class AutorizadoController {
         }
     }
 
-    @ApiOperation(value = "Search a autorizado with an ID", response = Autorizado.class)
+    @ApiOperation(value = "Search an autorizado with an ID", response = Autorizado.class)
     @RequestMapping(value = "/show/{tramiteId}/{clienteId}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showAutorizado(@PathVariable Integer tramiteId,
-                                          @PathVariable Integer clienteId,
-                                          Model model) {
+    public ResponseEntity<?> showAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer clienteId,
+            Model model) {
         try {
             Autorizado autorizado = autorizadoService.getById(new AutorizadoKey(tramiteId, clienteId));
             ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
@@ -71,7 +70,7 @@ public class AutorizadoController {
         }
     }
 
-    @ApiOperation(value = "Add a autorizado")
+    @ApiOperation(value = "Add an autorizado")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveAutorizado(@RequestBody Autorizado autorizado) {
         try {
@@ -87,11 +86,10 @@ public class AutorizadoController {
         }
     }
 
-    @ApiOperation(value = "Update a autorizado")
+    @ApiOperation(value = "Update an autorizado")
     @RequestMapping(value = "/update/{tramiteId}/{clienteId}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateAutorizado(@PathVariable Integer tramiteId,
-                                              @PathVariable Integer clienteId,
-                                              @RequestBody Autorizado autorizado) {
+    public ResponseEntity<?> updateAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer clienteId,
+            @RequestBody Autorizado autorizado) {
         try {
             if (null == autorizado || null == autorizado.getId() || autorizado.getId().getClienteId() == null) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
@@ -141,10 +139,9 @@ public class AutorizadoController {
         }
     }
 
-    @ApiOperation(value = "Delete a autorizado")
+    @ApiOperation(value = "Delete an autorizado")
     @RequestMapping(value = "/delete/{tramiteId}/{clienteId}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer tramiteId,
-                                    @PathVariable Integer clienteId) {
+    public ResponseEntity<?> delete(@PathVariable Integer tramiteId, @PathVariable Integer clienteId) {
         try {
             autorizadoService.delete(new AutorizadoKey(tramiteId, clienteId));
             StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
