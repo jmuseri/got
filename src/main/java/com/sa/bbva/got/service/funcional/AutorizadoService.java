@@ -3,15 +3,18 @@ package com.sa.bbva.got.service.funcional;
 import java.util.List;
 
 import com.sa.bbva.got.model.Autorizado;
+import com.sa.bbva.got.model.AutorizadoKey;
 
 public interface AutorizadoService {
     Iterable<Autorizado> listAll();
 
-    Autorizado getById(Integer id);
+    Iterable<Autorizado> listByClient(Integer clienteId);
 
-    Autorizado save(Autorizado comision);
+    Autorizado getById(AutorizadoKey id);
 
-    void save(List<Autorizado> comisiones);
+    Autorizado save(Autorizado autorizado);
 
-    void delete(Integer id);
+    void save(List<Autorizado> autorizados);
+
+    void delete(AutorizadoKey id);
 }

@@ -3,6 +3,7 @@ package com.sa.bbva.got.service.funcional;
 import java.util.List;
 
 import com.sa.bbva.got.model.Autorizado;
+import com.sa.bbva.got.model.AutorizadoKey;
 import com.sa.bbva.got.repository.AutorizadoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,13 @@ public class AutorizadoServiceImpl implements AutorizadoService {
     }
 
     @Override
-    public Autorizado getById(Integer id) {
+    public Iterable<Autorizado> listByClient(Integer clienteId) {
+        logger.debug("listByClient called");
+        return this.autorizadoRepository.findAllByIdClienteId(clienteId);
+    }
+
+    @Override
+    public Autorizado getById(AutorizadoKey id) {
         logger.debug("getById called");
         return this.autorizadoRepository.findById(id).orElse(null);
     }
@@ -44,7 +51,7 @@ public class AutorizadoServiceImpl implements AutorizadoService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(AutorizadoKey id) {
         logger.debug("delete called");
         this.autorizadoRepository.deleteById(id);
     }
