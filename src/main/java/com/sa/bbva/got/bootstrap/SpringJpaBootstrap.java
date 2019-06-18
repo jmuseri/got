@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.sa.bbva.got.model.Autorizado;
 import com.sa.bbva.got.model.CampoDisponible;
 import com.sa.bbva.got.model.Comision;
@@ -96,8 +97,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadSectores();
         loadComisiones();
-        loadEstadosTramite();
         loadCamposDisponible();
+        loadEstadosTramite();
         loadTipoTramite();
         loadTipoTramiteCampo();
         loadTramite();

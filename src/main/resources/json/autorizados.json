@@ -1,7 +1,7 @@
 [
     {
       "id": {
-        "tramiteId": 24,
+        "tramiteId": 20,
         "clienteId": 3534520
       },
       "tipoDocumento": "0",
@@ -15,7 +15,7 @@
     },
     {
       "id": {
-        "tramiteId": 25,
+        "tramiteId": 21,
         "clienteId": 3534520
       },
       "tipoDocumento": "0",

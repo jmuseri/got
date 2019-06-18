@@ -1,8 +1,8 @@
 [
   {
     "id": {
-      "tipoTramiteId": 19,
-      "campoDisponibleId": 16
+      "tipoTramiteId": 15,
+      "campoDisponibleId": 8
     },
     "obligatorio": true,
     "activo": true,
@@ -15,7 +15,7 @@
   },
   {
     "id": {
-      "tipoTramiteId": 19,
+      "tipoTramiteId": 15,
       "campoDisponibleId": 14
     },
     "obligatorio": true,
@@ -29,8 +29,8 @@
   },  
   {
     "id": {
-      "tipoTramiteId": 20,
-      "campoDisponibleId": 16
+      "tipoTramiteId": 16,
+      "campoDisponibleId": 8
     },
     "obligatorio": true,
     "activo": true,
@@ -43,7 +43,7 @@
   },  
   {
     "id": {
-      "tipoTramiteId": 20,
+      "tipoTramiteId": 16,
       "campoDisponibleId": 14
     },
     "obligatorio": true,
@@ -57,8 +57,8 @@
   },  
   {
     "id": {
-      "tipoTramiteId": 21,
-      "campoDisponibleId": 16
+      "tipoTramiteId": 17,
+      "campoDisponibleId": 8
     },
     "obligatorio": true,
     "activo": true,
@@ -71,8 +71,8 @@
   },  
   {
     "id": {
-      "tipoTramiteId": 21,
-      "campoDisponibleId": 17
+      "tipoTramiteId": 17,
+      "campoDisponibleId": 13
     },
     "obligatorio": true,
     "activo": true,
@@ -85,8 +85,8 @@
   },  
   {
     "id": {
-      "tipoTramiteId": 21,
-      "campoDisponibleId": 18
+      "tipoTramiteId": 17,
+      "campoDisponibleId": 12
     },
     "obligatorio": true,
     "activo": true,
@@ -99,8 +99,8 @@
   },
   {
     "id": {
-      "tipoTramiteId": 22,
-      "campoDisponibleId": 16
+      "tipoTramiteId": 19,
+      "campoDisponibleId": 10
     },
     "obligatorio": true,
     "activo": true,
@@ -113,8 +113,8 @@
   },
   {
     "id": {
-      "tipoTramiteId": 22,
-      "campoDisponibleId": 18
+      "tipoTramiteId": 19,
+      "campoDisponibleId": 10
     },
     "obligatorio": true,
     "activo": true,
@@ -127,8 +127,8 @@
   },
   {
     "id": {
-      "tipoTramiteId": 23,
-      "campoDisponibleId": 15
+      "tipoTramiteId": 18,
+      "campoDisponibleId": 11
     },
     "obligatorio": true,
     "activo": true,
@@ -141,8 +141,8 @@
   },
   {
     "id": {
-      "tipoTramiteId": 23,
-      "campoDisponibleId": 10
+      "tipoTramiteId": 18,
+      "campoDisponibleId": 9
     },
     "obligatorio": true,
     "activo": true,

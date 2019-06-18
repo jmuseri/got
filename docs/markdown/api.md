@@ -26,13 +26,19 @@ GOT APIs are based on RESTFul Services Protocol.
 
 ### Funcional
 #### tramite
-* ![get](../images/method-get.png "get")    [/funcional/tramite/list](/docs/markdown/api/accion-api.md) *(Listar los trámites)*
-* ![get](../images/method-get.png "get")    [/funcional/tramite/list?activo={true/false}](/docs/markdown/api/accion-api.md) *(Listar los trámites activos)*
-* ![get](../images/method-get.png "get")    [/funcional/tramite/list?sector=1](/docs/markdown/api/accion-api.md)  *(Listar los trámites activos por sector)*
+* ![get](../images/method-get.png "get")    [/funcional/tramite/list](/docs/markdown/api/accion-api.md) *(Listar todos los trámites)* 🗸
+* ![get](../images/method-get.png "get")    [/funcional/tramite/list?activo={true/false}](/docs/markdown/api/accion-api.md) *(Listar los trámites activos)* 🗸
+* ![get](../images/method-get.png "get")    [/funcional/tramite/list?sector=1](/docs/markdown/api/accion-api.md)  *(Listar los trámites activos por sector)* 🗸
 * ![post](../images/method-post.png "post") [/funcional/tramite/add](/docs/markdown/api/accion-api.md)  *(Alta de trámite con autorizados, sector, detalle)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md) *(Modificación de un trámite)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md) *(Baja de un trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md) *(Modificación de un trámite)* 🗸
+* ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md) *(Baja de un trámite)* 🗸
+* ![get](../images/method-get.png "get")    [/funcional/tramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un tramite por Id)*** 🗸
 * ![post](../images/method-post.png "post") [/funcional/tramite/cabecera/add](/docs/markdown/api/accion-api.md) *(Alta de un trámite solo cabecera)*
+#### tramite-detalle
+* ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar detalle de trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/detalle/add](/docs/markdown/api/accion-api.md)  *(Alta de detalle de trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/detalle/update](/docs/markdown/api/accion-api.md)  *(Modificación de detalle de trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/detalle/delete](/docs/markdown/api/accion-api.md)  *(Baja de detalle de trámite)*
 #### tramite-autorizado
 * ![get](../images/method-get.png "get")    [/funcional/tramite/autorizado/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de relación un autorizado a un trámite)*
@@ -44,11 +50,6 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![post](../images/method-post.png "post") [/funcional/autorizado/update](/docs/markdown/api/accion-api.md)  *(Modificación de un autorizado)*
 * ![post](../images/method-post.png "post") [/funcional/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de un autorizado)*
 * ![get](../images/method-get.png "get")    [/funcional/autorizado/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un autorizado por Id)*** 🗸
-#### tramite-detalle
-* ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/list/{1}](/docs/markdown/api/accion-api.md)  *(Listar detalle de trámite)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/detalle/add](/docs/markdown/api/accion-api.md)  *(Alta de detalle de trámite)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/detalle/update](/docs/markdown/api/accion-api.md)  *(Modificación de detalle de trámite)*
-* ![post](../images/method-post.png "post") [/funcional/tramite/detalle/delete](/docs/markdown/api/accion-api.md)  *(Baja de detalle de trámite)*
 
 ### Parametría
 #### tipoTramite

@@ -1,7 +1,6 @@
 package com.sa.bbva.got.controller.parametria;
 
 import java.text.ParseException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import com.sa.bbva.got.bean.StatusResponse;
@@ -44,11 +43,11 @@ public class SectorController {
             @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
         try {
             if (!activo) {
-                Iterable<Sector> sectorList = sectorService.listAll();
+                Iterable<Sector> sectorList = this.sectorService.listAll();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;
             } else {
-                Iterable<Sector> sectorList = sectorService.listActive();
+                Iterable<Sector> sectorList = this.sectorService.listActive();
                 ResponseEntity<?> response = new ResponseEntity<>(sectorList, HttpStatus.OK);
                 return response;
             }
@@ -64,7 +63,7 @@ public class SectorController {
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
         try {
-            Sector sector = sectorService.getById(id);
+            Sector sector = this.sectorService.getById(id);
             ResponseEntity<?> response = new ResponseEntity<>(sector, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -79,7 +78,7 @@ public class SectorController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
-            sectorService.save(sector);
+            this.sectorService.save(sector);
             StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -95,7 +94,7 @@ public class SectorController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
         try {
-            Sector stored = sectorService.getById(id);
+            Sector stored = this.sectorService.getById(id);
             if (null != sector.getCanal()) {
                 stored.setCanal(sector.getCanal());
             }
@@ -118,7 +117,7 @@ public class SectorController {
             if (null != sector.getFechaModif()) {
                 stored.setFechaModif(sector.getFechaModif());
             }
-            sectorService.save(stored);
+            this.sectorService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Sector updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -134,7 +133,7 @@ public class SectorController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
         try {
-            sectorService.delete(id);
+            this.sectorService.delete(id);
             StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;

@@ -2,6 +2,8 @@ package com.sa.bbva.got.service.funcional;
 
 import java.util.List;
 
+import com.sa.bbva.got.model.EstadoTramite;
+import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Tramite;
 import com.sa.bbva.got.repository.TramiteRepository;
 import org.slf4j.Logger;
@@ -23,6 +25,18 @@ public class TramiteServiceImpl implements TramiteService {
     public Iterable<Tramite> listAll() {
         logger.debug("listAll called");
         return this.tramiteRepository.findAll();
+    }
+
+    @Override
+    public List<Tramite> listBySectorActual(Sector sectorActual) {
+        logger.debug("listBySector called");
+        return this.tramiteRepository.findBySectorActual(sectorActual);
+    }
+
+    @Override
+    public List<Tramite> listByEstado(EstadoTramite estado) {
+        logger.debug("listByEstado called");
+        return this.tramiteRepository.findByEstado(estado);
     }
 
     @Override
@@ -48,4 +62,5 @@ public class TramiteServiceImpl implements TramiteService {
         logger.debug("delete called");
         this.tramiteRepository.deleteById(id);
     }
+
 }

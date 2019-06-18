@@ -1,12 +1,19 @@
 package com.sa.bbva.got.controller.funcional;
 
+import java.text.ParseException;
+import javax.servlet.http.HttpServletRequest;
+
 import com.sa.bbva.got.bean.StatusResponse;
+import com.sa.bbva.got.model.EstadoTramite;
+import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Tramite;
 import com.sa.bbva.got.service.funcional.TramiteService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,17 +41,33 @@ public class TramiteController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(Model model) {
+    public ResponseEntity<?> list(HttpServletRequest req, Model model,
+           @RequestParam(value = "activo", required = false) boolean activo,
+           @RequestParam(value = "sector", required = false) Integer sectorId) throws ParseException { 
         try {
-            Iterable<Tramite> tramiteList = tramiteService.listAll();
+            if (null != sectorId && sectorId != 0) {
+                Sector sectorActual = new Sector();
+                sectorActual.setId(sectorId);
+                Iterable<Tramite> tramiteList = tramiteService.listBySectorActual(sectorActual);
+                ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
+                return response;
+            }
+            if (!activo) {
+                Iterable<Tramite> tramiteList = tramiteService.listAll();
+                ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
+                return response;
+            }
+            EstadoTramite estado = new EstadoTramite();
+            estado.setId(1);
+            Iterable<Tramite> tramiteList = tramiteService.listByEstado(estado);
             ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
-            return response;
+            return response;           
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
-        }
+        }        
     }
 
     @ApiOperation(value = "Search a tramite with an ID", response = Tramite.class)
@@ -83,9 +106,6 @@ public class TramiteController {
     public ResponseEntity<?> updateTramite(@PathVariable Integer id, @RequestBody Tramite tramite) {
         try {
             Tramite stored = tramiteService.getById(id);
-            if (null != tramite.getId()) {
-                stored.setId(tramite.getId());
-            }
             if (null != tramite.getTipoTramite()) {
                 stored.setTipoTramite(tramite.getTipoTramite());
             }
@@ -98,8 +118,14 @@ public class TramiteController {
             if (null != tramite.getSectorInicio()) {
                 stored.setSectorInicio(tramite.getSectorInicio());
             }
+            if (null != tramite.getSectorActual()) {
+                stored.setSectorActual(tramite.getSectorActual());
+            }
             if (null != tramite.getDetalle()) {
                 stored.setDetalle(tramite.getDetalle());
+            }
+            if (null != tramite.getCuentaCobro()) {
+                stored.setCuentaCobro(tramite.getCuentaCobro());
             }
             if (null != tramite.getEstado()) {
                 stored.setEstado(tramite.getEstado());
