@@ -272,7 +272,7 @@ public class TramiteController {
     }
 
     @ApiOperation(value = "Delete a tramiteDetalle")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/detalle/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteTramiteDetalle(@PathVariable Integer id) {
         try {
             tramiteDetalleService.delete(id);
