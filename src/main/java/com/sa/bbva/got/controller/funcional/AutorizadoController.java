@@ -75,7 +75,6 @@ public class AutorizadoController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveAutorizado(@RequestBody Autorizado autorizado) {
         try {
-            autorizado.setId(new AutorizadoKey(0, 0));
             autorizadoService.save(autorizado);
             StatusResponse status = new StatusResponse("ok", "Autorizado saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
