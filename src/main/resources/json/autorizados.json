@@ -1,0 +1,30 @@
+[
+    {
+      "id": {
+        "tramiteId": 24,
+        "clienteId": 3534520
+      },
+      "tipoDocumento": "0",
+      "nroDocumento": 34498316,
+      "nombre": "Matias",
+      "apellido": "Hernandez",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": {
+        "tramiteId": 25,
+        "clienteId": 3534520
+      },
+      "tipoDocumento": "0",
+      "nroDocumento": 34456784,
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    }
+  ]

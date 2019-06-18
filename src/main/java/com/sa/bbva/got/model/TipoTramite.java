@@ -28,9 +28,9 @@ public class TipoTramite {
     @ApiModelProperty(notes = "The tipoTramite cobraComision")
     private boolean cobraComision;
 
-    @ApiModelProperty(notes = "The tipoTramite comision")
     @ManyToOne
     @JoinColumn(name = "comision")
+    @ApiModelProperty(notes = "The tipoTramite comision")
     private Comision comision;
 
     @ApiModelProperty(notes = "The tipoTramite requiereDocumentacion")
@@ -42,13 +42,14 @@ public class TipoTramite {
     @ApiModelProperty(notes = "The tipoTramite autorizado")
     private boolean autorizado;
 
-    @ApiModelProperty(notes = "The tipoTramite sector")
     @ManyToOne
     @JoinColumn(name = "sectorInicial")
+    @ApiModelProperty(notes = "The tipoTramite sector")
     private Sector sectorInicial;
 
     @OneToMany(mappedBy = "id.tipoTramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    Set<TipoTramiteCampo> campos;
+    @ApiModelProperty(notes = "The campos sector")
+    private Set<TipoTramiteCampo> campos;
 
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;

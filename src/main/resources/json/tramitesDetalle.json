@@ -1,0 +1,16 @@
+[
+  {
+    "id": {
+        "tramiteId": 24,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 19,
+          "campoDisponibleId": 16
+        }
+    },
+    "valor": "Valor1",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  }
+]
