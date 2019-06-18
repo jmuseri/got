@@ -102,6 +102,7 @@ public class TipoTramiteController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveTipoTramite(@RequestBody TipoTramite tipoTramite) {
         try {
+            tipoTramite.setId(0);
             tipoTramiteService.save(tipoTramite);
             StatusResponse status = new StatusResponse("ok", "TipoTramite saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

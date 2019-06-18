@@ -78,6 +78,7 @@ public class SectorController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
+            sector.setId(0);
             this.sectorService.save(sector);
             StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

@@ -42,8 +42,8 @@ public class TramiteController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> list(HttpServletRequest req, Model model,
-           @RequestParam(value = "activo", required = false) boolean activo,
-           @RequestParam(value = "sector", required = false) Integer sectorId) throws ParseException { 
+            @RequestParam(value = "activo", required = false) boolean activo,
+            @RequestParam(value = "sector", required = false) Integer sectorId) throws ParseException {
         try {
             if (null != sectorId && sectorId != 0) {
                 Sector sectorActual = new Sector();
@@ -61,13 +61,13 @@ public class TramiteController {
             estado.setId(1);
             Iterable<Tramite> tramiteList = tramiteService.listByEstado(estado);
             ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
-            return response;           
+            return response;
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
-        }        
+        }
     }
 
     @ApiOperation(value = "Search a tramite with an ID", response = Tramite.class)
@@ -89,6 +89,7 @@ public class TramiteController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveTramite(@RequestBody Tramite tramite) {
         try {
+            tramite.setId(0);
             tramiteService.save(tramite);
             StatusResponse status = new StatusResponse("ok", "Tramite saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

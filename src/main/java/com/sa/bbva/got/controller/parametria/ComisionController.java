@@ -66,6 +66,7 @@ public class ComisionController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveComision(@RequestBody Comision comision) {
         try {
+            comision.setId(0);
             comisionService.save(comision);
             StatusResponse status = new StatusResponse("ok", "Comision saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

@@ -66,6 +66,7 @@ public class CampoDisponibleController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveEstadoTramite(@RequestBody CampoDisponible campoDisponible) {
         try {
+            campoDisponible.setId(0);
             campoDisponibleService.save(campoDisponible);
             StatusResponse status = new StatusResponse("ok", "CampoDisponible saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

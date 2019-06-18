@@ -29,7 +29,7 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![get](../images/method-get.png "get")    [/funcional/tramite/list](/docs/markdown/api/accion-api.md) *(Listar todos los trámites)* 🗸
 * ![get](../images/method-get.png "get")    [/funcional/tramite/list?activo={true/false}](/docs/markdown/api/accion-api.md) *(Listar los trámites activos)* 🗸
 * ![get](../images/method-get.png "get")    [/funcional/tramite/list?sector=1](/docs/markdown/api/accion-api.md)  *(Listar los trámites activos por sector)* 🗸
-* ![post](../images/method-post.png "post") [/funcional/tramite/add](/docs/markdown/api/accion-api.md)  *(Alta de trámite con autorizados, sector, detalle)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/add](/docs/markdown/api/accion-api.md)  *(Alta de trámite con autorizados, sector, detalle)* 🗸
 * ![post](../images/method-post.png "post") [/funcional/tramite/update](/docs/markdown/api/accion-api.md) *(Modificación de un trámite)* 🗸
 * ![post](../images/method-post.png "post") [/funcional/tramite/delete](/docs/markdown/api/accion-api.md) *(Baja de un trámite)* 🗸
 * ![get](../images/method-get.png "get")    [/funcional/tramite/show/{1}](/docs/markdown/api/accion-api.md)  ***(Obtener un tramite por Id)*** 🗸
