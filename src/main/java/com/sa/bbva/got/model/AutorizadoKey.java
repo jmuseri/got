@@ -19,4 +19,11 @@ public class AutorizadoKey implements Serializable {
     @Column(name = "cliente_id")
     Integer clienteId;
 
+    public AutorizadoKey() {
+    }  
+    
+    public AutorizadoKey(Integer tramiteId, Integer clienteId) {
+        this.tramiteId = tramiteId;
+        this.clienteId = clienteId;
+    }   
 }

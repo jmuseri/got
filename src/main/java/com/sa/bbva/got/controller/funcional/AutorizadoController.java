@@ -2,6 +2,7 @@ package com.sa.bbva.got.controller.funcional;
 
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Autorizado;
+import com.sa.bbva.got.model.AutorizadoKey;
 import com.sa.bbva.got.service.funcional.AutorizadoService;
 
 import io.swagger.annotations.Api;
@@ -25,7 +26,7 @@ public class AutorizadoController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public void setComisionService(AutorizadoService autorizadoService) {
+    public void setAutorizadoService(AutorizadoService autorizadoService) {
         this.autorizadoService = autorizadoService;
     }
 
@@ -35,10 +36,15 @@ public class AutorizadoController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(Model model) {
+    public ResponseEntity<?> list(@RequestParam(value = "cliente", required = false) Integer clienteId, Model model) {        
         try {
-            Iterable<Autorizado> comisionList = autorizadoService.listAll();
-            ResponseEntity<?> response = new ResponseEntity<>(comisionList, HttpStatus.OK);
+            Iterable<Autorizado> autorizadoList;
+            if (clienteId != null) {
+                autorizadoList = autorizadoService.listByClient(clienteId);
+            } else {
+                autorizadoList = autorizadoService.listAll();
+            }
+            ResponseEntity<?> response = new ResponseEntity<>(autorizadoList, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);
@@ -49,10 +55,12 @@ public class AutorizadoController {
     }
 
     @ApiOperation(value = "Search a autorizado with an ID", response = Autorizado.class)
-    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showComision(@PathVariable Integer id, Model model) {
+    @RequestMapping(value = "/show/{tramiteId}/{clienteId}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> showAutorizado(@PathVariable Integer tramiteId,
+                                          @PathVariable Integer clienteId,
+                                          Model model) {
         try {
-            Autorizado autorizado = autorizadoService.getById(id);
+            Autorizado autorizado = autorizadoService.getById(new AutorizadoKey(tramiteId, clienteId));
             ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -65,8 +73,9 @@ public class AutorizadoController {
 
     @ApiOperation(value = "Add a autorizado")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveComision(@RequestBody Autorizado autorizado) {
+    public ResponseEntity<?> saveAutorizado(@RequestBody Autorizado autorizado) {
         try {
+            autorizado.setId(new AutorizadoKey(0, 0));
             autorizadoService.save(autorizado);
             StatusResponse status = new StatusResponse("ok", "Autorizado saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -80,15 +89,17 @@ public class AutorizadoController {
     }
 
     @ApiOperation(value = "Update a autorizado")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateComision(@PathVariable Integer id, @RequestBody Autorizado autorizado) {
+    @RequestMapping(value = "/update/{tramiteId}/{clienteId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> updateAutorizado(@PathVariable Integer tramiteId,
+                                              @PathVariable Integer clienteId,
+                                              @RequestBody Autorizado autorizado) {
         try {
-            if (null == autorizado || null == autorizado.getId() || autorizado.getId().getClienteId() == 0) {
+            if (null == autorizado || null == autorizado.getId() || autorizado.getId().getClienteId() == null) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            Autorizado stored = autorizadoService.getById(id);
+            Autorizado stored = autorizadoService.getById(new AutorizadoKey(tramiteId, clienteId));
             if (null == stored) {
                 StatusResponse status = new StatusResponse("error", "Autorizado doesn't exist", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -132,10 +143,11 @@ public class AutorizadoController {
     }
 
     @ApiOperation(value = "Delete a autorizado")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
+    @RequestMapping(value = "/delete/{tramiteId}/{clienteId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> delete(@PathVariable Integer tramiteId,
+                                    @PathVariable Integer clienteId) {
         try {
-            autorizadoService.delete(id);
+            autorizadoService.delete(new AutorizadoKey(tramiteId, clienteId));
             StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
