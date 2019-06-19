@@ -56,7 +56,7 @@ Table(Tramite, "<b>Tramite</b>\n(Tramite de un cliente)") {
 primary_key(id:) <b><color:blue>long</color></b>
 tipoTramite: <b><color:darkred>TipoTramite</color></b>
 idCliente: Long
-autorizados: List<<b><color:darkred>Autorizado</color></b>>
+autorizados: List<<b><color:darkred>TramiteAutorizado</color></b>>
 sectorInicio: <b><color:darkred>Sector</color></b>
 sectorActual: <b><color:darkred>Sector</color></b>
 detalle: List<<b><color:darkred>TramiteDetalle</color></b>>;
@@ -126,10 +126,19 @@ usuModif: String
 fechaModif: Date
 }
 
+Table(TramiteAutorizado, "<b>TramiteAutorizado</b>\n(Personas autorizadas al tramite)") {
+primary_key(id:) <b><color:blue>long</color></b>
+tramiteId: Long
+autorizadoId: Long
+usuAlta: String
+fechaAlta: Date
+usuModif: String
+fechaModif: Date
+}
+
 Table(Autorizado, "<b>Autorizado</b>\n(Personas autorizadas al tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
 idCliente: Long
-tramites: List<Tramite>
 tipoDocumento: String
 nroDocumento: String
 nombre: String
@@ -188,8 +197,10 @@ fechaModif: Date
 Tramite "*" <-- "1" TipoTramite
 Tramite "*" -- "1" Sector
 Tramite "*" -- "1" EstadoTramite
-Tramite "1" --> "*" Autorizado
 Tramite "1" --> "*" TramiteDetalle
+Tramite "1" --> "*" TramiteAutorizado
+TramiteAutorizado "*" --> "1" Autorizado
+
 
 TipoTramite "*" -- "1" Comision
 TipoTramite "*" -- "1" Sector 

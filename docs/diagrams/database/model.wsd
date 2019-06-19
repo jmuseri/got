@@ -33,11 +33,11 @@ hide stereotypes
 'not_null[password] VARCHAR[64]
 'primary_key[ID]  VARCHAR2[1 BYTE]
 
-Table(Tramite, "Tramite\n()") {
+Table(Tramite, "<b>Tramite</b>\n(Tramite de un cliente)") {
 primary_key(id:) <b><color:blue>long</color></b>
 tipoTramite: <b><color:darkred>TipoTramite</color></b>
 idCliente: Long
-autorizados: List<<b><color:darkred>Autorizado</color></b>>
+autorizados: List<<b><color:darkred>TramiteAutorizado</color></b>>
 sectorInicio: <b><color:darkred>Sector</color></b>
 sectorActual: <b><color:darkred>Sector</color></b>
 detalle: List<<b><color:darkred>TramiteDetalle</color></b>>;
@@ -52,25 +52,25 @@ usuModif: String
 fechaModif: Date
 }
 
-Table(TramiteDetalle, "TramiteDetalle\n()") {
+Table(TramiteDetalle, "<b>TramiteDetalle</b>\n(Detalle de un tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
 tramite: <b><color:darkred>Tramite</color></b>
 campo: <b><color:darkred>TipoTramiteCampo</color></b>
 valor: String
-nto: Date
 usuAlta: String
 fechaAlta: Date
 usuModif: String
 fechaModif: Date
 }
 
-Table(TipoTramite, "TipoTramite\n()") {
+Table(TipoTramite, "<b>TipoTramite</b>\n(Tipos de tramites)") {
 primary_key(id:) <b><color:blue>long</color></b>
 descripcion: String
 cobraComision: Boolean
 comision: <b><color:darkred>Comision</color></b>
 requiereDocumentacion: Boolean
 activo: Boolean
+autorizado: Boolean
 sectorInicial: <b><color:darkred>Sector</color></b>
 campos: Array<<b><color:darkred>TipoTramiteCampo</color></b>>
 horasResolucion: Long
@@ -81,19 +81,21 @@ usuModif: String
 fechaModif: Date
 }
 
-Table(TipoTramiteCampo, "TipoTramiteCampo\n()") {
+Table(TipoTramiteCampo, "<b>TipoTramiteCampo</b>\n(Campos de un tipo de tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
 tipoTramite: <b><color:darkred>TipoTramite</color></b>
 campoDisponible: <b><color:darkred>CampoDisponible</color></b>
 obligatorio: Boolean
 activo: Boolean
+nombre: String
+leyenda: String
 usuAlta: String
 fechaAlta: Date
 usuModif: String
 fechaModif: Date
 }
 
-Table(CampoDisponible, "CampoDisponible\n()") {
+Table(CampoDisponible, "<b>CampoDisponible</b>\n(Campos Disponibles)") {
 primary_key(id:) <b><color:blue>long</color></b>
 nombre: String
 descripcion: String
@@ -105,10 +107,19 @@ usuModif: String
 fechaModif: Date
 }
 
-Table(Autorizado, "Autorizado\n()") {
+Table(TramiteAutorizado, "<b>TramiteAutorizado</b>\n(Personas autorizadas al tramite)") {
+primary_key(id:) <b><color:blue>long</color></b>
+tramiteId: Long
+autorizadoId: Long
+usuAlta: String
+fechaAlta: Date
+usuModif: String
+fechaModif: Date
+}
+
+Table(Autorizado, "<b>Autorizado</b>\n(Personas autorizadas al tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
 idCliente: Long
-tramites: List<Tramite>
 tipoDocumento: String
 nroDocumento: String
 nombre: String
@@ -119,18 +130,19 @@ usuModif: String
 fechaModif: Date
 }
 
-Table(Sector, "Sector\n()") {
+Table(Sector, "<b>Sector</b>\n(Sector)") {
 primary_key(id:) <b><color:blue>long</color></b>
 canal: String
 sector: String
 descripcion: String
+activo: boolean
 usuAlta: String
 fechaAlta: Date
 usuModif: String
 fechaModif: Date
 }
 
-Table(Comision, "Comision\n()") {
+Table(Comision, "<b>Comision</b>\n(Comision del tipo de tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
 param1: String
 param2: String
@@ -143,7 +155,7 @@ usuModif: String
 fechaModif: Date
 }
 
-Table(EstadoTramite, "EstadoTramite\n()") {
+Table(EstadoTramite, "<b>EstadoTramite</b>\n(Estado de un tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
 code: String
 descripcion: String
@@ -152,7 +164,6 @@ fechaAlta: Date
 usuModif: String
 fechaModif: Date
 }
-
 ' relationships
 ' one-to-one relationship
 'user -- user_profile : "A user only \nhas one profile"
