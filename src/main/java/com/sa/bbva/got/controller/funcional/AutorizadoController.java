@@ -54,22 +54,6 @@ public class AutorizadoController {
         }
     }
 
-    @ApiOperation(value = "Search an autorizado with an ID", response = Autorizado.class)
-    @RequestMapping(value = "/show/{tramiteId}/{clienteId}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer clienteId,
-            Model model) {
-        try {
-            Autorizado autorizado = autorizadoService.getById(new AutorizadoKey(tramiteId, clienteId));
-            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-
     @ApiOperation(value = "Add an autorizado")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveAutorizado(@RequestBody Autorizado autorizado) {
@@ -91,7 +75,7 @@ public class AutorizadoController {
     public ResponseEntity<?> updateAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer clienteId,
             @RequestBody Autorizado autorizado) {
         try {
-            if (null == autorizado || null == autorizado.getId() || autorizado.getId().getClienteId() == null) {
+            if (null == autorizado || null == tramiteId || null == clienteId) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
@@ -102,7 +86,6 @@ public class AutorizadoController {
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-
             if (null != autorizado.getTipoDocumento()) {
                 stored.setTipoDocumento(autorizado.getTipoDocumento());
             }
@@ -134,6 +117,22 @@ public class AutorizadoController {
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Autorizado not saved", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Search an autorizado with an ID", response = Autorizado.class)
+    @RequestMapping(value = "/show/{tramiteId}/{clienteId}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> showAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer clienteId,
+            Model model) {
+        try {
+            Autorizado autorizado = autorizadoService.getById(new AutorizadoKey(tramiteId, clienteId));
+            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
