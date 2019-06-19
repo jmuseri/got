@@ -2,7 +2,7 @@
     {
       "id": 1,
       "tipoTramite": {"id": 15},
-      "idCliente": null,
+      "clienteId": null,
       "autorizado": null,
       "sectorInicio": null,
       "sectorActual": { "id":1 },
@@ -19,7 +19,7 @@
     {
       "id": 2,
       "tipoTramite": {"id": 19},
-      "idCliente": null,
+      "clienteId": null,
       "autorizado": null,
       "sectorInicio": null,
       "sectorActual": { "id":2 },
@@ -36,7 +36,7 @@
     {
       "id": 3,
       "tipoTramite": {"id": 19},
-      "idCliente": null,
+      "clienteId": null,
       "autorizado": null,
       "sectorInicio": null,
       "sectorActual": { "id":1 },
@@ -53,7 +53,7 @@
     {
       "id": 4,
       "tipoTramite": {"id": 15},
-      "idCliente": null,
+      "clienteId": null,
       "autorizado": null,
       "sectorInicio": null,
       "sectorActual": { "id":2 },

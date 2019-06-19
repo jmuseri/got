@@ -39,7 +39,7 @@ hide stereotypes
 '     Campos Disponibles
 
 'Pedido de Extracto
-'    idCliente
+'    clienteId
 '    Autorizados
 '    CuentaCobro
 
@@ -55,7 +55,7 @@ hide stereotypes
 Table(Tramite, "<b>Tramite</b>\n(Tramite de un cliente)") {
 primary_key(id:) <b><color:blue>long</color></b>
 tipoTramite: <b><color:darkred>TipoTramite</color></b>
-idCliente: Long
+clienteId: Long
 autorizados: List<<b><color:darkred>TramiteAutorizado</color></b>>
 sectorInicio: <b><color:darkred>Sector</color></b>
 sectorActual: <b><color:darkred>Sector</color></b>
@@ -132,13 +132,11 @@ tramiteId: Long
 autorizadoId: Long
 usuAlta: String
 fechaAlta: Date
-usuModif: String
-fechaModif: Date
 }
 
 Table(Autorizado, "<b>Autorizado</b>\n(Personas autorizadas al tramite)") {
 primary_key(id:) <b><color:blue>long</color></b>
-idCliente: Long
+clienteId: Long
 tipoDocumento: String
 nroDocumento: String
 nombre: String

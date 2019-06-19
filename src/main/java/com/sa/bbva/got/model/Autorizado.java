@@ -16,8 +16,16 @@ import lombok.Data;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Autorizado {
-    @EmbeddedId
-    private AutorizadoKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(notes = "The database generated autorizado ID")
+    private Integer id;
+
+    //@EmbeddedId
+    //private AutorizadoKey id;
+
+    @ApiModelProperty(notes = "The autorizado clienteId")
+    private Integer clienteId;
 
     @ApiModelProperty(notes = "The autorizado tipoDocumento")
     private String tipoDocumento;
@@ -31,10 +39,10 @@ public class Autorizado {
     @ApiModelProperty(notes = "The autorizado apellido")
     private String apellido;
 
-    @ApiModelProperty(notes = "The creator user", required = true)
+    @ApiModelProperty(notes = "The creator user")
     private String usuAlta;
 
-    @ApiModelProperty(notes = "The creation date", required = true)
+    @ApiModelProperty(notes = "The creation date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaAlta;
 

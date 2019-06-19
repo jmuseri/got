@@ -1,9 +1,7 @@
 [
     {
-      "id": {
-        "tramiteId": 20,
-        "clienteId": 3534520
-      },
+      "id": 1,
+      "clienteId": 3534520,
       "tipoDocumento": "0",
       "nroDocumento": 34498316,
       "nombre": "Matias",
@@ -14,10 +12,8 @@
       "fechaModif": null
     },
     {
-      "id": {
-        "tramiteId": 21,
-        "clienteId": 3534521
-      },
+      "id": 2,
+      "clienteId": 3534521,
       "tipoDocumento": "0",
       "nroDocumento": 34456784,
       "nombre": "Juan",

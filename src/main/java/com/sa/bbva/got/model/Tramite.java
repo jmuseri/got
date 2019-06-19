@@ -26,11 +26,11 @@ public class Tramite {
     @ApiModelProperty(notes = "The tramite tipoTramite")
     private TipoTramite tipoTramite;
 
-    @ApiModelProperty(notes = "The tramite idCliente")
-    private Integer idCliente;
+    @ApiModelProperty(notes = "The tramite clienteId")
+    private Integer clienteId;
 
     @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Autorizado> autorizado;
+    private Set<TramiteAutorizado> autorizado;
 
     @ManyToOne
     @JoinColumn(name = "sectorInicial")

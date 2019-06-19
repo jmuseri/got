@@ -5,7 +5,6 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sa.bbva.got.bean.StatusResponse;
-import com.sa.bbva.got.model.Autorizado;
 import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Tramite;
@@ -109,11 +108,8 @@ public class TramiteController {
             if (null != tramite.getTipoTramite()) {
                 stored.setTipoTramite(tramite.getTipoTramite());
             }
-            if (null != tramite.getIdCliente()) {
-                stored.setIdCliente(tramite.getIdCliente());
-            }
-            if (null != tramite.getAutorizado()) {
-                stored.setAutorizado(tramite.getAutorizado());
+            if (null != tramite.getClienteId()) {
+                stored.setClienteId(tramite.getClienteId());
             }
             if (null != tramite.getSectorInicio()) {
                 stored.setSectorInicio(tramite.getSectorInicio());
@@ -311,9 +307,10 @@ public class TramiteController {
     @RequestMapping(value = "/autorizado/list/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listTramiteAutorizado(@PathVariable Integer id, Model model) {
         try {
-            Iterable<Autorizado> autorizado = this.tramiteService.getById(id).getAutorizado();
-            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
-            return response;
+            //Iterable<Autorizado> autorizado = this.tramiteService.getById(id).getAutorizado();
+            //ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
+            //return response;
+            return null;
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());

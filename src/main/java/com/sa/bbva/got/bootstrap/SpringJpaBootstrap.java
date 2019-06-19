@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.sa.bbva.got.model.Autorizado;
 import com.sa.bbva.got.model.CampoDisponible;
 import com.sa.bbva.got.model.Comision;
@@ -102,8 +101,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadTipoTramite();
         loadTipoTramiteCampo();
         loadTramite();
-        loadAutorizado();
         loadTramiteDetalle();
+        loadAutorizado();
     }
 
     private void loadSectores() {
@@ -225,23 +224,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         }
     }
 
-    private void loadAutorizado() {
-        /*
-         * Read json sector test and write to db
-         */
-        ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<Autorizado>> typeReference = new TypeReference<List<Autorizado>>() {
-        };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/autorizados.json");
-        try {
-            List<Autorizado> autorizado = mapper.readValue(inputStream, typeReference);
-            autorizadoService.save(autorizado);
-            log.info("Autorizados Saved!");
-        } catch (IOException e) {
-            log.error("Unable to save autorizados: " + e.getMessage());
-        }
-    }
-
     private void loadTramiteDetalle() {
         /*
          * Read json sector test and write to db
@@ -256,6 +238,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.info("TramiteDetalle Saved!");
         } catch (IOException e) {
             log.error("Unable to save TramiteDetalle: " + e.getMessage());
+        }
+    }
+
+    private void loadAutorizado() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<Autorizado>> typeReference = new TypeReference<List<Autorizado>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/autorizados.json");
+        try {
+            List<Autorizado> autorizado = mapper.readValue(inputStream, typeReference);
+            autorizadoService.save(autorizado);
+            log.info("Autorizados Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save autorizados: " + e.getMessage());
         }
     }
 

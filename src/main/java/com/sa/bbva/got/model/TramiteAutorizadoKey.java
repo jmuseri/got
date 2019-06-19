@@ -10,20 +10,20 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Embeddable
-public class AutorizadoKey implements Serializable {
+public class TramiteAutorizadoKey implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "tramite_id")
     Integer tramiteId;
 
     @Column(name = "cliente_id")
-    Integer clienteId;
+    Integer autorizadoId;
 
-    public AutorizadoKey() {
+    public TramiteAutorizadoKey() {
     }  
     
-    public AutorizadoKey(Integer tramiteId, Integer clienteId) {
+    public TramiteAutorizadoKey(Integer tramiteId, Integer autorizadoId) {
         this.tramiteId = tramiteId;
-        this.clienteId = clienteId;
+        this.autorizadoId = autorizadoId;
     }   
 }
