@@ -17,12 +17,10 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Autorizado {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "autorizado_seq_gen")
     @ApiModelProperty(notes = "The database generated autorizado ID")
+    @SequenceGenerator(name = "autorizado_seq_gen", sequenceName = "AUTORIZADO_SEQ")
     private Integer id;
-
-    //@EmbeddedId
-    //private AutorizadoKey id;
 
     @ApiModelProperty(notes = "The autorizado clienteId")
     private Integer clienteId;

@@ -101,8 +101,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadTipoTramite();
         loadTipoTramiteCampo();
         loadTramite();
-        loadTramiteDetalle();
         loadAutorizado();
+        // loadTramiteDetalle();
+        // loadTramiteAutorizado();
     }
 
     private void loadSectores() {
@@ -224,23 +225,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         }
     }
 
-    private void loadTramiteDetalle() {
-        /*
-         * Read json sector test and write to db
-         */
-        ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<TramiteDetalle>> typeReference = new TypeReference<List<TramiteDetalle>>() {
-        };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramitesDetalle.json");
-        try {
-            List<TramiteDetalle> tramiteDetalle = mapper.readValue(inputStream, typeReference);
-            tramiteDetalleService.save(tramiteDetalle);
-            log.info("TramiteDetalle Saved!");
-        } catch (IOException e) {
-            log.error("Unable to save TramiteDetalle: " + e.getMessage());
-        }
-    }
-
     private void loadAutorizado() {
         /*
          * Read json sector test and write to db
@@ -255,6 +239,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.info("Autorizados Saved!");
         } catch (IOException e) {
             log.error("Unable to save autorizados: " + e.getMessage());
+        }
+    }
+
+    private void loadTramiteDetalle() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<TramiteDetalle>> typeReference = new TypeReference<List<TramiteDetalle>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramitesDetalle.json");
+        try {
+            List<TramiteDetalle> tramiteDetalle = mapper.readValue(inputStream, typeReference);
+            tramiteDetalleService.save(tramiteDetalle);
+            log.info("TramiteDetalle Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save TramiteDetalle: " + e.getMessage());
         }
     }
 

@@ -41,7 +41,7 @@ public class TramiteDetalleServiceImpl implements TramiteDetalleService {
     @Override
     public void save(List<TramiteDetalle> tramiteDetalle) {
         logger.debug("save called");
-        tramiteDetalleRepository.saveAll(tramiteDetalle);
+        this.tramiteDetalleRepository.saveAll(tramiteDetalle);
     }
 
     @Override
