@@ -5,6 +5,7 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.sa.bbva.got.bean.StatusResponse;
+import com.sa.bbva.got.model.Autorizado;
 import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Tramite;
@@ -188,7 +189,7 @@ public class TramiteController {
     }
 
     /*
-     * Detalle
+     * Tramite-Detalle
      */
     @ApiOperation(value = "View a list of available tramiteDetalle", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -298,6 +299,24 @@ public class TramiteController {
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "TramiteDetalle not deleted", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    /*
+     * Tramite-Autorizado
+     */
+    @ApiOperation(value = "Search a tramiteAutorizado with a Tramite ID", response = TramiteDetalle.class)
+    @RequestMapping(value = "/autorizado/list/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listTramiteAutorizado(@PathVariable Integer id, Model model) {
+        try {
+            Iterable<Autorizado> autorizado = this.tramiteService.getById(id).getAutorizado();
+            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
