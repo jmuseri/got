@@ -17,7 +17,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Comision {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="comision_seq_gen")
+	@SequenceGenerator(name="comision_seq_gen", sequenceName="COMISION_SEQ")
     @ApiModelProperty(notes = "The database generated comision ID")
     private Integer id;
     @ApiModelProperty(notes = "The comision param1")

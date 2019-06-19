@@ -3,7 +3,7 @@
     "id": 1,
     "descripcion": "Certificacion de Firma",
     "cobraComision": true,
-    "comision": null,
+    "comision": { "id": 1 },
     "requiereDocumentacion": false,
     "activo": false,
     "autorizado": true,
@@ -39,9 +39,7 @@
     "id": 3,
     "descripcion": "Solicitud de Extracto",
     "cobraComision": true,
-    "comision": {
-                 "id": 6
-                },
+    "comision": null,
     "requiereDocumentacion": false,
     "activo": true,
     "autorizado": false,
@@ -80,7 +78,7 @@
     "descripcion": "Solicitud de tokens",
     "cobraComision": false,
     "comision": {
-                 "id": 7
+                 "id": 2
                 },
     "requiereDocumentacion": false,
     "activo": true,

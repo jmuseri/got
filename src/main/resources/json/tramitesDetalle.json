@@ -1,10 +1,10 @@
 [
   {
     "id": {
-        "tramiteId": 20,
+        "tramiteId": 1,
         "tipoTramiteCampoId": {
-          "tipoTramiteId": 19,
-          "campoDisponibleId": 16
+          "tipoTramiteId": 5,
+          "campoDisponibleId": 3
         }
     },
     "valor": "Valor1",
