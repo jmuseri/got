@@ -39,9 +39,9 @@ public class AutorizadoController {
         try {
             Iterable<Autorizado> autorizadoList;
             if (clienteId != null) {
-                autorizadoList = this.autorizadoService.listByClient(clienteId);
+                autorizadoList = autorizadoService.listByClient(clienteId);
             } else {
-                autorizadoList = this.autorizadoService.listAll();
+                autorizadoList = autorizadoService.listAll();
             }
             ResponseEntity<?> response = new ResponseEntity<>(autorizadoList, HttpStatus.OK);
             return response;
@@ -57,7 +57,7 @@ public class AutorizadoController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveAutorizado(@RequestBody Autorizado autorizado) {
         try {
-            this.autorizadoService.save(autorizado);
+            autorizadoService.save(autorizado);
             StatusResponse status = new StatusResponse("ok", "Autorizado saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -78,7 +78,7 @@ public class AutorizadoController {
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            Autorizado stored = this.autorizadoService.getById(id);
+            Autorizado stored = autorizadoService.getById(id);
             if (null == stored) {
                 StatusResponse status = new StatusResponse("error", "Autorizado doesn't exist", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -108,7 +108,7 @@ public class AutorizadoController {
             if (null != autorizado.getFechaModif()) {
                 stored.setFechaModif(autorizado.getFechaModif());
             }
-            this.autorizadoService.save(stored);
+            autorizadoService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Autorizado updated successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -124,7 +124,7 @@ public class AutorizadoController {
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showAutorizado(@PathVariable Integer id, Model model) {
         try {
-            Autorizado autorizado = this.autorizadoService.getById(id);
+            Autorizado autorizado = autorizadoService.getById(id);
             ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -139,7 +139,7 @@ public class AutorizadoController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
-            this.autorizadoService.delete(id);
+            autorizadoService.delete(id);
             StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
