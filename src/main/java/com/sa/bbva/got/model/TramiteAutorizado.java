@@ -20,6 +20,10 @@ public class TramiteAutorizado {
     @EmbeddedId
     private TramiteAutorizadoKey id;
 
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    private Autorizado autorizado;
+
     @ApiModelProperty(notes = "The creator user", required = true)
     private String usuAlta;
 
