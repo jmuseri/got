@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @XmlRootElement
 @Entity
-@Table(name = "tramite_detalle")
+@Table(name = "tramite_autorizado")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TramiteAutorizado {
     @EmbeddedId

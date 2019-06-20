@@ -16,14 +16,14 @@ public class TramiteAutorizadoKey implements Serializable {
     @Column(name = "tramite_id")
     Integer tramiteId;
 
-    @Column(name = "cliente_id")
+    @Column(name = "autorizado_id")
     Integer autorizadoId;
 
     public TramiteAutorizadoKey() {
-    }  
-    
+    }
+
     public TramiteAutorizadoKey(Integer tramiteId, Integer autorizadoId) {
         this.tramiteId = tramiteId;
         this.autorizadoId = autorizadoId;
-    }   
+    }
 }

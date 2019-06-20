@@ -14,8 +14,10 @@ import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.TipoTramite;
 import com.sa.bbva.got.model.TipoTramiteCampo;
 import com.sa.bbva.got.model.Tramite;
+import com.sa.bbva.got.model.TramiteAutorizado;
 import com.sa.bbva.got.model.TramiteDetalle;
 import com.sa.bbva.got.service.funcional.AutorizadoService;
+import com.sa.bbva.got.service.funcional.TramiteAutorizadoService;
 import com.sa.bbva.got.service.funcional.TramiteDetalleService;
 import com.sa.bbva.got.service.funcional.TramiteService;
 import com.sa.bbva.got.service.parametria.CampoDisponibleService;
@@ -42,8 +44,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private TipoTramiteService tipoTramiteService;
     private TipoTramiteCampoService tipoTramiteCampoService;
     private AutorizadoService autorizadoService;
-    private TramiteDetalleService tramiteDetalleService;
     private TramiteService tramiteService;
+    private TramiteDetalleService tramiteDetalleService;
+    private TramiteAutorizadoService tramiteAutorizadoService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 
@@ -92,6 +95,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.tramiteService = tramiteService;
     }
 
+    @Autowired
+    public void setTramiteAutorizadoService(TramiteAutorizadoService tramiteAutorizadoService) {
+        this.tramiteAutorizadoService = tramiteAutorizadoService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadSectores();
@@ -102,8 +110,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadTipoTramiteCampo();
         loadTramite();
         loadAutorizado();
-        // loadTramiteDetalle();
-        // loadTramiteAutorizado();
+        loadTramiteDetalle();
+        loadTramiteAutorizado();
     }
 
     private void loadSectores() {
@@ -256,6 +264,23 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.info("TramiteDetalle Saved!");
         } catch (IOException e) {
             log.error("Unable to save TramiteDetalle: " + e.getMessage());
+        }
+    }
+
+    private void loadTramiteAutorizado() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<TramiteAutorizado>> typeReference = new TypeReference<List<TramiteAutorizado>>() {
+        };
+        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramitesAutorizado.json");
+        try {
+            List<TramiteAutorizado> tramiteAutorizado = mapper.readValue(inputStream, typeReference);
+            tramiteAutorizadoService.save(tramiteAutorizado);
+            log.info("TramiteAutorizado Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save TramiteAutorizado: " + e.getMessage());
         }
     }
 

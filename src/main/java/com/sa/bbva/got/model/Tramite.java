@@ -18,8 +18,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Tramite {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="tramite_seq_gen")
-	@SequenceGenerator(name="tramite_seq_gen", sequenceName="TRAMITE_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "tramite_seq_gen")
+    @SequenceGenerator(name = "tramite_seq_gen", sequenceName = "TRAMITE_SEQ")
     @ApiModelProperty(notes = "The database generated tramite ID")
     private Integer id;
 
