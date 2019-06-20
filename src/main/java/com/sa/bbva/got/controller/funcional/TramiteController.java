@@ -8,6 +8,7 @@ import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Tramite;
+import com.sa.bbva.got.model.TramiteAutorizado;
 import com.sa.bbva.got.model.TramiteDetalle;
 import com.sa.bbva.got.model.TramiteDetalleKey;
 import com.sa.bbva.got.service.funcional.TramiteDetalleService;
@@ -307,10 +308,9 @@ public class TramiteController {
     @RequestMapping(value = "/autorizado/list/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listTramiteAutorizado(@PathVariable Integer id, Model model) {
         try {
-            // Iterable<Autorizado> autorizado = tramiteService.getById(id).getAutorizado();
-            // ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
-            // return response;
-            return null;
+            Iterable<TramiteAutorizado> autorizado = tramiteService.getById(id).getAutorizado();
+            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
+            return response;
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());

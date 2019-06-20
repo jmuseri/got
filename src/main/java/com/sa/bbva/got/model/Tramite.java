@@ -34,7 +34,7 @@ public class Tramite {
     private Set<TramiteAutorizado> autorizado;
 
     @ManyToOne
-    @JoinColumn(name = "sectorInicial")
+    @JoinColumn(name = "sectorInicio")
     @ApiModelProperty(notes = "The tramite sectorInicio")
     private Sector sectorInicio;
 
