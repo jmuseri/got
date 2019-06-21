@@ -42,7 +42,7 @@ GOT APIs are based on RESTFul Services Protocol.
 * ![get](../images/method-get.png "get")    [/funcional/tramite/detalle/show/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}](/docs/markdown/api/accion-api.md)  ***(Obtener un detalle de trámite)*** 🗸
 #### tramite-autorizado
 * ![get](../images/method-get.png "get")    [/funcional/tramite/autorizado/list/{id}](/docs/markdown/api/accion-api.md)  *(Listar autorizados por trámite)* 🗸
-* ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de relación un autorizado a un trámite)*
+* ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/add](/docs/markdown/api/accion-api.md)  *(Alta de relación un autorizado a un trámite)* 🗸
 * ![post](../images/method-post.png "post") [/funcional/tramite/autorizado/delete](/docs/markdown/api/accion-api.md)  *(Baja de relación un autorizado a un trámite)*
 #### autorizado
 * ![get](../images/method-get.png "get")    [/funcional/autorizado/list](/docs/markdown/api/accion-api.md)  *(Listar todos los autorizados)* 🗸

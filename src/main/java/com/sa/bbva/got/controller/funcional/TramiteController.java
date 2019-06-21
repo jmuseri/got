@@ -9,8 +9,10 @@ import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.model.Sector;
 import com.sa.bbva.got.model.Tramite;
 import com.sa.bbva.got.model.TramiteAutorizado;
+import com.sa.bbva.got.model.TramiteAutorizadoKey;
 import com.sa.bbva.got.model.TramiteDetalle;
 import com.sa.bbva.got.model.TramiteDetalleKey;
+import com.sa.bbva.got.service.funcional.TramiteAutorizadoService;
 import com.sa.bbva.got.service.funcional.TramiteDetalleService;
 import com.sa.bbva.got.service.funcional.TramiteService;
 
@@ -34,6 +36,7 @@ public class TramiteController {
 
     private TramiteService tramiteService;
     private TramiteDetalleService tramiteDetalleService;
+    private TramiteAutorizadoService tramiteAutorizadoService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -44,6 +47,11 @@ public class TramiteController {
     @Autowired
     public void setTramiteDetalleService(TramiteDetalleService tramiteDetalleService) {
         this.tramiteDetalleService = tramiteDetalleService;
+    }
+
+    @Autowired
+    public void setTramiteAutorizadoService(TramiteAutorizadoService tramiteAutorizadoService) {
+        this.tramiteAutorizadoService = tramiteAutorizadoService;
     }
 
     /*
@@ -314,6 +322,40 @@ public class TramiteController {
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Add a tramiteAutorizado")
+    @RequestMapping(value = "/autorizado/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> saveTramiteAutorizado(@RequestBody TramiteAutorizado tramiteAutorizado) {
+        try {
+            tramiteAutorizadoService.save(tramiteAutorizado);
+            StatusResponse status = new StatusResponse("ok", "TramiteAutorizado saved successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TramiteAutorizado not saved", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Delete a tramiteAutorizado")
+    @RequestMapping(value = "/autorizado/delete/{tramiteId}/{autorizadoId}}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> deleteTramiteAutorizado(@PathVariable Integer tramiteId,
+            @PathVariable Integer autorizadoId, Model model) {
+        try {
+            tramiteAutorizadoService.delete(new TramiteAutorizadoKey(tramiteId, autorizadoId));
+            StatusResponse status = new StatusResponse("ok", "TramiteAutorizado deleted successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TramiteAutorizado not deleted",
+                    e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
