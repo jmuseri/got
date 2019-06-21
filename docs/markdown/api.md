@@ -1,6 +1,6 @@
 # API Services Documentation 
 
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md)
 
 ---
 ## Content
@@ -117,4 +117,4 @@ Return Swagger UI.
          
 ---
 [Go to Top](#markdown-header-api-services-documentation-pagossucursal)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md)

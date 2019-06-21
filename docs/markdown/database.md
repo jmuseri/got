@@ -1,5 +1,5 @@
 # Database Model
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md)
 
 ---
 
@@ -45,4 +45,4 @@
       
 ---
 [Go to Top](#markdown-header-database-model-pagossucursal)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) 

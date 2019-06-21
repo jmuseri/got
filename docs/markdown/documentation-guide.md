@@ -1,5 +1,5 @@
 # Documentation Guide
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) 
 
 ---
 ## Documents
@@ -48,4 +48,4 @@ pandoc README.md -o README.pdf
 
 ---
 [Go to Top](#markdown-header-documentation-guide-pagossucursalweb)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)s
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md)

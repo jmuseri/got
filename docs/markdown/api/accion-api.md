@@ -1,6 +1,6 @@
 # API Services Documentation - Accion
 
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Back to Api Services](/docs/markdown/api.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Api Services](/docs/markdown/api.md)
 
 ---
 
@@ -45,4 +45,4 @@ Return a complete objects list.
 
 ---
 [Go to Top](#markdown-header-api-services-documentation-accion)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Back to Api Services](/docs/markdown/api.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Api Services](/docs/markdown/api.md)

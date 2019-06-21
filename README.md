@@ -16,6 +16,7 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 | 0.1.0    | 2019/05/29 | Groups & Sector api added      |    SA       |      0       |
 | 0.1.1    | 2019/06/03 | Parameters Api added           |    SA       |      0       |
 | 0.1.5    | 2019/06/03 | Parameters Api completed       |    SA       |      0       |
+| 0.2.0    | 2019/06/21 | Functional Api completed       |    SA       |      0       |
 
 ## Content
 
@@ -36,7 +37,6 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 * [DataBase](docs/markdown/database.md)
 * [API Services Documentation](docs/markdown/api.md)
 * [Technical Documentation](docs/markdown/technical.md)
-* [Delivery Documentation](docs/markdown/delivery.md)
 * [Documentation Guide](docs/markdown/documentation-guide.md)
 
 ## Customer
