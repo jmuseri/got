@@ -93,6 +93,8 @@ public class EstadoTramiteController {
             }
             if (null != estadoTramite.getUsuModif()) {
                 stored.setUsuModif(estadoTramite.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != estadoTramite.getFechaModif()) {
                 stored.setFechaModif(estadoTramite.getFechaModif());

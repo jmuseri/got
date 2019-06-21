@@ -110,6 +110,8 @@ public class SectorController {
             }
             if (null != sector.getUsuModif()) {
                 stored.setUsuModif(sector.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != sector.getFechaModif()) {
                 stored.setFechaModif(sector.getFechaModif());

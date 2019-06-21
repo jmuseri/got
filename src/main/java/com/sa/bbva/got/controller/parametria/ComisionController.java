@@ -103,6 +103,8 @@ public class ComisionController {
             }
             if (null != comision.getUsuModif()) {
                 stored.setUsuModif(comision.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != comision.getFechaModif()) {
                 stored.setFechaModif(comision.getFechaModif());
