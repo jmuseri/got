@@ -15,7 +15,9 @@ GOT APIs are based on RESTFul Services Protocol.
 ## General Version
 | Version  |    Date    | Description                    |  Author     |   Revision   |
 |----------|:-----------|:-------------------------------|:------------|--------------|
-| v0.0.1   | 2019/05/29 | Initial version - Definitions  |    SA       |              |
+|  0.0.1   | 2019/05/29 | Initial version - Definitions  |    SA       |              |
+|  0.1.5   | 2019/06/03 | Parametria - Definitions       |    SA       |              |
+|  0.2.0   | 2019/06/21 | Funcional - Definitions        |    SA       |              |
 
 --- 
 ## API Catalog
