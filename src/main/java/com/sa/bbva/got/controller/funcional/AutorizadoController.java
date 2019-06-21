@@ -1,5 +1,7 @@
 package com.sa.bbva.got.controller.funcional;
 
+import java.util.Date;
+
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Autorizado;
 import com.sa.bbva.got.service.funcional.AutorizadoService;
@@ -84,6 +86,9 @@ public class AutorizadoController {
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
+            if (null != autorizado.getClienteId()) {
+                stored.setClienteId(autorizado.getClienteId());
+            }
             if (null != autorizado.getTipoDocumento()) {
                 stored.setTipoDocumento(autorizado.getTipoDocumento());
             }
@@ -96,17 +101,15 @@ public class AutorizadoController {
             if (null != autorizado.getApellido()) {
                 stored.setApellido(autorizado.getApellido());
             }
-            if (null != autorizado.getUsuAlta()) {
-                stored.setUsuAlta(autorizado.getUsuAlta());
-            }
-            if (null != autorizado.getFechaAlta()) {
-                stored.setFechaAlta(autorizado.getFechaAlta());
-            }
             if (null != autorizado.getUsuModif()) {
                 stored.setUsuModif(autorizado.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != autorizado.getFechaModif()) {
                 stored.setFechaModif(autorizado.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
             }
             autorizadoService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Autorizado updated successfully", null);

@@ -1,6 +1,7 @@
 package com.sa.bbva.got.controller.funcional;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -146,9 +147,13 @@ public class TramiteController {
             }
             if (null != tramite.getUsuModif()) {
                 stored.setUsuModif(tramite.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != tramite.getFechaModif()) {
                 stored.setFechaModif(tramite.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
             }
             tramiteService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Tramite updated successfully", null);
@@ -219,7 +224,12 @@ public class TramiteController {
     @RequestMapping(value = "/detalle/list/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listTramiteDetalle(@PathVariable Integer id, Model model) {
         try {
-            Iterable<TramiteDetalle> tramiteDetalle = tramiteService.getById(id).getDetalle();
+            Tramite tramite = tramiteService.getById(id);
+            if (null == tramite || null == tramite.getDetalle()) {
+                ResponseEntity<?> response = new ResponseEntity<>(null, HttpStatus.OK);
+                return response;
+            }
+            Iterable<TramiteDetalle> tramiteDetalle = tramite.getDetalle();
             ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalle, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -259,9 +269,13 @@ public class TramiteController {
             }
             if (null != tramiteDetalle.getUsuModif()) {
                 stored.setUsuModif(tramiteDetalle.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != tramiteDetalle.getFechaModif()) {
                 stored.setFechaModif(tramiteDetalle.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
             }
             tramiteDetalleService.save(stored);
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle updated successfully", null);
@@ -316,7 +330,12 @@ public class TramiteController {
     @RequestMapping(value = "/autorizado/list/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listTramiteAutorizado(@PathVariable Integer id, Model model) {
         try {
-            Iterable<TramiteAutorizado> autorizado = tramiteService.getById(id).getAutorizado();
+            Tramite tramite = tramiteService.getById(id);
+            if (null == tramite || null == tramite.getDetalle()) {
+                ResponseEntity<?> response = new ResponseEntity<>(null, HttpStatus.OK);
+                return response;
+            }
+            Iterable<TramiteAutorizado> autorizado = tramite.getAutorizado();
             ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
             return response;
         } catch (Exception e) {
