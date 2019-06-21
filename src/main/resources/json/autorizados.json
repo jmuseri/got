@@ -22,5 +22,41 @@
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
       "fechaModif": null
+    },
+    {
+      "id": 3,
+      "clienteId": 3534522,
+      "tipoDocumento": "0",
+      "nroDocumento": 33892966,
+      "nombre": "Rodolfo",
+      "apellido": "Fernandez",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 4,
+      "clienteId": 3534523,
+      "tipoDocumento": "0",
+      "nroDocumento": 28451371,
+      "nombre": "Nicolas",
+      "apellido": "Rossi",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 5,
+      "clienteId": 3534524,
+      "tipoDocumento": "0",
+      "nroDocumento": 31965729,
+      "nombre": "Facundo",
+      "apellido": "Vigo",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
     }
 ]
