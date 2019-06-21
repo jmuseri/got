@@ -15,4 +15,6 @@ public interface TramiteAutorizadoService {
     void save(List<TramiteAutorizado> tramiteDetalles);
 
     void delete(TramiteAutorizadoKey id);
+
+    void deleteByIdAutorizadoId(Integer id);
 }

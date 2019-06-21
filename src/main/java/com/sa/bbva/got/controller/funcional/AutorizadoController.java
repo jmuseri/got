@@ -5,6 +5,7 @@ import java.util.Date;
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Autorizado;
 import com.sa.bbva.got.service.funcional.AutorizadoService;
+import com.sa.bbva.got.service.funcional.TramiteAutorizadoService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,11 +25,17 @@ import org.slf4j.LoggerFactory;
 public class AutorizadoController {
 
     private AutorizadoService autorizadoService;
+    private TramiteAutorizadoService tramiteAutorizadoService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public void setAutorizadoService(AutorizadoService autorizadoService) {
         this.autorizadoService = autorizadoService;
+    }
+
+    @Autowired
+    public void setTramiteAutorizadoService(TramiteAutorizadoService tramiteAutorizadoService) {
+        this.tramiteAutorizadoService = tramiteAutorizadoService;
     }
 
     @ApiOperation(value = "View a list of available autorizado", response = Iterable.class)
@@ -142,6 +149,7 @@ public class AutorizadoController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
+            tramiteAutorizadoService.deleteByIdAutorizadoId(id);
             autorizadoService.delete(id);
             StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

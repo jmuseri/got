@@ -50,4 +50,10 @@ public class TramiteAutorizadoServiceImpl implements TramiteAutorizadoService {
         TramiteAutorizado entity = this.tramiteAutorizadoRepository.findById(id);
         this.tramiteAutorizadoRepository.delete(entity);
     }
+
+    @Override
+    public void deleteByIdAutorizadoId(Integer id) {
+        logger.debug("deleteByAutorizadoId called");
+        this.tramiteAutorizadoRepository.deleteByIdAutorizadoId(id);
+    }
 }
