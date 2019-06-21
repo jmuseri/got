@@ -14,9 +14,17 @@ public class TipoTramiteCampoKey implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "tipo_tramite_id")
-    Long tipoTramiteId;
+    Integer tipoTramiteId;
 
     @Column(name = "campo_disponible_id")
-    Long campoDisponibleId;
+    Integer campoDisponibleId;
+
+    public TipoTramiteCampoKey() {
+    }
+
+    public TipoTramiteCampoKey(Integer tipoTramiteId, Integer campoDisponibleId) {
+        this.tipoTramiteId = tipoTramiteId;
+        this.campoDisponibleId = campoDisponibleId;
+    }
 
 }

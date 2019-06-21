@@ -39,9 +39,7 @@
     "id": 3,
     "descripcion": "Solicitud de Extracto",
     "cobraComision": true,
-    "comision": {
-                 "id": 6
-                },
+    "comision": null,
     "requiereDocumentacion": false,
     "activo": true,
     "autorizado": false,
@@ -79,9 +77,7 @@
     "id": 5,
     "descripcion": "Solicitud de tokens",
     "cobraComision": false,
-    "comision": {
-                 "id": 7
-                },
+    "comision": null,
     "requiereDocumentacion": false,
     "activo": true,
     "autorizado": true,

@@ -9,6 +9,10 @@ This is the general documentation to Gestion OnLine de Tramites application.
 | Version  |    Date    | Description                    |  Author     |   Revision   |
 |----------|:-----------|:-------------------------------|:------------|--------------|
 |  0.0.1   | 2019/05/18 | Initial Version                |    SA       |      0       |
+|  0.0.2   | 2019/06/03 | Api Documentation added        |    SA       |      0       |
+|  0.0.3   | 2019/06/04 | Database Documentation added   |    SA       |      0       |
+|  0.0.4   | 2019/06/16 | Api Documentation updated      |    SA       |      0       |
+|  0.0.5   | 2019/06/21 | Database Documentation updated |    SA       |      0       |
 
 ## Content
 * [Development Requirements](markdown/requirements.md)
@@ -16,7 +20,7 @@ This is the general documentation to Gestion OnLine de Tramites application.
 * [DataBase](/docs/markdown/database.md)
 * [API Services Documentation](markdown/api.md)
 * [Technical Documentation](markdown/technical.md)
-* [Delivery Documentation](markdown/delivery.md)
+* [Documentation Guide](/docs/markdown/documentation-guide.md)
 
 ## Quick Links
 ---

@@ -1,5 +1,7 @@
 package com.sa.bbva.got.controller.parametria;
 
+import java.util.Date;
+
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.service.parametria.ComisionService;
@@ -66,6 +68,7 @@ public class ComisionController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveComision(@RequestBody Comision comision) {
         try {
+            comision.setId(0);
             comisionService.save(comision);
             StatusResponse status = new StatusResponse("ok", "Comision saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -98,17 +101,15 @@ public class ComisionController {
             if (null != comision.getParam5()) {
                 stored.setParam5(comision.getParam5());
             }
-            if (null != comision.getUsuAlta()) {
-                stored.setUsuAlta(comision.getUsuAlta());
-            }
-            if (null != comision.getFechaAlta()) {
-                stored.setFechaAlta(comision.getFechaAlta());
-            }
             if (null != comision.getUsuModif()) {
                 stored.setUsuModif(comision.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != comision.getFechaModif()) {
                 stored.setFechaModif(comision.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
             }
             comisionService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Comision updated successfully", null);

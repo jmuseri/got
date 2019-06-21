@@ -1,5 +1,7 @@
 package com.sa.bbva.got.controller.parametria;
 
+import java.util.Date;
+
 import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.EstadoTramite;
 import com.sa.bbva.got.service.parametria.EstadoTramiteService;
@@ -89,17 +91,15 @@ public class EstadoTramiteController {
             if (null != estadoTramite.getDescripcion()) {
                 stored.setDescripcion(estadoTramite.getDescripcion());
             }
-            if (null != estadoTramite.getUsuAlta()) {
-                stored.setUsuAlta(estadoTramite.getUsuAlta());
-            }
-            if (null != estadoTramite.getFechaAlta()) {
-                stored.setFechaAlta(estadoTramite.getFechaAlta());
-            }
             if (null != estadoTramite.getUsuModif()) {
                 stored.setUsuModif(estadoTramite.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != estadoTramite.getFechaModif()) {
                 stored.setFechaModif(estadoTramite.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
             }
             estadoTramiteService.save(stored);
             StatusResponse status = new StatusResponse("ok", "EstadoTramite updated successfully", null);

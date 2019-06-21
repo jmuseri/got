@@ -17,7 +17,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Sector {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="sector_seq_gen")
+	@SequenceGenerator(name="sector_seq_gen", sequenceName="SECTOR_SEQ")
     @ApiModelProperty(notes = "The database generated sector ID")
     private Integer id;
     @ApiModelProperty(notes = "The sector canal", required = true)

@@ -17,7 +17,8 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CampoDisponible {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="campo_disponible_seq_gen")
+	@SequenceGenerator(name="campo_disponible_seq_gen", sequenceName="CAMPO_DISPONIBLE_SEQ")
     @ApiModelProperty(notes = "The database campoDisponible ID", required = true)
     private Integer id;
     @ApiModelProperty(notes = "The campoDisponible name", required = true)

@@ -8,6 +8,7 @@ import com.sa.bbva.got.bean.StatusResponse;
 import com.sa.bbva.got.model.Comision;
 import com.sa.bbva.got.model.TipoTramite;
 import com.sa.bbva.got.model.TipoTramiteCampo;
+import com.sa.bbva.got.model.TipoTramiteCampoKey;
 import com.sa.bbva.got.model.CampoDisponible;
 import com.sa.bbva.got.service.parametria.TipoTramiteService;
 import com.sa.bbva.got.service.parametria.ComisionService;
@@ -83,6 +84,23 @@ public class TipoTramiteController {
         }
     }
 
+    @ApiOperation(value = "Add a tipoTramite")
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> saveTipoTramite(@RequestBody TipoTramite tipoTramite) {
+        try {
+            tipoTramite.setId(0);
+            tipoTramiteService.save(tipoTramite);
+            StatusResponse status = new StatusResponse("ok", "TipoTramite saved successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TipoTramite not saved", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
     @ApiOperation(value = "Search a tipoTramite with an ID", response = TipoTramite.class)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showTipoTramite(@PathVariable Integer id, Model model) {
@@ -93,22 +111,6 @@ public class TipoTramiteController {
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-
-    @ApiOperation(value = "Add a tipoTramite")
-    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveTipoTramite(@RequestBody TipoTramite tipoTramite) {
-        try {
-            tipoTramiteService.save(tipoTramite);
-            StatusResponse status = new StatusResponse("ok", "TipoTramite saved successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "TipoTramite not saved", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
@@ -184,21 +186,6 @@ public class TipoTramiteController {
     /*
      * Comision Apis
      */
-    @ApiOperation(value = "Search a comision-tipoTramite with an ID", response = TipoTramite.class)
-    @RequestMapping(value = "/comision/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showComisionTipoTramite(@PathVariable Integer id, Model model) {
-        try {
-            TipoTramite tipoTramite = tipoTramiteService.getById(id);
-            ResponseEntity<?> response = new ResponseEntity<>(tipoTramite.getComision(), HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-
     @ApiOperation(value = "Add a comision to tipoTramite")
     @RequestMapping(value = "/comision/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveComisionTipoTramite(@RequestBody TipoTramite tipoTramite) {
@@ -234,6 +221,21 @@ public class TipoTramiteController {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Comision to TipoTramite not added",
                     e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Search a comision-tipoTramite with an ID", response = TipoTramite.class)
+    @RequestMapping(value = "/comision/show/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> showComisionTipoTramite(@PathVariable Integer id, Model model) {
+        try {
+            TipoTramite tipoTramite = tipoTramiteService.getById(id);
+            ResponseEntity<?> response = new ResponseEntity<>(tipoTramite.getComision(), HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
@@ -276,7 +278,6 @@ public class TipoTramiteController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/campoDisponible/list", method = RequestMethod.GET, produces = "application/json")
-
     public ResponseEntity<?> listAll(HttpServletRequest req,
             @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
         try {
@@ -366,17 +367,17 @@ public class TipoTramiteController {
     }
 
     @ApiOperation(value = "Delete a tipoTramiteCampo in tipoTramite")
-    @RequestMapping(value = "/campoDisponible/delete", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@RequestBody TipoTramiteCampo tipoTramiteCampo) {
+    @RequestMapping(value = "/campoDisponible/delete/{tipoTramiteid}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> delete(@PathVariable Integer tipoTramiteId, @PathVariable Integer campoDisponibleId,
+            @RequestBody TipoTramiteCampo tipoTramiteCampo) {
         try {
-            if (null == tipoTramiteCampo || null == tipoTramiteCampo.getId()
-                    || tipoTramiteCampo.getId().getTipoTramiteId() == 0
-                    || tipoTramiteCampo.getId().getCampoDisponibleId() == 0) {
+            if (null == tipoTramiteCampo || null == tipoTramiteId || null == campoDisponibleId) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            TipoTramiteCampo stored = tipoTramiteCampoService.getById(tipoTramiteCampo.getId());
+            TipoTramiteCampo stored = tipoTramiteCampoService
+                    .getById(new TipoTramiteCampoKey(tipoTramiteId, campoDisponibleId));
             if (null == stored) {
                 StatusResponse status = new StatusResponse("error", "TipoTramiteCampo doesn't exist", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -395,17 +396,17 @@ public class TipoTramiteController {
     }
 
     @ApiOperation(value = "Update a tipoTramiteCampo in tipoTramite")
-    @RequestMapping(value = "/campoDisponible/update", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateTipoTramite(@RequestBody TipoTramiteCampo tipoTramiteCampo) {
+    @RequestMapping(value = "/campoDisponible/update/{tipoTramiteid}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> updateTipoTramite(@PathVariable Integer tipoTramiteId,
+            @PathVariable Integer campoDisponibleId, @RequestBody TipoTramiteCampo tipoTramiteCampo) {
         try {
-            if (null == tipoTramiteCampo || null == tipoTramiteCampo.getId()
-                    || tipoTramiteCampo.getId().getTipoTramiteId() == 0
-                    || tipoTramiteCampo.getId().getCampoDisponibleId() == 0) {
+            if (null == tipoTramiteCampo || null == tipoTramiteId || null == campoDisponibleId) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            TipoTramiteCampo stored = tipoTramiteCampoService.getById(tipoTramiteCampo.getId());
+            TipoTramiteCampo stored = tipoTramiteCampoService
+                    .getById(new TipoTramiteCampoKey(tipoTramiteId, campoDisponibleId));
             if (null == stored) {
                 StatusResponse status = new StatusResponse("error", "TipoTramiteCampo doesn't exist", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

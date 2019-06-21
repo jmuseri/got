@@ -1,6 +1,7 @@
 package com.sa.bbva.got.controller.parametria;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -79,6 +80,7 @@ public class SectorController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
+            sector.setId(0);
             sectorService.save(sector);
             StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -106,17 +108,15 @@ public class SectorController {
             if (null != sector.getDescripcion()) {
                 stored.setDescripcion(sector.getDescripcion());
             }
-            if (null != sector.getUsuAlta()) {
-                stored.setUsuAlta(sector.getUsuAlta());
-            }
-            if (null != sector.getFechaAlta()) {
-                stored.setFechaAlta(sector.getFechaAlta());
-            }
             if (null != sector.getUsuModif()) {
                 stored.setUsuModif(sector.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
             }
             if (null != sector.getFechaModif()) {
                 stored.setFechaModif(sector.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
             }
             sectorService.save(stored);
             StatusResponse status = new StatusResponse("ok", "Sector updated successfully", null);
