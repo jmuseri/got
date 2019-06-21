@@ -1,8 +1,6 @@
 package com.sa.bbva.got.controller.parametria;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
