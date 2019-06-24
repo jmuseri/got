@@ -169,7 +169,7 @@ public class TramiteController {
 
     @ApiOperation(value = "Search a tramite with an ID", response = Tramite.class)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> shoTramite(@PathVariable Integer id, Model model) {
+    public ResponseEntity<?> showTramite(@PathVariable Integer id, Model model) {
         try {
             Tramite tramite = tramiteService.getById(id);
             ResponseEntity<?> response = new ResponseEntity<>(tramite, HttpStatus.OK);
