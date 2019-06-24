@@ -1,0 +1,15 @@
+@startuml TramiteAutorizadoServiceImpl
+
+class TramiteAutorizadoServiceImpl{
+ -<<final>> logger: Logger
+ -tramiteAutorizadoRepository: TramiteAutorizadoRepository
+ +setRepository(tramiteAutorizadoRepository: TramiteAutorizadoRepository): void
+ +listAll(): Iterable<TramiteAutorizado>
+ +getById(id: TramiteAutorizadoKey): TramiteAutorizado
+ +save(tramiteAutorizado: TramiteAutorizado): TramiteAutorizado
+ +save(tramiteAutorizado: List<TramiteAutorizado>): void
+ +delete(id: TramiteAutorizadoKey): void
+ +deleteByIdAutorizadoId(id: int): void
+}
+
+@enduml

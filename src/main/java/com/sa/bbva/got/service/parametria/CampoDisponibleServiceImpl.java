@@ -38,9 +38,9 @@ public class CampoDisponibleServiceImpl implements CampoDisponibleService {
     }
 
     @Override
-    public void save(List<CampoDisponible> estadoTramite) {
+    public void save(List<CampoDisponible> campoDisponible) {
         logger.debug("savecalled");
-        campoDisponibleRepository.saveAll(estadoTramite);
+        campoDisponibleRepository.saveAll(campoDisponible);
     }
 
     @Override

@@ -1,0 +1,15 @@
+@startuml AutorizadoServiceImpl
+
+class AutorizadoServiceImpl{
+ - <<final>> logger: Logger
+ - autorizadoRepository: AutorizadoRepository
+ + setRepository(autorizadoRepository: AutorizadoRepository): void
+ + listAll(): Iterable<Autorizado>
+ + listByClient(clienteId: int): Iterable<Autorizado>
+ + getById(id: int): Autorizado
+ + save(autorizado: Autorizado): Autorizado
+ + save(autorizado: List<Autorizado>): void
+ + delete(id: int): void
+}
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml SectorServiceImpl
+
+class SectorServiceImpl{
+ - <<final>> logger: Logger
+ - sectorRepository: SectorRepository
+ + setRepository(sectorRepository: SectorRepository): void
+ + listAll(): Iterable<Sector>
+ + listActive(): Iterable<Sector>
+ + getById(id: int): Sector
+ + save(sector: Sector): Sector
+ + save(sectores: List<Sector>): void
+ + delete(id: int): void
+}
+
+@enduml
