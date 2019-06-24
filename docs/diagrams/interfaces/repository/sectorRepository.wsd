@@ -1,0 +1,6 @@
+@startuml SectorRepository
+interface SectorRepository {
+- findAllByActivoIsTrue(): Iterable<Sector>
+}
+CrudRepository <-- SectorRepository
+@enduml
