@@ -14,7 +14,7 @@
 * [Tramite](#markdown-header-tramite)
 * [TramiteAutorizado](#markdown-header-tramiteautorizado)
 * [TramiteAutorizadoKey](#markdown-header-tramiteautorizadokey)
-* [TramiteDetalle](#markdown-header-tramitedetallekey)
+* [TramiteDetalle](#markdown-header-tramitedetalle)
 * [TramiteDetalleKey](#markdown-header-tramitedetallekey)
 
 ## ![class](../images/class.png "class") Autorizado

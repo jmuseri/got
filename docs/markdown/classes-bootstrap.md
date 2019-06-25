@@ -4,9 +4,7 @@
 
 ## Class Catalog
 ### com.sa.bbva.got.bootstrap
-* [CRUDStatus](#markdown-header-crudstatus)
-* [Page](#markdown-header-page)
-* [StatusBase](#markdown-header-statusbase)
+* [SpringJpaBootstrap](#markdown-header-springjpabootstrap)
 
 ## ![class](../images/class.png "class") SpringJpaBootstrap
 ---

@@ -4,9 +4,9 @@
 
 ## Class Catalog
 ### com.sa.bbva.got.configuration
-* [CRUDStatus](#markdown-header-crudstatus)
-* [Page](#markdown-header-page)
-* [StatusBase](#markdown-header-statusbase)
+* [SpringSecConfig](#markdown-header-springsecconfig)
+* [SwaggerConfig](#markdown-header-swaggerconfig)
+* [WebConfig](#markdown-header-webconfig)
 
 ## ![class](../images/class.png "class") SpringSecConfig
 ---

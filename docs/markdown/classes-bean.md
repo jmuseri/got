@@ -4,9 +4,7 @@
 
 ## Class Catalog
 ### com.sa.bbva.got.beans
-* [CRUDStatus](#markdown-header-crudstatus)
-* [Page](#markdown-header-page)
-* [StatusBase](#markdown-header-statusbase)
+* [StatusResponse](#markdown-header-statusresponse)
 
 ## ![class](../images/class.png "class") StatusResponse
 ---
