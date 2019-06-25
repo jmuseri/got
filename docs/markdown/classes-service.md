@@ -203,7 +203,7 @@ TipoTramiteCampoService
 ---
 ### com/sa/bbva/got/service/parametria/
 ### Diagram
-![class](../diagrams/classes/service/PeriodoTipoTramiteServiceImplServiceImpl.png "class")
+![class](../diagrams/classes/service/TipoTramiteServiceImpl.png "class")
 ### Inheritance
 TipoTramiteService
 

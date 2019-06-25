@@ -79,7 +79,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/interfaces/repository/TipoTramite.png "class")
+![class](../diagrams/interfaces/repository/TipoTramiteRepository.png "class")
 ### Inheritance
 CrudRepository
 
