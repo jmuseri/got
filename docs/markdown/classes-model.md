@@ -21,7 +21,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/Autorizado.png "class")
+![class](../diagrams/classes/model/Autorizado.png "class")
 ### Inheritance
 ### Properties
 * private Integer id
@@ -43,7 +43,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/CampoDisponible.png "class")
+![class](../diagrams/classes/model/CampoDisponible.png "class")
 ### Inheritance
 
 ### Properties
@@ -65,7 +65,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/Comision.png "class")
+![class](../diagrams/classes/model/Comision.png "class")
 ### Inheritance
 ### Properties
 * private Integer id
@@ -87,7 +87,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/EstadoTramite.png "class")
+![class](../diagrams/classes/model/EstadoTramite.png "class")
 ### Inheritance
 
 ### Properties
@@ -115,7 +115,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/Sector.png "class")
+![class](../diagrams/classes/model/Sector.png "class")
 ### Inheritance
 
 ### Properties
@@ -137,7 +137,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TipoTramite.png "class")
+![class](../diagrams/classes/model/TipoTramite.png "class")
 ### Inheritance
 ### Properties
 * private Integer id
@@ -164,7 +164,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TipoTramiteCampo.png "class")
+![class](../diagrams/classes/model/TipoTramiteCampo.png "class")
 ### Inheritance
 ### Properties
 * private TipoTramiteCampoKey id
@@ -186,7 +186,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TipoTramiteCampoKey.png "class")
+![class](../diagrams/classes/model/TipoTramiteCampoKey.png "class")
 ### Inheritance
 ### Properties
   * private static final long serialVersionUID
@@ -203,7 +203,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/Tramite.png "class")
+![class](../diagrams/classes/model/Tramite.png "class")
 ### Inheritance
 ### Properties
 * private Integer id
@@ -231,7 +231,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TramiteAutorizado.png "class")
+![class](../diagrams/classes/model/TramiteAutorizado.png "class")
 ### Inheritance
 * BaseEntity
 
@@ -249,7 +249,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TramiteAutorizadoKey.png "class")
+![class](../diagrams/classes/model/TramiteAutorizadoKey.png "class")
 ### Inheritance
 * Serializable
 
@@ -267,7 +267,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TramiteDetalle.png "class")
+![class](../diagrams/classes/model/TramiteDetalle.png "class")
 ### Inheritance
 
 ### Properties
@@ -286,7 +286,7 @@
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/model/TramiteDetalleKey.png "class")
+![class](../diagrams/classes/model/TramiteDetalleKey.png "class")
 ### Inheritance
 * Serializable
 

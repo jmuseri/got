@@ -10,7 +10,7 @@
 ---
 ### com/sa/bbva/got/util/
 ### Diagram
-![class](../diagrams/util/Util.png "class")
+![class](../diagrams/classes/util/Util.png "class")
 ### Inheritance
 
 ### Properties

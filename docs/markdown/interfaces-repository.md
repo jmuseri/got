@@ -17,7 +17,7 @@
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/AutorizadoRepository.png "class")
+![class](../diagrams/interfaces/repository/AutorizadoRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -30,7 +30,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/CampoDisponibleRepository.png "class")
+![class](../diagrams/interfaces/repository/CampoDisponibleRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -42,7 +42,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/ComisionRepository.png "class")
+![class](../diagrams/interfaces/repository/ComisionRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -54,7 +54,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/EstadoTramiteRepository.png "class")
+![class](../diagrams/interfaces/repository/EstadoTramiteRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -66,7 +66,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/SectorRepository.png "class")
+![class](../diagrams/interfaces/repository/SectorRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -79,7 +79,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/model/
 ### Diagram
-![class](../diagrams/classes/model/TipoTramite.png "class")
+![class](../diagrams/interfaces/repository/TipoTramite.png "class")
 ### Inheritance
 CrudRepository
 
@@ -92,7 +92,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/TipoTramiteCampoRepository.png "class")
+![class](../diagrams/interfaces/repository/TipoTramiteCampoRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -106,7 +106,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/TramiteRepository.png "class")
+![class](../diagrams/interfaces/repository/TramiteRepository.png "class")
 ### Inheritance
 CrudRepository
 
@@ -120,7 +120,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/TramiteAutorizadoRepository.png "class")
+![class](../diagrams/interfaces/repository/TramiteAutorizadoRepository.png "class")
 ### Inheritance
 * CrudRepository
 
@@ -134,7 +134,7 @@ CrudRepository
 ---
 ### com/sa/bbva/got/repository/
 ### Diagram
-![class](../diagrams/classes/model/TramiteDetalleRepository.png "class")
+![class](../diagrams/interfaces/repository/TramiteDetalleRepository.png "class")
 ### Inheritance
 CrudRepository
 
