@@ -1,0 +1,31 @@
+@startuml classes
+
+'Components
+!include ./model/autorizado.wsd
+!include ./model/campoDisponible.wsd
+!include ./model/comision.wsd
+!include ./model/estadoTramite.wsd
+!include ./model/sector.wsd
+!include ./model/tipoTramite.wsd
+!include ./model/tipoTramiteCampo.wsd
+!include ./model/tipoTramiteCampoKey.wsd
+!include ./model/tramite.wsd
+!include ./model/tramiteAutorizado.wsd
+!include ./model/tramiteAutorizadoKey.wsd
+!include ./model/tramiteDetalle.wsd
+!include ./model/tramiteDetalleKey.wsd
+
+!include ./service/autorizadoServiceImpl.wsd
+!include ./service/campoDisponibleServiceImpl.wsd
+!include ./service/comisionServiceImpl.wsd
+!include ./service/estadoTramiteServiceImpl.wsd
+!include ./service/sectorServiceImpl.wsd
+!include ./service/tipoTramiteCampoServiceImpl.wsd
+!include ./service/tipoTramiteServiceImpl.wsd
+!include ./service/tramiteAutorizadoServiceImpl.wsd
+!include ./service/tramiteDetalleServiceImpl.wsd
+!include ./service/tramiteServiceImpl.wsd
+
+!include ./util/util.wsd
+
+@enduml

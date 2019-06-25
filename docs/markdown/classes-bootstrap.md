@@ -12,7 +12,7 @@
 ---
 ### com/sa/bbva/got/bootstrap/
 ### Diagram
-![class](../diagrams/bean/StatusResponse.png "class")
+![class](../diagrams/beans/StatusResponse.png "class")
 
 ### Inheritance
   * ApplicationListener.java

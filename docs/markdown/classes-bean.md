@@ -3,16 +3,16 @@
 [Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Go Back](/docs/markdown/classes.md)
 
 ## Class Catalog
-### com.sa.bbva.got.bean
+### com.sa.bbva.got.beans
 * [CRUDStatus](#markdown-header-crudstatus)
 * [Page](#markdown-header-page)
 * [StatusBase](#markdown-header-statusbase)
 
 ## ![class](../images/class.png "class") StatusResponse
 ---
-### com/sa/bbva/got/bean/
+### com/sa/bbva/got/beans/
 ### Diagram
-![class](../diagrams/bean/StatusResponse.png "class")
+![class](../diagrams/beans/StatusResponse.png "class")
 
 ### Inheritance
   * Serializable.java

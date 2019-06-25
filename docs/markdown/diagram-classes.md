@@ -25,9 +25,6 @@
 ## Package Controller Diagram
 ![package](../diagrams/controller/controller.png "package")
 
-## Package Dao Diagram
-![package](../diagrams/dao/dao.png "package")
-
 ## Package Interfaces Diagram
 ![package](../diagrams/interfaces/interfaces.png "package")
 
