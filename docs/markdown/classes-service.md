@@ -20,7 +20,7 @@
 ---
 ### com/sa/bbva/got/service/funcional/
 ### Diagram
-![class](../diagrams/classes/service/AutorizadoServiceImpl.png "class")
+![class](../diagrams/service/AutorizadoServiceImpl.png "class")
 ### Inheritance
 AutorizadoService
 
@@ -41,7 +41,7 @@ AutorizadoService
 ---
 ### com/sa/bbva/got/service/funcional/
 ### Diagram
-![class](../diagrams/classes/service/TramiteAutorizadoServiceImpl.png "class")
+![class](../diagrams/service/TramiteAutorizadoServiceImpl.png "class")
 ### Inheritance
 TramiteAutorizadoService
 
@@ -62,7 +62,7 @@ TramiteAutorizadoService
 ---
 ### com/sa/bbva/got/service/funcional/
 ### Diagram
-![class](../diagrams/classes/service/TramiteDetalleServiceImpl.png "class")
+![class](../diagrams/service/TramiteDetalleServiceImpl.png "class")
 ### Inheritance
 TramiteDetalleService
 
@@ -82,7 +82,7 @@ TramiteDetalleService
 ---
 ### com/sa/bbva/got/service/funcional/
 ### Diagram
-![class](../diagrams/classes/service/TramiteServiceImpl.png "class")
+![class](../diagrams/service/TramiteServiceImpl.png "class")
 ### Inheritance
 TramiteService
 
@@ -104,7 +104,7 @@ TramiteService
 ---
 ### com/sa/bbva/got/service/parametria/
 ### Diagram
-![class](../diagrams/classes/service/CampoDisponibleServiceImpl.png "class")
+![class](../diagrams/service/CampoDisponibleServiceImpl.png "class")
 ### Inheritance
 CampoDisponibleService
 ### Properties
@@ -123,7 +123,7 @@ CampoDisponibleService
 ---
 ### com/sa/bbva/got/service/parametria/
 ### Diagram
-![class](../diagrams/classes/service/ComisionServiceImpl.png "class")
+![class](../diagrams/service/ComisionServiceImpl.png "class")
 ### Inheritance
 ComisionService
 
@@ -143,7 +143,7 @@ ComisionService
 ---
 ### com/sa/bbva/got/service/parametria/
 ### Diagram
-![class](../diagrams/classes/service/EstadoTramiteServiceImpl.png "class")
+![class](../diagrams/service/EstadoTramiteServiceImpl.png "class")
 ### Inheritance
 EstadoTramiteService
 ### Properties
@@ -162,7 +162,7 @@ EstadoTramiteService
 ---
 ### com/sa/bbva/got/service/parametria/
 ### Diagram
-![class](../diagrams/classes/service/SectorServiceImpl.png "class")
+![class](../diagrams/service/SectorServiceImpl.png "class")
 ### Inheritance
 SectorService
 ### Properties
@@ -182,7 +182,7 @@ SectorService
 ---
 ### com/sa/bbva/got/service/parametriA/
 ### Diagram
-![class](../diagrams/classes/service/TipoTramiteCampoServiceImpl.png "class")
+![class](../diagrams/service/TipoTramiteCampoServiceImpl.png "class")
 ### Inheritance
 TipoTramiteCampoService
 ### Properties
@@ -203,7 +203,7 @@ TipoTramiteCampoService
 ---
 ### com/sa/bbva/got/service/parametria/
 ### Diagram
-![class](../diagrams/classes/service/PeriodoTipoTramiteServiceImplServiceImpl.png "class")
+![class](../diagrams/service/PeriodoTipoTramiteServiceImplServiceImpl.png "class")
 ### Inheritance
 TipoTramiteService
 

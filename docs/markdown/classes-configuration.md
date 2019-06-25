@@ -12,7 +12,7 @@
 ---
 ### com/sa/bbva/got/configuration/
 ### Diagram
-![class](../diagrams/bean/SpringSecConfig.png "class")
+![class](../diagrams/configuration/SpringSecConfig.png "class")
 
 ### Inheritance
   * WebSecurityConfigurerAdapter.java
@@ -26,7 +26,7 @@
 ---
 ### com/sa/bbva/got/configuration/
 ### Diagram
-![class](../diagrams/bean/SwaggerConfig.png "class")
+![class](../diagrams/configuration/SwaggerConfig.png "class")
 
 ### Inheritance
   * WebMvcConfigurationSupport.java
@@ -43,7 +43,7 @@
 ---
 ### com/sa/bbva/got/configuration/
 ### Diagram
-![class](../diagrams/bean/WebConfig.png "class")
+![class](../diagrams/configuration/WebConfig.png "class")
 
 ### Inheritance
 

@@ -125,7 +125,7 @@
 ---
 ### com/sa/bbva/got/controller/parametria/
 ### Diagram
-![class](../diagrams/controller/EstadoTramiteController.png "class")
+![class](../diagrams/controller/parametria/EstadoTramiteController.png "class")
 
 ### Inheritance
 ### Properties
