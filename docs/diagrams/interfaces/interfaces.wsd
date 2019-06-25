@@ -11,9 +11,7 @@
 !include ./repository/tramiteAutorizadoRepository.wsd
 !include ./repository/tramiteDetalleRepository.wsd
 !include ./repository/tramiteRepository.wsd
-!include ./service/autorizadoService.wsd
 
-@enduml
 !include ./service/autorizadoService.wsd
 !include ./service/campoDisponibleService.wsd
 !include ./service/comisionService.wsd
@@ -24,3 +22,5 @@
 !include ./service/tramiteAutorizadoService.wsd
 !include ./service/tramiteDetalleService.wsd
 !include ./service/tramiteService.wsd
+
+@enduml
