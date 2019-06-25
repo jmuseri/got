@@ -184,5 +184,5 @@
 |  FECHA_ALTA       | TIMESTAMP (6) 	 | DEFAULT sysdate    |                               |
 
 ---
-[Go to Top](#markdown-header-database-model-pagossucursal)  
+[Go to Top](#markdown-header-database-model-got)  
 [Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) 

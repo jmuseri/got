@@ -24,5 +24,5 @@ This is the general documentation to Gestion OnLine de Tramites application.
 
 ## Quick Links
 ---
-[Go to Top](#markdown-header-pagossucursal-general-documentation)  
+[Go to Top](#markdown-header-got-general-documentation)  
 [Back to Home](/README.md)
