@@ -48,7 +48,7 @@
 ---
 ### com/sa/bbva/got/controller/funcional/
 ### Diagram
-![class](../diagrams/controller/TramiteController.png "class")
+![class](../diagrams/controller/funcional/TramiteController.png "class")
 
 ### Inheritance
 ### Properties
@@ -87,7 +87,7 @@
 ---
 ### com/sa/bbva/got/controller/parametria/
 ### Diagram
-![class](../diagrams/controller/CampoDisponibleController.png "class")
+![class](../diagrams/controller/parametria/CampoDisponibleController.png "class")
 
 ### Inheritance
 ### Properties
@@ -104,9 +104,9 @@
 
 ## ![class](../images/class.png "class") ComisionController
 ---
-### com/sa/bbva/got/controller/funcional/
+### com/sa/bbva/got/controller/parametria/
 ### Diagram
-![class](../diagrams/controller/ComisionController.png "class")
+![class](../diagrams/controller/parametria/ComisionController.png "class")
 
 ### Inheritance
 ### Properties
@@ -123,7 +123,7 @@
 
 ## ![class](../images/class.png "class") EstadoTramiteController
 ---
-### com/sa/bbva/got/controller/funcional
+### com/sa/bbva/got/controller/parametria/
 ### Diagram
 ![class](../diagrams/controller/EstadoTramiteController.png "class")
 
@@ -141,9 +141,9 @@
 
 ## ![class](../images/class.png "class") SectorController
 ---
-### com/sa/bbva/got/controller/funcional/
+### com/sa/bbva/got/controller/parametria/
 ### Diagram
-![class](../diagrams/controller/SectorController.png "class")
+![class](../diagrams/controller/parametria/SectorController.png "class")
 
 ### Inheritance
 ### Properties
@@ -160,9 +160,9 @@
 
 ## ![class](../images/class.png "class") TipoTramiteController 
 ---
-### com/sa/bbva/got/controller/
+### com/sa/bbva/got/controller/parametria/
 ### Diagram
-![class](../diagrams/controller/TipoTramiteController.png "class")
+![class](../diagrams/controller/parametria/TipoTramiteController.png "class")
 
 ### Inheritance
 ### Properties
