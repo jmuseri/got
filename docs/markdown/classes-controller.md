@@ -1,6 +1,6 @@
 # Classes Documentation - GOT
 
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Go Back](/docs/markdown/classes.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Go Back](/docs/markdown/classes.md)
 
 ### com.sa.bbva.got.controller
 * [IndexController] (#markdown-header-indexcontroller)
@@ -193,4 +193,4 @@
 
 ---
 [Go to Top](#markdown-header-classes-documentation-got)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Go Back](/docs/markdown/classes.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Go Back](/docs/markdown/classes.md)

@@ -1,6 +1,6 @@
 # Diagram Classes Documentation - GOT
 
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Go Back](/docs/markdown/technical.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Go Back](/docs/markdown/technical.md)
 
 ---
 
@@ -30,4 +30,4 @@
 
 ---
 [Go to Top](#markdown-header-diagram-classes-documentation-got)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md)

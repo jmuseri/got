@@ -1,6 +1,6 @@
 # Classes Documentation - GOT
 
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Go Back](/docs/markdown/classes.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Go Back](/docs/markdown/classes.md)
 
 ## Class Catalog
 ### com.sa.bbva.got.configuration
@@ -54,4 +54,4 @@
 
 ---
 [Go to Top](#markdown-header-classes-documentation-got)  
-[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Back to Delivery](/docs/markdown/delivery.md) | [Go Back](/docs/markdown/classes.md)
+[Back to Home](/README.md) | [Back to General Doc](/docs/readme.md) | [Go Back](/docs/markdown/classes.md)
