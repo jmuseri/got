@@ -1,0 +1,16 @@
+@startuml TramiteServiceImpl
+
+class TramiteServiceImpl{
+ -<<final>> logger: Logger
+ -tramiteRepository: TramiteRepository
+ +setRepository(tramiteRepository: TramiteRepository): void
+ +listAll(): Iterable<Tramite>
+ +listBySectorActual(sectorActual: Sector): List<Autorizado>
+ +listByEstado(estado: EstadoTramite): List<Tramite>
+ +getById(id: int) : Tramite
+ +save(tramite: Tramite): Tramite
+ +save(tramite: List<Tramite>): void
+ +delete(id: int) : void
+}
+
+@enduml

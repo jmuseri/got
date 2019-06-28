@@ -1,0 +1,10 @@
+@startuml CampoDisponibleService
+interface CampoDisponibleService {
+ + listAll(): Iterable<CampoDisponible>
+ + getById(id: int): CampoDisponible
+ + save(campoDisponible: CampoDisponible): Autorizado
+ + save(campoDisponible: List<CampoDisponible>): void
+ + delete(id: int): void
+}
+CampoDisponibleService <|.. CampoDisponibleServiceImpl
+@enduml

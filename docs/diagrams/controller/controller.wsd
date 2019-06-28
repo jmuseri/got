@@ -1,0 +1,14 @@
+@startuml controller
+
+'Components
+!include ./funcional/autorizadoController.wsd
+!include ./funcional/tramiteController.wsd
+!include ./parametria/campoDisponibleController.wsd
+!include ./parametria/comisionController.wsd
+!include ./parametria/estadoTramiteController.wsd
+!include ./parametria/sectorController.wsd
+!include ./parametria/tipoTramiteController.wsd
+!include ./parametria/tipoTramiteController.wsd
+!include ./indexController.wsd
+
+@enduml

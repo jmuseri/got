@@ -1,0 +1,10 @@
+@startuml SwaggerConfig
+class SwaggerConfig {
+ + parametriaApi(): Docket
+ + funcionalApi(): Docket
+ - metaData(): AppInfo
+ # addResourceHandlers(registry: ResourceHandlerRegistry): void
+}
+
+WebMvcConfigurationSupport <|.. SwaggerConfig
+@enduml

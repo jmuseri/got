@@ -1,0 +1,10 @@
+@startuml EstadoTramiteService
+interface EstadoTramiteService {
+ + listAll(): Iterable<EstadoTramite>
+ + getById(id: int): EstadoTramite
+ + save(estadoTramite: EstadoTramite): EstadoTramite
+ + save(estadoTramite: List<EstadoTramite>): void
+ + delete(id: int): void
+}
+EstadoTramiteService <|.. EstadoTramiteServiceImpl
+@enduml

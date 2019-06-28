@@ -1,0 +1,26 @@
+@startuml TipoTramiteController
+class TipoTramiteController {
+ - tipoTramiteService: TipoTramiteService
+ - comisionService: ComisionService
+ - tipoTramiteCampoService: TipoTramiteCampoService
+ - campoDisponibleService: CampoDisponibleService
+ - <<final>> logger: Logger
+ + setTipoTramiteService(tipoTramiteService: TipoTramiteService): void
+ + setComisionService(tipoTramiteService: ComisionService): void
+ + setTipoTramiteCampoService(tipoTramiteCampoService: TipoTramiteCampoService): void
+ + setCampoDisponibleService(campoDisponibleService: CampoDisponibleService): void
+ + list(req: HttpServletRequest, activo: boolean): ResponseEntity
+ + saveTipoTramite(tipoTramite: TipoTramite): ResponseEntity
+ + showTipoTramite(id: int, model: Model): ResponseEntity
+ + updateTipoTramite(id: int, tipoTramite: TipoTramite): ResponseEntity
+ + deleteSector(id: int): ResponseEntity
+ + saveComisionTipoTramite(tipoTramite: TipoTramite): ResponseEntity
+ + showComisionTipoTramite(id: int, model: Model): ResponseEntity
+ + deleteComision(id: int): ResponseEntity
+ + listAll(req: HttpServletRequest, activo: boolean): ResponseEntity
+ + list(id: int): ResponseEntity
+ + saveTipoTramiteCampo(tipoTramiteCampo: TipoTramiteCampo): ResponseEntity
+ + delete(tipoTramiteId: int, campoDisponibleId: int, tipoTramiteCampo: TipoTramiteCampo): ResponseEntity
+ + updateTipoTramite(tipoTramiteId: int, campoDisponibleId: int, tipoTramiteCampo: TipoTramiteCampo): ResponseEntity
+}
+@enduml

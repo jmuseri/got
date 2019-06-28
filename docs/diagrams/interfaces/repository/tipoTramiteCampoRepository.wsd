@@ -1,0 +1,7 @@
+@startuml TipoTramiteCampoRepository
+interface TipoTramiteCampoRepository {
+- findAllByActivoIsTrue(): Iterable<TipoTramiteCampo>
+- findById(id: TipoTramiteCampoKey): TipoTramiteCampo
+}
+CrudRepository <-- TipoTramiteCampoRepository
+@enduml

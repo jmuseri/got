@@ -1,0 +1,18 @@
+@startuml Autorizado
+
+class Autorizado{
+ -id: int
+ -clienteId: int
+ -tipoDocumento: String
+ -nroDocumento: String
+ -nombre: String
+ -apellido: String
+ -usuAlta: String
+ -fechaAlta: Date
+ -usuModif: String
+ -fechaModif: Date
+ +getters()
+ +setters()
+}
+
+@enduml

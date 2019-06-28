@@ -132,7 +132,7 @@ public class SectorController {
 
     @ApiOperation(value = "Delete a sector")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteSector(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
         try {
             sectorService.delete(id);
             StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);

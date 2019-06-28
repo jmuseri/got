@@ -1,0 +1,12 @@
+@startuml TramiteAutorizadoKey
+
+class TramiteAutorizadoKey{
+ -tramiteId: int
+ -autorizadoId: int
+ +TramiteAutorizadoKey(): TramiteAutorizadoKey
+ +TramiteAutorizadoKey(tramiteId: int, autorizadoId: int): TramiteAutorizadoKey
+ +getters()
+ +setters()
+}
+
+@enduml

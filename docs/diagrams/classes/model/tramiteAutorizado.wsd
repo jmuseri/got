@@ -1,0 +1,12 @@
+@startuml TramiteAutorizado
+
+class TramiteAutorizado{
+ -id: TramiteAutorizadoKey
+ -autorizado: Autorizado
+ -usuAlta: String
+ -fechaAlta: Date
+ +getters()
+ +setters()
+}
+
+@enduml

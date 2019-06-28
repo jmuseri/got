@@ -10,9 +10,9 @@ public interface TramiteAutorizadoService {
 
     TramiteAutorizado getById(TramiteAutorizadoKey id);
 
-    TramiteAutorizado save(TramiteAutorizado tramiteDetalle);
+    TramiteAutorizado save(TramiteAutorizado tramiteAutorizado);
 
-    void save(List<TramiteAutorizado> tramiteDetalles);
+    void save(List<TramiteAutorizado> tramiteAutorizados);
 
     void delete(TramiteAutorizadoKey id);
 

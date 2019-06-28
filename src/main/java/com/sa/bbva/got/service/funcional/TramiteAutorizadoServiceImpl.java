@@ -39,9 +39,9 @@ public class TramiteAutorizadoServiceImpl implements TramiteAutorizadoService {
     }
 
     @Override
-    public void save(List<TramiteAutorizado> tramiteDetalle) {
+    public void save(List<TramiteAutorizado> tramiteAutorizado) {
         logger.debug("save called");
-        this.tramiteAutorizadoRepository.saveAll(tramiteDetalle);
+        this.tramiteAutorizadoRepository.saveAll(tramiteAutorizado);
     }
 
     @Override

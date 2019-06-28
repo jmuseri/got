@@ -1,0 +1,12 @@
+@startuml CampoDisponibleController
+class CampoDisponibleController {
+ - campoDisponibleService: CampoDisponibleService
+ - <<final>> logger: Logger
+ + setEstadoTramiteService(campoDisponibleService: CampoDisponibleService): void
+ + list(model: Model): ResponseEntity
+ + showEstadoTramite(id: int, model: Model): ResponseEntity
+ + saveEstadoTramite(campoDisponible: CampoDisponible): ResponseEntity
+ + updateEstadoTramite(id: int, campoDisponible: CampoDisponible): ResponseEntity
+ + delete(id: int): ResponseEntity
+}
+@enduml
