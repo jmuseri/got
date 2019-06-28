@@ -1,0 +1,11 @@
+@startuml StatusResponse
+class StatusResponse {
+ - {static}<<final>> serialVersionUID: long
+ - status: String
+ - message: String
+ - description: String
+ + StatusResponse(status: String, message: String, description: String): StatusResponse
+}
+
+Serializable <|.. StatusResponse
+@enduml

@@ -1,0 +1,12 @@
+@startuml EstadoTramiteController
+class EstadoTramiteController {
+ - estadoTramiteService: EstadoTramiteService
+ - <<final>> logger: Logger
+ + setEstadoTramiteService(estadoTramiteService: EstadoTramiteService): void
+ + list(model: Model): ResponseEntity
+ + showEstadoTramite(id: int, model: Model): ResponseEntity
+ + saveEstadoTramite(estadoTramite: EstadoTramite): ResponseEntity
+ + updateEstadoTramite(id: int, estadoTramite: EstadoTramite): ResponseEntity
+ + delete(id: int): ResponseEntity
+}
+@enduml

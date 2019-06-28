@@ -1,0 +1,13 @@
+@startuml AutorizadoController
+class AutorizadoController {
+ - autorizadoService: AutorizadoService
+ - <<final>> logger: Logger
+ - findByClienteId(clienteId: int): Iterable<Autorizado>
+ + setAutorizadoService(autorizadoService: AutorizadoService): void
+ + list(clienteId: int, model: Model): ResponseEntity
+ + saveAutorizado(autorizado: Autorizado): ResponseEntity
+ + updateAutorizado(id: int, autorizado: Autorizado): ResponseEntity
+ + showAutorizado(id: int, model: Model): ResponseEntity
+ + delete(id: int): ResponseEntity
+}
+@enduml

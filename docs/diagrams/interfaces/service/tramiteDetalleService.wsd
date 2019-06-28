@@ -1,0 +1,10 @@
+@startuml TramiteDetalleService
+interface TramiteDetalleService {
+ + listAll(): Iterable<TramiteDetalle>
+ + getById(id: TramiteDetalleKey) : TramiteDetalle
+ + save(tramiteDetalle : TramiteDetalle): TramiteDetalle
+ + save(tramiteDetalles: List<TramiteDetalle>): void
+ + delete(id : TramiteDetalleKey) : void
+}
+TramiteDetalleService <|.. TramiteDetalleServiceImpl
+@enduml

@@ -13,7 +13,7 @@ public interface SectorService {
 
     Sector save(Sector sector);
 
-    void save(List<Sector> sectors);
+    void save(List<Sector> sectores);
 
     void delete(Integer id);
 }

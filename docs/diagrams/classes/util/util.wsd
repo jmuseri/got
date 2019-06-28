@@ -1,0 +1,8 @@
+@startuml Util
+
+class Util{
+ + {static} toISO(date: Date): String
+ + {static} fromISO(dateStr: String): Date
+}
+
+@enduml

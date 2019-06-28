@@ -1,0 +1,25 @@
+@startuml TramiteController
+class TramiteController {
+ - tramiteService: TramiteService
+ - tramiteDetalleService: TramiteDetalleService
+ - tramiteAutorizadoService: TramiteAutorizadoService
+ - <<final>> logger: Logger
+ + setTramiteService(tramiteService: TramiteService): void
+ + setTramiteDetalleService(tramiteDetalleService: TramiteDetalleService): void
+ + setTramiteAutorizadoService(tramiteAutorizadoService: TramiteAutorizadoService): void
+ + list(req: HttpServletRequest, model: Model, activo: boolean, sectorId: int): ResponseEntity
+ + saveTramite(tramite: Tramite): ResponseEntity
+ + updateTramite(id: int, tramite: Tramite): ResponseEntity
+ + showTramite(id: int, model: Model): ResponseEntity
+ + delete(id: int): ResponseEntity
+ + listAllTramiteDetalle(model: Model): ResponseEntity
+ + listTramiteDetalle(id: int, model: Model): ResponseEntity
+ + saveTramiteDetalle(tramiteDetalle: TramiteDetalle): ResponseEntity
+ + updateTramiteDetalle(tramiteId: int, tipoTramiteCampoId: int, campoDisponibleId: int, tramiteDetalle: TramiteDetalle): ResponseEntity
+ + showTramiteDetalle(tramiteId: int, tipoTramiteCampoId: int, campoDisponibleId: int, model: Model): ResponseEntity
+ + deleteTramiteDetalle(tramiteId: int, tipoTramiteCampoId: int, campoDisponibleId: int, model: Model) ResponseEntity
+ + listTramiteAutorizado(id: int, model: Model): ResponseEntity
+ + saveTramiteAutorizado(tramiteAutorizado: TramiteAutorizado): ResponseEntity
+ + deleteTramiteAutorizado(tramiteId: int, autorizadoId: int, model: Model): ResponseEntity
+}
+@enduml

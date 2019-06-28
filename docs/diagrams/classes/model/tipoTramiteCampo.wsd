@@ -1,0 +1,18 @@
+@startuml TipoTramiteCampo
+
+class TipoTramiteCampo{
+ -id: TipoTramiteCampoKey
+ -campoDisponible: CampoDisponible
+ -obligatorio: boolean
+ -activo: boolean
+ -nombre: String
+ -leyenda: String
+ -usuAlta: String
+ -fechaAlta: Date
+ -usuModif: String
+ -fechaModif: Date
+ +getters()
+ +setters()
+}
+
+@enduml

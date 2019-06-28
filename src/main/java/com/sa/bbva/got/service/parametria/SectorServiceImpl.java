@@ -44,9 +44,9 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public void save(List<Sector> sectors) {
+    public void save(List<Sector> sectores) {
         logger.debug("save called");
-        this.sectorRepository.saveAll(sectors);
+        this.sectorRepository.saveAll(sectores);
     }
 
     @Override

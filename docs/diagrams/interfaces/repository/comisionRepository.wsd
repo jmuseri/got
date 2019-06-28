@@ -1,0 +1,5 @@
+@startuml ComisionRepository
+interface ComisionRepository {
+}
+CrudRepository <-- ComisionRepository
+@enduml
