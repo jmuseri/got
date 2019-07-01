@@ -177,7 +177,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<CampoDisponible>> typeReference = new TypeReference<List<CampoDisponible>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/camposDisponible.json");
         try {
             File initialFile = new File("resources/json/camposDisponible.json");
             InputStream targetStream = new FileInputStream(initialFile);
