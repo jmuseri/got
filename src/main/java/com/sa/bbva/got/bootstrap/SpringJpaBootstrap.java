@@ -1,5 +1,7 @@
 package com.sa.bbva.got.bootstrap;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -121,9 +123,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Sector>> typeReference = new TypeReference<List<Sector>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/sectores.json");
         try {
-            List<Sector> sectors = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/sectores.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<Sector> sectors = mapper.readValue(targetStream, typeReference);
             sectorService.save(sectors);
             log.info("Sectores Saved!");
         } catch (IOException e) {
@@ -138,9 +141,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Comision>> typeReference = new TypeReference<List<Comision>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/comisiones.json");
         try {
-            List<Comision> comisiones = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/comisiones.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<Comision> comisiones = mapper.readValue(targetStream, typeReference);
             comisionService.save(comisiones);
             log.info("Comisiones Saved!");
         } catch (IOException e) {
@@ -155,9 +159,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<EstadoTramite>> typeReference = new TypeReference<List<EstadoTramite>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/estadosTramite.json");
         try {
-            List<EstadoTramite> estadosTramite = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/estadosTramite.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<EstadoTramite> estadosTramite = mapper.readValue(targetStream, typeReference);
             estadoTramiteService.save(estadosTramite);
             log.info("EstadosTramite Saved!");
         } catch (IOException e) {
@@ -172,9 +177,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<CampoDisponible>> typeReference = new TypeReference<List<CampoDisponible>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/camposDisponible.json");
         try {
-            List<CampoDisponible> campoDisponible = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/camposDisponible.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<CampoDisponible> campoDisponible = mapper.readValue(targetStream, typeReference);
             campoDisponibleService.save(campoDisponible);
             log.info("CamposDisponible Saved!");
         } catch (IOException e) {
@@ -189,9 +195,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<TipoTramite>> typeReference = new TypeReference<List<TipoTramite>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tipoTramite.json");
         try {
-            List<TipoTramite> tipoTramites = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/tipoTramite.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<TipoTramite> tipoTramites = mapper.readValue(targetStream, typeReference);
             tipoTramiteService.save(tipoTramites);
             log.info("TipoTramite Saved!");
         } catch (IOException e) {
@@ -206,9 +213,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<TipoTramiteCampo>> typeReference = new TypeReference<List<TipoTramiteCampo>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tipoTramiteCampo.json");
         try {
-            List<TipoTramiteCampo> tipoTramitesCampo = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/tipoTramiteCampo.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<TipoTramiteCampo> tipoTramitesCampo = mapper.readValue(targetStream, typeReference);
             tipoTramiteCampoService.save(tipoTramitesCampo);
             log.info("TipoTramiteCampo Saved!");
         } catch (IOException e) {
@@ -223,9 +231,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Tramite>> typeReference = new TypeReference<List<Tramite>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramites.json");
         try {
-            List<Tramite> tramite = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/tramites.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<Tramite> tramite = mapper.readValue(targetStream, typeReference);
             tramiteService.save(tramite);
             log.info("Tramite Saved!");
         } catch (IOException e) {
@@ -240,9 +249,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Autorizado>> typeReference = new TypeReference<List<Autorizado>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/autorizados.json");
         try {
-            List<Autorizado> autorizado = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/autorizados.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<Autorizado> autorizado = mapper.readValue(targetStream, typeReference);
             autorizadoService.save(autorizado);
             log.info("Autorizados Saved!");
         } catch (IOException e) {
@@ -257,9 +267,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<TramiteDetalle>> typeReference = new TypeReference<List<TramiteDetalle>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramitesDetalle.json");
         try {
-            List<TramiteDetalle> tramiteDetalle = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/tramitesDetalle.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<TramiteDetalle> tramiteDetalle = mapper.readValue(targetStream, typeReference);
             tramiteDetalleService.save(tramiteDetalle);
             log.info("TramiteDetalle Saved!");
         } catch (IOException e) {
@@ -274,9 +285,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<TramiteAutorizado>> typeReference = new TypeReference<List<TramiteAutorizado>>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/tramitesAutorizado.json");
         try {
-            List<TramiteAutorizado> tramiteAutorizado = mapper.readValue(inputStream, typeReference);
+            File initialFile = new File("resources/json/tramitesAutorizado.json");
+            InputStream targetStream = new FileInputStream(initialFile);
+            List<TramiteAutorizado> tramiteAutorizado = mapper.readValue(targetStream, typeReference);
             tramiteAutorizadoService.save(tramiteAutorizado);
             log.info("TramiteAutorizado Saved!");
         } catch (IOException e) {

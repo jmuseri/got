@@ -17,6 +17,7 @@ Servicios para la gestion de tramites online en Web Empresas BBVA.
 | 0.1.1    | 2019/06/03 | Parameters Api added           |    SA       |      0       |
 | 0.1.5    | 2019/06/03 | Parameters Api completed       |    SA       |      0       |
 | 0.2.0    | 2019/06/21 | Functional Api completed       |    SA       |      0       |
+| 0.2.2    | 2019/07/02 | Folders changed. Log4j upd     |    SA       |      0       |
 
 ## Content
 
