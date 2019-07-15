@@ -30,10 +30,10 @@ public class GotApplication {
             String path = getSysConfPathResource("/bbdd-local.properties");
             FileReader reader=new FileReader(path); 
                 p.load(reader);  
-                System.out.println(p.getProperty("username"));  
-                System.out.println(p.getProperty("password"));
-                System.out.println(p.getProperty("url"));  
-                System.out.println(p.getProperty("driver")); 
+                System.out.println("Datasource: username: " + p.getProperty("username"));  
+                //System.out.println("Datasource: password: " + p.getProperty("password"));
+                System.out.println("Datasource: url: " + p.getProperty("url"));  
+                System.out.println("Datasource: driver: " + p.getProperty("driver")); 
             return DataSourceBuilder
                 .create()
                 .username(p.getProperty("username"))
