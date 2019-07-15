@@ -4,5 +4,7 @@
 *.factorypath
 *.classpath
 *.settings
+*.log
+*.gz
 /target/
 /build/
