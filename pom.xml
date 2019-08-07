@@ -12,7 +12,7 @@
 	<groupId>com.sa.bbva</groupId>
 	<artifactId>got-services</artifactId>
 	<version>0.2.2</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>GOT Services Application</name>
 	<description>GOT - Gestion Online de Tramites - Rest Services</description>
 	
