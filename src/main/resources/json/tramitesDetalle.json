@@ -1,0 +1,156 @@
+[
+  {
+    "id": {
+        "tramiteId": 1,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 1,
+          "campoDisponibleId": 1
+        }
+    },
+    "valor": "Depositos",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 2,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 1,
+          "campoDisponibleId": 7
+        }
+    },
+    "valor": "Movimientos",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 3,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 2,
+          "campoDisponibleId": 1
+        }
+    },
+    "valor": "FCI",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 4,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 2,
+          "campoDisponibleId": 7
+        }
+    },
+    "valor": "Gastos",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 5,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 3,
+          "campoDisponibleId": 1
+        }
+    },
+    "valor": "Valores",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 6,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 3,
+          "campoDisponibleId": 6
+        }
+    },
+    "valor": "Bonos",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 7,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 3,
+          "campoDisponibleId": 5
+        }
+    },
+    "valor": "Moneda extranjera",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 8,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 5,
+          "campoDisponibleId": 3
+        }
+    },
+    "valor": "Mercado",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 9,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 5,
+          "campoDisponibleId": 3
+        }
+    },
+    "valor": "Sucursal",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 10,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 5,
+          "campoDisponibleId": 4
+        }
+    },
+    "valor": "Region",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+        "tramiteId": 11,
+        "tipoTramiteCampoId": {
+          "tipoTramiteId": 5,
+          "campoDisponibleId": 2
+        }
+    },
+    "valor": "Division",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  }
+]

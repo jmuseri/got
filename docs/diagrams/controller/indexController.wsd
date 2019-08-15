@@ -1,5 +1,0 @@
-@startuml IndexController
-class IndexController {
- + index(): RedirectView
-}
-@enduml

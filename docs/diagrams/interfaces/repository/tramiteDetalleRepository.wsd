@@ -1,6 +1,0 @@
-@startuml TramiteDetalleRepository
-interface TramiteDetalleRepository {
-- findById(id: TramiteDetalleKey): TramiteDetalle
-}
-CrudRepository <-- TramiteDetalleRepository
-@enduml

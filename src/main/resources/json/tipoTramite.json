@@ -1,0 +1,95 @@
+[    
+  {
+    "id": 1,
+    "descripcion": "Certificacion de Firma",
+    "cobraComision": true,
+    "comision": null,
+    "requiereDocumentacion": false,
+    "activo": false,
+    "autorizado": true,
+    "sectorInicial": { "id": 1 },
+    "campos": null,
+    "horasResolucion": 48,
+    "horasVencimiento": 96,
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": 2,
+    "descripcion": "Certificacion de Cheque",
+    "cobraComision": true,
+    "comision": null,
+    "requiereDocumentacion": false,
+    "activo": false,
+    "autorizado": true,
+    "sectorInicial": {
+                      "id": 2
+                     },
+    "campos": null,
+    "horasResolucion": 48,
+    "horasVencimiento": 96,
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": 3,
+    "descripcion": "Solicitud de Extracto",
+    "cobraComision": true,
+    "comision": null,
+    "requiereDocumentacion": false,
+    "activo": true,
+    "autorizado": false,
+    "sectorInicial": {
+                      "id": 3
+                     },
+    "campos": null,
+    "horasResolucion": 48,
+    "horasVencimiento": 96,
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": 4,
+    "descripcion": "Otro",
+    "cobraComision": false,
+    "comision": null,
+    "requiereDocumentacion": false,
+    "activo": false,
+    "autorizado": true,
+    "sectorInicial": {
+                      "id": 4
+                     },
+    "campos": null,
+    "horasResolucion": 48,
+    "horasVencimiento": 96,
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": 5,
+    "descripcion": "Solicitud de tokens",
+    "cobraComision": false,
+    "comision": null,
+    "requiereDocumentacion": false,
+    "activo": true,
+    "autorizado": true,
+    "sectorInicial": {
+                      "id": 5
+                     },
+    "campos": null,
+    "horasResolucion": 48,
+    "horasVencimiento": 96,
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  }
+]

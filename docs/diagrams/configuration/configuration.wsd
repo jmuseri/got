@@ -1,8 +1,0 @@
-@startuml configuration
-
-'Components
-!include ./springSecConfig.wsd
-!include ./swaggerConfig.wsd
-!include ./webConfig.wsd
-
-@enduml
