@@ -17,8 +17,6 @@ target\generated-test-sources\test-annotations
 .class
 .log
 
-.mvn
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
