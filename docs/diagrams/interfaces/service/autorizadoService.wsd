@@ -1,0 +1,11 @@
+@startuml AutorizadoService
+interface AutorizadoService {
+ + listAll(): Iterable<Autorizado>
+ + listByClient(clienteId: int): Iterable<Autorizado>
+ + getById(id: int): Autorizado
+ + save(autorizado: Autorizado): Autorizado
+ + save(autorizados: List<Autorizado>): void
+ + delete(id: int): void
+}
+AutorizadoService <|.. AutorizadoServiceImpl
+@enduml

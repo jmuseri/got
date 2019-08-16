@@ -1,0 +1,5 @@
+@startuml EstadoTramiteRepository
+interface EstadoTramiteRepository {
+}
+CrudRepository <-- EstadoTramiteRepository
+@enduml

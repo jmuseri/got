@@ -1,0 +1,14 @@
+@startuml TramiteDetalle
+
+class TramiteDetalle{
+ -id: TramiteDetalleKey
+ -valor: String
+ -usuAlta: String
+ -fechaAlta: Date
+ -usuModif: String
+ -fechaModif: Date
+ +getters()
+ +setters()
+}
+
+@enduml

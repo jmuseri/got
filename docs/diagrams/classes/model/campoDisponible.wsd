@@ -1,0 +1,17 @@
+@startuml CampoDisponible
+
+class CampoDisponible{
+ -id: int
+ -nombre: String
+ -descripcion: String
+ -tipoDato: String
+ -activo: boolean
+ -usuAlta: String
+ -fechaAlta: Date
+ -usuModif: String
+ -fechaModif: Date
+ +getters()
+ +setters()
+}
+
+@enduml

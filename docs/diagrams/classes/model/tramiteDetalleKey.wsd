@@ -1,0 +1,12 @@
+@startuml TramiteDetalleKey
+
+class TramiteDetalleKey{
+ -tramiteId: int
+ -tipoTramiteCampoId: TipoTramiteCampoKey
+ +TramiteDetalleKey(): TramiteDetalleKey
+ +TramiteDetalleKey(tramiteId: int, tipoTramiteId: int, campoDisponibleId: int): TramiteDetalleKey
+ +getters()
+ +setters()
+}
+
+@enduml

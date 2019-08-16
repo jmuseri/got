@@ -1,0 +1,7 @@
+@startuml beans
+
+'Components
+!include ./statusResponse.wsd
+
+
+@enduml

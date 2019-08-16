@@ -1,0 +1,11 @@
+@startuml TipoTramiteService
+interface TipoTramiteService {
+ + listAll(): Iterable<TipoTramite>
+ + listActive(): Iterable<TipoTramite>
+ + getById(id: int) : TipoTramite
+ + save(tipoTramite : TipoTramite): TipoTramite
+ + save(tipoTramites: List<TipoTramite>): void
+ + delete(id : int) : void
+}
+TipoTramiteService <|.. TipoTramiteServiceImpl
+@enduml

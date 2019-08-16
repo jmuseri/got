@@ -1,0 +1,6 @@
+@startuml TipoTramiteRepository
+interface TipoTramiteRepository {
+- findAllByActivoIsTrue(): Iterable<TipoTramite>
+}
+CrudRepository <-- TipoTramiteRepository
+@enduml

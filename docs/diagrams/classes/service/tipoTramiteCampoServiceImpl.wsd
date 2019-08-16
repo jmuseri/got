@@ -1,0 +1,16 @@
+@startuml TipoTramiteCampoServiceImpl
+
+class TipoTramiteCampoServiceImpl{
+ - <<final>> logger: Logger
+ - tipoTramiteCampoRepository: TipoTramiteCampoRepository
+ + setRepository(tipoTramiteCampoRepository: TipoTramiteCampoRepository): void
+ + listAll(): Iterable<TipoTramiteCampo>
+ + listActive(): Iterable<TipoTramiteCampo>
+ + getById(id: int): TipoTramiteCampo
+ + getById(id: TipoTramiteCampoKey): TipoTramiteCampo
+ + save(tipoTramiteCampo: TipoTramiteCampo): TipoTramiteCampo
+ + save(tipoTramiteCampo: List<TipoTramiteCampo>): void
+ + delete(tipoTramiteCampo: TipoTramiteCampo): void
+}
+
+@enduml
