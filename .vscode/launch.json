@@ -12,9 +12,9 @@
         },
         {
             "type": "java",
-            "name": "Debug (Launch)-GotApiApplication<gotApi>",
+            "name": "Debug (Launch)-GotApplication<gotApi>",
             "request": "launch",
-            "mainClass": "com.sa.bbva.got.gotApi.GotApiApplication",
+            "mainClass": "ar.com.bbva.got.GotApplication",
             "projectName": "gotApi"
         }
     ]
