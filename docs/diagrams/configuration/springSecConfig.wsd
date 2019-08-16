@@ -1,7 +1,0 @@
-@startuml SpringSecConfig
-class SpringSecConfig {
- # configure(httpSecurity: HttpSecurity): void
-}
-
-WebSecurityConfigurerAdapter <|.. SpringSecConfig
-@enduml

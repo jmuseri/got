@@ -1,5 +1,0 @@
-@startuml CampoDisponibleRepository
-interface CampoDisponibleRepository {
-}
-CrudRepository <-- CampoDisponibleRepository
-@enduml

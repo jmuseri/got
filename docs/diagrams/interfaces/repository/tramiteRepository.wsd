@@ -1,7 +1,0 @@
-@startuml TramiteRepository
-interface TramiteRepository {
-- findBySectorActual(sector: Sector): List<Tramite>
-- findByEstado(estado: EstadoTramite): List<Tramite>
-}
-CrudRepository <-- TramiteRepository
-@enduml

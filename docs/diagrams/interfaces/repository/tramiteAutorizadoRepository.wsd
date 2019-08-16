@@ -1,7 +1,0 @@
-@startuml TramiteAutorizadoRepository
-interface TramiteAutorizadoRepository {
-- findById(id: TramiteAutorizadoKey): TramiteAutorizado
-- deleteByIdAutorizadoId(id: int): void
-}
-CrudRepository <-- TramiteAutorizadoRepository
-@enduml

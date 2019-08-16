@@ -1,6 +1,0 @@
-@startuml WebConfig
-class WebConfig {
- # h2servletRegistration(): ServletRegistrationBean<?>
-}
-
-@enduml

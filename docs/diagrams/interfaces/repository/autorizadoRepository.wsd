@@ -1,6 +1,0 @@
-@startuml AutorizadoRepository
-interface AutorizadoRepository {
- - findByClienteId(clienteId: int): Iterable<Autorizado>
-}
-CrudRepository <-- AutorizadoRepository
-@enduml
