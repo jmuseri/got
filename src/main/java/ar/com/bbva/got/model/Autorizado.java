@@ -22,8 +22,11 @@ public class Autorizado {
     @SequenceGenerator(name = "autorizado_seq_gen", sequenceName = "AUTORIZADO_SEQ")
     private Integer id;
 
-    @ApiModelProperty(notes = "The autorizado clienteId")
-    private Integer clienteId;
+    @ApiModelProperty(notes = "The autorizado nroclienteEmpresa")
+    private Integer nroClienteEmpresa;
+    
+    @ApiModelProperty(notes = "The autorizado cuitEpresa")
+    private String cuitEmpresa;
 
     @ApiModelProperty(notes = "The autorizado tipoDocumento")
     private String tipoDocumento;

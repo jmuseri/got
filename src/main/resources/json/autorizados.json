@@ -1,7 +1,8 @@
 [
     {
       "id": 1,
-      "clienteId": 3534520,
+      "nroClienteEmpresa": 3534520,
+      "cuitEmpresa": "1",
       "tipoDocumento": "0",
       "nroDocumento": 34498316,
       "nombre": "Matias",
@@ -13,7 +14,8 @@
     },
     {
       "id": 2,
-      "clienteId": 3534521,
+      "nroClienteEmpresa": 3534520,
+      "cuitEmpresa": "1",
       "tipoDocumento": "0",
       "nroDocumento": 34456784,
       "nombre": "Juan",
@@ -25,7 +27,8 @@
     },
     {
       "id": 3,
-      "clienteId": 3534522,
+      "nroClienteEmpresa": 3534522,
+      "cuitEmpresa": "3",
       "tipoDocumento": "0",
       "nroDocumento": 33892966,
       "nombre": "Rodolfo",
@@ -37,7 +40,8 @@
     },
     {
       "id": 4,
-      "clienteId": 3534523,
+      "nroClienteEmpresa": 3534523,
+      "cuitEmpresa": "4",
       "tipoDocumento": "0",
       "nroDocumento": 28451371,
       "nombre": "Nicolas",
@@ -49,7 +53,8 @@
     },
     {
       "id": 5,
-      "clienteId": 3534524,
+      "nroClienteEmpresa": 3534522,
+      "cuitEmpresa": "3",
       "tipoDocumento": "0",
       "nroDocumento": 31965729,
       "nombre": "Facundo",

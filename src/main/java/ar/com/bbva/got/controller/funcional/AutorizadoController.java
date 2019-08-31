@@ -47,7 +47,7 @@ public class AutorizadoController {
         try {
             Iterable<Autorizado> autorizadoList;
             if (clienteId != null) {
-                autorizadoList = autorizadoService.listByClient(clienteId);
+                autorizadoList = autorizadoService.listByNroClienteEmpresa(clienteId);
             } else {
                 autorizadoList = autorizadoService.listAll();
             }
@@ -92,8 +92,8 @@ public class AutorizadoController {
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            if (null != autorizado.getClienteId()) {
-                stored.setClienteId(autorizado.getClienteId());
+            if (null != autorizado.getNroClienteEmpresa()) {
+                stored.setNroClienteEmpresa(autorizado.getNroClienteEmpresa());
             }
             if (null != autorizado.getTipoDocumento()) {
                 stored.setTipoDocumento(autorizado.getTipoDocumento());

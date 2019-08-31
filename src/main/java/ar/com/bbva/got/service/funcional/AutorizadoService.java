@@ -7,7 +7,9 @@ import ar.com.bbva.got.model.Autorizado;
 public interface AutorizadoService {
     Iterable<Autorizado> listAll();
 
-    Iterable<Autorizado> listByClient(Integer clienteId);
+    Iterable<Autorizado> listByNroClienteEmpresa(Integer nroClienteEmpresa);
+    
+    Iterable<Autorizado> listByNroClienteEmpresaOrCuitEmpresa(Integer nroClienteEmpresa, String cuitEmpresa);
 
     Autorizado getById(Integer id);    
 
@@ -16,5 +18,5 @@ public interface AutorizadoService {
     void save(List<Autorizado> autorizados);
 
     void delete(Integer id);
-
+    
 }

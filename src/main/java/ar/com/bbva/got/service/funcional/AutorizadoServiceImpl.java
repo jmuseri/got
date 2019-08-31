@@ -2,13 +2,13 @@ package ar.com.bbva.got.service.funcional;
 
 import java.util.List;
 
-import ar.com.bbva.got.model.Autorizado;
-import ar.com.bbva.got.repository.AutorizadoRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.bbva.got.model.Autorizado;
+import ar.com.bbva.got.repository.AutorizadoRepository;
 
 @Service
 public class AutorizadoServiceImpl implements AutorizadoService {
@@ -27,10 +27,17 @@ public class AutorizadoServiceImpl implements AutorizadoService {
     }
 
     @Override
-    public Iterable<Autorizado> listByClient(Integer clienteId) {
+    public Iterable<Autorizado> listByNroClienteEmpresa(Integer nroClienteEmpresa) {
         logger.debug("listByClient called");
-        return this.autorizadoRepository.findByClienteId(clienteId);
+        return this.autorizadoRepository.findByNroClienteEmpresa(nroClienteEmpresa);
     }
+    
+    @Override
+	public Iterable<Autorizado> listByNroClienteEmpresaOrCuitEmpresa(Integer nroClienteEmpresa, String cuitEmpresa) {
+		logger.debug("listByNroClienteEmpresaOrCuitEmpresa called");
+		
+		return this.autorizadoRepository.findByNroClienteEmpresaOrCuitEmpresa(nroClienteEmpresa, cuitEmpresa);
+	}
 
     @Override
     public Autorizado getById(Integer id) {
@@ -55,4 +62,5 @@ public class AutorizadoServiceImpl implements AutorizadoService {
         logger.debug("delete called");
         this.autorizadoRepository.deleteById(id);
     }
+
 }
