@@ -2,13 +2,14 @@ package ar.com.bbva.got.service.parametria;
 
 import java.util.List;
 
-import ar.com.bbva.got.model.Sector;
-import ar.com.bbva.got.repository.SectorRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.bbva.got.model.Sector;
+import ar.com.bbva.got.model.SectorKey;
+import ar.com.bbva.got.repository.SectorRepository;
 
 @Service
 public class SectorServiceImpl implements SectorService {
@@ -33,7 +34,7 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public Sector getById(Integer id) {
+    public Sector getById(SectorKey id) {
         logger.debug("getById called");
         return this.sectorRepository.findById(id).orElse(null);
     }
@@ -51,7 +52,7 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(SectorKey id) {
         logger.debug("delete called");
         this.sectorRepository.deleteById(id);
     }

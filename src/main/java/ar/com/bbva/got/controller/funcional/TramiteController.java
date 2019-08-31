@@ -5,9 +5,23 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import ar.com.bbva.got.bean.StatusResponse;
 import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
+import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.model.TramiteAutorizadoKey;
@@ -20,14 +34,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/funcional/tramite")
@@ -65,9 +71,9 @@ public class TramiteController {
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> list(HttpServletRequest req, Model model,
             @RequestParam(value = "activo", required = false) boolean activo,
-            @RequestParam(value = "sector", required = false) Integer sectorId) throws ParseException {
+            @RequestParam(value = "sector", required = false) SectorKey sectorId) throws ParseException {
         try {
-            if (null != sectorId && sectorId != 0) {
+            if (null != sectorId) {
                 Sector sectorActual = new Sector();
                 sectorActual.setId(sectorId);
                 Iterable<Tramite> tramiteList = tramiteService.listBySectorActual(sectorActual);

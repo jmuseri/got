@@ -1,12 +1,15 @@
 package ar.com.bbva.got.model;
 
-import javax.persistence.*;
+import java.util.Date;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -16,15 +19,10 @@ import lombok.Data;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Sector {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="sector_seq_gen")
-	@SequenceGenerator(name="sector_seq_gen", sequenceName="SECTOR_SEQ")
-    @ApiModelProperty(notes = "The database generated sector ID")
-    private Integer id;
-    @ApiModelProperty(notes = "The sector canal", required = true)
-    private String canal;
-    @ApiModelProperty(notes = "The sector name", required = true)
-    private String sector;
+    
+    @EmbeddedId
+    private SectorKey id;
+    
     @ApiModelProperty(notes = "The sector description")
     private String descripcion;
     @ApiModelProperty(notes = "The sector state")

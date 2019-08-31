@@ -38,6 +38,7 @@ public class TramiteServiceImpl implements TramiteService {
     public List<Tramite> listByEstado(EstadoTramite estado) {
         logger.debug("listByEstado called");
         return this.tramiteRepository.findByEstado(estado);
+        
     }
 
     @Override

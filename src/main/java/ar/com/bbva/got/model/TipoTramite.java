@@ -43,9 +43,12 @@ public class TipoTramite {
     @ApiModelProperty(notes = "The tipoTramite autorizado")
     private boolean autorizado;
 
-    @ManyToOne
-    @JoinColumn(name = "sectorInicial")
-    @ApiModelProperty(notes = "The tipoTramite sector")
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumns({
+    	  @JoinColumn(name = "canal", insertable = true, updatable = false),
+    	  @JoinColumn(name = "sector", insertable = true, updatable = false)
+    	})
+    @ApiModelProperty(notes = "The tramite sectorInicial")
     private Sector sectorInicial;
 
     @OneToMany(mappedBy = "id.tipoTramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

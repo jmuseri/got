@@ -5,20 +5,25 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import ar.com.bbva.got.bean.StatusResponse;
 import ar.com.bbva.got.model.Sector;
+import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.service.parametria.SectorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/parametria/sector")
@@ -40,8 +45,8 @@ public class SectorController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
 
-    public ResponseEntity<?> list(HttpServletRequest req,
-            @RequestParam(value = "activo", required = false) boolean activo) throws ParseException {
+    public ResponseEntity<?> list(HttpServletRequest req, 
+    							  @RequestParam(value = "activo", required = true) boolean activo) throws ParseException {
         try {
             if (!activo) {
                 Iterable<Sector> sectorList = sectorService.listAll();
@@ -61,10 +66,17 @@ public class SectorController {
     }
 
     @ApiOperation(value = "Search a sector with an ID", response = Sector.class)
-    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showSector(@PathVariable Integer id, Model model) {
+    @RequestMapping(value = "/show", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> showSector(HttpServletRequest req, 
+			  							@RequestParam(value = "canal", required = true) String idCanal,
+			  							@RequestParam(value = "sector", required = true) String idSector) {
         try {
-            Sector sector = sectorService.getById(id);
+            
+        	SectorKey id = new SectorKey();
+        	id.setCanal(idCanal);
+        	id.setSector(idSector);
+        	
+        	Sector sector = sectorService.getById(id);
             ResponseEntity<?> response = new ResponseEntity<>(sector, HttpStatus.OK);
             return response;
         } catch (Exception e) {
@@ -79,7 +91,12 @@ public class SectorController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveSector(@RequestBody Sector sector) {
         try {
-            sector.setId(0);
+        	
+        	SectorKey id = new SectorKey();
+        	id.setCanal(sector.getId().getCanal());
+        	id.setSector(sector.getId().getSector());
+        	
+            sector.setId(id);
             sectorService.save(sector);
             StatusResponse status = new StatusResponse("ok", "Sector saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -93,16 +110,19 @@ public class SectorController {
     }
 
     @ApiOperation(value = "Update a sector")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateSector(@PathVariable Integer id, @RequestBody Sector sector) {
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> updateSector(HttpServletRequest req, 
+										  @RequestParam(value = "canal", required = true) String idCanal,
+										  @RequestParam(value = "sector", required = true) String idSector, 
+										  @RequestBody Sector sector) {
         try {
+        	
+        	SectorKey id = new SectorKey();
+        	id.setCanal(sector.getId().getCanal());
+        	id.setSector(sector.getId().getSector());
+        	
             Sector stored = sectorService.getById(id);
-            if (null != sector.getCanal()) {
-                stored.setCanal(sector.getCanal());
-            }
-            if (null != sector.getSector()) {
-                stored.setSector(sector.getSector());
-            }
+            
             stored.setActivo(sector.isActivo());
             if (null != sector.getDescripcion()) {
                 stored.setDescripcion(sector.getDescripcion());
@@ -130,9 +150,16 @@ public class SectorController {
     }
 
     @ApiOperation(value = "Delete a sector")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
+    @RequestMapping(value = "/delete}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> delete(HttpServletRequest req, 
+			  						@RequestParam(value = "canal", required = true) String idCanal,
+			  						@RequestParam(value = "sector", required = true) String idSector) {
         try {
+        	
+        	SectorKey id = new SectorKey();
+        	id.setCanal(idCanal);
+        	id.setSector(idSector);
+        	
             sectorService.delete(id);
             StatusResponse status = new StatusResponse("ok", "Sector deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

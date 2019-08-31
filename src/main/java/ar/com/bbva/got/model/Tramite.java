@@ -33,13 +33,19 @@ public class Tramite {
     @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TramiteAutorizado> autorizado;
 
-    @ManyToOne
-    @JoinColumn(name = "sectorInicio")
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumns({
+    	  @JoinColumn(name = "canalInicio", insertable = true, updatable = false),
+    	  @JoinColumn(name = "sectorInicio", insertable = true, updatable = false)
+    	})
     @ApiModelProperty(notes = "The tramite sectorInicio")
     private Sector sectorInicio;
 
-    @ManyToOne
-    @JoinColumn(name = "sectorActual")
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumns({
+    	  @JoinColumn(name = "canalActual", insertable = true, updatable = false),
+    	  @JoinColumn(name = "sectorActual", insertable = true, updatable = false)
+    	})
     @ApiModelProperty(notes = "The tramite sectorActual")
     private Sector sectorActual;
 

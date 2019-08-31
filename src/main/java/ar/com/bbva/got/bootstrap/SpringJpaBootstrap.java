@@ -205,6 +205,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             // InputStream targetStream = new FileInputStream(initialFile);
             InputStream targetStream = TypeReference.class.getResourceAsStream("/json/tipoTramite.json");
             List<TipoTramite> tipoTramites = mapper.readValue(targetStream, typeReference);
+            
+            log.info("tipoTramites: " + tipoTramites.toString());
+            
             tipoTramiteService.save(tipoTramites);
             log.info("TipoTramite Saved!");
         } catch (IOException e) {
