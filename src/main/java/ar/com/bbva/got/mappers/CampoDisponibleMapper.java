@@ -1,13 +1,13 @@
-package ar.com.bbva.got.response.mappers;
+package ar.com.bbva.got.mappers;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 
+import ar.com.bbva.got.dto.CampoDisponibleDTO;
 import ar.com.bbva.got.model.CampoDisponible;
 import ar.com.bbva.got.model.TipoTramiteCampo;
-import ar.com.bbva.got.response.dto.CampoDisponibleDTO;
 
 public class CampoDisponibleMapper {
 	

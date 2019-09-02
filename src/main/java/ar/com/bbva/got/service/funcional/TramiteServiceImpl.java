@@ -2,15 +2,15 @@ package ar.com.bbva.got.service.funcional;
 
 import java.util.List;
 
-import ar.com.bbva.got.model.EstadoTramite;
-import ar.com.bbva.got.model.Sector;
-import ar.com.bbva.got.model.Tramite;
-import ar.com.bbva.got.repository.TramiteRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.bbva.got.model.EstadoTramite;
+import ar.com.bbva.got.model.Sector;
+import ar.com.bbva.got.model.Tramite;
+import ar.com.bbva.got.repository.TramiteRepository;
 
 @Service
 public class TramiteServiceImpl implements TramiteService {

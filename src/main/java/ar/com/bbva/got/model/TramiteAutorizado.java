@@ -1,12 +1,16 @@
 package ar.com.bbva.got.model;
 
-import javax.persistence.*;
+import java.util.Date;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

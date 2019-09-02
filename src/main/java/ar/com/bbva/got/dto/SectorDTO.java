@@ -1,4 +1,4 @@
-package ar.com.bbva.got.response.dto;
+package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
 
@@ -13,16 +13,16 @@ public class SectorDTO implements Serializable {
 
 	private static final long serialVersionUID = -5445678639117753177L;
 
-    @ApiModelProperty(notes = "The sector description")
+	@ApiModelProperty(notes = "The sector canal")
     private String canal;
-
-    @ApiModelProperty(notes = "The sector description")
+	
+	@ApiModelProperty(notes = "The sector sector")
     private String sector;
 	
 	@ApiModelProperty(notes = "The sector description")
     private String descripcion;
-    
-    @ApiModelProperty(notes = "The sector state")
+	
+	@ApiModelProperty(notes = "The sector activo")
     private boolean activo;
     
 }

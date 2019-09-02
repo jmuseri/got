@@ -2,14 +2,14 @@ package ar.com.bbva.got.service.funcional;
 
 import java.util.List;
 
-import ar.com.bbva.got.model.TramiteAutorizado;
-import ar.com.bbva.got.model.TramiteAutorizadoKey;
-import ar.com.bbva.got.repository.TramiteAutorizadoRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.bbva.got.model.TramiteAutorizado;
+import ar.com.bbva.got.model.TramiteAutorizadoKey;
+import ar.com.bbva.got.repository.TramiteAutorizadoRepository;
 
 @Service
 public class TramiteAutorizadoServiceImpl implements TramiteAutorizadoService {

@@ -1,6 +1,7 @@
 package ar.com.bbva.got.bean;
 
 import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.Data;

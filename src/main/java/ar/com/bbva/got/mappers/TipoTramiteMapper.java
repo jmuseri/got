@@ -1,9 +1,9 @@
-package ar.com.bbva.got.response.mappers;
+package ar.com.bbva.got.mappers;
 
 import org.springframework.beans.BeanUtils;
 
+import ar.com.bbva.got.dto.TipoTramiteDTO;
 import ar.com.bbva.got.model.TipoTramite;
-import ar.com.bbva.got.response.dto.TipoTramiteDTO;
 
 public class TipoTramiteMapper {
 	

@@ -1,4 +1,4 @@
-package ar.com.bbva.got.response.dto;
+package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -13,14 +13,18 @@ import lombok.Data;
 public class TipoTramiteDTO implements Serializable {
 
 	private static final long serialVersionUID = -5445678639117753177L;
-
-	private Integer id;
+	
+	@ApiModelProperty(notes = "The database generated tipoTramite ID")
+    private Integer id;
 
     @ApiModelProperty(notes = "The tipoTramite descripcion")
     private String descripcion;
 
     @ApiModelProperty(notes = "The tipoTramite cobraComision")
     private boolean cobraComision;
+
+    @ApiModelProperty(notes = "The tipoTramite comision")
+    private ComisionDTO comision;
 
     @ApiModelProperty(notes = "The tipoTramite requiereDocumentacion")
     private boolean requiereDocumentacion;
@@ -34,7 +38,7 @@ public class TipoTramiteDTO implements Serializable {
     @ApiModelProperty(notes = "The tramite sectorInicial")
     private SectorDTO sectorInicial;
 
-    @ApiModelProperty(notes = "The campos sector")
+    @ApiModelProperty(notes = "The CampoDisponible sector")
     private Set<CampoDisponibleDTO> campos;
 
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
@@ -42,6 +46,5 @@ public class TipoTramiteDTO implements Serializable {
 
     @ApiModelProperty(notes = "The tipoTramite horasVencimiento")
     private Long horasVencimiento;
-    
     
 }

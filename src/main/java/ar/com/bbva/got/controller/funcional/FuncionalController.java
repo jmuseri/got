@@ -2,6 +2,7 @@ package ar.com.bbva.got.controller.funcional;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -20,19 +21,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.bbva.got.bean.StatusResponse;
+import ar.com.bbva.got.dto.AutorizadoDTO;
+import ar.com.bbva.got.dto.CampoDisponibleDTO;
+import ar.com.bbva.got.dto.TipoTramiteDTO;
+import ar.com.bbva.got.mappers.AutorizadoMapper;
+import ar.com.bbva.got.mappers.CampoDisponibleMapper;
+import ar.com.bbva.got.mappers.TipoTramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
-import ar.com.bbva.got.model.Comision;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.TipoTramite;
-import ar.com.bbva.got.response.dto.AutorizadoDTO;
-import ar.com.bbva.got.response.dto.CampoDisponibleDTO;
-import ar.com.bbva.got.response.dto.RequestAutorizadoDTO;
-import ar.com.bbva.got.response.dto.TipoTramiteDTO;
-import ar.com.bbva.got.response.mappers.AutorizadoMapper;
-import ar.com.bbva.got.response.mappers.CampoDisponibleMapper;
-import ar.com.bbva.got.response.mappers.RequestAutorizadoMapper;
-import ar.com.bbva.got.response.mappers.TipoTramiteMapper;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
@@ -64,7 +62,7 @@ public class FuncionalController {
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @RequestMapping(value = "tipoTramite/list", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "tipoTramites", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> list(HttpServletRequest req,
             @RequestParam(value = "activo", required = false) boolean activo,
             @RequestParam(value = "canal", required = false) String idCanal,
@@ -108,7 +106,7 @@ public class FuncionalController {
             @ApiResponse(code = 403, message = ""
             		+ "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @RequestMapping(value = "tipoTramite/{id}/camposDisponibles", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "tipoTramites/{id}/camposDisponibles", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listCampoDisponible(@PathVariable Integer id) throws ParseException {
         
     	try {
@@ -162,14 +160,20 @@ public class FuncionalController {
         }
     }
     
-    @ApiOperation(value = "Add autorizado")
-    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveAutorizado(@RequestBody RequestAutorizadoDTO autorizadoDTO) {
+    @ApiOperation(value = "Add autorizados")
+    @RequestMapping(value = "/autorizados/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> addAutorizados(@RequestBody List<AutorizadoDTO> listAutorizadoDTO,
+    										@RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	
-        	
-        	Autorizado autorizado = RequestAutorizadoMapper.DTOtoModel(autorizadoDTO);
-        	autorizadoService.save(autorizado);
+        	for (AutorizadoDTO autorizadoDTO : listAutorizadoDTO) {
+        		Autorizado autorizado = AutorizadoMapper.DTOtoModel(autorizadoDTO);
+        		autorizado.setUsuAlta(usuario);
+        		autorizado.setUsuModif(usuario);
+        		autorizado.setFechaAlta(new Date());
+        		autorizado.setFechaModif(new Date());
+            	autorizadoService.save(autorizado);
+			}
         	
             StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);

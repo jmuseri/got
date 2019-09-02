@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,13 +36,6 @@ import ar.com.bbva.got.service.parametria.EstadoTramiteService;
 import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteCampoService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
 
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {

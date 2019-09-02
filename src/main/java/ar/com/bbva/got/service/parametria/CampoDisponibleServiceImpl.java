@@ -2,13 +2,13 @@ package ar.com.bbva.got.service.parametria;
 
 import java.util.List;
 
-import ar.com.bbva.got.model.CampoDisponible;
-import ar.com.bbva.got.repository.CampoDisponibleRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.bbva.got.model.CampoDisponible;
+import ar.com.bbva.got.repository.CampoDisponibleRepository;
 
 @Service
 public class CampoDisponibleServiceImpl implements CampoDisponibleService {

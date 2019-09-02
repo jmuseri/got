@@ -2,14 +2,14 @@ package ar.com.bbva.got.service.parametria;
 
 import java.util.List;
 
-import ar.com.bbva.got.model.TipoTramiteCampo;
-import ar.com.bbva.got.model.TipoTramiteCampoKey;
-import ar.com.bbva.got.repository.TipoTramiteCampoRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import ar.com.bbva.got.model.TipoTramiteCampo;
+import ar.com.bbva.got.model.TipoTramiteCampoKey;
+import ar.com.bbva.got.repository.TipoTramiteCampoRepository;
 
 @Service
 public class TipoTramiteCampoServiceImpl implements TipoTramiteCampoService {
