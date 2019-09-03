@@ -49,7 +49,7 @@ public class FuncionalController {
 	@Autowired
     private AutorizadoService autorizadoService;
     
-    
+    //Comentario commit lea!!!
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     
