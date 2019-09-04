@@ -16,6 +16,32 @@
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
       "fechaModif": null
+    },
+    {
+      "id": 2,
+      "nombre": "gestion",
+      "descripcion": "",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 3,
+      "nombre": "finalizado",
+      "descripcion": "",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": 4,
+      "nombre": "rechazado",
+      "descripcion": "",
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
     }
-    
   ]

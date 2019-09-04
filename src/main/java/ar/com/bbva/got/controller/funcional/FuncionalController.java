@@ -27,11 +27,16 @@ import ar.com.bbva.got.dto.TipoTramiteDTO;
 import ar.com.bbva.got.mappers.AutorizadoMapper;
 import ar.com.bbva.got.mappers.CampoDisponibleMapper;
 import ar.com.bbva.got.mappers.TipoTramiteMapper;
+import ar.com.bbva.got.mappers.TramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
+import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.TipoTramite;
+import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
+import ar.com.bbva.got.service.funcional.TramiteService;
+import ar.com.bbva.got.service.parametria.EstadoTramiteService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +51,12 @@ public class FuncionalController {
 	@Autowired
     private TipoTramiteService tipoTramiteService;
     
+	@Autowired
+    private TramiteService tramiteService;
+	
+	@Autowired
+    private EstadoTramiteService estadoTramiteService;
+		    	
 	@Autowired
     private AutorizadoService autorizadoService;
     
@@ -187,5 +198,113 @@ public class FuncionalController {
             return response;
         }
     }
+    
+//    @ApiOperation(value = "Add tramites")
+//    @RequestMapping(value = "/tramites/add", method = RequestMethod.POST, produces = "application/json")
+//    public ResponseEntity<?> addTramites(@RequestBody List<TramiteDTO> listTramiteDTO,
+//    									 @RequestParam(value = "usuario", required = false) String usuario) {
+//        try {
+//        	
+//        	for(TramiteDTO tramiteDTO : listTramiteDTO) {
+//        		
+//        		Tramite tramite = TramiteMapper.DTOtoModel(tramiteDTO);
+//        		
+//        	}
+//        	
+//          	
+//            StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
+//            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+//            return response;
+//            
+//            
+//        } catch (Exception e) {
+//            logger.error("", e);
+//            StatusResponse statusResponse = new StatusResponse("error", "Autorizado no insertado", e.getMessage());
+//            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//            return response;
+//        }
+//    }
 
+    
+    @ApiOperation(value = "Gestionar tramites")
+    @RequestMapping(value = "/tramites/{id}/gestionar", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> gestionarTramites(@RequestParam (value = "id", required = true) Integer id,
+    										   @RequestParam(value = "usuario", required = false) String usuario) {
+        try {
+        	       	
+        	EstadoTramite estadoGestionar = estadoTramiteService.getById(2) ;
+        	Tramite tramite = tramiteService.getById(id);
+        	tramite.setEstado(estadoGestionar);
+        	tramite.setUsuModif(usuario);
+        	tramite.setFechaModif(new Date());
+        	tramiteService.save(tramite);
+        	
+          	
+            StatusResponse status = new StatusResponse("ok", "Tramite en estado Gestionar", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+            
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    @ApiOperation(value = "Finalizar tramites")
+    @RequestMapping(value = "/tramites/{id}/finalizar", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> finalizarTramites(@RequestParam (value = "id", required = true) Integer id,
+    										   @RequestParam(value = "usuario", required = false) String usuario) {
+        try {
+        	       	
+        	EstadoTramite estadoGestionar = estadoTramiteService.getById(3) ;
+        	Tramite tramite = tramiteService.getById(id);
+        	tramite.setEstado(estadoGestionar);
+        	tramite.setUsuModif(usuario);
+        	tramite.setFechaModif(new Date());
+        	tramiteService.save(tramite);
+        	
+          	
+            StatusResponse status = new StatusResponse("ok", "Tramite en estado Finalizar", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+            
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    @ApiOperation(value = "Rechazar tramites")
+    @RequestMapping(value = "/tramites/{id}/rechazar", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> rechazarTramites(@RequestParam (value = "id", required = true) Integer id,
+    										  @RequestParam(value = "usuario", required = false) String usuario) {
+        try {
+        	       	
+        	EstadoTramite estadoGestionar = estadoTramiteService.getById(4) ;
+        	Tramite tramite = tramiteService.getById(id);
+        	tramite.setEstado(estadoGestionar);
+        	tramite.setUsuModif(usuario);
+        	tramite.setFechaModif(new Date());
+        	tramiteService.save(tramite);
+        	
+          	
+            StatusResponse status = new StatusResponse("ok", "Tramite en estado Rechazar", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+            
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
 }
