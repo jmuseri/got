@@ -264,7 +264,7 @@ public class TramiteController {
     @ApiOperation(value = "Update a tramiteDetalle")
     @RequestMapping(value = "/detalle/update/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateTramiteDetalle(@PathVariable Integer tramiteId,
-            @PathVariable Integer tipoTramiteCampoId, @PathVariable Integer campoDisponibleId,
+            @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId,
             @RequestBody TramiteDetalle tramiteDetalle) {
         try {
             TramiteDetalle stored = this.tramiteDetalleService
@@ -297,7 +297,7 @@ public class TramiteController {
     @ApiOperation(value = "Search a tramiteDetalle with an ID")
     @RequestMapping(value = "/detalle/show/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> showTramiteDetalle(@PathVariable Integer tramiteId,
-            @PathVariable Integer tipoTramiteCampoId, @PathVariable Integer campoDisponibleId, Model model) {
+            @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId, Model model) {
         try {
             TramiteDetalle tramiteDetalleSaved = this.tramiteDetalleService
                     .getById(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
@@ -314,7 +314,7 @@ public class TramiteController {
     @ApiOperation(value = "Delete a tramiteDetalle")
     @RequestMapping(value = "/detalle/delete/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteTramiteDetalle(@PathVariable Integer tramiteId,
-            @PathVariable Integer tipoTramiteCampoId, @PathVariable Integer campoDisponibleId, Model model) {
+            @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId, Model model) {
         try {
             tramiteDetalleService.delete(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle deleted successfully", null);

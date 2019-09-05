@@ -23,7 +23,7 @@ public class TramiteDetalleKey implements Serializable {
     public TramiteDetalleKey() {
     }
 
-    public TramiteDetalleKey(Integer tramiteId, Integer tipoTramiteId, Integer campoDisponibleId) {
+    public TramiteDetalleKey(Integer tramiteId, Integer tipoTramiteId, String campoDisponibleId) {
         this.tramiteId = tramiteId;
         this.tipoTramiteCampoId = new TipoTramiteCampoKey(tipoTramiteId, campoDisponibleId);
     }

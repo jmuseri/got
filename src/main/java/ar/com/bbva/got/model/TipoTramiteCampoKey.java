@@ -18,12 +18,12 @@ public class TipoTramiteCampoKey implements Serializable {
     Integer tipoTramiteId;
 
     @Column(name = "campo_disponible_id")
-    Integer campoDisponibleId;
+    String campoDisponibleId;
 
     public TipoTramiteCampoKey() {
     }
 
-    public TipoTramiteCampoKey(Integer tipoTramiteId, Integer campoDisponibleId) {
+    public TipoTramiteCampoKey(Integer tipoTramiteId, String campoDisponibleId) {
         this.tipoTramiteId = tipoTramiteId;
         this.campoDisponibleId = campoDisponibleId;
     }

@@ -3,10 +3,7 @@ package ar.com.bbva.got.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,11 +17,10 @@ import lombok.Data;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CampoDisponible {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="campo_disponible_seq_gen")
-	@SequenceGenerator(name="campo_disponible_seq_gen", sequenceName="CAMPO_DISPONIBLE_SEQ")
+
+	@Id
     @ApiModelProperty(notes = "The database campoDisponible ID", required = true)
-    private Integer id;
+    private String id;
     @ApiModelProperty(notes = "The campoDisponible name", required = true)
     private String nombre;
     @ApiModelProperty(notes = "The campoDisponible description")

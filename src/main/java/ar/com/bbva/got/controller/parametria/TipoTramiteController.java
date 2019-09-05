@@ -339,7 +339,7 @@ public class TipoTramiteController {
         try {
             if (null == tipoTramiteCampo || null == tipoTramiteCampo.getId()
                     || tipoTramiteCampo.getId().getTipoTramiteId() == 0
-                    || tipoTramiteCampo.getId().getCampoDisponibleId() == 0) {
+                    || tipoTramiteCampo.getId().getCampoDisponibleId().equals("")) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
@@ -351,8 +351,8 @@ public class TipoTramiteController {
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
                 return response;
             }
-            int campoDisponibleId = Integer.parseInt(tipoTramiteCampo.getId().getCampoDisponibleId().toString());
-            CampoDisponible campoDisponible = campoDisponibleService.getById(campoDisponibleId);
+            
+            CampoDisponible campoDisponible = campoDisponibleService.getById(tipoTramiteCampo.getId().getCampoDisponibleId());
             if (null == campoDisponible) {
                 StatusResponse status = new StatusResponse("error", "CampoDisponible doesn't exist", null);
                 ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -373,7 +373,7 @@ public class TipoTramiteController {
 
     @ApiOperation(value = "Delete a tipoTramiteCampo in tipoTramite")
     @RequestMapping(value = "/campoDisponible/delete/{tipoTramiteid}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer tipoTramiteId, @PathVariable Integer campoDisponibleId,
+    public ResponseEntity<?> delete(@PathVariable Integer tipoTramiteId, @PathVariable String campoDisponibleId,
             @RequestBody TipoTramiteCampo tipoTramiteCampo) {
         try {
             if (null == tipoTramiteCampo || null == tipoTramiteId || null == campoDisponibleId) {
@@ -403,7 +403,7 @@ public class TipoTramiteController {
     @ApiOperation(value = "Update a tipoTramiteCampo in tipoTramite")
     @RequestMapping(value = "/campoDisponible/update/{tipoTramiteid}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateTipoTramite(@PathVariable Integer tipoTramiteId,
-            @PathVariable Integer campoDisponibleId, @RequestBody TipoTramiteCampo tipoTramiteCampo) {
+            @PathVariable String campoDisponibleId, @RequestBody TipoTramiteCampo tipoTramiteCampo) {
         try {
             if (null == tipoTramiteCampo || null == tipoTramiteId || null == campoDisponibleId) {
                 StatusResponse status = new StatusResponse("error", "Error Input data", null);

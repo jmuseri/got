@@ -54,7 +54,7 @@ public class CampoDisponibleController {
 
     @ApiOperation(value = "Search a campoDisponible with an ID", response = CampoDisponible.class)
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showEstadoTramite(@PathVariable Integer id, Model model) {
+    public ResponseEntity<?> showEstadoTramite(@PathVariable String id, Model model) {
         try {
             CampoDisponible comision = campoDisponibleService.getById(id);
             ResponseEntity<?> response = new ResponseEntity<>(comision, HttpStatus.OK);
@@ -71,7 +71,6 @@ public class CampoDisponibleController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> saveEstadoTramite(@RequestBody CampoDisponible campoDisponible) {
         try {
-            campoDisponible.setId(0);
             campoDisponibleService.save(campoDisponible);
             StatusResponse status = new StatusResponse("ok", "CampoDisponible saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -86,7 +85,7 @@ public class CampoDisponibleController {
 
     @ApiOperation(value = "Update a campoDisponible")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateEstadoTramite(@PathVariable Integer id,
+    public ResponseEntity<?> updateEstadoTramite(@PathVariable String id,
             @RequestBody CampoDisponible campoDisponible) {
         try {
             CampoDisponible stored = campoDisponibleService.getById(id);
@@ -126,7 +125,7 @@ public class CampoDisponibleController {
 
     @ApiOperation(value = "Delete a campoDisponible")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
+    public ResponseEntity<?> delete(@PathVariable String id) {
         try {
             campoDisponibleService.delete(id);
             StatusResponse status = new StatusResponse("ok", "CampoDisponible deleted successfully", null);

@@ -27,7 +27,7 @@ public class CampoDisponibleServiceImpl implements CampoDisponibleService {
     }
 
     @Override
-    public CampoDisponible getById(Integer id) {
+    public CampoDisponible getById(String id) {
         logger.debug("getById called");
         return this.campoDisponibleRepository.findById(id).orElse(null);
     }
@@ -45,7 +45,7 @@ public class CampoDisponibleServiceImpl implements CampoDisponibleService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(String id) {
         logger.debug("delete called");
         this.campoDisponibleRepository.deleteById(id);
     }

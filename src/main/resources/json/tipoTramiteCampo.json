@@ -2,7 +2,7 @@
   {
     "id": {
       "tipoTramiteId": 1,
-      "campoDisponibleId": 1
+      "campoDisponibleId": "cuenta"
     },
     "obligatorio": true,
     "activo": true,
@@ -16,7 +16,7 @@
   {
     "id": {
       "tipoTramiteId": 1,
-      "campoDisponibleId": 7
+      "campoDisponibleId": "cantidad"
     },
     "obligatorio": true,
     "activo": true,
@@ -30,7 +30,7 @@
   {
     "id": {
       "tipoTramiteId": 2,
-      "campoDisponibleId": 1
+      "campoDisponibleId": "cuenta"
     },
     "obligatorio": true,
     "activo": true,
@@ -44,7 +44,7 @@
   {
     "id": {
       "tipoTramiteId": 2,
-      "campoDisponibleId": 7
+      "campoDisponibleId": "cantidad"
     },
     "obligatorio": true,
     "activo": true,
@@ -58,7 +58,7 @@
   {
     "id": {
       "tipoTramiteId": 3,
-      "campoDisponibleId": 1
+      "campoDisponibleId": "cuenta"
     },
     "obligatorio": true,
     "activo": true,
@@ -72,7 +72,7 @@
   {
     "id": {
       "tipoTramiteId": 3,
-      "campoDisponibleId": 6
+      "campoDisponibleId": "cuenta"
     },
     "obligatorio": true,
     "activo": true,
@@ -86,7 +86,7 @@
   {
     "id": {
       "tipoTramiteId": 3,
-      "campoDisponibleId": 5
+      "campoDisponibleId": "rangoMes"
     },
     "obligatorio": true,
     "activo": true,
@@ -100,7 +100,7 @@
   {
     "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": 3
+      "campoDisponibleId": "cuenta"
     },
     "obligatorio": true,
     "activo": true,
@@ -114,7 +114,7 @@
   {
     "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": 3
+      "campoDisponibleId": "textoLargo"
     },
     "obligatorio": true,
     "activo": true,
@@ -128,7 +128,7 @@
   {
     "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": 4
+      "campoDisponibleId": "cantidad"
     },
     "obligatorio": true,
     "activo": true,
@@ -142,7 +142,7 @@
   {
     "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": 2
+      "campoDisponibleId": "sucursal"
     },
     "obligatorio": true,
     "activo": true,
