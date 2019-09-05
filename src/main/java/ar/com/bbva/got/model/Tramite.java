@@ -38,7 +38,7 @@ public class Tramite {
     private TipoTramite tipoTramite;
 
     @ApiModelProperty(notes = "The tramite clienteId")
-    private Integer clienteId;
+    private Integer nroClienteEmpresa;
 
     @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TramiteAutorizado> autorizado;

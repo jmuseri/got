@@ -21,7 +21,8 @@ import lombok.Data;
 @Table(name = "tramite_autorizado")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TramiteAutorizado {
-    @EmbeddedId
+    
+	@EmbeddedId
     private TramiteAutorizadoKey id;
 
     @ManyToOne

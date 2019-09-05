@@ -21,22 +21,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.bbva.got.bean.StatusResponse;
+import ar.com.bbva.got.dto.AltaTramiteDTO;
 import ar.com.bbva.got.dto.AutorizadoDTO;
 import ar.com.bbva.got.dto.CampoDisponibleDTO;
 import ar.com.bbva.got.dto.TipoTramiteDTO;
 import ar.com.bbva.got.mappers.AutorizadoMapper;
 import ar.com.bbva.got.mappers.CampoDisponibleMapper;
 import ar.com.bbva.got.mappers.TipoTramiteMapper;
-import ar.com.bbva.got.mappers.TramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.Tramite;
+import ar.com.bbva.got.model.TramiteAutorizado;
+import ar.com.bbva.got.model.TramiteAutorizadoKey;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
+import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteService;
 import ar.com.bbva.got.service.parametria.EstadoTramiteService;
+import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,6 +63,13 @@ public class FuncionalController {
 		    	
 	@Autowired
     private AutorizadoService autorizadoService;
+	
+	@Autowired
+    private SectorService sectorService;
+	
+	@Autowired
+    private TramiteAutorizadoService tramiteAutorizadoService;
+	
     
     //Comentario commit lea!!!
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -199,31 +210,102 @@ public class FuncionalController {
         }
     }
     
-//    @ApiOperation(value = "Add tramites")
-//    @RequestMapping(value = "/tramites/add", method = RequestMethod.POST, produces = "application/json")
-//    public ResponseEntity<?> addTramites(@RequestBody List<TramiteDTO> listTramiteDTO,
-//    									 @RequestParam(value = "usuario", required = false) String usuario) {
-//        try {
-//        	
-//        	for(TramiteDTO tramiteDTO : listTramiteDTO) {
-//        		
-//        		Tramite tramite = TramiteMapper.DTOtoModel(tramiteDTO);
-//        		
-//        	}
-//        	
-//          	
-//            StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
-//            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-//            return response;
-//            
-//            
-//        } catch (Exception e) {
-//            logger.error("", e);
-//            StatusResponse statusResponse = new StatusResponse("error", "Autorizado no insertado", e.getMessage());
-//            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-//            return response;
-//        }
-//    }
+    @ApiOperation(value = "Add tramite")
+    @RequestMapping(value = "/tramites/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> addTramite(@RequestBody AltaTramiteDTO altaTramiteDTO) {
+        try {
+        	
+        	
+        	Tramite tramite = new Tramite();
+        	
+        	tramite.setNroClienteEmpresa(altaTramiteDTO.getNroClienteEmpresa());
+        	tramite.setCuentaCobro(altaTramiteDTO.getCuentaCobro());
+        	
+        	TipoTramite tipoTramite = tipoTramiteService.getById(altaTramiteDTO.getIdTipoTramite());
+        	
+        	if (tipoTramite == null) {
+        		logger.error("Tipo de tramite no encontrado");
+                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Tipo de tramite no encontrado");
+                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                return response;
+        	}
+        	tramite.setTipoTramite(tipoTramite);
+
+        	EstadoTramite estadoActivo = new EstadoTramite();
+        	estadoActivo.setId(1);
+        	tramite.setEstado(estadoActivo);
+        	
+            Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta());
+            
+            if (sectorAlta == null) {
+        		logger.error("Sector no encontrado");
+                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Sector no encontrado");
+                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                return response;
+        	} 
+        	tramite.setSectorActual(sectorAlta);
+        	tramite.setSectorInicio(sectorAlta);
+        	
+        	List<TramiteAutorizado> listaAutorizados = new ArrayList<TramiteAutorizado>();
+        	
+        	for (Integer idAutorizado : altaTramiteDTO.getIdAutorizados()) {
+        		
+        		TramiteAutorizado tramiteAutorizado = new TramiteAutorizado();
+        		Autorizado autorizado = autorizadoService.getById(idAutorizado);
+        		
+        		if (autorizado == null) {
+            		logger.error("Autorizado no encontrado");
+                    StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no encontrado");
+                    ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                    return response;
+            	}
+        		
+        		if (!autorizado.getNroClienteEmpresa().equals(altaTramiteDTO.getNroClienteEmpresa())) {
+        			logger.error("Autorizado no corresponde a la empresa");
+                    StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no corresponde a la empresa");
+                    ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                    return response;
+        		}
+        		
+        		TramiteAutorizadoKey tramiteAutorizadoKey = new TramiteAutorizadoKey();
+        		tramiteAutorizadoKey.setAutorizadoId(idAutorizado);
+        		tramiteAutorizadoKey.setTramiteId(0);
+        		
+        		tramiteAutorizado.setId(tramiteAutorizadoKey);
+        		tramiteAutorizado.setAutorizado(autorizado);
+        		tramiteAutorizado.setFechaAlta(new Date());
+        		tramiteAutorizado.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+        		
+        		listaAutorizados.add(tramiteAutorizado);
+			}
+        	
+        	tramite.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+        	tramite.setUsuModif(altaTramiteDTO.getUsuarioAlta());
+        	tramite.setFechaAlta(new Date());
+        	tramite.setFechaInicio(new Date());
+        	tramite.setFechaModif(new Date());
+        	
+        	tramite = tramiteService.save(tramite);
+        	
+        	for (TramiteAutorizado tramiteAutorizado : listaAutorizados) {
+        		tramiteAutorizado.getId().setTramiteId(tramite.getId());
+			}
+        	
+        	tramiteAutorizadoService.save(listaAutorizados);
+        	
+          	
+            StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+            
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Autorizado no insertado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
 
     
     @ApiOperation(value = "Gestionar tramites")

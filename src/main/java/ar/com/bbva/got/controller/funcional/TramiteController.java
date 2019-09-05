@@ -123,8 +123,8 @@ public class TramiteController {
             if (null != tramite.getTipoTramite()) {
                 stored.setTipoTramite(tramite.getTipoTramite());
             }
-            if (null != tramite.getClienteId()) {
-                stored.setClienteId(tramite.getClienteId());
+            if (null != tramite.getNroClienteEmpresa()) {
+                stored.setNroClienteEmpresa(tramite.getNroClienteEmpresa());
             }
             if (null != tramite.getSectorInicio()) {
                 stored.setSectorInicio(tramite.getSectorInicio());
