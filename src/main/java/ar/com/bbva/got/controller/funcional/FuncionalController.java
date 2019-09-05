@@ -228,7 +228,7 @@ public class FuncionalController {
     
     @ApiOperation(value = "Gestionar tramites")
     @RequestMapping(value = "/tramites/{id}/gestionar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> gestionarTramites(@RequestParam (value = "id", required = true) Integer id,
+    public ResponseEntity<?> gestionarTramites(@PathVariable Integer id,
     										   @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
@@ -255,7 +255,7 @@ public class FuncionalController {
     
     @ApiOperation(value = "Finalizar tramites")
     @RequestMapping(value = "/tramites/{id}/finalizar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> finalizarTramites(@RequestParam (value = "id", required = true) Integer id,
+    public ResponseEntity<?> finalizarTramites(@PathVariable Integer id,
     										   @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
@@ -282,7 +282,7 @@ public class FuncionalController {
     
     @ApiOperation(value = "Rechazar tramites")
     @RequestMapping(value = "/tramites/{id}/rechazar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> rechazarTramites(@RequestParam (value = "id", required = true) Integer id,
+    public ResponseEntity<?> rechazarTramites(@PathVariable Integer id,
     										  @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
