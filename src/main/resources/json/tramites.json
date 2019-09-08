@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "tipoTramite": { "id": 4 },
+      "tipoTramite": { "id": 1 },
       "nroClienteEmpresa": 3534520,
       "autorizado": null,
       "sectorInicio": {"id": { "canal": "web", "sector": "FNC" } },

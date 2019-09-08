@@ -25,9 +25,11 @@ import ar.com.bbva.got.dto.AltaTramiteDTO;
 import ar.com.bbva.got.dto.AutorizadoDTO;
 import ar.com.bbva.got.dto.CampoDisponibleDTO;
 import ar.com.bbva.got.dto.TipoTramiteDTO;
+import ar.com.bbva.got.dto.TramiteDTO;
 import ar.com.bbva.got.mappers.AutorizadoMapper;
 import ar.com.bbva.got.mappers.CampoDisponibleMapper;
 import ar.com.bbva.got.mappers.TipoTramiteMapper;
+import ar.com.bbva.got.mappers.TramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
@@ -70,7 +72,6 @@ public class FuncionalController {
 	@Autowired
     private TramiteAutorizadoService tramiteAutorizadoService;
 	
-    
     //Comentario commit lea!!!
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -380,6 +381,26 @@ public class FuncionalController {
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
             
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    @ApiOperation(value = "show tramite detail")
+    @RequestMapping(value = "/tramites/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> getTramite(@PathVariable Integer id) {
+        
+    	try {
+        	       	
+        	Tramite tramite = tramiteService.getById(id);
+        	TramiteDTO dto = TramiteMapper.modelToDTO(tramite);
+        	
+        	ResponseEntity<?> response = new ResponseEntity<>(dto, HttpStatus.OK);
+            return response;
             
         } catch (Exception e) {
             logger.error("", e);

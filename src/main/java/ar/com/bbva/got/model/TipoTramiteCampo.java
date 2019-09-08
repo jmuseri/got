@@ -32,14 +32,6 @@ public class TipoTramiteCampo {
     @ApiModelProperty(notes = "The tipoTramiteCampo campoDisponible")
     private CampoDisponible campoDisponible;
 
-    /*
-    @ManyToOne
-    @MapsId("tipo_tramite_id")
-    @JoinColumn(name = "tipo_tramite_id")
-    @ApiModelProperty(notes = "The tipoTramiteCampo tipoTramite")
-    private TipoTramite tipoTramite;
-    */
-
     @ApiModelProperty(notes = "The tipoTramiteCampo obligatorio")
     private boolean obligatorio;
 

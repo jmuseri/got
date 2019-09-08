@@ -19,7 +19,8 @@ import lombok.Data;
 @Table(name = "tramite_detalle")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class TramiteDetalle {
-    @EmbeddedId
+    
+	@EmbeddedId
     private TramiteDetalleKey id;
 
     @ApiModelProperty(notes = "The tramiteDetalle valor")
