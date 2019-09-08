@@ -67,7 +67,6 @@ public class Tramite {
 
     @ApiModelProperty(notes = "The tramite cuentaCobro")
     private String cuentaCobro;
-
     
     @ApiModelProperty(notes = "The tramite estado")
     @Enumerated(EnumType.STRING)

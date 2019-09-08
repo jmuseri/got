@@ -34,6 +34,9 @@ public class TramiteMapper {
 		TramiteDTO dto = new TramiteDTO();
 		
 		BeanUtils.copyProperties(model, dto);
+		
+		dto.setSectorActual(SectorMapper.modelToDTO(model.getSectorActual()));
+		dto.setSectorInicio(SectorMapper.modelToDTO(model.getSectorInicio()));
     	
     	List<AutorizadoDTO> listaAutorizados = new ArrayList<AutorizadoDTO>();
     	for (TramiteAutorizado autorizado : model.getAutorizado()) {
@@ -49,10 +52,12 @@ public class TramiteMapper {
     		CampoDetalleDTO detalleDto = new CampoDetalleDTO();
     		
     		TipoTramiteCampo campo = getTipoTramiteCampo(detalle.getId().getTipoTramiteCampoId(), model.getTipoTramite().getCampos());
+    		if (campo != null) {
+    			detalleDto.setNombre(campo.getNombre());
+        		detalleDto.setValor(detalle.getValor());
+        		listaDetalle.add(detalleDto);
+    		}
     		
-    		detalleDto.setNombre(campo.getNombre());
-    		detalleDto.setValor(detalle.getValor());
-    		listaDetalle.add(detalleDto);
 		}
     	dto.setDetalle(listaDetalle);
     	

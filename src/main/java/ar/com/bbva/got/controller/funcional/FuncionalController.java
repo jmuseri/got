@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.bbva.got.bean.StatusResponse;
 import ar.com.bbva.got.dto.AltaTramiteDTO;
 import ar.com.bbva.got.dto.AutorizadoDTO;
+import ar.com.bbva.got.dto.CampoDetalleDTO;
 import ar.com.bbva.got.dto.CampoDisponibleDTO;
 import ar.com.bbva.got.dto.TipoTramiteDTO;
 import ar.com.bbva.got.dto.TramiteDTO;
@@ -35,11 +36,15 @@ import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.TipoTramite;
+import ar.com.bbva.got.model.TipoTramiteCampo;
 import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.model.TramiteAutorizadoKey;
+import ar.com.bbva.got.model.TramiteDetalle;
+import ar.com.bbva.got.model.TramiteDetalleKey;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
+import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
 import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
@@ -67,6 +72,9 @@ public class FuncionalController {
 	
 	@Autowired
     private TramiteAutorizadoService tramiteAutorizadoService;
+	
+	@Autowired
+	private TramiteDetalleService tramiteDetalleService; 
 	
     //Comentario commit lea!!!
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -287,6 +295,35 @@ public class FuncionalController {
         	
         	tramiteAutorizadoService.save(listaAutorizados);
         	
+        	List<TramiteDetalle> listaDetalles = new ArrayList<TramiteDetalle>();
+        	for (CampoDetalleDTO campoDetalleDTO : altaTramiteDTO.getDetalle()) {
+        		TramiteDetalle tramiteDetalle = new TramiteDetalle();
+        		
+        		TipoTramiteCampo tipoTramiteCampo = getTipoTramiteCampoByName(campoDetalleDTO.getNombre(), tipoTramite.getCampos());
+        		
+        		if (tipoTramiteCampo == null) {
+        			logger.error("Campo ingresado no corresponde al tipo de tramite");
+                    StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Campo ingresado no corresponde al tipo de tramite");
+                    ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                    return response;
+        		}
+        		
+        		TramiteDetalleKey tramiteDetalleKey = new TramiteDetalleKey();
+        		tramiteDetalleKey.setTramiteId(tramite.getId());
+        		tramiteDetalleKey.setTipoTramiteCampoId(tipoTramiteCampo.getId());
+        		
+        		tramiteDetalle.setId(tramiteDetalleKey);
+        		tramiteDetalle.setFechaAlta(new Date());
+        		tramiteDetalle.setFechaModif(new Date());
+        		tramiteDetalle.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+        		tramiteDetalle.setUsuModif(altaTramiteDTO.getUsuarioAlta());
+        		tramiteDetalle.setValor(campoDetalleDTO.getValor());
+        		
+        		listaDetalles.add(tramiteDetalle);
+			}
+        	
+        	tramiteDetalleService.save(listaDetalles);
+        	
           	
             StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -301,6 +338,15 @@ public class FuncionalController {
         }
     }
 
+    private static TipoTramiteCampo getTipoTramiteCampoByName (String nombreCampo, Set<TipoTramiteCampo> campos) {
+		
+		for (TipoTramiteCampo tipoTramiteCampo : campos) {
+			if (tipoTramiteCampo.getNombre().equals(nombreCampo)) {
+				return tipoTramiteCampo;
+			}
+		}
+		return null;
+	} 
     
     @ApiOperation(value = "Gestionar tramites")
     @RequestMapping(value = "/tramites/{id}/gestionar", method = RequestMethod.POST, produces = "application/json")

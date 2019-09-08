@@ -1,7 +1,7 @@
 package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -18,11 +18,11 @@ public class AltaTramiteDTO implements Serializable {
 
     private Integer nroClienteEmpresa;
 
-    private Set<Integer> idAutorizados;
+    private List<Integer> idAutorizados;
 
     private SectorKey sectorAlta;
 
-    //private Set<TramiteDetalle> detalle;
+    private List<CampoDetalleDTO> detalle;
     private String cuentaCobro;
     
     private String UsuarioAlta;
