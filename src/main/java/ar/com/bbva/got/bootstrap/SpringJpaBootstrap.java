@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.CampoDisponible;
 import ar.com.bbva.got.model.Comision;
-import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.TipoTramiteCampo;
@@ -32,7 +31,6 @@ import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
 import ar.com.bbva.got.service.parametria.CampoDisponibleService;
 import ar.com.bbva.got.service.parametria.ComisionService;
-import ar.com.bbva.got.service.parametria.EstadoTramiteService;
 import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteCampoService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
@@ -42,7 +40,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     private SectorService sectorService;
     private ComisionService comisionService;
-    private EstadoTramiteService estadoTramiteService;
     private CampoDisponibleService campoDisponibleService;
     private TipoTramiteService tipoTramiteService;
     private TipoTramiteCampoService tipoTramiteCampoService;
@@ -61,11 +58,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     @Autowired
     public void setComisionService(ComisionService comisionService) {
         this.comisionService = comisionService;
-    }
-
-    @Autowired
-    public void setEstadoTramiteService(EstadoTramiteService estadoTramiteService) {
-        this.estadoTramiteService = estadoTramiteService;
     }
 
     @Autowired
@@ -108,7 +100,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadSectores();
         loadComisiones();
         loadCamposDisponible();
-        loadEstadosTramite();
         loadTipoTramite();
         loadTipoTramiteCampo();
         loadTramite();
@@ -152,25 +143,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.info("Comisiones Saved!");
         } catch (IOException e) {
             log.error("Unable to save comisiones: " + e.getMessage());
-        }
-    }
-
-    private void loadEstadosTramite() {
-        /*
-         * Read json sector test and write to db
-         */
-        ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<EstadoTramite>> typeReference = new TypeReference<List<EstadoTramite>>() {
-        };
-        try {
-            // File initialFile = new File("resources/json/estadosTramite.json");
-            // InputStream targetStream = new FileInputStream(initialFile);
-            InputStream targetStream = TypeReference.class.getResourceAsStream("/json/estadosTramite.json");
-            List<EstadoTramite> estadosTramite = mapper.readValue(targetStream, typeReference);
-            estadoTramiteService.save(estadosTramite);
-            log.info("EstadosTramite Saved!");
-        } catch (IOException e) {
-            log.error("Unable to save estadosTramite: " + e.getMessage());
         }
     }
 

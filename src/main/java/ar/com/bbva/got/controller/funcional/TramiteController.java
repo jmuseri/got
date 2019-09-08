@@ -1,9 +1,6 @@
 package ar.com.bbva.got.controller.funcional;
 
-import java.text.ParseException;
 import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.bbva.got.bean.StatusResponse;
-import ar.com.bbva.got.model.EstadoTramite;
-import ar.com.bbva.got.model.Sector;
-import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.model.TramiteAutorizadoKey;
@@ -58,44 +51,6 @@ public class TramiteController {
     @Autowired
     public void setTramiteAutorizadoService(TramiteAutorizadoService tramiteAutorizadoService) {
         this.tramiteAutorizadoService = tramiteAutorizadoService;
-    }
-
-    /*
-     * Tramite
-     */
-    @ApiOperation(value = "View a list of available tramite", response = Iterable.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(HttpServletRequest req, Model model,
-            @RequestParam(value = "activo", required = false) boolean activo,
-            @RequestParam(value = "sector", required = false) SectorKey sectorId) throws ParseException {
-        try {
-            if (null != sectorId) {
-                Sector sectorActual = new Sector();
-                sectorActual.setId(sectorId);
-                Iterable<Tramite> tramiteList = tramiteService.listBySectorActual(sectorActual);
-                ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
-                return response;
-            }
-            if (!activo) {
-                Iterable<Tramite> tramiteList = tramiteService.listAll();
-                ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
-                return response;
-            }
-            EstadoTramite estado = new EstadoTramite();
-            estado.setId(1);
-            Iterable<Tramite> tramiteList = tramiteService.listByEstado(estado);
-            ResponseEntity<?> response = new ResponseEntity<>(tramiteList, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
     }
 
     @ApiOperation(value = "Add a tramite")

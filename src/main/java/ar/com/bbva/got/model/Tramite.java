@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,9 +68,9 @@ public class Tramite {
     @ApiModelProperty(notes = "The tramite cuentaCobro")
     private String cuentaCobro;
 
-    @ManyToOne
-    @JoinColumn(name = "estado")
+    
     @ApiModelProperty(notes = "The tramite estado")
+    @Enumerated(EnumType.STRING)
     private EstadoTramite estado;
 
     @ApiModelProperty(notes = "The finalization date", required = true)

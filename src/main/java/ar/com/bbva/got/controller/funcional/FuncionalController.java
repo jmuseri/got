@@ -41,7 +41,6 @@ import ar.com.bbva.got.model.TramiteAutorizadoKey;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteService;
-import ar.com.bbva.got.service.parametria.EstadoTramiteService;
 import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
@@ -60,9 +59,6 @@ public class FuncionalController {
 	@Autowired
     private TramiteService tramiteService;
 	
-	@Autowired
-    private EstadoTramiteService estadoTramiteService;
-		    	
 	@Autowired
     private AutorizadoService autorizadoService;
 	
@@ -231,10 +227,7 @@ public class FuncionalController {
                 return response;
         	}
         	tramite.setTipoTramite(tipoTramite);
-
-        	EstadoTramite estadoActivo = new EstadoTramite();
-        	estadoActivo.setId(1);
-        	tramite.setEstado(estadoActivo);
+        	tramite.setEstado(EstadoTramite.ACTIVO);
         	
             Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta());
             
@@ -315,9 +308,8 @@ public class FuncionalController {
     										   @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
-        	EstadoTramite estadoGestionar = estadoTramiteService.getById(2) ;
         	Tramite tramite = tramiteService.getById(id);
-        	tramite.setEstado(estadoGestionar);
+        	tramite.setEstado(EstadoTramite.GESTION);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());
         	tramiteService.save(tramite);
@@ -342,9 +334,8 @@ public class FuncionalController {
     										   @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
-        	EstadoTramite estadoGestionar = estadoTramiteService.getById(3) ;
         	Tramite tramite = tramiteService.getById(id);
-        	tramite.setEstado(estadoGestionar);
+        	tramite.setEstado(EstadoTramite.FINALIZADO);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());
         	tramiteService.save(tramite);
@@ -369,14 +360,12 @@ public class FuncionalController {
     										  @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
-        	EstadoTramite estadoGestionar = estadoTramiteService.getById(4) ;
         	Tramite tramite = tramiteService.getById(id);
-        	tramite.setEstado(estadoGestionar);
+        	tramite.setEstado(EstadoTramite.RECHAZADO);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());
         	tramiteService.save(tramite);
         	
-          	
             StatusResponse status = new StatusResponse("ok", "Tramite en estado Rechazar", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
