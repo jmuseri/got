@@ -294,14 +294,14 @@ public class FuncionalController {
         	tramiteAutorizadoService.save(listaAutorizados);
         	
           	
-            StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
+            StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
             
             
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Autorizado no insertado", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no insertado", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
