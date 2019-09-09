@@ -29,7 +29,7 @@ public class Autorizado {
     @ApiModelProperty(notes = "The autorizado nroclienteEmpresa")
     private Integer nroClienteEmpresa;
     
-    @ApiModelProperty(notes = "The autorizado cuitEpresa")
+    @ApiModelProperty(notes = "The autorizado cuitEmpresa")
     private String cuitEmpresa;
 
     @ApiModelProperty(notes = "The autorizado tipoDocumento")

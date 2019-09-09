@@ -224,6 +224,7 @@ public class FuncionalController {
         	Tramite tramite = new Tramite();
         	
         	tramite.setNroClienteEmpresa(altaTramiteDTO.getNroClienteEmpresa());
+        	tramite.setCuitEmpresa(altaTramiteDTO.getCuitEmpresa());
         	tramite.setCuentaCobro(altaTramiteDTO.getCuentaCobro());
         	
         	TipoTramite tipoTramite = tipoTramiteService.getById(altaTramiteDTO.getIdTipoTramite());

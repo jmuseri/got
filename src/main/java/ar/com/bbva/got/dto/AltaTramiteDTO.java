@@ -17,6 +17,8 @@ public class AltaTramiteDTO implements Serializable {
 	private Integer idTipoTramite;
 
     private Integer nroClienteEmpresa;
+    
+    private String cuitEmpresa;
 
     private List<Integer> idAutorizados;
 

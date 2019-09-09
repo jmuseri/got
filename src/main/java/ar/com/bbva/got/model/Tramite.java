@@ -41,6 +41,9 @@ public class Tramite {
 
     @ApiModelProperty(notes = "The tramite clienteId")
     private Integer nroClienteEmpresa;
+    
+    @ApiModelProperty(notes = "The tramite cuitEmpresa")
+    private String cuitEmpresa;
 
     @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TramiteAutorizado> autorizado;
@@ -71,7 +74,7 @@ public class Tramite {
     @ApiModelProperty(notes = "The tramite estado")
     @Enumerated(EnumType.STRING)
     private EstadoTramite estado;
-
+    
     @ApiModelProperty(notes = "The finalization date", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaFinalizacion;

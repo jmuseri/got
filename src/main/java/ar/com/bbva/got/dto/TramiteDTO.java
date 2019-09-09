@@ -25,6 +25,9 @@ public class TramiteDTO implements Serializable{
 
     @ApiModelProperty(notes = "The tramite clienteId")
     private Integer nroClienteEmpresa;
+    
+    @ApiModelProperty(notes = "The tramite cuitEmpresa")
+    private String cuitEmpresa;
 
     @ApiModelProperty(notes = "The autorizados")
     private List<AutorizadoDTO> autorizado;
