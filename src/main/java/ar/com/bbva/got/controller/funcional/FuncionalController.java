@@ -127,7 +127,7 @@ public class FuncionalController {
         }
     }
     
-    @ApiOperation(value = "View a list of available tipoTramite", response = Iterable.class)
+    @ApiOperation(value = "View a list of available camposDisponibles", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = ""
@@ -445,5 +445,45 @@ public class FuncionalController {
             return response;
         }
     }
+    
+    
+ 
+    @ApiOperation(value = "show tramites list for the given cuit")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "/tramites/list/{nroClienteEmpresa}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> list(HttpServletRequest req,
+    		@PathVariable Integer nroClienteEmpresa,
+    		@RequestParam(value = "estadoTramite", required = false) EstadoTramite estado,
+    		@RequestParam(value = "tipoTramite", required = false) TipoTramite tipoTramite) throws ParseException {
+        
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	//Iterable<Tramite> tramiteList = tramiteService.listByEmpresaEstadoAndTipoTramite(nroClienteEmpresa, estado, tipoTramite);
+        	Iterable<Tramite> tramiteList = tramiteService.listAll();
+        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
     
 }

@@ -35,8 +35,8 @@ public class TramiteMapper {
 		
 		BeanUtils.copyProperties(model, dto);
 		
-		dto.setSectorActual(SectorMapper.modelToDTO(model.getSectorActual()));
-		dto.setSectorInicio(SectorMapper.modelToDTO(model.getSectorInicio()));
+//		dto.setSectorActual(SectorMapper.modelToDTO(model.getSectorActual()));
+//		dto.setSectorInicio(SectorMapper.modelToDTO(model.getSectorInicio()));
     	
     	List<AutorizadoDTO> listaAutorizados = new ArrayList<AutorizadoDTO>();
     	for (TramiteAutorizado autorizado : model.getAutorizado()) {
