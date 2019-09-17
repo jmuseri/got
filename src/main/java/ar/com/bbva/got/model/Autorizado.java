@@ -44,8 +44,14 @@ public class Autorizado {
     @ApiModelProperty(notes = "The autorizado apellido")
     private String apellido;
 
+    
+    @ApiModelProperty(notes = "The autorizado gender")
+    private String sexo;
+    
     @ApiModelProperty(notes = "The creator user")
     private String usuAlta;
+    
+    
 
     @ApiModelProperty(notes = "The creation date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")

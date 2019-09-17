@@ -326,7 +326,7 @@ public class FuncionalController {
         	tramiteDetalleService.save(listaDetalles);
         	
           	
-            StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", null);
+            StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", tramite.getId().toString());
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
             
