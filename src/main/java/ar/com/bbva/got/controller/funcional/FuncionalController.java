@@ -448,7 +448,7 @@ public class FuncionalController {
     
     
  
-    @ApiOperation(value = "show tramites list for the given cuit")
+    @ApiOperation(value = "show tramites list for the given nroClienteEmpresa")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
@@ -456,8 +456,8 @@ public class FuncionalController {
     @RequestMapping(value = "/tramites/list/{nroClienteEmpresa}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> list(HttpServletRequest req,
     		@PathVariable Integer nroClienteEmpresa,
-    		@RequestParam(value = "estadoTramite", required = false) EstadoTramite estado,
-    		@RequestParam(value = "tipoTramite", required = false) TipoTramite tipoTramite) throws ParseException {
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
         
     	try {
             

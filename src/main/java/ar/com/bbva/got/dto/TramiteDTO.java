@@ -22,6 +22,9 @@ public class TramiteDTO implements Serializable{
 	
 	@ApiModelProperty(notes = "The tramite tipoTramite")
     private Integer idTipoTramite;
+	
+	@ApiModelProperty(notes = "The tramite tipoTramite description")
+    private String tipoTramiteDesc;
 
     @ApiModelProperty(notes = "The tramite clienteId")
     private Integer nroClienteEmpresa;

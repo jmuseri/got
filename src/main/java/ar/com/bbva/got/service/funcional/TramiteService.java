@@ -4,7 +4,6 @@ import java.util.List;
 
 import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
-import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.Tramite;;
 
 public interface TramiteService {
@@ -22,6 +21,6 @@ public interface TramiteService {
 
     void delete(Integer id);
 
-	List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, EstadoTramite estado,
-			TipoTramite tipoTramite);
+	List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, String estado,
+			Integer idTipoTramite);
 }

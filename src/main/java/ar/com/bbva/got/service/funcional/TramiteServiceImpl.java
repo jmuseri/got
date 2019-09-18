@@ -43,16 +43,16 @@ public class TramiteServiceImpl implements TramiteService {
     }
     
     @Override
-    public List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, EstadoTramite estado, TipoTramite tipoTramite) {
+    public List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, String estado, Integer idTipoTramite) {
         logger.debug("listByCuitEstadoAndTipoTramite called");
-        if (estado==null && tipoTramite ==null) 
+        if (estado==null && idTipoTramite ==null) 
         		return this.tramiteRepository.findByNroClienteEmpresa(nroClienteEmpresa);
         else if (estado==null) 
-        		return this.tramiteRepository.findByNroClienteEmpresaAndTipoTramite(nroClienteEmpresa, tipoTramite);
-        else if (tipoTramite ==null)
-        	return this.tramiteRepository.findByNroClienteEmpresaAndEstado(nroClienteEmpresa, estado);
+        		return this.tramiteRepository.findByNroClienteEmpresaAndTipoTramite(nroClienteEmpresa, idTipoTramite);
+        else if (idTipoTramite ==null)
+        	return this.tramiteRepository.findByNroClienteEmpresaAndEstado(nroClienteEmpresa, EstadoTramite.valueOf(estado));
         
-        return this.tramiteRepository.findByNroClienteEmpresaAndEstadoAndTipoTramite(nroClienteEmpresa, estado, tipoTramite);
+        return this.tramiteRepository.findByNroClienteEmpresaAndEstadoAndTipoTramite(nroClienteEmpresa, EstadoTramite.valueOf(estado), idTipoTramite);
     }
     
 
