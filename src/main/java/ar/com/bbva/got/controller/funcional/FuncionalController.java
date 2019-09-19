@@ -236,7 +236,7 @@ public class FuncionalController {
                 return response;
         	}
         	tramite.setTipoTramite(tipoTramite);
-        	tramite.setEstado(EstadoTramite.ACTIVO);
+        	tramite.setEstado(EstadoTramite.PENDIENTE_FIRMA);
         	
             Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta());
             
@@ -425,6 +425,36 @@ public class FuncionalController {
             return response;
         }
     }
+    
+    
+    
+    @ApiOperation(value = "Activar tramites")
+    @RequestMapping(value = "/tramites/{id}/activar", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> activarTramites(@PathVariable Integer id,
+    										  @RequestParam(value = "usuario", required = false) String usuario) {
+        try {
+        	       	
+        	Tramite tramite = tramiteService.getById(id);
+        	tramite.setEstado(EstadoTramite.ACTIVO);
+        	tramite.setUsuModif(usuario);
+        	tramite.setFechaModif(new Date());
+        	tramiteService.save(tramite);
+        	
+            StatusResponse status = new StatusResponse("ok", "Tramite en estado Activo", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+            
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
     
     @ApiOperation(value = "show tramite detail")
     @RequestMapping(value = "/tramites/{id}", method = RequestMethod.GET, produces = "application/json")
