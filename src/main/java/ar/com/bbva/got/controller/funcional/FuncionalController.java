@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -494,9 +495,8 @@ public class FuncionalController {
         	
         	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
         	
-        	//Iterable<Tramite> tramiteList = tramiteService.listByEmpresaEstadoAndTipoTramite(nroClienteEmpresa, estado, tipoTramite);
-        	Iterable<Tramite> tramiteList = tramiteService.listAll();
-        	
+        	Iterable<Tramite> tramiteList = tramiteService.listByEmpresaEstadoAndTipoTramite(nroClienteEmpresa, estado, idTipoTramite);
+        	        	
         	for (Tramite tramite : tramiteList) {
         		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
         		
@@ -514,6 +514,113 @@ public class FuncionalController {
             return response;
         }
     }
+    
+    
+    
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////7
+    
+    
+    
+    
+    @ApiOperation(value = "Add a tramiteDetalle")
+    @RequestMapping(value = "/tramites/detalle/add", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> addTramiteDetalle(@RequestBody TramiteDetalle tramiteDetalle) {
+        try {
+            tramiteDetalleService.save(tramiteDetalle);
+            StatusResponse status = new StatusResponse("ok", "TramiteDetalle saved successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TramiteDetalle not saved", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+    @ApiOperation(value = "Update a tramiteDetalle")
+    @RequestMapping(value = "/tramites/detalle/update/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> updateTramiteDetalle(@PathVariable Integer tramiteId,
+            @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId,
+            @RequestBody TramiteDetalle tramiteDetalle) {
+        try {
+            TramiteDetalle stored = this.tramiteDetalleService
+                    .getById(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
+            if (null != tramiteDetalle.getValor()) {
+                stored.setValor(tramiteDetalle.getValor());
+            }
+            if (null != tramiteDetalle.getUsuModif()) {
+                stored.setUsuModif(tramiteDetalle.getUsuModif());
+            } else {
+                stored.setUsuModif("system");
+            }
+            if (null != tramiteDetalle.getFechaModif()) {
+                stored.setFechaModif(tramiteDetalle.getFechaModif());
+            } else {
+                stored.setFechaModif(new Date());
+            }
+            tramiteDetalleService.save(stored);
+            StatusResponse status = new StatusResponse("ok", "TramiteDetalle updated successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TramiteDetalle not saved", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+
+ 
+
+    @ApiOperation(value = "Delete a tramiteDetalle")
+    @RequestMapping(value = "/detalle/delete/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> deleteTramiteDetalle(@PathVariable Integer tramiteId,
+            @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId, Model model) {
+        try {
+            tramiteDetalleService.delete(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
+            StatusResponse status = new StatusResponse("ok", "TramiteDetalle deleted successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "TramiteDetalle not deleted", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }
