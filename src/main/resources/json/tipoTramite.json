@@ -83,5 +83,22 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
+  },
+  {
+    "id": 6,
+    "descripcion": "Baja de tokens",
+    "cobraComision": false,
+    "comision": null,
+    "requiereDocumentacion": false,
+    "activo": true,
+    "autorizado": false,
+    "sectorInicial": {"id": { "canal": "web", "sector": "FNC" } },
+    "campos": null,
+    "horasResolucion": 48,
+    "horasVencimiento": 96,
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
   }
 ]
