@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.CampoDisponible;
 import ar.com.bbva.got.model.Comision;
+import ar.com.bbva.got.model.MotivoRechazo;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.TipoTramiteCampo;
@@ -26,6 +27,7 @@ import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.model.TramiteDetalle;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
+import ar.com.bbva.got.service.funcional.MotivoRechazoService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
@@ -47,8 +49,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private TramiteService tramiteService;
     private TramiteDetalleService tramiteDetalleService;
     private TramiteAutorizadoService tramiteAutorizadoService;
+    private MotivoRechazoService motivoRechazoService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
+	
 
     @Autowired
     public void setSectorService(SectorService sectorService) {
@@ -94,6 +98,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void setTramiteAutorizadoService(TramiteAutorizadoService tramiteAutorizadoService) {
         this.tramiteAutorizadoService = tramiteAutorizadoService;
     }
+    
+    
+    @Autowired
+    public void setMotivoRechazoService(MotivoRechazoService motivoRechazoService) {
+        this.motivoRechazoService = motivoRechazoService;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -102,10 +112,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadCamposDisponible();
         loadTipoTramite();
         loadTipoTramiteCampo();
+        loadMotivoRechazo();
         loadTramite();
         loadAutorizado();
         loadTramiteDetalle();
         loadTramiteAutorizado();
+
     }
 
     private void loadSectores() {
@@ -281,5 +293,27 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             log.error("Unable to save TramiteAutorizado: " + e.getMessage());
         }
     }
+    
+    
+    
+    private void loadMotivoRechazo() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<MotivoRechazo>> typeReference = new TypeReference<List<MotivoRechazo>>() {
+        };
+        try {
+            // File initialFile = new File("resources/json/tramitesAutorizado.json");
+            // InputStream targetStream = new FileInputStream(initialFile);
+            InputStream targetStream = TypeReference.class.getResourceAsStream("/json/motivoRechazo.json");
+            List<MotivoRechazo> motivosRechazo = mapper.readValue(targetStream, typeReference);
+            motivoRechazoService.save(motivosRechazo);
+            log.info("MotivosRechazo Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save MotivosRechazo: " + e.getMessage());
+        }
+    }
+    
 
 }

@@ -13,10 +13,14 @@ public class CampoDetalleDTO implements Serializable {
 
 	private static final long serialVersionUID = -5445678639117753177L;
 
-	@ApiModelProperty(notes = "The nomnbre")
+	@ApiModelProperty(notes = "The nombre")
     private String nombre;
 	
 	@ApiModelProperty(notes = "The valor")
     private String valor;
    
+	
+	@ApiModelProperty(notes = "The Descripcion")
+    private String descripcion;
+	
 }

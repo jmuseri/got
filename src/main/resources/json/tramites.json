@@ -8,13 +8,14 @@
       "sectorActual": {"id": { "canal": "web", "sector": "FNC" } },
       "detalle": null,
       "cuentaCobro": "Cuenta",
-      "estado": "ACTIVO",
+      "estado": "PENDIENTE_FIRMA",
       "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
       "fechaVencimiento": "2019-06-01T12:24:50.045Z",
       "usuAlta": "Usuario",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 2,
@@ -25,30 +26,32 @@
       "sectorActual": {"id": { "canal": "web", "sector": "FNC" } },
       "detalle": null,
       "cuentaCobro": "Cuenta1",
-      "estado": "ACTIVO",
+      "estado": "PENDIENTE_FIRMA",
       "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
       "fechaVencimiento": "2019-06-01T12:24:50.045Z",
       "usuAlta": "Usuario1",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 3,
-      "tipoTramite": { "id": 5 },
+      "tipoTramite": { "id": 2 },
       "nroClienteEmpresa": 3734520,
       "autorizado": null,
       "sectorInicio": {"id": { "canal": "web", "sector": "FNC" } },
       "sectorActual": {"id": { "canal": "web", "sector": "FNC" } },
       "detalle": null,
       "cuentaCobro": "Cuenta2",
-      "estado": "GESTION",
+      "estado": "RECHAZADO",
       "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
       "fechaVencimiento": "2019-06-01T12:24:50.045Z",
       "usuAlta": "Usuario2",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : { "id": 1, "tipoTramite": { "id": 2 }, "descripcion": "EaeaPP" }
     },
     {
       "id": 4,
@@ -65,7 +68,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 5,
@@ -82,7 +86,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 6,
@@ -99,7 +104,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 7,
@@ -116,7 +122,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 8,
@@ -133,7 +140,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 9,
@@ -150,7 +158,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 10,
@@ -167,7 +176,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 11,
@@ -184,7 +194,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 12,
@@ -201,7 +212,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 13,
@@ -218,7 +230,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 14,
@@ -235,7 +248,8 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     },
     {
       "id": 15,
@@ -252,6 +266,7 @@
       "usuAlta": "Usuario3",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+      "motivoRechazo" : null
     }
   ]

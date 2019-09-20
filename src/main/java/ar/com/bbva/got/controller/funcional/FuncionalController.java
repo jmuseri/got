@@ -26,14 +26,17 @@ import ar.com.bbva.got.dto.AltaTramiteDTO;
 import ar.com.bbva.got.dto.AutorizadoDTO;
 import ar.com.bbva.got.dto.CampoDetalleDTO;
 import ar.com.bbva.got.dto.CampoDisponibleDTO;
+import ar.com.bbva.got.dto.MotivoRechazoDTO;
 import ar.com.bbva.got.dto.TipoTramiteDTO;
 import ar.com.bbva.got.dto.TramiteDTO;
 import ar.com.bbva.got.mappers.AutorizadoMapper;
 import ar.com.bbva.got.mappers.CampoDisponibleMapper;
+import ar.com.bbva.got.mappers.MotivoRechazoMapper;
 import ar.com.bbva.got.mappers.TipoTramiteMapper;
 import ar.com.bbva.got.mappers.TramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.EstadoTramite;
+import ar.com.bbva.got.model.MotivoRechazo;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.SectorKey;
 import ar.com.bbva.got.model.TipoTramite;
@@ -44,6 +47,7 @@ import ar.com.bbva.got.model.TramiteAutorizadoKey;
 import ar.com.bbva.got.model.TramiteDetalle;
 import ar.com.bbva.got.model.TramiteDetalleKey;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
+import ar.com.bbva.got.service.funcional.MotivoRechazoService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
@@ -77,13 +81,14 @@ public class FuncionalController {
 	@Autowired
 	private TramiteDetalleService tramiteDetalleService; 
 	
+	
+	@Autowired
+	private MotivoRechazoService motivoRechazoService; 
+	
     //Comentario commit lea!!!
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     
-//    public void setTipoTramiteService(TipoTramiteService tipoTramiteService) {
-//        this.tipoTramiteService = tipoTramiteService;
-//    }
 
     @ApiOperation(value = "View a list of available tipoTramite", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -405,11 +410,15 @@ public class FuncionalController {
     @ApiOperation(value = "Rechazar tramites")
     @RequestMapping(value = "/tramites/{id}/rechazar", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> rechazarTramites(@PathVariable Integer id,
+    										 @RequestParam(value = "motivoRechazoId", required = false) Integer motivoRechazoId,
     										  @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
         	Tramite tramite = tramiteService.getById(id);
         	tramite.setEstado(EstadoTramite.RECHAZADO);
+        	
+        	MotivoRechazo motivoRechazo= motivoRechazoService.getById(motivoRechazoId);
+        	tramite.setMotivoRechazo(motivoRechazo);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());
         	tramiteService.save(tramite);
@@ -609,7 +618,45 @@ public class FuncionalController {
     
     
     
+    /////////////////////////////OK//////////////////////////////
     
+    @ApiOperation(value = "View a list of available MotivoRechazo", response = Iterable.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "motivosRechazo", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listMotivosRechazo(HttpServletRequest req,
+            @RequestParam(value = "tipoTramiteId", required = true) Integer tipoTramiteId) throws ParseException {
+        
+    	try {
+    		
+    		
+    		
+        	List<MotivoRechazoDTO> responseList = new ArrayList<MotivoRechazoDTO>();
+        	
+        	Iterable<MotivoRechazo> motivoRechazoList = motivoRechazoService.listByTipoTramiteId(tipoTramiteId);
+        	
+        	for (MotivoRechazo motRechazo : motivoRechazoList) {
+        		MotivoRechazoDTO response = MotivoRechazoMapper.modelToDTO(motRechazo);
+        		
+        		responseList.add(response);
+			}
+        	
+             ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    ///////////////////////////////////////////////////////////
     
     
     

@@ -100,4 +100,9 @@ public class Tramite {
     @ApiModelProperty(notes = "The update date")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaModif;
+    
+    @ManyToOne
+    @ApiModelProperty(notes = "The Motivo Rechazo")
+    private MotivoRechazo motivoRechazo;
+    
 }

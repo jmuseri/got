@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "tipoTramite": { "id": 1 },
+      "descripcion": "Sin Motivo Aparente"
+    },
+    {
+      "id": 2,
+      "tipoTramite": { "id": 3 },
+      "descripcion": "Algo habra pasado."
+    },
+        {
+      "id": 3,
+      "tipoTramite": { "id": 5 },
+      "descripcion": "Vos sabras."
+    },
+        {
+      "id": 4,
+      "tipoTramite": { "id": 4 },
+      "descripcion": "Nada de nada"
+    },
+        {
+      "id": 5,
+      "tipoTramite": { "id": 2 },
+      "descripcion": "EaeaPP"
+    }
+    
+
+  ]

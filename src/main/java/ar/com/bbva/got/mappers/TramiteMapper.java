@@ -57,6 +57,7 @@ public class TramiteMapper {
     		if (campo != null) {
     			detalleDto.setNombre(campo.getNombre());
         		detalleDto.setValor(detalle.getValor());
+        		detalleDto.setDescripcion(campo.getCampoDisponible().getDescripcion());
         		listaDetalle.add(detalleDto);
     		}
     		
