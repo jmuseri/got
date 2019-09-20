@@ -16,14 +16,23 @@ public interface TramiteRepository extends CrudRepository<Tramite, Integer> {
 
     List<Tramite> findByEstado(EstadoTramite estado);
     
-    //@Query("SELECT t FROM Tramite t WHERE nroClienteEmpresa = ?1 AND EstadoTramite= ?2 AND tipoTramite.id= ?3")
     List<Tramite> findByNroClienteEmpresaAndEstadoAndTipoTramiteId(Integer nroClienteEmpresa, EstadoTramite estado, Integer tipoTramiteId);
     
     List<Tramite> findByNroClienteEmpresaAndEstado(Integer nroClienteEmpresa, EstadoTramite estado);
     
-    //@Query("SELECT t FROM Tramite t WHERE nroClienteEmpresa = ?1 AND  tipoTramite.id= ?2")
     List<Tramite> findByNroClienteEmpresaAndTipoTramiteId(Integer nroClienteEmpresa, Integer tipoTramiteId);
     
     List<Tramite> findByNroClienteEmpresa(Integer nroClienteEmpresa);
+    
+    
+    List<Tramite> findByCuitEmpresaAndEstadoAndTipoTramiteId(String cuitEmpresa, EstadoTramite estado, Integer tipoTramiteId);
+    
+    List<Tramite> findByCuitEmpresaAndEstado(String cuitEmpresa, EstadoTramite estado);
+    
+     List<Tramite> findByCuitEmpresaAndTipoTramiteId(String cuitEmpresa, Integer tipoTramiteId);
+    
+    List<Tramite> findByCuitEmpresa(String cuit);
+    
+    
     
 }

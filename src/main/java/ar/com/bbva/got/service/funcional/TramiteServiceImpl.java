@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import ar.com.bbva.got.model.EstadoTramite;
 import ar.com.bbva.got.model.Sector;
-import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.repository.TramiteRepository;
 
@@ -54,6 +53,23 @@ public class TramiteServiceImpl implements TramiteService {
         
         return this.tramiteRepository.findByNroClienteEmpresaAndEstadoAndTipoTramiteId(nroClienteEmpresa, EstadoTramite.valueOf(estado), idTipoTramite);
     }
+    
+    
+    
+    @Override
+    public List<Tramite> listByCuitEmpresaEstadoAndTipoTramite(String cuitEmpresa, String estado, Integer idTipoTramite) {
+        logger.debug("listByCuitEstadoAndTipoTramite called");
+        if (estado==null && idTipoTramite ==null) 
+        		return this.tramiteRepository.findByCuitEmpresa(cuitEmpresa);
+        else if (estado==null) 
+        		return this.tramiteRepository.findByCuitEmpresaAndTipoTramiteId(cuitEmpresa, idTipoTramite);
+        else if (idTipoTramite ==null)
+        	return this.tramiteRepository.findByCuitEmpresaAndEstado(cuitEmpresa, EstadoTramite.valueOf(estado));
+        
+        return this.tramiteRepository.findByCuitEmpresaAndEstadoAndTipoTramiteId(cuitEmpresa, EstadoTramite.valueOf(estado), idTipoTramite);
+    }
+    
+    
     
 
     @Override

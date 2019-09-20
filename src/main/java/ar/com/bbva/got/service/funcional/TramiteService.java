@@ -23,4 +23,6 @@ public interface TramiteService {
 
 	List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, String estado,
 			Integer idTipoTramite);
+
+	List<Tramite> listByCuitEmpresaEstadoAndTipoTramite(String cuit, String estado, Integer idTipoTramite);
 }

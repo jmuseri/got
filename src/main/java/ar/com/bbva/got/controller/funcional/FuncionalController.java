@@ -96,7 +96,7 @@ public class FuncionalController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "tipoTramites", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(HttpServletRequest req,
+    public ResponseEntity<?> listTipoTramites(HttpServletRequest req,
             @RequestParam(value = "activo", required = false) boolean activo,
             @RequestParam(value = "canal", required = false) String idCanal,
             @RequestParam(value = "sector", required = false) String idSector) throws ParseException {
@@ -140,7 +140,7 @@ public class FuncionalController {
             		+ "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "tipoTramites/{id}/camposDisponibles", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> listCampoDisponible(@PathVariable Integer id) throws ParseException {
+    public ResponseEntity<?> CampoDisponibleList(@PathVariable Integer id) throws ParseException {
         
     	try {
             
@@ -221,7 +221,7 @@ public class FuncionalController {
         }
     }
     
-    @ApiOperation(value = "Add tramite")
+    @ApiOperation(value = "Crear tramite")
     @RequestMapping(value = "/tramites/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> addTramite(@RequestBody AltaTramiteDTO altaTramiteDTO) {
         try {
@@ -355,9 +355,9 @@ public class FuncionalController {
 		return null;
 	} 
     
-    @ApiOperation(value = "Gestionar tramites")
+    @ApiOperation(value = "Gestionar tramite")
     @RequestMapping(value = "/tramites/{id}/gestionar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> gestionarTramites(@PathVariable Integer id,
+    public ResponseEntity<?> gestionarTramite(@PathVariable Integer id,
     										   @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
@@ -381,9 +381,9 @@ public class FuncionalController {
         }
     }
     
-    @ApiOperation(value = "Finalizar tramites")
+    @ApiOperation(value = "Finalizar tramite")
     @RequestMapping(value = "/tramites/{id}/finalizar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> finalizarTramites(@PathVariable Integer id,
+    public ResponseEntity<?> finalizarTramite(@PathVariable Integer id,
     										   @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
@@ -407,9 +407,9 @@ public class FuncionalController {
         }
     }
     
-    @ApiOperation(value = "Rechazar tramites")
+    @ApiOperation(value = "Rechazar tramite")
     @RequestMapping(value = "/tramites/{id}/rechazar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> rechazarTramites(@PathVariable Integer id,
+    public ResponseEntity<?> rechazarTramite(@PathVariable Integer id,
     										 @RequestParam(value = "motivoRechazoId", required = false) Integer motivoRechazoId,
     										  @RequestParam(value = "usuario", required = false) String usuario) {
         try {
@@ -438,9 +438,9 @@ public class FuncionalController {
     
     
     
-    @ApiOperation(value = "Activar tramites")
+    @ApiOperation(value = "Activar tramite")
     @RequestMapping(value = "/tramites/{id}/activar", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> activarTramites(@PathVariable Integer id,
+    public ResponseEntity<?> activarTramite(@PathVariable Integer id,
     										  @RequestParam(value = "usuario", required = false) String usuario) {
         try {
         	       	
@@ -466,7 +466,7 @@ public class FuncionalController {
     
     
     @ApiOperation(value = "Eliminar tramite")
-    @RequestMapping(value = "/tramites/{id}/delete", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/tramites/{id}/eliminar", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteTramite(@PathVariable Integer id) {
         try {
             tramiteService.delete(id);
@@ -486,7 +486,7 @@ public class FuncionalController {
     
     
     
-    @ApiOperation(value = "show tramite detail")
+    @ApiOperation(value = "Mostrar detalle Tramite")
     @RequestMapping(value = "/tramites/{id}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getTramite(@PathVariable Integer id) {
         
@@ -514,7 +514,7 @@ public class FuncionalController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/tramites/list/{nroClienteEmpresa}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> list(HttpServletRequest req,
+    public ResponseEntity<?> listTramites(HttpServletRequest req,
     		@PathVariable Integer nroClienteEmpresa,
     		@RequestParam(value = "estadoTramite", required = false) String estado,
     		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
@@ -546,6 +546,124 @@ public class FuncionalController {
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    @ApiOperation(value = "show tramites list for the given cuit")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "/tramites/listByCuit/{cuit}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listTramitesByCUIT(HttpServletRequest req,
+    		@PathVariable String cuit,
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
+        
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	Iterable<Tramite> tramiteList = tramiteService.listByCuitEmpresaEstadoAndTipoTramite(cuit, estado, idTipoTramite);
+        	        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
+    
+    @ApiOperation(value = "show tramites list for the given params")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "/tramites/buscar", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listarTramites(HttpServletRequest req,
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
+        
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	Iterable<Tramite> tramiteList = tramiteService.listAll();
+        	        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
+    @ApiOperation(value = "View a list of available MotivoRechazo", response = Iterable.class)
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "motivosRechazo", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listMotivosRechazo(HttpServletRequest req,
+            @RequestParam(value = "tipoTramiteId", required = true) Integer tipoTramiteId) throws ParseException {
+        
+    	try {
+    		
+    		
+    		
+        	List<MotivoRechazoDTO> responseList = new ArrayList<MotivoRechazoDTO>();
+        	
+        	Iterable<MotivoRechazo> motivoRechazoList = motivoRechazoService.listByTipoTramiteId(tipoTramiteId);
+        	
+        	for (MotivoRechazo motRechazo : motivoRechazoList) {
+        		MotivoRechazoDTO response = MotivoRechazoMapper.modelToDTO(motRechazo);
+        		
+        		responseList.add(response);
+			}
+        	
+             ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
     
     
     
@@ -606,7 +724,7 @@ public class FuncionalController {
  
 
     @ApiOperation(value = "Delete a tramiteDetalle")
-    @RequestMapping(value = "/detalle/delete/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/tramites/detalle/delete/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteTramiteDetalle(@PathVariable Integer tramiteId,
             @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId, Model model) {
         try {
@@ -624,70 +742,7 @@ public class FuncionalController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    
-    /////////////////////////////OK//////////////////////////////
-    
-    @ApiOperation(value = "View a list of available MotivoRechazo", response = Iterable.class)
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @RequestMapping(value = "motivosRechazo", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> listMotivosRechazo(HttpServletRequest req,
-            @RequestParam(value = "tipoTramiteId", required = true) Integer tipoTramiteId) throws ParseException {
-        
-    	try {
-    		
-    		
-    		
-        	List<MotivoRechazoDTO> responseList = new ArrayList<MotivoRechazoDTO>();
-        	
-        	Iterable<MotivoRechazo> motivoRechazoList = motivoRechazoService.listByTipoTramiteId(tipoTramiteId);
-        	
-        	for (MotivoRechazo motRechazo : motivoRechazoList) {
-        		MotivoRechazoDTO response = MotivoRechazoMapper.modelToDTO(motRechazo);
-        		
-        		responseList.add(response);
-			}
-        	
-             ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
-            return response;
-        	
-        	
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-    
-    
-    ///////////////////////////////////////////////////////////
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }
