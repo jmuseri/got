@@ -465,6 +465,26 @@ public class FuncionalController {
     
     
     
+    @ApiOperation(value = "Eliminar tramite")
+    @RequestMapping(value = "/tramites/{id}/delete", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> deleteTramite(@PathVariable Integer id) {
+        try {
+            tramiteService.delete(id);
+            StatusResponse status = new StatusResponse("ok", "Tramite deleted successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite not deleted", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
+    
+    
     
     @ApiOperation(value = "show tramite detail")
     @RequestMapping(value = "/tramites/{id}", method = RequestMethod.GET, produces = "application/json")
