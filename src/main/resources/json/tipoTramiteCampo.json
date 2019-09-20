@@ -114,6 +114,20 @@
   {
     "id": {
       "tipoTramiteId": 4,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 4,
       "campoDisponibleId": "textoLargo"
     },
     "obligatorio": true,
