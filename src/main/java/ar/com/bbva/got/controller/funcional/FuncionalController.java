@@ -159,7 +159,7 @@ public class FuncionalController {
         }
     }
     
-    @ApiOperation(value = "View a list of available tipoTramite", response = Iterable.class)
+    @ApiOperation(value = "View a list of available Autorizados", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = ""
@@ -220,6 +220,26 @@ public class FuncionalController {
             return response;
         }
     }
+    
+    
+    
+    @ApiOperation(value = "Delete an autorizado")
+    @RequestMapping(value = "/tramite/{tramiteId}/autorizado/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> delete(@PathVariable Integer tramiteId, @PathVariable Integer autorizadoId) {
+        try {
+        	TramiteAutorizadoKey key = new TramiteAutorizadoKey(tramiteId, autorizadoId);
+        	tramiteAutorizadoService.delete(key);
+            StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Autorizado not deleted", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
     
     @ApiOperation(value = "Crear tramite")
     @RequestMapping(value = "/tramites/add", method = RequestMethod.POST, produces = "application/json")
@@ -601,14 +621,16 @@ public class FuncionalController {
     @RequestMapping(value = "/tramites/buscar", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listarTramites(HttpServletRequest req,
     		@RequestParam(value = "estadoTramite", required = false) String estado,
-    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sector", required = false) String idSector,
+    		@RequestParam(value = "DniAutorizado", required = false) String DniAutorizado) throws ParseException {
         
     	try {
             
         	
         	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
         	
-        	Iterable<Tramite> tramiteList = tramiteService.listAll();
+        	Iterable<Tramite> tramiteList = tramiteService.buscarTramites(estado, idTipoTramite, idSector, DniAutorizado);
         	        	
         	for (Tramite tramite : tramiteList) {
         		TramiteDTO response = TramiteMapper.modelToDTO(tramite);

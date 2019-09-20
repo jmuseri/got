@@ -25,4 +25,8 @@ public interface TramiteService {
 			Integer idTipoTramite);
 
 	List<Tramite> listByCuitEmpresaEstadoAndTipoTramite(String cuit, String estado, Integer idTipoTramite);
+	
+	
+	List<Tramite> buscarTramites(String estado, Integer idTipoTramite, String idSector, String DniAutorizado);	
+	
 }

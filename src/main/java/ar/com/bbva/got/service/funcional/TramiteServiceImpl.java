@@ -96,4 +96,12 @@ public class TramiteServiceImpl implements TramiteService {
         this.tramiteRepository.deleteById(id);
     }
 
+	@Override
+	public List<Tramite> buscarTramites(String estado, Integer idTipoTramite, String idSector, String DniAutorizado) {
+        EstadoTramite estadoTramite = estado==null?null:EstadoTramite.valueOf(estado);
+		return this.tramiteRepository.findByEstadoAndTipoTramiteIdAndSectorActualId(estadoTramite,
+				idTipoTramite, idSector/*, DniAutorizado*/);
+
+	}
+
 }
