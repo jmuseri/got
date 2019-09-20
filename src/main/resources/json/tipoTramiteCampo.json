@@ -113,7 +113,7 @@
   },
   {
     "id": {
-      "tipoTramiteId": 5,
+      "tipoTramiteId": 4,
       "campoDisponibleId": "textoLargo"
     },
     "obligatorio": true,
