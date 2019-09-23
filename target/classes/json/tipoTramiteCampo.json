@@ -72,7 +72,7 @@
   {
     "id": {
       "tipoTramiteId": 3,
-      "campoDisponibleId": "cuenta"
+      "campoDisponibleId": "cuenta2"
     },
     "obligatorio": true,
     "activo": true,
@@ -142,44 +142,15 @@
   {
     "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": "administrador"
+      "campoDisponibleId": "sucursal"
     },
     "obligatorio": true,
     "activo": true,
-    "nombre": "ADMINISTRADORES",
-    "leyenda": "Administrador:",
-    "usuAlta": "system",
-    "fechaAlta": "2019-06-01T12:24:50.045Z",
-    "usuModif": null,
-    "fechaModif": null
-  },
-  {
-    "id": {
-      "tipoTramiteId": 6,
-      "campoDisponibleId": "cantidad"
-    },
-    "obligatorio": true,
-    "activo": true,
-    "nombre": "CANTIDADTOKEN",
-    "leyenda": "Cantidad de tokens?",
-    "usuAlta": "system",
-    "fechaAlta": "2019-06-01T12:24:50.045Z",
-    "usuModif": null,
-    "fechaModif": null
-  },
-  {
-    "id": {
-      "tipoTramiteId": 6,
-      "campoDisponibleId": "textoLargo"
-    },
-    "obligatorio": true,
-    "activo": true,
-    "nombre": "NROTOKEN",
-    "leyenda": "Numero de serie del Token",
+    "nombre": "SUCURSALRETIRO",
+    "leyenda": "Sucursal de retiro",
     "usuAlta": "system",
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
   }
-  
 ]

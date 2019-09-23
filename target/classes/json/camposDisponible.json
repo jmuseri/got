@@ -57,8 +57,19 @@
     {
       "id": "cuenta",
       "nombre": "cuenta",
-      "descripcion": "Cuenta",
-      "tipoDato": "CUENTA",
+      "descripcion": "Cuenta debito",
+      "tipoDato": "CUENTADEBITO",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+     {
+      "id": "cuenta2",
+      "nombre": "cuenta2",
+      "descripcion": "Cuenta resumen",
+      "tipoDato": "CUENTAEXTRACTO",
       "activo": true,
       "usuAlta": "system",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
@@ -108,16 +119,6 @@
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
       "fechaModif": null
-    },
-    {
-      "id": "administrador",
-      "nombre": "administrador",
-      "descripcion": "Administrador",
-      "tipoDato": "ADMINISTRADOR",
-      "activo": true,
-      "usuAlta": "system",
-      "fechaAlta": "2019-06-01T12:24:50.045Z",
-      "usuModif": null,
-      "fechaModif": null
     }
-]
+    
+  ]
