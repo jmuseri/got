@@ -36,6 +36,10 @@ public class AutorizadoDTO implements Serializable {
 
     @ApiModelProperty(notes = "The autorizado sexo")
     private String sexo;
+    
+
+    @ApiModelProperty(notes = "The autorizado estado")
+    private boolean activo;
 
     
 }

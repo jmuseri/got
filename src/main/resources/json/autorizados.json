@@ -10,7 +10,8 @@
       "usuAlta": "system",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+       "activo": true
     },
     {
       "id": 2,
@@ -23,7 +24,8 @@
       "usuAlta": "system",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+       "activo": true
     },
     {
       "id": 3,
@@ -36,7 +38,8 @@
       "usuAlta": "system",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+       "activo": true
     },
     {
       "id": 4,
@@ -62,6 +65,7 @@
       "usuAlta": "system",
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
-      "fechaModif": null
+      "fechaModif": null,
+       "activo": true
     }
 ]

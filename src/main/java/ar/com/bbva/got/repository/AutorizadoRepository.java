@@ -8,5 +8,5 @@ import ar.com.bbva.got.model.Autorizado;
 @RepositoryRestResource
 public interface AutorizadoRepository extends CrudRepository<Autorizado, Integer> {
     Iterable<Autorizado> findByNroClienteEmpresa(Integer clienteId);
-    Iterable<Autorizado> findByNroClienteEmpresaOrCuitEmpresa(Integer nroClienteEmpresa, String cuitEmpresa);
+    Iterable<Autorizado> findByNroClienteEmpresaAndActivoIsTrueOrCuitEmpresaAndActivoIsTrue(Integer nroClienteEmpresa, String cuitEmpresa);
 }

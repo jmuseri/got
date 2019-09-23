@@ -36,7 +36,7 @@ public class AutorizadoServiceImpl implements AutorizadoService {
 	public Iterable<Autorizado> listByNroClienteEmpresaOrCuitEmpresa(Integer nroClienteEmpresa, String cuitEmpresa) {
 		logger.debug("listByNroClienteEmpresaOrCuitEmpresa called");
 		
-		return this.autorizadoRepository.findByNroClienteEmpresaOrCuitEmpresa(nroClienteEmpresa, cuitEmpresa);
+		return this.autorizadoRepository.findByNroClienteEmpresaAndActivoIsTrueOrCuitEmpresaAndActivoIsTrue(nroClienteEmpresa, cuitEmpresa);
 	}
 
     @Override

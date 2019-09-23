@@ -203,6 +203,7 @@ public class FuncionalController {
         	
         	for (AutorizadoDTO autorizadoDTO : listAutorizadoDTO) {
         		Autorizado autorizado = AutorizadoMapper.DTOtoModel(autorizadoDTO);
+        		autorizado.setActivo(true);
         		autorizado.setUsuAlta(usuario);
         		autorizado.setUsuModif(usuario);
         		autorizado.setFechaAlta(new Date());
@@ -226,17 +227,20 @@ public class FuncionalController {
     
     
     @ApiOperation(value = "Delete an autorizado")
-    @RequestMapping(value = "/tramite/{tramiteId}/autorizado/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteTramiteAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer autorizadoId) {
+    @RequestMapping(value = "/autorizado/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> deleteTramiteAutorizado(@PathVariable Integer autorizadoId) {
         try {
-        	TramiteAutorizadoKey key = new TramiteAutorizadoKey(tramiteId, autorizadoId);
-        	tramiteAutorizadoService.delete(key);
-        	
-        	//TODO DEFINIR ESTO.
-        	//List<TramiteAutorizado> listaTramitesDelAutorizado= tramiteAutorizadoService.listByAutorizadoId(autorizadoId);
-        	//if (listaTramitesDelAutorizado.size()==0) autorizadoService.delete(autorizadoId);
-        	
-            StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
+        	Autorizado autorizado = autorizadoService.getById(autorizadoId);
+        	StatusResponse status =null;
+        	if (null != autorizado) {
+        		autorizado.setActivo(false);
+        		autorizadoService.save(autorizado);
+        		status = new StatusResponse("ok", "Autorizado deleted successfully", null);
+        	}else {
+        		status = new StatusResponse("error", "Autorizado not deleted", "Autorizado no encontrado.");
+        	}
+       	
+            
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
