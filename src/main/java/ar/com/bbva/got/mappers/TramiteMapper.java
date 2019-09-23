@@ -58,6 +58,7 @@ public class TramiteMapper {
     			detalleDto.setNombre(campo.getNombre());
         		detalleDto.setValor(detalle.getValor());
         		detalleDto.setDescripcion(campo.getCampoDisponible().getDescripcion());
+        		detalleDto.setLeyenda(campo.getLeyenda());
         		listaDetalle.add(detalleDto);
     		}
     		

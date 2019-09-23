@@ -23,4 +23,7 @@ public class CampoDetalleDTO implements Serializable {
 	@ApiModelProperty(notes = "The Descripcion")
     private String descripcion;
 	
+	@ApiModelProperty(notes = "The Leyenda")
+    private String Leyenda;
+	
 }
