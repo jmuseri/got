@@ -32,6 +32,6 @@ public class CampoDisponibleDTO implements Serializable {
     private boolean obligatorio;
 
     @ApiModelProperty(notes = "The campoDisponible leyenda")
-    private boolean leyenda;
+    private String leyenda;
 
 }

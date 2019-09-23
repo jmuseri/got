@@ -57,4 +57,10 @@ public class TramiteAutorizadoServiceImpl implements TramiteAutorizadoService {
         logger.debug("deleteByAutorizadoId called");
         this.tramiteAutorizadoRepository.deleteByIdAutorizadoId(id);
     }
+
+	@Override
+	public List<TramiteAutorizado> listByAutorizadoId(Integer autorizadoId) {
+		logger.debug("listByAutorizadoId called");
+        return this.tramiteAutorizadoRepository.findByidAutorizadoId(autorizadoId);
+	}
 }

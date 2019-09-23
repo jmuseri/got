@@ -17,4 +17,7 @@ public interface TramiteAutorizadoService {
     void delete(TramiteAutorizadoKey id);
 
     void deleteByIdAutorizadoId(Integer id);
+    
+    List<TramiteAutorizado> listByAutorizadoId(Integer autorizadoId);
+    
 }

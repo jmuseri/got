@@ -1,5 +1,7 @@
 package ar.com.bbva.got.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,4 +15,8 @@ public interface TramiteAutorizadoRepository extends CrudRepository<TramiteAutor
 
     @Transactional
     void deleteByIdAutorizadoId(Integer id);
+    
+    List<TramiteAutorizado> findByidAutorizadoId(Integer autorizadoId);
+
+    
 }

@@ -29,10 +29,12 @@ import ar.com.bbva.got.dto.CampoDisponibleDTO;
 import ar.com.bbva.got.dto.MotivoRechazoDTO;
 import ar.com.bbva.got.dto.TipoTramiteDTO;
 import ar.com.bbva.got.dto.TramiteDTO;
+import ar.com.bbva.got.dto.TramiteDetalleDTO;
 import ar.com.bbva.got.mappers.AutorizadoMapper;
 import ar.com.bbva.got.mappers.CampoDisponibleMapper;
 import ar.com.bbva.got.mappers.MotivoRechazoMapper;
 import ar.com.bbva.got.mappers.TipoTramiteMapper;
+import ar.com.bbva.got.mappers.TramiteDetalleMapper;
 import ar.com.bbva.got.mappers.TramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.EstadoTramite;
@@ -225,10 +227,15 @@ public class FuncionalController {
     
     @ApiOperation(value = "Delete an autorizado")
     @RequestMapping(value = "/tramite/{tramiteId}/autorizado/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer tramiteId, @PathVariable Integer autorizadoId) {
+    public ResponseEntity<?> deleteTramiteAutorizado(@PathVariable Integer tramiteId, @PathVariable Integer autorizadoId) {
         try {
         	TramiteAutorizadoKey key = new TramiteAutorizadoKey(tramiteId, autorizadoId);
         	tramiteAutorizadoService.delete(key);
+        	
+        	//TODO DEFINIR ESTO.
+        	//List<TramiteAutorizado> listaTramitesDelAutorizado= tramiteAutorizadoService.listByAutorizadoId(autorizadoId);
+        	//if (listaTramitesDelAutorizado.size()==0) autorizadoService.delete(autorizadoId);
+        	
             StatusResponse status = new StatusResponse("ok", "Autorizado deleted successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
@@ -686,18 +693,17 @@ public class FuncionalController {
             return response;
         }
     }
-    
-    
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////7
-    
-    
+  
     
     
     @ApiOperation(value = "Add a tramiteDetalle")
     @RequestMapping(value = "/tramites/detalle/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> addTramiteDetalle(@RequestBody TramiteDetalle tramiteDetalle) {
+    public ResponseEntity<?> addTramiteDetalle(@RequestBody TramiteDetalleDTO tramiteDetalleDTO) {
         try {
+        	
+        	
+        	TramiteDetalle tramiteDetalle = TramiteDetalleMapper.DTOtoModel(tramiteDetalleDTO);
+        	
             tramiteDetalleService.save(tramiteDetalle);
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -714,7 +720,7 @@ public class FuncionalController {
     @RequestMapping(value = "/tramites/detalle/update/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateTramiteDetalle(@PathVariable Integer tramiteId,
             @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId,
-            @RequestBody TramiteDetalle tramiteDetalle) {
+            @RequestBody TramiteDetalleDTO tramiteDetalle) {
         try {
             TramiteDetalle stored = this.tramiteDetalleService
                     .getById(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
@@ -761,10 +767,5 @@ public class FuncionalController {
             return response;
         }
     }
-    
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
     
 }
