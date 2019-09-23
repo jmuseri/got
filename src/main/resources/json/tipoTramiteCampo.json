@@ -72,7 +72,7 @@
   {
     "id": {
       "tipoTramiteId": 3,
-      "campoDisponibleId": "cuenta"
+      "campoDisponibleId": "cuenta2"
     },
     "obligatorio": true,
     "activo": true,
