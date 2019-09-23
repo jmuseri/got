@@ -7,4 +7,3 @@
 *.log
 *.gz
 /build/
-/target/
