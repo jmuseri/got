@@ -1,0 +1,170 @@
+[
+  {
+    "id": {
+      "tipoTramiteId": 1,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 1,
+      "campoDisponibleId": "cantidad"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CANTIDADFIRMA",
+    "leyenda": "Cantidad de firmas a certificar",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 2,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 2,
+      "campoDisponibleId": "cantidad"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CANTIDADCHEQUES",
+    "leyenda": "Cantidad de cheques a certificar",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 3,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 3,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTAEXTRACTO",
+    "leyenda": "Elegí la cuenta para la obtención de los resúmenes",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },  
+  {
+    "id": {
+      "tipoTramiteId": 3,
+      "campoDisponibleId": "rangoMes"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "RANGORESUMEN",
+    "leyenda": "Elegí el rango de los resúmenes",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 5,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 4,
+      "campoDisponibleId": "cuenta"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CUENTADEBITO",
+    "leyenda": "Elegí la cuenta en pesos que se debitará el cobró de la solicitud",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 4,
+      "campoDisponibleId": "textoLargo"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "DETALLE",
+    "leyenda": "Indique más detalles",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 5,
+      "campoDisponibleId": "cantidad"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "CANTIDADTOKEN",
+    "leyenda": "Cantidad de tokens?",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 5,
+      "campoDisponibleId": "administrador"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "ADMINISTRADOR",
+    "leyenda": "Administrador:",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  }
+]

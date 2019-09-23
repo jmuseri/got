@@ -1,0 +1,123 @@
+[
+    {
+      "id": "cuit",
+      "nombre": "cuit",
+      "descripcion": "Cuit",
+      "tipoDato": "CUIT",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "fechaDesde",
+      "nombre": "fechaDesde",
+      "descripcion": "Fecha Desde",
+      "tipoDato": "Date",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "fechaHasta",
+      "nombre": "fechaHasta",
+      "descripcion": "Fecha Hasta",
+      "tipoDato": "Date",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "cantidad",
+      "nombre": "cantidad",
+      "descripcion": "Cantidad maximo 20",
+      "tipoDato": "CANTIDAD20",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "cantidad2",
+      "nombre": "cantidad2",
+      "descripcion": "Cantidad maximo 10",
+      "tipoDato": "CANTIDAD10",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "cuenta",
+      "nombre": "cuenta",
+      "descripcion": "Cuenta",
+      "tipoDato": "CUENTA",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "importe",
+      "nombre": "importe",
+      "descripcion": "Importe",
+      "tipoDato": "IMPORTE",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "rangoMes",
+      "nombre": "rangoMes",
+      "descripcion": "Rango Meses",
+      "tipoDato": "RANGOFECHAMES",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "textoLargo",
+      "nombre": "textoLargo",
+      "descripcion": "Texto Largo",
+      "tipoDato": "TEXTOLARGO",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "sucursal",
+      "nombre": "sucursal",
+      "descripcion": "Sucursales",
+      "tipoDato": "SUCURSAL",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "administrador",
+      "nombre": "administrador",
+      "descripcion": "Administrador",
+      "tipoDato": "ADMINISTRADOR",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    }
+]

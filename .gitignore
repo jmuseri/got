@@ -6,5 +6,4 @@
 *.settings
 *.log
 *.gz
-/target/
 /build/
