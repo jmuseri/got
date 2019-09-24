@@ -228,7 +228,7 @@ public class FuncionalController {
     
     @ApiOperation(value = "Delete an autorizado")
     @RequestMapping(value = "/autorizado/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteTramiteAutorizado(@PathVariable Integer autorizadoId) {
+    public ResponseEntity<?> deleteAutorizado(@PathVariable Integer autorizadoId) {
         try {
         	Autorizado autorizado = autorizadoService.getById(autorizadoId);
         	StatusResponse status =null;
