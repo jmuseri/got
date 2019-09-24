@@ -15,54 +15,46 @@ import ar.com.bbva.got.model.Tramite;
 public interface TramiteRepository extends CrudRepository<Tramite, Integer> {
 
     
-    List<Tramite> findByNroClienteEmpresaAndEstadoAndTipoTramiteId(Integer nroClienteEmpresa, EstadoTramite estado, Integer tipoTramiteId);
+	
+	
+	
+	
+    @Query("SELECT t FROM Tramite t WHERE "
+    		+ "(:nroClienteEmpresa is null or t.nroClienteEmpresa = :nroClienteEmpresa) "
+    		+ " and (:estado is null or t.estado = :estado) "
+    		+ " and (:tipoTramiteId is null or t.tipoTramite.id = :tipoTramiteId)"
+    		+ " and (:sectorInicioId is null or t.sectorInicio.id.sector = :sectorInicioId)")
+    List<Tramite> findByNroClienteEmpresaAndEstadoAndTipoTramiteIdAndSectorInicioId(
+    		@Param("nroClienteEmpresa")Integer nroClienteEmpresa, 
+    		@Param("estado")EstadoTramite estado, 
+    		@Param("tipoTramiteId")Integer tipoTramiteId,
+    		@Param("sectorInicioId")String sectorInicioId);
     
-    List<Tramite> findByNroClienteEmpresaAndEstado(Integer nroClienteEmpresa, EstadoTramite estado);
+    @Query("SELECT t FROM Tramite t WHERE "
+    		+ "(:cuitEmpresa is null or t.cuitEmpresa = :cuitEmpresa) "
+    		+ " and (:estado is null or t.estado = :estado) "
+    		+ " and (:tipoTramiteId is null or t.tipoTramite.id = :tipoTramiteId)"
+    		+ " and (:sectorInicioId is null or t.sectorInicio.id.sector = :sectorInicioId)")
+    List<Tramite> findByCuitEmpresaAndEstadoAndTipoTramiteIdAndSectorInicioId(
+    		@Param("cuitEmpresa")String cuitEmpresa,
+    		@Param("estado")EstadoTramite estado, 
+    		@Param("tipoTramiteId")Integer tipoTramiteId,
+    		@Param("sectorInicioId")String sectorInicioId);
+
     
-    List<Tramite> findByNroClienteEmpresaAndTipoTramiteId(Integer nroClienteEmpresa, Integer tipoTramiteId);
-    
-    List<Tramite> findByNroClienteEmpresa(Integer nroClienteEmpresa);
-    
-    
-    List<Tramite> findByCuitEmpresaAndEstadoAndTipoTramiteId(String cuitEmpresa, EstadoTramite estado, Integer tipoTramiteId);
-    
-    List<Tramite> findByCuitEmpresaAndEstado(String cuitEmpresa, EstadoTramite estado);
-    
-     List<Tramite> findByCuitEmpresaAndTipoTramiteId(String cuitEmpresa, Integer tipoTramiteId);
-    
-    List<Tramite> findByCuitEmpresa(String cuit);
-    
-//    //1 Param
     List<Tramite> findBySectorActual(Sector sectorActual);
     List<Tramite> findByEstado(EstadoTramite estado);
-    List<Tramite> findBySectorActualId(String sectorActualId);
-    List<Tramite> findByAutorizadoAutorizadoNroDocumento(String autorizadoAutorizadoNroDocumento);
-//    
-//    // 2 Params
-//    List<Tramite> findByEstadoAndTipoTramiteId(EstadoTramite estado, Integer tipoTramiteId);
-//    List<Tramite> findByEstadoAndSectorActualId(EstadoTramite estado, String sectorActualId);
-//    List<Tramite> findByEstadoAndAutorizadoAutorizadoNroDocumento(EstadoTramite estado, String autorizadoAutorizadoNroDocumento);
-//    List<Tramite> findByTipoTramiteIdAndSectorActualId(Integer tipoTramiteId, String sectorActualId);
-//    List<Tramite> findByTipoTramiteIdAndAutorizadoAutorizadoNroDocumento(Integer tipoTramiteId, String autorizadoAutorizadoNroDocumento);
-//    List<Tramite> findBySectorActualIdAndAutorizadoAutorizadoNroDocumento(String sectorActualId, String autorizadoAutorizadoNroDocumento);
-//    
-//    //3 Params 
-//    List<Tramite> findByEstadoAndTipoTramiteIdAndSectorActualId(EstadoTramite estado, Integer tipoTramiteId, String sectorActualId);
-//    List<Tramite> findByEstadoAndTipoTramiteIdAndAutorizadoAutorizadoNroDocumento(EstadoTramite estado, Integer tipoTramiteId, String autorizadoAutorizadoNroDocumento);
-//    List<Tramite> findByEstadoAndSectorActualIdAndAutorizadoAutorizadoNroDocumento(EstadoTramite estado, String sectorActualId, String autorizadoAutorizadoNroDocumento);
-//    List<Tramite> findByTipoTramiteIdAndSectorActualIdAndAutorizadoAutorizadoNroDocumento(Integer tipoTramiteId, String sectorActualId, String autorizadoAutorizadoNroDocumento);
-//    
-//    //4 params
-    
+
+
     @Query("SELECT t FROM Tramite t WHERE "
     		+ "(:estado is null or t.estado = :estado) "
     		+ "and (:tipoTramiteId is null or t.tipoTramite.id = :tipoTramiteId)"
-    		+ "and (:sectorActualId is null or t.sectorActual.id.sector = :sectorActualId)")
-    		//+ "and (:autorizadoAutorizadoNroDocumento is null or t.autorizado.autorizado.nroDocumento = :autorizadoAutorizadoNroDocumento)")
-    List<Tramite> findByEstadoAndTipoTramiteIdAndSectorActualId(
+    		+ "and (:sectorInicioId is null or t.sectorInicio.id.sector = :sectorInicioId)"
+    		/*+ "and  (:autorizadoAutorizadoNroDocumento is null or t.autorizado contains (select a from Autorizado a where autorizado.nroDocumento = :autorizadoAutorizadoNroDocumento)"*/)
+    List<Tramite> findByEstadoAndTipoTramiteIdAndSectorInicioId(
     			@Param("estado")EstadoTramite estado, 
     			@Param("tipoTramiteId")Integer tipoTramiteId, 
-    			@Param("sectorActualId")String sectorActualId/*, 
+    			@Param("sectorInicioId")String sectorInicioId/*, 
     			@Param("autorizadoAutorizadoNroDocumento")String autorizadoAutorizadoNroDocumento*/);
     
 }

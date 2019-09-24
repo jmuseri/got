@@ -447,8 +447,11 @@ public class FuncionalController {
         	       	
         	Tramite tramite = tramiteService.getById(id);
         	tramite.setEstado(EstadoTramite.RECHAZADO);
-        	
-        	MotivoRechazo motivoRechazo= motivoRechazoService.getById(motivoRechazoId);
+
+        	MotivoRechazo motivoRechazo= null; 
+        	if (null!=motivoRechazoId) 
+        		motivoRechazoService.getById(motivoRechazoId);
+
         	tramite.setMotivoRechazo(motivoRechazo);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());
@@ -548,14 +551,15 @@ public class FuncionalController {
     public ResponseEntity<?> listTramites(HttpServletRequest req,
     		@PathVariable Integer nroClienteEmpresa,
     		@RequestParam(value = "estadoTramite", required = false) String estado,
-    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
-        
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sectorInicioId", required = false) String sectorInicioId
+    		) throws ParseException {
     	try {
             
         	
         	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
         	
-        	Iterable<Tramite> tramiteList = tramiteService.listByEmpresaEstadoAndTipoTramite(nroClienteEmpresa, estado, idTipoTramite);
+        	Iterable<Tramite> tramiteList = tramiteService.listByEmpresaEstadoAndTipoTramiteAndSectorInicio(nroClienteEmpresa, estado, idTipoTramite, sectorInicioId);
         	        	
         	for (Tramite tramite : tramiteList) {
         		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
@@ -579,12 +583,6 @@ public class FuncionalController {
     
     
     
-    
-    
-    
-    
-    
-    
     @ApiOperation(value = "show tramites list for the given cuit")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -594,14 +592,15 @@ public class FuncionalController {
     public ResponseEntity<?> listTramitesByCUIT(HttpServletRequest req,
     		@PathVariable String cuit,
     		@RequestParam(value = "estadoTramite", required = false) String estado,
-    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite) throws ParseException {
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sectorInicioId", required = false) String sectorInicioId) throws ParseException {
         
     	try {
             
         	
         	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
         	
-        	Iterable<Tramite> tramiteList = tramiteService.listByCuitEmpresaEstadoAndTipoTramite(cuit, estado, idTipoTramite);
+        	Iterable<Tramite> tramiteList = tramiteService.listByCuitEmpresaEstadoAndTipoTramiteAndSectorInicio(cuit, estado, idTipoTramite,sectorInicioId);
         	        	
         	for (Tramite tramite : tramiteList) {
         		TramiteDTO response = TramiteMapper.modelToDTO(tramite);

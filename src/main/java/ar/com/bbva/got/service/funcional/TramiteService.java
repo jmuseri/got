@@ -21,12 +21,12 @@ public interface TramiteService {
 
     void delete(Integer id);
 
-	List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, String estado,
-			Integer idTipoTramite);
 
-	List<Tramite> listByCuitEmpresaEstadoAndTipoTramite(String cuit, String estado, Integer idTipoTramite);
+	List<Tramite> listByCuitEmpresaEstadoAndTipoTramiteAndSectorInicio(String cuit, String estado, Integer idTipoTramite, String sectorInicioId);
 	
-	
-	List<Tramite> buscarTramites(String estado, Integer idTipoTramite, String idSector, String DniAutorizado);	
+	List<Tramite> buscarTramites(String estado, Integer idTipoTramite, String idSector, String DniAutorizado);
+
+	List<Tramite> listByEmpresaEstadoAndTipoTramiteAndSectorInicio(Integer nroClienteEmpresa, String estado,
+			Integer idTipoTramite, String sectorInicioId);	
 	
 }

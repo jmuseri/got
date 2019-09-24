@@ -41,34 +41,23 @@ public class TramiteServiceImpl implements TramiteService {
         
     }
     
-    @Override
-    public List<Tramite> listByEmpresaEstadoAndTipoTramite(Integer nroClienteEmpresa, String estado, Integer idTipoTramite) {
-        logger.debug("listByCuitEstadoAndTipoTramite called");
-        if (estado==null && idTipoTramite ==null) 
-        		return this.tramiteRepository.findByNroClienteEmpresa(nroClienteEmpresa);
-        else if (estado==null) 
-        		return this.tramiteRepository.findByNroClienteEmpresaAndTipoTramiteId(nroClienteEmpresa, idTipoTramite);
-        else if (idTipoTramite ==null)
-        	return this.tramiteRepository.findByNroClienteEmpresaAndEstado(nroClienteEmpresa, EstadoTramite.valueOf(estado));
-        
-        return this.tramiteRepository.findByNroClienteEmpresaAndEstadoAndTipoTramiteId(nroClienteEmpresa, EstadoTramite.valueOf(estado), idTipoTramite);
-    }
-    
-    
-    
-    @Override
-    public List<Tramite> listByCuitEmpresaEstadoAndTipoTramite(String cuitEmpresa, String estado, Integer idTipoTramite) {
-        logger.debug("listByCuitEstadoAndTipoTramite called");
-        if (estado==null && idTipoTramite ==null) 
-        		return this.tramiteRepository.findByCuitEmpresa(cuitEmpresa);
-        else if (estado==null) 
-        		return this.tramiteRepository.findByCuitEmpresaAndTipoTramiteId(cuitEmpresa, idTipoTramite);
-        else if (idTipoTramite ==null)
-        	return this.tramiteRepository.findByCuitEmpresaAndEstado(cuitEmpresa, EstadoTramite.valueOf(estado));
-        
-        return this.tramiteRepository.findByCuitEmpresaAndEstadoAndTipoTramiteId(cuitEmpresa, EstadoTramite.valueOf(estado), idTipoTramite);
-    }
-    
+	@Override
+	public List<Tramite> listByEmpresaEstadoAndTipoTramiteAndSectorInicio(Integer nroClienteEmpresa, String estado,
+			Integer idTipoTramite, String sectorInicioId) {
+		logger.debug("listByCuitEstadoAndTipoTramite called");
+		EstadoTramite estadoTramite = estado==null?null:EstadoTramite.valueOf(estado);
+		return this.tramiteRepository.findByNroClienteEmpresaAndEstadoAndTipoTramiteIdAndSectorInicioId(
+				nroClienteEmpresa, estadoTramite, idTipoTramite, sectorInicioId);
+	}
+
+	@Override
+	public List<Tramite> listByCuitEmpresaEstadoAndTipoTramiteAndSectorInicio(String cuitEmpresa, String estado,
+			Integer idTipoTramite, String sectorInicioId) {
+		logger.debug("listByCuitEstadoAndTipoTramite called");
+		EstadoTramite estadoTramite = estado==null?null:EstadoTramite.valueOf(estado);
+		return this.tramiteRepository.findByCuitEmpresaAndEstadoAndTipoTramiteIdAndSectorInicioId(cuitEmpresa,
+				estadoTramite, idTipoTramite, sectorInicioId);
+	}
     
     
 
@@ -99,8 +88,9 @@ public class TramiteServiceImpl implements TramiteService {
 	@Override
 	public List<Tramite> buscarTramites(String estado, Integer idTipoTramite, String idSector, String DniAutorizado) {
         EstadoTramite estadoTramite = estado==null?null:EstadoTramite.valueOf(estado);
-		return this.tramiteRepository.findByEstadoAndTipoTramiteIdAndSectorActualId(estadoTramite,
-				idTipoTramite, idSector/*, DniAutorizado*/);
+        
+		return this.tramiteRepository.findByEstadoAndTipoTramiteIdAndSectorInicioId(estadoTramite,
+				idTipoTramite, idSector);
 
 	}
 
