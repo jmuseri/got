@@ -670,18 +670,6 @@ public class FuncionalController {
         	
         	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
         	
-        	List<Autorizado> autorizados = autorizadoService.getByNroDocumento(DniAutorizado);
-        	ArrayList<TramiteAutorizado> listaTramiteAutorizados = new ArrayList<TramiteAutorizado>();
-        	if (null!= autorizados && autorizados.size()>0) {
-        		for (Iterator<Autorizado> iterator = autorizados.iterator(); iterator.hasNext();) {
-					Autorizado autorizado = (Autorizado) iterator.next();
-					List<TramiteAutorizado> tramiteAutorizado = tramiteAutorizadoService.listByAutorizadoId(autorizado.getId());
-					listaTramiteAutorizados.addAll(tramiteAutorizado);
-				} 
-        	}
-        	
-        	
-        	
         	Iterable<Tramite> tramiteList = tramiteService.buscarTramites(estado, idTipoTramite, idSector, DniAutorizado);
         	        	
         	for (Tramite tramite : tramiteList) {
