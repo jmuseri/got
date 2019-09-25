@@ -3,6 +3,7 @@ package ar.com.bbva.got.controller.funcional;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -438,6 +439,35 @@ public class FuncionalController {
         }
     }
     
+    
+    
+    @ApiOperation(value = "Cancelar tramite")
+    @RequestMapping(value = "/tramites/{id}/cancelar", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<?> cancelarTramite(@PathVariable Integer id,
+    										   @RequestParam(value = "usuario", required = false) String usuario) {
+        try {
+        	       	
+        	Tramite tramite = tramiteService.getById(id);
+        	tramite.setEstado(EstadoTramite.CANCELADO);
+        	tramite.setUsuModif(usuario);
+        	tramite.setFechaModif(new Date());
+        	tramiteService.save(tramite);
+        	
+          	
+            StatusResponse status = new StatusResponse("ok", "Tramite en estado Finalizar", null);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            return response;
+            
+            
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
     @ApiOperation(value = "Rechazar tramite")
     @RequestMapping(value = "/tramites/{id}/rechazar", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> rechazarTramite(@PathVariable Integer id,
@@ -639,6 +669,18 @@ public class FuncionalController {
             
         	
         	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	List<Autorizado> autorizados = autorizadoService.getByNroDocumento(DniAutorizado);
+        	ArrayList<TramiteAutorizado> listaTramiteAutorizados = new ArrayList<TramiteAutorizado>();
+        	if (null!= autorizados && autorizados.size()>0) {
+        		for (Iterator<Autorizado> iterator = autorizados.iterator(); iterator.hasNext();) {
+					Autorizado autorizado = (Autorizado) iterator.next();
+					List<TramiteAutorizado> tramiteAutorizado = tramiteAutorizadoService.listByAutorizadoId(autorizado.getId());
+					listaTramiteAutorizados.addAll(tramiteAutorizado);
+				} 
+        	}
+        	
+        	
         	
         	Iterable<Tramite> tramiteList = tramiteService.buscarTramites(estado, idTipoTramite, idSector, DniAutorizado);
         	        	

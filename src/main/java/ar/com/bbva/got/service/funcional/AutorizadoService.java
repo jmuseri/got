@@ -12,6 +12,8 @@ public interface AutorizadoService {
     Iterable<Autorizado> listByNroClienteEmpresaOrCuitEmpresa(Integer nroClienteEmpresa, String cuitEmpresa);
 
     Autorizado getById(Integer id);    
+    
+    List<Autorizado> getByNroDocumento(String nroDocumento);   
 
     Autorizado save(Autorizado autorizado);
 

@@ -90,7 +90,7 @@ public class TramiteServiceImpl implements TramiteService {
         EstadoTramite estadoTramite = estado==null?null:EstadoTramite.valueOf(estado);
         
 		return this.tramiteRepository.findByEstadoAndTipoTramiteIdAndSectorInicioId(estadoTramite,
-				idTipoTramite, idSector);
+				idTipoTramite, idSector,DniAutorizado);
 
 	}
 

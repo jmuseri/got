@@ -46,15 +46,22 @@ public interface TramiteRepository extends CrudRepository<Tramite, Integer> {
     List<Tramite> findByEstado(EstadoTramite estado);
 
 
-    @Query("SELECT t FROM Tramite t WHERE "
+    @Query("SELECT t FROM Tramite t "
+    		+ "join t.autorizado ta "
+    		+ "join ta.autorizado aut "
+    		+ "WHERE "
     		+ "(:estado is null or t.estado = :estado) "
-    		+ "and (:tipoTramiteId is null or t.tipoTramite.id = :tipoTramiteId)"
-    		+ "and (:sectorInicioId is null or t.sectorInicio.id.sector = :sectorInicioId)"
-    		/*+ "and  (:autorizadoAutorizadoNroDocumento is null or t.autorizado contains (select a from Autorizado a where autorizado.nroDocumento = :autorizadoAutorizadoNroDocumento)"*/)
+    		+ "and (:tipoTramiteId is null or t.tipoTramite.id = :tipoTramiteId) "
+    		+ "and (:sectorInicioId is null or t.sectorInicio.id.sector = :sectorInicioId) "
+    		+ "and  (:autorizadoAutorizadoNroDocumento is null or aut.nroDocumento  = :autorizadoAutorizadoNroDocumento) ")
     List<Tramite> findByEstadoAndTipoTramiteIdAndSectorInicioId(
     			@Param("estado")EstadoTramite estado, 
     			@Param("tipoTramiteId")Integer tipoTramiteId, 
-    			@Param("sectorInicioId")String sectorInicioId/*, 
-    			@Param("autorizadoAutorizadoNroDocumento")String autorizadoAutorizadoNroDocumento*/);
+    			@Param("sectorInicioId")String sectorInicioId, 
+    			@Param("autorizadoAutorizadoNroDocumento")String autorizadoAutorizadoNroDocumento);
+    
+
+    
+    
     
 }

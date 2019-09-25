@@ -63,4 +63,11 @@ public class AutorizadoServiceImpl implements AutorizadoService {
         this.autorizadoRepository.deleteById(id);
     }
 
+	@Override
+	public List<Autorizado> getByNroDocumento(String nroDocumento) {
+		logger.debug("getByNroDocumento called");
+        return this.autorizadoRepository.findByNroDocumento(nroDocumento);
+
+	}
+
 }
