@@ -61,5 +61,8 @@ public class TramiteDTO implements Serializable{
     @ApiModelProperty(notes = "The expiry date", required = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaVencimiento;
+    
+    @ApiModelProperty(notes = "the tramite idOrden")
+    private String idOrden;
 
 }
