@@ -140,17 +140,18 @@
     "fechaModif": null
   },
   {
-    "id": {
+ 	 "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": "sucursal"
+      "campoDisponibleId": "administrador"
     },
     "obligatorio": true,
     "activo": true,
-    "nombre": "SUCURSALRETIRO",
-    "leyenda": "Sucursal de retiro",
+    "nombre": "ADMINISTRADOR",
+    "leyenda": "Administrador",
     "usuAlta": "system",
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
   }
+  
 ]
