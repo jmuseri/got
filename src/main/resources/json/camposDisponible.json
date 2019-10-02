@@ -130,6 +130,28 @@
       "fechaAlta": "2019-06-01T12:24:50.045Z",
       "usuModif": null,
       "fechaModif": null
+    },
+    {
+      "id": "terminosYCondiciones",
+      "nombre": "terminosYCondiciones",
+      "descripcion": "Terminos y condiciones",
+      "tipoDato": "TERMINOSYCONDICIONES",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
+    },
+    {
+      "id": "cantidadToken",
+      "nombre": "cantidadToken",
+      "descripcion": "Cantidad de Tokens",
+      "tipoDato": "CANTIDAD20",
+      "activo": true,
+      "usuAlta": "system",
+      "fechaAlta": "2019-06-01T12:24:50.045Z",
+      "usuModif": null,
+      "fechaModif": null
     }
     
-  ]
+]
