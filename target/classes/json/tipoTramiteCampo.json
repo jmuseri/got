@@ -128,12 +128,12 @@
   {
     "id": {
       "tipoTramiteId": 5,
-      "campoDisponibleId": "cantidad"
+      "campoDisponibleId": "cantidadToken"
     },
     "obligatorio": true,
     "activo": true,
     "nombre": "CANTIDADTOKEN",
-    "leyenda": "Cantidad de tokens?",
+    "leyenda": "Cantidad de tokens:",
     "usuAlta": "system",
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
@@ -152,6 +152,19 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
+  },
+  {
+ 	 "id": {
+      "tipoTramiteId": 5,
+      "campoDisponibleId": "terminosYCondiciones"
+    },
+    "obligatorio": true,
+    "activo": true,
+    "nombre": "TERMINOSYCONDICIONES",
+    "leyenda": "tramites.paso1.terminos",
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
   }
-  
 ]
