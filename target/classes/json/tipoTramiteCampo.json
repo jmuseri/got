@@ -26,7 +26,7 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
-  },  
+  },
   {
     "id": {
       "tipoTramiteId": 2,
@@ -40,7 +40,7 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
-  },  
+  },
   {
     "id": {
       "tipoTramiteId": 2,
@@ -54,7 +54,7 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
-  },  
+  },
   {
     "id": {
       "tipoTramiteId": 3,
@@ -68,7 +68,7 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
-  },  
+  },
   {
     "id": {
       "tipoTramiteId": 3,
@@ -82,7 +82,7 @@
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
     "fechaModif": null
-  },  
+  },
   {
     "id": {
       "tipoTramiteId": 3,
@@ -161,7 +161,7 @@
     "obligatorio": true,
     "activo": true,
     "nombre": "TERMINOSYCONDICIONES",
-    "leyenda": "tramites.paso1.terminos",
+    "leyenda": "Terminos y Condiciones:",
     "usuAlta": "system",
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,

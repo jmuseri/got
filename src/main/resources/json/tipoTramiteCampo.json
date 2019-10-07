@@ -161,7 +161,7 @@
     "obligatorio": true,
     "activo": true,
     "nombre": "TERMINOSYCONDICIONES",
-    "leyenda": "tramites.paso1.terminos",
+    "leyenda": "Terminos y Condiciones:",
     "usuAlta": "system",
     "fechaAlta": "2019-06-01T12:24:50.045Z",
     "usuModif": null,
