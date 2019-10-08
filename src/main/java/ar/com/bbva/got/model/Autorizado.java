@@ -2,6 +2,8 @@ package ar.com.bbva.got.model;
 
 import java.util.Date;
 
+import org.json.JSONObject;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,4 +68,22 @@ public class Autorizado {
     
     @ApiModelProperty(notes = "The Autorizado state")
     private boolean activo;
+    
+    public JSONObject toJSONObject() {
+		JSONObject jo = new JSONObject();
+		jo.put("id",getId());
+		jo.put("nroClienteEmpresa", getNroClienteEmpresa());
+		jo.put("cuitEmpresa", getCuitEmpresa());
+		jo.put("tipoDocumento", getTipoDocumento());
+		jo.put("nroDocumento", getNroDocumento());
+		jo.put("nombre",getNombre());
+		jo.put("apellido", getApellido());
+		jo.put("sexo", getSexo());
+		jo.put("usuAlta", getUsuAlta());
+		jo.put("fechaAlta", getFechaAlta());
+		jo.put("usuModif", getUsuModif());
+		jo.put("fechaModif", getFechaModif());
+		jo.put("activo", isActivo());
+		return jo;
+	}
 }
