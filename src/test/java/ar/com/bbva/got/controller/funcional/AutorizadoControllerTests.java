@@ -137,11 +137,11 @@ public class AutorizadoControllerTests {
 		Assert.assertEquals(autorizado, argumentCaptor.getValue());
 	}
 	
-	@Test
-	public void testUpdateNull() throws Exception {
-		Autorizado autorizado = new Autorizado();
-		
-		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add/" + autorizado.getId().toString()).contentType(MediaType.APPLICATION_JSON).content(autorizado.toJSONObject().toString()))
-				.andExpect(MockMvcResultMatchers.status().isOk());
-	}
+//	@Test
+//	public void testUpdateNull() throws Exception {
+//		Autorizado autorizado = new Autorizado();
+//		
+//		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add/" + autorizado.getId().toString()).contentType(MediaType.APPLICATION_JSON).content(autorizado.toJSONObject().toString()))
+//				.andExpect(MockMvcResultMatchers.status().isOk());
+//	}
 }
