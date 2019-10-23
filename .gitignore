@@ -9,3 +9,5 @@
 /build/*
 /target/*
 .vscode/*
+.vscode/settings.json
+target/classes/json/*
