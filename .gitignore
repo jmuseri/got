@@ -6,5 +6,8 @@
 *.settings
 *.log
 *.gz
-/build/
-/target/
+/build/*
+/target/*
+.vscode/*
+.vscode/settings.json
+target/classes/json/*
