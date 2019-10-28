@@ -35,6 +35,7 @@ public class TramiteMapper {
 		
 		BeanUtils.copyProperties(model, dto);
 		
+		dto.setIdTipoTramite(model.getTipoTramite().getId());
 		dto.setTipoTramiteDesc(model.getTipoTramite().getDescripcion());
 		
 //		dto.setSectorActual(SectorMapper.modelToDTO(model.getSectorActual()));

@@ -2,6 +2,7 @@ package ar.com.bbva.got.model;
 
 import java.util.Date;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.persistence.Entity;
@@ -71,6 +72,7 @@ public class Autorizado {
     
     public JSONObject toJSONObject() {
 		JSONObject jo = new JSONObject();
+		try {
 		jo.put("id",getId());
 		jo.put("nroClienteEmpresa", getNroClienteEmpresa());
 		jo.put("cuitEmpresa", getCuitEmpresa());
@@ -84,6 +86,11 @@ public class Autorizado {
 		jo.put("usuModif", getUsuModif());
 		jo.put("fechaModif", getFechaModif());
 		jo.put("activo", isActivo());
+		}catch (JSONException e) {
+			//DO NOTHING
+		}
+		
 		return jo;
+		
 	}
 }
