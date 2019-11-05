@@ -124,6 +124,30 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+						<!-- 			Se crea carpeta con configuracion lista para copiar a DESA -->
+							<target>
+								<echo>*=========================================*</echo>
+								<echo>Se borra la carpeta con las clases:</echo>
+								<delete dir="${project.build.directory}/${project.build.finalName}/WEB-INF/classes/ar" />
+								<echo>--</echo>
+								<echo>Copiamos el jar generado con las clases a la carpeta lib:</echo>
+								<copy file="${project.build.directory}/${project.artifactId}.jar" todir="${project.build.directory}/${project.build.finalName}/WEB-INF/lib/" />
+								<echo>*=========================================*</echo>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
