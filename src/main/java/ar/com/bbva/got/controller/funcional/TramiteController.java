@@ -1,6 +1,12 @@
 package ar.com.bbva.got.controller.funcional;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,166 +18,267 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.bbva.got.bean.StatusResponse;
+import ar.com.bbva.got.dto.AltaTramiteDTO;
+import ar.com.bbva.got.dto.CampoDetalleDTO;
+import ar.com.bbva.got.dto.TramiteDTO;
+import ar.com.bbva.got.dto.TramiteDetalleDTO;
+import ar.com.bbva.got.mappers.TramiteDetalleMapper;
+import ar.com.bbva.got.mappers.TramiteMapper;
+import ar.com.bbva.got.model.Autorizado;
+import ar.com.bbva.got.model.EstadoTramite;
+import ar.com.bbva.got.model.Sector;
+import ar.com.bbva.got.model.TipoTramite;
+import ar.com.bbva.got.model.TipoTramiteCampo;
+import ar.com.bbva.got.model.TipoTramiteComision;
+import ar.com.bbva.got.model.TipoTramiteComisionKey;
 import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.model.TramiteAutorizadoKey;
 import ar.com.bbva.got.model.TramiteDetalle;
 import ar.com.bbva.got.model.TramiteDetalleKey;
+import ar.com.bbva.got.service.funcional.AutorizadoService;
+import ar.com.bbva.got.service.funcional.TipoTramiteComisionService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
+import ar.com.bbva.got.service.parametria.SectorService;
+import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/funcional/tramite")
-@Api(value = "funcional", description = "Funcional/Tramite Operations in GOT")
+@RequestMapping("/funcional/tramite/")
+@Api(value = "funcional", description = "funcional Operations in GOT")
 public class TramiteController {
 
+	@Autowired
+    private TipoTramiteService tipoTramiteService;
+    
+	@Autowired
+    private TipoTramiteComisionService tipoTramiteComisionService;
+
+	
+	@Autowired
     private TramiteService tramiteService;
-    private TramiteDetalleService tramiteDetalleService;
+	
+	@Autowired
+    private AutorizadoService autorizadoService;
+	
+	@Autowired
+    private SectorService sectorService;
+	
+	@Autowired
     private TramiteAutorizadoService tramiteAutorizadoService;
+	
+	@Autowired
+	private TramiteDetalleService tramiteDetalleService; 
+	
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    public void setTramiteService(TramiteService tramiteService) {
-        this.tramiteService = tramiteService;
-    }
+    
 
-    @Autowired
-    public void setTramiteDetalleService(TramiteDetalleService tramiteDetalleService) {
-        this.tramiteDetalleService = tramiteDetalleService;
-    }
 
-    @Autowired
-    public void setTramiteAutorizadoService(TramiteAutorizadoService tramiteAutorizadoService) {
-        this.tramiteAutorizadoService = tramiteAutorizadoService;
-    }
-
-    @ApiOperation(value = "Add a tramite")
+    
+    @ApiOperation(value = "Crear tramite")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveTramite(@RequestBody Tramite tramite) {
+    public ResponseEntity<?> addTramite(@RequestBody AltaTramiteDTO altaTramiteDTO) {
         try {
-            tramite.setId(0);
-            tramiteService.save(tramite);
-            StatusResponse status = new StatusResponse("ok", "Tramite saved successfully", null);
+        	
+        	
+        	Tramite tramite = new Tramite();
+        	
+        	tramite.setNroClienteEmpresa(altaTramiteDTO.getNroClienteEmpresa());
+        	tramite.setCuitEmpresa(altaTramiteDTO.getCuitEmpresa());
+        	tramite.setCuentaCobro(altaTramiteDTO.getCuentaCobro());
+        	tramite.setAreaNegocio(altaTramiteDTO.getAreaNegocio());
+        	
+        	TipoTramite tipoTramite = tipoTramiteService.getById(altaTramiteDTO.getIdTipoTramite());
+        	
+        	if (tipoTramite == null) {
+        		logger.error("Tipo de tramite no encontrado");
+                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Tipo de tramite no encontrado");
+                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                return response;
+        	}
+        	tramite.setTipoTramite(tipoTramite);
+        	tramite.setEstado(EstadoTramite.PENDIENTE_FIRMA);
+        	
+        	
+            Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta().getSector(),altaTramiteDTO.getSectorAlta().getCanal());
+            
+            if (sectorAlta == null) {
+        		logger.error("Sector no encontrado");
+                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Sector no encontrado");
+                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                return response;
+        	} 
+        	tramite.setSectorActual(sectorAlta);
+        	tramite.setSectorInicio(sectorAlta);
+        	
+        	List<TramiteAutorizado> listaAutorizados = new ArrayList<TramiteAutorizado>();
+        	
+        	for (Integer idAutorizado : altaTramiteDTO.getIdAutorizados()) {
+        		
+        		TramiteAutorizado tramiteAutorizado = new TramiteAutorizado();
+        		Autorizado autorizado = autorizadoService.getById(idAutorizado);
+        		
+        		if (autorizado == null) {
+            		logger.error("Autorizado no encontrado");
+                    StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no encontrado");
+                    ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                    return response;
+            	}
+        		
+        		if (!autorizado.getNroClienteEmpresa().equals(altaTramiteDTO.getNroClienteEmpresa())) {
+        			logger.error("Autorizado no corresponde a la empresa");
+                    StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no corresponde a la empresa");
+                    ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                    return response;
+        		}
+        		
+        		TramiteAutorizadoKey tramiteAutorizadoKey = new TramiteAutorizadoKey();
+        		tramiteAutorizadoKey.setAutorizadoId(idAutorizado);
+        		tramiteAutorizadoKey.setTramiteId(0);
+        		
+        		tramiteAutorizado.setId(tramiteAutorizadoKey);
+        		tramiteAutorizado.setAutorizado(autorizado);
+        		tramiteAutorizado.setFechaAlta(new Date());
+        		tramiteAutorizado.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+        		tramiteAutorizado.setFinalizoTramite(false);
+        		
+        		
+        		listaAutorizados.add(tramiteAutorizado);
+			}
+        	
+        	tramite.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+        	tramite.setUsuModif(altaTramiteDTO.getUsuarioAlta());
+        	tramite.setFechaAlta(new Date());
+        	tramite.setFechaInicio(new Date());
+        	tramite.setFechaModif(new Date());
+        	
+        	tramite = tramiteService.save(tramite);
+        	
+        	for (TramiteAutorizado tramiteAutorizado : listaAutorizados) {
+        		tramiteAutorizado.getId().setTramiteId(tramite.getId());
+			}
+        	
+        	tramiteAutorizadoService.save(listaAutorizados);
+        	
+        	List<TramiteDetalle> listaDetalles = new ArrayList<TramiteDetalle>();
+        	for (CampoDetalleDTO campoDetalleDTO : altaTramiteDTO.getDetalle()) {
+        		TramiteDetalle tramiteDetalle = new TramiteDetalle();
+        		
+        		TipoTramiteCampo tipoTramiteCampo = getTipoTramiteCampoByName(campoDetalleDTO.getNombre(), tipoTramite.getCampos());
+        		
+        		if (tipoTramiteCampo == null) {
+        			logger.error("Campo ingresado no corresponde al tipo de tramite");
+                    StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Campo ingresado no corresponde al tipo de tramite");
+                    ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+                    return response;
+        		}
+        		
+        		TramiteDetalleKey tramiteDetalleKey = new TramiteDetalleKey();
+        		tramiteDetalleKey.setTramiteId(tramite.getId());
+        		tramiteDetalleKey.setTipoTramiteCampoId(tipoTramiteCampo.getId());
+        		
+        		tramiteDetalle.setId(tramiteDetalleKey);
+        		tramiteDetalle.setFechaAlta(new Date());
+        		tramiteDetalle.setFechaModif(new Date());
+        		tramiteDetalle.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+        		tramiteDetalle.setUsuModif(altaTramiteDTO.getUsuarioAlta());
+        		tramiteDetalle.setValor(campoDetalleDTO.getValor());
+        		
+        		listaDetalles.add(tramiteDetalle);
+			}
+        	
+        	tramiteDetalleService.save(listaDetalles);
+        	
+          	
+            StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", tramite.getId().toString());
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
+            
+            
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no insertado", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
     }
 
-    @ApiOperation(value = "Update a tramite")
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> updateTramite(@PathVariable Integer id, @RequestBody Tramite tramite) {
-        try {
-            Tramite stored = tramiteService.getById(id);
-            if (null != tramite.getTipoTramite()) {
-                stored.setTipoTramite(tramite.getTipoTramite());
-            }
-            if (null != tramite.getNroClienteEmpresa()) {
-                stored.setNroClienteEmpresa(tramite.getNroClienteEmpresa());
-            }
-            if (null != tramite.getSectorInicio()) {
-                stored.setSectorInicio(tramite.getSectorInicio());
-            }
-            if (null != tramite.getSectorActual()) {
-                stored.setSectorActual(tramite.getSectorActual());
-            }
-            if (null != tramite.getDetalle()) {
-                stored.setDetalle(tramite.getDetalle());
-            }
-            if (null != tramite.getCuentaCobro()) {
-                stored.setCuentaCobro(tramite.getCuentaCobro());
-            }
-            if (null != tramite.getEstado()) {
-                stored.setEstado(tramite.getEstado());
-            }
-            if (null != tramite.getFechaFinalizacion()) {
-                stored.setFechaFinalizacion(tramite.getFechaFinalizacion());
-            }
-            if (null != tramite.getFechaInicio()) {
-                stored.setFechaInicio(tramite.getFechaInicio());
-            }
-            if (null != tramite.getFechaVencimiento()) {
-                stored.setFechaVencimiento(tramite.getFechaVencimiento());
-            }
-            if (null != tramite.getUsuModif()) {
-                stored.setUsuModif(tramite.getUsuModif());
-            } else {
-                stored.setUsuModif("system");
-            }
-            if (null != tramite.getFechaModif()) {
-                stored.setFechaModif(tramite.getFechaModif());
-            } else {
-                stored.setFechaModif(new Date());
-            }
-            tramiteService.save(stored);
-            StatusResponse status = new StatusResponse("ok", "Tramite updated successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+    private TipoTramiteCampo getTipoTramiteCampoByName (String nombreCampo, Set<TipoTramiteCampo> campos) {
+		
+		for (TipoTramiteCampo tipoTramiteCampo : campos) {
+			if (tipoTramiteCampo.getNombre().equals(nombreCampo)) {
+				return tipoTramiteCampo;
+			}
+		}
+		return null;
+	} 
+    
+    
+    
+    @ApiOperation(value = "Mostrar detalle Tramite")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> getTramite(@PathVariable Integer id) {
+        
+    	try {
+        	       	
+        	Tramite tramite = tramiteService.getById(id);
+        	TramiteDTO dto = TramiteMapper.modelToDTO(tramite);
+        	dto.setCodigoComision(this.getCodigoComision(tramite.getTipoTramite().getId(), tramite.getAreaNegocio()));
+        	
+        	
+        	
+        	ResponseEntity<?> response = new ResponseEntity<>(dto, HttpStatus.OK);
             return response;
+            
         } catch (Exception e) {
             logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", e.getMessage());
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no actualizado", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
         }
     }
-
-    @ApiOperation(value = "Search a tramite with an ID", response = Tramite.class)
-    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> showTramite(@PathVariable Integer id, Model model) {
-        try {
-            Tramite tramite = tramiteService.getById(id);
-            ResponseEntity<?> response = new ResponseEntity<>(tramite, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-
-    @ApiOperation(value = "Delete a tramite")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable Integer id) {
-        try {
-            tramiteService.delete(id);
-            StatusResponse status = new StatusResponse("ok", "Tramite deleted successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Tramite not deleted", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-
-    /*
-     * Tramite-Detalle
-     */
-    @ApiOperation(value = "View a list of available tramiteDetalle", response = Iterable.class)
+    
+    
+ 
+    @ApiOperation(value = "show tramites list for the given nroClienteEmpresa")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-    @RequestMapping(value = "/detalle/list", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> listAllTramiteDetalle(Model model) {
-        try {
-            Iterable<TramiteDetalle> tramiteDetalleList = tramiteDetalleService.listAll();
-            ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalleList, HttpStatus.OK);
+    @RequestMapping(value = "/list/{nroClienteEmpresa}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listTramites(HttpServletRequest req,
+    		@PathVariable Integer nroClienteEmpresa,
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sectorInicioId", required = false) String sectorInicioId
+    		) throws ParseException {
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	Iterable<Tramite> tramiteList = tramiteService.listByEmpresaEstadoAndTipoTramiteAndSectorInicio(nroClienteEmpresa, estado, idTipoTramite, sectorInicioId);
+        	        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		response.setCodigoComision(this.getCodigoComision(tramite.getTipoTramite().getId(), tramite.getAreaNegocio()));
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
             return response;
+        	
+        	
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
@@ -179,19 +286,40 @@ public class TramiteController {
             return response;
         }
     }
-
-    @ApiOperation(value = "Search a tramiteDetalle with a Tramite ID", response = TramiteDetalle.class)
-    @RequestMapping(value = "/detalle/list/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> listTramiteDetalle(@PathVariable Integer id, Model model) {
-        try {
-            Tramite tramite = tramiteService.getById(id);
-            if (null == tramite || null == tramite.getDetalle()) {
-                ResponseEntity<?> response = new ResponseEntity<>(null, HttpStatus.OK);
-                return response;
-            }
-            Iterable<TramiteDetalle> tramiteDetalle = tramite.getDetalle();
-            ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalle, HttpStatus.OK);
+    
+    
+    
+    
+    
+    @ApiOperation(value = "show tramites list for the given cuit")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "/listByCuit/{cuit}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listTramitesByCUIT(HttpServletRequest req,
+    		@PathVariable String cuit,
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sectorInicioId", required = false) String sectorInicioId) throws ParseException {
+        
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	Iterable<Tramite> tramiteList = tramiteService.listByCuitEmpresaEstadoAndTipoTramiteAndSectorInicio(cuit, estado, idTipoTramite,sectorInicioId);
+        	        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		response.setCodigoComision(this.getCodigoComision(tramite.getTipoTramite().getId(), tramite.getAreaNegocio()));
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
             return response;
+        	
+        	
         } catch (Exception e) {
             logger.error("", e);
             StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
@@ -199,11 +327,69 @@ public class TramiteController {
             return response;
         }
     }
-
+    
+    
+    
+    /*
+     * 
+     * 
+     * Busqueda de tramites por tipo y nro. documento del autorizado (solo estos dos que sean requeridos) mas 
+cuit, tipo y doc empresa, estado y tipo de tramite. 
+     */
+    
+    
+    
+    @ApiOperation(value = "show tramites list for the given params")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
+    @RequestMapping(value = "/listByAutorizado/{tipoDocumento}/{numeroDocumento}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listarTramitesByAutorizado(HttpServletRequest req,
+    		@PathVariable String numeroDocumento,
+    		@PathVariable String tipoDocumento,
+    		@RequestParam(value = "cuit", required = false) String cuit,
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sector", required = false) String idSector
+    		) throws ParseException {
+        
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	Iterable<Tramite> tramiteList = tramiteService.buscarTramites(cuit, estado, idTipoTramite, idSector, numeroDocumento, tipoDocumento);
+        	        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		response.setCodigoComision(this.getCodigoComision(tramite.getTipoTramite().getId(), tramite.getAreaNegocio()));
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
+    
     @ApiOperation(value = "Add a tramiteDetalle")
     @RequestMapping(value = "/detalle/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveTramiteDetalle(@RequestBody TramiteDetalle tramiteDetalle) {
+    public ResponseEntity<?> addTramiteDetalle(@RequestBody TramiteDetalleDTO tramiteDetalleDTO) {
         try {
+        	
+        	
+        	TramiteDetalle tramiteDetalle = TramiteDetalleMapper.DTOtoModel(tramiteDetalleDTO);
+        	
             tramiteDetalleService.save(tramiteDetalle);
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle saved successfully", null);
             ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
@@ -220,7 +406,7 @@ public class TramiteController {
     @RequestMapping(value = "/detalle/update/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> updateTramiteDetalle(@PathVariable Integer tramiteId,
             @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId,
-            @RequestBody TramiteDetalle tramiteDetalle) {
+            @RequestBody TramiteDetalleDTO tramiteDetalle) {
         try {
             TramiteDetalle stored = this.tramiteDetalleService
                     .getById(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
@@ -249,22 +435,7 @@ public class TramiteController {
         }
     }
 
-    @ApiOperation(value = "Search a tramiteDetalle with an ID")
-    @RequestMapping(value = "/detalle/show/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> showTramiteDetalle(@PathVariable Integer tramiteId,
-            @PathVariable Integer tipoTramiteCampoId, @PathVariable String campoDisponibleId, Model model) {
-        try {
-            TramiteDetalle tramiteDetalleSaved = this.tramiteDetalleService
-                    .getById(new TramiteDetalleKey(tramiteId, tipoTramiteCampoId, campoDisponibleId));
-            ResponseEntity<?> response = new ResponseEntity<>(tramiteDetalleSaved, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "TramiteDetalle not shown", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
+ 
 
     @ApiOperation(value = "Delete a tramiteDetalle")
     @RequestMapping(value = "/detalle/delete/{tramiteId}/{tipoTramiteCampoId}/{campoDisponibleId}", method = RequestMethod.POST, produces = "application/json")
@@ -282,62 +453,18 @@ public class TramiteController {
             return response;
         }
     }
+    
+    
 
-    /*
-     * Tramite-Autorizado
-     */
-    @ApiOperation(value = "Search a tramiteAutorizado with a Tramite ID", response = TramiteDetalle.class)
-    @RequestMapping(value = "/autorizado/list/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<?> listTramiteAutorizado(@PathVariable Integer id, Model model) {
-        try {
-            Tramite tramite = tramiteService.getById(id);
-            if (null == tramite || null == tramite.getDetalle()) {
-                ResponseEntity<?> response = new ResponseEntity<>(null, HttpStatus.OK);
-                return response;
-            }
-            Iterable<TramiteAutorizado> autorizado = tramite.getAutorizado();
-            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
+    
+   //TODO sacar y poner esta logica en el mapper.
+    private String getCodigoComision (Integer idTipoTramite, Integer areaNegocio){
+    	TipoTramiteComisionKey tipoTramiteComisionid= new TipoTramiteComisionKey(idTipoTramite, areaNegocio);
+    	TipoTramiteComision comision = tipoTramiteComisionService.getById(tipoTramiteComisionid);
+    	return comision!=null? comision.getCodigoComision() : null;
+    	
     }
-
-    @ApiOperation(value = "Add a tramiteAutorizado")
-    @RequestMapping(value = "/autorizado/add", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> saveTramiteAutorizado(@RequestBody TramiteAutorizado tramiteAutorizado) {
-        try {
-            tramiteAutorizadoService.save(tramiteAutorizado);
-            StatusResponse status = new StatusResponse("ok", "TramiteAutorizado saved successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "TramiteAutorizado not saved", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
-
-    @ApiOperation(value = "Delete a tramiteAutorizado")
-    @RequestMapping(value = "/autorizado/delete/{tramiteId}/{autorizadoId}}", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<?> deleteTramiteAutorizado(@PathVariable Integer tramiteId,
-            @PathVariable Integer autorizadoId, Model model) {
-        try {
-            tramiteAutorizadoService.delete(new TramiteAutorizadoKey(tramiteId, autorizadoId));
-            StatusResponse status = new StatusResponse("ok", "TramiteAutorizado deleted successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "TramiteAutorizado not deleted",
-                    e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
-    }
+    
+    
 
 }

@@ -34,8 +34,10 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public Sector getById(SectorKey id) {
+    public Sector getById(String sector, String canal) {
         logger.debug("getById called");
+        SectorKey id = new SectorKey(canal, sector);
+        
         return this.sectorRepository.findById(id).orElse(null);
     }
 

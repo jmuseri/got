@@ -23,11 +23,13 @@ import ar.com.bbva.got.model.MotivoRechazo;
 import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.TipoTramiteCampo;
+import ar.com.bbva.got.model.TipoTramiteComision;
 import ar.com.bbva.got.model.Tramite;
 import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.model.TramiteDetalle;
 import ar.com.bbva.got.service.funcional.AutorizadoService;
 import ar.com.bbva.got.service.funcional.MotivoRechazoService;
+import ar.com.bbva.got.service.funcional.TipoTramiteComisionService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
@@ -50,6 +52,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private TramiteDetalleService tramiteDetalleService;
     private TramiteAutorizadoService tramiteAutorizadoService;
     private MotivoRechazoService motivoRechazoService;
+    private TipoTramiteComisionService tipoTramiteComisionService;
 
     private Logger log = LogManager.getLogger(SpringJpaBootstrap.class);
 	
@@ -105,7 +108,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.motivoRechazoService = motivoRechazoService;
     }
 
-    @Override
+    @Autowired
+    public void setTipoTramiteComisionService(TipoTramiteComisionService tipoTramiteComisionService) {
+		this.tipoTramiteComisionService = tipoTramiteComisionService;
+	}
+
+	@Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadSectores();
         loadComisiones();
@@ -117,6 +125,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadAutorizado();
         loadTramiteDetalle();
         loadTramiteAutorizado();
+        loadTipoTramiteComision();
 
     }
 
@@ -316,4 +325,22 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
     
 
+    private void loadTipoTramiteComision() {
+        /*
+         * Read json sector test and write to db
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<List<TipoTramiteComision>> typeReference = new TypeReference<List<TipoTramiteComision>>() {
+        };
+        try {
+            
+            InputStream targetStream = TypeReference.class.getResourceAsStream("/json/tipoTramiteComision.json");
+            List<TipoTramiteComision> tipoTramiteComision = mapper.readValue(targetStream, typeReference);
+            tipoTramiteComisionService.save(tipoTramiteComision);
+            log.info("tipoTramiteComision Saved!");
+        } catch (IOException e) {
+            log.error("Unable to save tipoTramiteComision: " + e.getMessage());
+        }
+    }
+    
 }

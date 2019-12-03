@@ -12,13 +12,15 @@ public interface AutorizadoService {
     Iterable<Autorizado> listByNroClienteEmpresaOrCuitEmpresa(Integer nroClienteEmpresa, String cuitEmpresa);
 
     Autorizado getById(Integer id);    
-    
-    List<Autorizado> getByNroDocumento(String nroDocumento);   
+//    
+//    List<Autorizado> getByNroDocumento(String nroDocumento);   
 
     Autorizado save(Autorizado autorizado);
 
     void save(List<Autorizado> autorizados);
 
     void delete(Integer id);
+
+	Autorizado getByTipoAndNroDocumento(String tipoDocumento, String nroDocumento);
     
 }

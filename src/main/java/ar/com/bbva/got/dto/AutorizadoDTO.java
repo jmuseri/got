@@ -40,6 +40,10 @@ public class AutorizadoDTO implements Serializable {
 
     @ApiModelProperty(notes = "The autorizado estado")
     private boolean activo;
+    
+    
+    @ApiModelProperty(notes = "The autorizado finalizo Tramite")
+    private boolean finalizoTramite;
 
     
 }

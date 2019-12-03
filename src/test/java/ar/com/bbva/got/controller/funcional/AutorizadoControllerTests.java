@@ -24,7 +24,7 @@ import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.service.funcional.AutorizadoServiceImpl;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(AutorizadoController.class)
+@WebMvcTest(FuncionalAutorizadoController.class)
 public class AutorizadoControllerTests {
 
 	private static List<Autorizado> autorizadosDePrueba = new ArrayList<Autorizado>();
@@ -36,7 +36,7 @@ public class AutorizadoControllerTests {
 	private AutorizadoServiceImpl autorizadoService;
 	
 	@InjectMocks
-	private AutorizadoController autorizadoController;
+	private FuncionalAutorizadoController autorizadoController;
 	
 	@BeforeClass
 	public static void setUp() {

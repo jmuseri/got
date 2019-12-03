@@ -38,12 +38,19 @@ public class TramiteMapper {
 		dto.setIdTipoTramite(model.getTipoTramite().getId());
 		dto.setTipoTramiteDesc(model.getTipoTramite().getDescripcion());
 		
+		
+		//TODO ver No se por que esto esta comentado!!!!
 //		dto.setSectorActual(SectorMapper.modelToDTO(model.getSectorActual()));
 //		dto.setSectorInicio(SectorMapper.modelToDTO(model.getSectorInicio()));
     	
+		
+//		dto.setMotivoRechazo(MotivoRechazoMapper.modelToDTO(model.getMotivoRechazo()));
+		
+		
     	List<AutorizadoDTO> listaAutorizados = new ArrayList<AutorizadoDTO>();
     	for (TramiteAutorizado autorizado : model.getAutorizado()) {
     		AutorizadoDTO autorizadoDTO = AutorizadoMapper.modelToDTO(autorizado.getAutorizado());
+    		autorizadoDTO.setFinalizoTramite(autorizado.isFinalizoTramite());
     		listaAutorizados.add(autorizadoDTO);
 		}
     	

@@ -10,7 +10,7 @@ public interface SectorService {
 
     Iterable<Sector> listActive();
 
-    Sector getById(SectorKey id);
+    Sector getById(String sector, String canal);
 
     Sector save(Sector sector);
 

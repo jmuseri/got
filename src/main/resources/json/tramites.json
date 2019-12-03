@@ -2,8 +2,9 @@
     {
       "id": 1,
       "tipoTramite": { "id": 1 },
-      "nroClienteEmpresa": 3734520,
+      "nroClienteEmpresa": 3534520,
       "cuitEmpresa":"1",
+      "areaNegocio":20,
       "autorizado": null,
       "sectorInicio": {"id": { "canal": "web", "sector": "FNC" } },
       "sectorActual": {"id": { "canal": "web", "sector": "FNC" } },

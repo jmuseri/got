@@ -129,21 +129,21 @@ public class AutorizadoServiceTests {
 		Assert.assertEquals(autorizadosDePrueba.get(nroAutorizado).getId(), argumentCaptor.getValue());
 	}
 	
-	@Test
-	public void testGetByNroDocumento() {
-		String documento = "123";
-		List<Autorizado> autorizadosPorNroDocumento = new ArrayList<Autorizado>();
-		
-		autorizadosDePrueba.forEach((x) -> {
-			if(x.getNroDocumento() == documento) autorizadosPorNroDocumento.add(x);
-		});
-		
-		Mockito.when(autorizadoRepository.findByNroDocumento(documento)).thenReturn(autorizadosPorNroDocumento);
-		
-		List<Autorizado> autorizadosRecibidos = autorizadoService.getByNroDocumento(documento);
-
-		Assert.assertEquals(autorizadosPorNroDocumento, autorizadosRecibidos);		
-	}
+//	@Test
+//	public void testGetByNroDocumento() {
+//		String documento = "123";
+//		List<Autorizado> autorizadosPorNroDocumento = new ArrayList<Autorizado>();
+//		
+//		autorizadosDePrueba.forEach((x) -> {
+//			if(x.getNroDocumento() == documento) autorizadosPorNroDocumento.add(x);
+//		});
+//		
+//		Mockito.when(autorizadoRepository.findByNroDocumento(documento)).thenReturn(autorizadosPorNroDocumento);
+//		
+//		List<Autorizado> autorizadosRecibidos = autorizadoService.getByNroDocumento(documento);
+//
+//		Assert.assertEquals(autorizadosPorNroDocumento, autorizadosRecibidos);		
+//	}
 	
 	@Test
 	public void testListByNroClienteEmpresaOrCuitEmpresa() {

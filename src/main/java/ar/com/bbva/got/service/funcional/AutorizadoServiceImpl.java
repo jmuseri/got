@@ -64,9 +64,9 @@ public class AutorizadoServiceImpl implements AutorizadoService {
     }
 
 	@Override
-	public List<Autorizado> getByNroDocumento(String nroDocumento) {
+	public Autorizado getByTipoAndNroDocumento(String tipoDocumento, String nroDocumento) {
 		logger.debug("getByNroDocumento called");
-        return this.autorizadoRepository.findByNroDocumento(nroDocumento);
+        return this.autorizadoRepository.findByTipoDocumentoAndNroDocumento(tipoDocumento,nroDocumento);
 
 	}
 

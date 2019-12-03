@@ -29,7 +29,8 @@ import lombok.Data;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Tramite {
-    @Id
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "tramite_seq_gen")
     @SequenceGenerator(name = "tramite_seq_gen", sequenceName = "TRAMITE_SEQ")
     @ApiModelProperty(notes = "The database generated tramite ID")
@@ -44,6 +45,10 @@ public class Tramite {
     
     @ApiModelProperty(notes = "The tramite cuitEmpresa")
     private String cuitEmpresa;
+    
+    @ApiModelProperty(notes = "The tramite areaNegocio")
+    private Integer areaNegocio;
+     
 
     @OneToMany(mappedBy = "id.tramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TramiteAutorizado> autorizado;
@@ -107,5 +112,7 @@ public class Tramite {
     @ManyToOne
     @ApiModelProperty(notes = "The Motivo Rechazo")
     private MotivoRechazo motivoRechazo;
+    
+    
     
 }

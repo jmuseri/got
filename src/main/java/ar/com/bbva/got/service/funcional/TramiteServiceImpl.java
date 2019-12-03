@@ -86,11 +86,11 @@ public class TramiteServiceImpl implements TramiteService {
     }
 
 	@Override
-	public List<Tramite> buscarTramites(String estado, Integer idTipoTramite, String idSector, String DniAutorizado) {
+	public List<Tramite> buscarTramites(String cuit, String estado, Integer idTipoTramite, String idSector, String DniAutorizado, String tipoDocAutorizado) {
         EstadoTramite estadoTramite = estado==null?null:EstadoTramite.valueOf(estado);
         
-		return this.tramiteRepository.findByEstadoAndTipoTramiteIdAndSectorInicioId(estadoTramite,
-				idTipoTramite, idSector,DniAutorizado);
+		return this.tramiteRepository.findByCuitAndEstadoAndTipoTramiteIdAndSectorInicioId(cuit, estadoTramite,
+				idTipoTramite, idSector,DniAutorizado, tipoDocAutorizado);
 
 	}
 

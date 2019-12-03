@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ar.com.bbva.got.model.SectorKey;
 import lombok.Data;
 
 @Data
@@ -21,8 +20,10 @@ public class AltaTramiteDTO implements Serializable {
     private String cuitEmpresa;
 
     private List<Integer> idAutorizados;
+    
+    private Integer areaNegocio;
 
-    private SectorKey sectorAlta;
+    private SectorDTO sectorAlta;
 
     private List<CampoDetalleDTO> detalle;
     private String cuentaCobro;

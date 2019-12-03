@@ -31,6 +31,9 @@ public class TramiteDTO implements Serializable{
     
     @ApiModelProperty(notes = "The tramite cuitEmpresa")
     private String cuitEmpresa;
+    
+    @ApiModelProperty(notes = "The tramite areaNegocio")
+    private Integer areaNegocio;
 
     @ApiModelProperty(notes = "The autorizados")
     private List<AutorizadoDTO> autorizado;
@@ -64,5 +67,12 @@ public class TramiteDTO implements Serializable{
     
     @ApiModelProperty(notes = "the tramite idOrden")
     private String idOrden;
+        
+    @ApiModelProperty(notes = "The tramite motivoRechazo")
+    private MotivoRechazoDTO motivoRechazo;
+    
+    @ApiModelProperty(notes = "The tramite codigoComision")
+    private String codigoComision;
+    
 
 }

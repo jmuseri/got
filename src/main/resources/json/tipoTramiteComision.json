@@ -1,0 +1,180 @@
+[
+  {
+    "id": {
+      "tipoTramiteId": 1,
+      "areaNegocio": 42
+    },
+    "codigoComision": "01",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 1,
+      "areaNegocio": 20
+    },
+    "codigoComision": "63",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+    {
+    "id": {
+      "tipoTramiteId": 1,
+      "areaNegocio": 22
+    },
+    "codigoComision": "63",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+    {
+    "id": {
+      "tipoTramiteId": 1,
+      "areaNegocio": 40
+    },
+    "codigoComision": "63",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  
+  
+      {
+    "id": {
+      "tipoTramiteId": 1,
+      "areaNegocio": 50
+    },
+    "codigoComision": "63",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  
+      {
+    "id": {
+      "tipoTramiteId": 1,
+      "areaNegocio": 60
+    },
+    "codigoComision": "62",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+
+  {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 42
+    },
+    "codigoComision": "05",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 20
+    },
+    "codigoComision": "59",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+    {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 22
+    },
+    "codigoComision": "59",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+    {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 40
+    },
+    "codigoComision": "59",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  
+  
+      {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 50
+    },
+    "codigoComision": "59",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  
+      {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 60
+    },
+    "codigoComision": "59",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  },
+  
+      {
+    "id": {
+      "tipoTramiteId": 3,
+      "areaNegocio": 10
+    },
+    "codigoComision": "59",
+    
+    
+    "usuAlta": "system",
+    "fechaAlta": "2019-06-01T12:24:50.045Z",
+    "usuModif": null,
+    "fechaModif": null
+  }  
+  
+]

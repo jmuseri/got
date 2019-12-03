@@ -64,6 +64,12 @@ public class TipoTramite {
     @OneToMany(mappedBy = "id.tipoTramiteId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ApiModelProperty(notes = "The campos sector")
     private Set<TipoTramiteCampo> campos;
+    
+    
+    @OneToMany(mappedBy = "id.tipoTramiteId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ApiModelProperty(notes = "The campos comision")
+    private Set<TipoTramiteComision> tipoTramiteComisiones;
+    
 
     @ApiModelProperty(notes = "The tipoTramite horasResolucion")
     private Long horasResolucion;
