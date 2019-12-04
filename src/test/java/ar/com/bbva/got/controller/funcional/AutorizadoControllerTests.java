@@ -1,9 +1,11 @@
 package ar.com.bbva.got.controller.funcional;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,7 +26,7 @@ import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.service.funcional.AutorizadoServiceImpl;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(FuncionalAutorizadoController.class)
+@WebMvcTest(AutorizadoController.class)
 public class AutorizadoControllerTests {
 
 	private static List<Autorizado> autorizadosDePrueba = new ArrayList<Autorizado>();
@@ -36,13 +38,14 @@ public class AutorizadoControllerTests {
 	private AutorizadoServiceImpl autorizadoService;
 	
 	@InjectMocks
-	private FuncionalAutorizadoController autorizadoController;
+	private AutorizadoController autorizadoController;
 	
 	@BeforeClass
 	public static void setUp() {
 		autorizadosDePrueba.add(new Autorizado());
 		autorizadosDePrueba.get(0).setId(1);
 		autorizadosDePrueba.get(0).setNombre("hola1");
+		autorizadosDePrueba.get(0).setTipoDocumento("DNI");
 		autorizadosDePrueba.get(0).setNroDocumento("123");
 		autorizadosDePrueba.get(0).setNroClienteEmpresa(1);
 		autorizadosDePrueba.get(0).setCuitEmpresa("2222");
@@ -50,6 +53,7 @@ public class AutorizadoControllerTests {
 		autorizadosDePrueba.add(new Autorizado());
 		autorizadosDePrueba.get(1).setId(2);
 		autorizadosDePrueba.get(1).setNombre("hola2");
+		autorizadosDePrueba.get(1).setTipoDocumento("DNI");
 		autorizadosDePrueba.get(1).setNroDocumento("124");
 		autorizadosDePrueba.get(1).setNroClienteEmpresa(2);
 		autorizadosDePrueba.get(1).setCuitEmpresa("2222");
@@ -57,87 +61,85 @@ public class AutorizadoControllerTests {
 		autorizadosDePrueba.add(new Autorizado());
 		autorizadosDePrueba.get(2).setId(3);
 		autorizadosDePrueba.get(2).setNombre("hola3");
+		autorizadosDePrueba.get(2).setTipoDocumento("DNI");
 		autorizadosDePrueba.get(2).setNroDocumento("125");
 		autorizadosDePrueba.get(2).setNroClienteEmpresa(2);
 		autorizadosDePrueba.get(2).setCuitEmpresa("3333");
 	}
 	
 	@Test
-	public void testListAll() throws Exception {
+	public void testListByNroClienteEmpresaOrCuitEmpresa() throws Exception {
 		JSONArray autorizadosDePruebaEnJSON = new JSONArray();
 		autorizadosDePrueba.forEach((x) -> autorizadosDePruebaEnJSON.put(x.toJSONObject()));
 		
-		Mockito.when(autorizadoService.listAll()).thenReturn(autorizadosDePrueba);
+		Mockito.when(autorizadoService.listByNroClienteEmpresaOrCuitEmpresa(0,"a")).thenReturn(autorizadosDePrueba);
 		
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/list").accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/list?nroClienteEmpresa=0&cuitEmpresa=a").accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().json(autorizadosDePruebaEnJSON.toString()));
 	}
 	
 	@Test
-	public void testListByNroClienteEmpresa() throws Exception {
-		JSONArray autorizadosDePruebaEnJSON = new JSONArray();
-		List<Autorizado> autorizadosFiltrados = new ArrayList<Autorizado>();
-		Integer nroClienteFiltro = 2;
+	public void testListByTipoYNroDocumento() throws Exception {
+		JSONObject autorizadoDePruebaEnJSON = new JSONObject();
+		Autorizado autorizadoFiltrado = new Autorizado();
+		String tipoDocumentoFiltro = "DNI";
+		String nroDocumentoFiltro = "124";
 		
-		autorizadosDePrueba.forEach((x) -> {
-			if (x.getNroClienteEmpresa() == nroClienteFiltro) {
-				autorizadosDePruebaEnJSON.put(x.toJSONObject());
-				autorizadosFiltrados.add(x);
+		for(Autorizado aut : autorizadosDePrueba) {
+			if (aut.getTipoDocumento().equals(tipoDocumentoFiltro) && aut.getNroDocumento().equals(nroDocumentoFiltro)) {
+				autorizadoFiltrado = aut;
+				autorizadoDePruebaEnJSON = aut.toJSONObject();
 			}
-		});
+		}
 		
-		Mockito.when(autorizadoService.listByNroClienteEmpresa(nroClienteFiltro)).thenReturn(autorizadosFiltrados);
+		Mockito.when(autorizadoService.getByTipoAndNroDocumento(tipoDocumentoFiltro,nroDocumentoFiltro)).thenReturn(autorizadoFiltrado);
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/list?cliente=" + nroClienteFiltro).accept(MediaType.APPLICATION_JSON))
+		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/show/" + tipoDocumentoFiltro + "/" + nroDocumentoFiltro).accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.content().json(autorizadosDePruebaEnJSON.toString()));
-	}
-	
-	@Test
-	public void testListException() throws Exception {
-		Mockito.when(autorizadoService.listByNroClienteEmpresa(1)).thenThrow(RuntimeException.class);
-		
-		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/list?cliente=1").accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+				.andExpect(MockMvcResultMatchers.content().json(autorizadoDePruebaEnJSON.toString()));
 	}
 	
 	@Test
 	public void testAdd() throws Exception {
-		Autorizado autorizado = new Autorizado();
-		autorizado.setNombre("pepito");
+		JSONArray autorizadosDePruebaEnJSON = new JSONArray();
+		autorizadosDePruebaEnJSON.put(autorizadosDePrueba.get(0).toJSONObject());
 		
-		Mockito.when(autorizadoService.save(autorizado)).thenReturn(autorizado);
+		Mockito.when(autorizadoService.save(autorizadosDePrueba.get(0))).thenReturn(autorizadosDePrueba.get(0));
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add").contentType(MediaType.APPLICATION_JSON).content(autorizado.toJSONObject().toString()))
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add").contentType(MediaType.APPLICATION_JSON).content(autorizadosDePruebaEnJSON.toString()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 		
 		ArgumentCaptor<Autorizado> argumentCaptor = ArgumentCaptor.forClass(Autorizado.class);
 		Mockito.verify(autorizadoService).save(argumentCaptor.capture());
-		Assert.assertEquals(autorizado, argumentCaptor.getValue());
+		//Se verifican con nombre y numero de documento como ejemplo, no se puede verificar la igualdad del objeto entero debido a que se instancian nuevas fechas en el proceso de alta
+		Assert.assertEquals(autorizadosDePrueba.get(0).getNombre() + autorizadosDePrueba.get(0).getNroDocumento(), argumentCaptor.getValue().getNombre() + argumentCaptor.getValue().getNroDocumento());
 	}
 	
 	@Test
-	public void testAddException() throws Exception {
-		Autorizado autorizado = new Autorizado();
-		autorizado.setNombre("pepito");
+	public void testDelete() throws Exception {
+		Autorizado autorizadoParaBorrar = autorizadosDePrueba.get(0);
 		
-		Mockito.when(autorizadoService.save(autorizado)).thenThrow(RuntimeException.class);
+		Mockito.when(autorizadoService.getById(autorizadoParaBorrar.getId())).thenReturn(autorizadoParaBorrar);
 		
-		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add").contentType(MediaType.APPLICATION_JSON).content(autorizado.toJSONObject().toString()))
-				.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/" + autorizadoParaBorrar.getId() + "/delete/").accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.status().isOk());
 		
 		ArgumentCaptor<Autorizado> argumentCaptor = ArgumentCaptor.forClass(Autorizado.class);
 		Mockito.verify(autorizadoService).save(argumentCaptor.capture());
-		Assert.assertEquals(autorizado, argumentCaptor.getValue());
+		Assert.assertEquals(autorizadoParaBorrar, argumentCaptor.getValue());
 	}
 	
-//	@Test
-//	public void testUpdateNull() throws Exception {
-//		Autorizado autorizado = new Autorizado();
-//		
-//		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add/" + autorizado.getId().toString()).contentType(MediaType.APPLICATION_JSON).content(autorizado.toJSONObject().toString()))
-//				.andExpect(MockMvcResultMatchers.status().isOk());
-//	}
+	@Test
+	public void testDeleteInexistente() throws Exception {
+		Autorizado autorizadoParaBorrar = autorizadosDePrueba.get(0);
+		JSONObject respuesta = new JSONObject();
+		respuesta.put("status","error").put("message", "Autorizado not deleted").put("description", "Autorizado no encontrado.");
+		
+		Mockito.when(autorizadoService.getById(autorizadoParaBorrar.getId())).thenReturn(null);
+		
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/" + autorizadoParaBorrar.getId() + "/delete/").accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.content().json(respuesta.toString())); //"{\"status\": \"error\", \"message\":\"Autorizado not deleted\", \"description\":\"Autorizado no encontrado.\"}"
+	}
 }

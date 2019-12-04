@@ -36,14 +36,13 @@ import io.swagger.annotations.ApiResponses;
 public class AutorizadoController {
 
     private AutorizadoService autorizadoService;
+    
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public void setAutorizadoService(AutorizadoService autorizadoService) {
         this.autorizadoService = autorizadoService;
     }
-
-    
     
     @ApiOperation(value = "View a list of available Autorizados", response = Iterable.class)
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
@@ -54,103 +53,66 @@ public class AutorizadoController {
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listAutorizados(HttpServletRequest req,
             @RequestParam(value = "nroClienteEmpresa", required = false) Integer nroClienteEmpresa,
-            @RequestParam(value = "cuitEmpresa", required = false) String cuitEmpresa) throws ParseException {
+            @RequestParam(value = "cuitEmpresa", required = false) String cuitEmpresa) {
         
-    	try {
-    		
-    		List<AutorizadoDTO> responseList = new ArrayList<AutorizadoDTO>();
-            
-    		Iterable<Autorizado> listAutorizados = autorizadoService.listByNroClienteEmpresaOrCuitEmpresa(nroClienteEmpresa, cuitEmpresa);
-    		
-    		for (Autorizado autorizado : listAutorizados) {
-    			AutorizadoDTO response = AutorizadoMapper.modelToDTO(autorizado);
-    			responseList.add(response);
-    		}
-    		
-            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
-            return response;
-        	
-        	
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
+		List<AutorizadoDTO> responseList = new ArrayList<AutorizadoDTO>();
+        
+		Iterable<Autorizado> listAutorizados = autorizadoService.listByNroClienteEmpresaOrCuitEmpresa(nroClienteEmpresa, cuitEmpresa);
+		
+		for (Autorizado autorizado : listAutorizados) {
+			AutorizadoDTO response = AutorizadoMapper.modelToDTO(autorizado);
+			responseList.add(response);
+		}
+		
+        ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+        return response;
     }
     
     @ApiOperation(value = "Add autorizados")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> addAutorizados(@RequestBody List<AutorizadoDTO> listAutorizadoDTO,
     										@RequestParam(value = "usuario", required = false) String usuario) {
-        try {
-        	
-        	for (AutorizadoDTO autorizadoDTO : listAutorizadoDTO) {
-        		Autorizado autorizado = AutorizadoMapper.DTOtoModel(autorizadoDTO);
-        		autorizado.setActivo(true);
-        		autorizado.setUsuAlta(usuario);
-        		autorizado.setUsuModif(usuario);
-        		autorizado.setFechaAlta(new Date());
-        		autorizado.setFechaModif(new Date());
-            	autorizadoService.save(autorizado);
-			}
-        	
-            StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-            return response;
-            
-            
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Autorizado no insertado", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
+
+    	for (AutorizadoDTO autorizadoDTO : listAutorizadoDTO) {
+    		Autorizado autorizado = AutorizadoMapper.DTOtoModel(autorizadoDTO);
+    		autorizado.setActivo(true);
+    		autorizado.setUsuAlta(usuario);
+    		autorizado.setUsuModif(usuario);
+    		autorizado.setFechaAlta(new Date());
+    		autorizado.setFechaModif(new Date());
+        	autorizadoService.save(autorizado);
+		}
+    	
+        StatusResponse status = new StatusResponse("ok", "Alta de autorizado realizada", null);
+        ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+        return response;
     }
-    
-    
     
     @ApiOperation(value = "Delete an autorizado")
     @RequestMapping(value = "/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteAutorizado(@PathVariable Integer autorizadoId) {
-        try {
-        	Autorizado autorizado = autorizadoService.getById(autorizadoId);
-        	StatusResponse status =null;
-        	if (null != autorizado) {
-        		autorizado.setActivo(false);
-        		autorizadoService.save(autorizado);
-        		status = new StatusResponse("ok", "Autorizado deleted successfully", null);
-        	}else {
-        		status = new StatusResponse("error", "Autorizado not deleted", "Autorizado no encontrado.");
-        	}
-       	
-            
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Autorizado not deleted", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
+    	
+    	Autorizado autorizado = autorizadoService.getById(autorizadoId);
+    	StatusResponse status =null;
+    	
+    	if (null != autorizado) {
+    		autorizado.setActivo(false);
+    		autorizadoService.save(autorizado);
+    		status = new StatusResponse("ok", "Autorizado deleted successfully", null);
+    	} else {
+    		status = new StatusResponse("error", "Autorizado not deleted", "Autorizado no encontrado.");
+    	}
+        
+        ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+        return response;
     }
     
     @ApiOperation(value = "Search an autorizado  by document", response = Autorizado.class)
     @RequestMapping(value = "/show/{tipoDocumento}/{numeroDocumento}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> showAutorizado(@PathVariable String tipoDocumento, @PathVariable String numeroDocumento, Model model) {
-        try {
-            Autorizado autorizado = autorizadoService.getByTipoAndNroDocumento(tipoDocumento, numeroDocumento);
-            ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
-            return response;
-        } catch (Exception e) {
-            logger.error("", e);
-            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-        }
+    	
+        Autorizado autorizado = autorizadoService.getByTipoAndNroDocumento(tipoDocumento, numeroDocumento);
+        ResponseEntity<?> response = new ResponseEntity<>(autorizado, HttpStatus.OK);
+        return response;
     }
-    
-    
-
-
 }
