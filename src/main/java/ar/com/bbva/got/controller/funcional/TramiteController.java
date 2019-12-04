@@ -49,8 +49,6 @@ import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/funcional/tramite/")
@@ -201,7 +199,7 @@ public class TramiteController {
         	
           	
             StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", tramite.getId().toString());
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.CREATED);
             return response;
             
             
@@ -251,10 +249,6 @@ public class TramiteController {
     
  
     @ApiOperation(value = "show tramites list for the given nroClienteEmpresa")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/list/{nroClienteEmpresa}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listTramites(HttpServletRequest req,
     		@PathVariable Integer nroClienteEmpresa,
@@ -292,10 +286,6 @@ public class TramiteController {
     
     
     @ApiOperation(value = "show tramites list for the given cuit")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/listByCuit/{cuit}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listTramitesByCUIT(HttpServletRequest req,
     		@PathVariable String cuit,
@@ -340,10 +330,6 @@ cuit, tipo y doc empresa, estado y tipo de tramite.
     
     
     @ApiOperation(value = "show tramites list for the given params")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
-            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
     @RequestMapping(value = "/listByAutorizado/{tipoDocumento}/{numeroDocumento}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> listarTramitesByAutorizado(HttpServletRequest req,
     		@PathVariable String numeroDocumento,
@@ -382,6 +368,47 @@ cuit, tipo y doc empresa, estado y tipo de tramite.
     
     
     
+    
+    @ApiOperation(value = "show tramites list for the given params")
+    @RequestMapping(value = "/listByUsuario/{usuario}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> listarTramitesByUsuario(HttpServletRequest req,
+    		@PathVariable String usuario,
+    		@RequestParam(value = "numeroDocumentoAutorizado", required = false) String numeroDocumento,
+    		@RequestParam(value = "tipoDocumentoAutorizado", required = false) String tipoDocumento,
+    		@RequestParam(value = "cuit", required = false) String cuit,
+    		@RequestParam(value = "estadoTramite", required = false) String estado,
+    		@RequestParam(value = "idTipoTramite", required = false) Integer idTipoTramite,
+    		@RequestParam(value = "sector", required = false) String idSector
+    		) throws ParseException {
+        
+    	try {
+            
+        	
+        	List<TramiteDTO> responseList = new ArrayList<TramiteDTO>();
+        	
+        	Iterable<Tramite> tramiteList = tramiteService.buscarTramites(usuario, cuit, estado, idTipoTramite, idSector, numeroDocumento, tipoDocumento);
+        	        	
+        	for (Tramite tramite : tramiteList) {
+        		TramiteDTO response = TramiteMapper.modelToDTO(tramite);
+        		response.setCodigoComision(this.getCodigoComision(tramite.getTipoTramite().getId(), tramite.getAreaNegocio()));
+        		responseList.add(response);
+			}
+        	
+            ResponseEntity<?> response = new ResponseEntity<>(responseList, HttpStatus.OK);
+            return response;
+        	
+        	
+        } catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Exception Error", e.getMessage());
+            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+            return response;
+        }
+    }
+    
+    
+    
+    
     @ApiOperation(value = "Add a tramiteDetalle")
     @RequestMapping(value = "/detalle/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> addTramiteDetalle(@RequestBody TramiteDetalleDTO tramiteDetalleDTO) {
@@ -392,7 +419,7 @@ cuit, tipo y doc empresa, estado y tipo de tramite.
         	
             tramiteDetalleService.save(tramiteDetalle);
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle saved successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.CREATED);
             return response;
         } catch (Exception e) {
             logger.error("", e);

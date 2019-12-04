@@ -80,6 +80,12 @@ public class TramiteStatusController {
         	       	
         	Tramite tramite = tramiteService.getById(id);
         	
+        	if (!tramite.getUsuModif().equals(usuario)) {
+                StatusResponse status = new StatusResponse("ok", "El usuario no esta autorizado a finalizar el tramite.", null);
+                ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.BAD_REQUEST);
+                return response;
+        	}
+        	
         	tramite.setEstado(EstadoTramite.FINALIZADO);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());

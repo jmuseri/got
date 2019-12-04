@@ -54,8 +54,8 @@ public interface TramiteRepository extends CrudRepository<Tramite, Integer> {
     		+ "and (:estado is null or t.estado = :estado)  "
     		+ "and (:tipoTramiteId is null or t.tipoTramite.id = :tipoTramiteId) "
     		+ "and (:sectorInicioId is null or t.sectorInicio.id.sector = :sectorInicioId) "
-    		+ "and  ( aut.nroDocumento  = :autorizadoAutorizadoNroDocumento) "
-    		+ "and  ( aut.tipoDocumento  = :autorizadoAutorizadoNroTipoDocumento) ")
+    		+ "and  (:autorizadoAutorizadoNroDocumento is null or  aut.nroDocumento  = :autorizadoAutorizadoNroDocumento) "
+    		+ "and  (:autorizadoAutorizadoNroTipoDocumento is null or  aut.tipoDocumento  = :autorizadoAutorizadoNroTipoDocumento) ")
     List<Tramite> findByCuitAndEstadoAndTipoTramiteIdAndSectorInicioId(
     			@Param("cuit")String cuit,
     			@Param("estado")EstadoTramite estado, 

@@ -5,7 +5,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import ar.com.bbva.got.model.TipoTramiteComision;
 import ar.com.bbva.got.model.TipoTramiteComisionKey;
-import ar.com.bbva.got.model.TramiteDetalle;
 
 @RepositoryRestResource
 public interface TipoTramiteComisionRepository extends CrudRepository<TipoTramiteComision, Integer> {

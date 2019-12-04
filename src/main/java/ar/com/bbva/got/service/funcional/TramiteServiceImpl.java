@@ -1,6 +1,7 @@
 package ar.com.bbva.got.service.funcional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,5 +94,17 @@ public class TramiteServiceImpl implements TramiteService {
 				idTipoTramite, idSector,DniAutorizado, tipoDocAutorizado);
 
 	}
+	
+	
+	@Override
+	public List<Tramite> buscarTramites(String usuario, String cuit, String estado, Integer idTipoTramite, String idSector, String DniAutorizado, String tipoDocAutorizado) {
+		
+		return this.buscarTramites(cuit, estado, idTipoTramite, idSector, DniAutorizado, tipoDocAutorizado).stream()
+				.filter(tramite -> (usuario.equals(tramite.getUsuModif()) || usuario.equals("String") || null == tramite.getUsuModif()))
+				.collect(Collectors.toList());
+
+	}
+	
+	
 
 }
