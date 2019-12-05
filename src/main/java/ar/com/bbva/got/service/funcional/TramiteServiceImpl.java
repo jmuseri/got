@@ -15,9 +15,11 @@ import ar.com.bbva.got.repository.TramiteRepository;
 
 @Service
 public class TramiteServiceImpl implements TramiteService {
+	private static final String USUARIO_FEMP="FNC";
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private TramiteRepository tramiteRepository;
-
+   
     @Autowired
     public void setRepository(TramiteRepository tramiteRepository) {
         this.tramiteRepository = tramiteRepository;
@@ -100,7 +102,7 @@ public class TramiteServiceImpl implements TramiteService {
 	public List<Tramite> buscarTramites(String usuario, String cuit, String estado, Integer idTipoTramite, String idSector, String DniAutorizado, String tipoDocAutorizado) {
 		
 		return this.buscarTramites(cuit, estado, idTipoTramite, idSector, DniAutorizado, tipoDocAutorizado).stream()
-				.filter(tramite -> (usuario.equals(tramite.getUsuModif()) || usuario.equals("String") || null == tramite.getUsuModif()))
+				.filter(tramite -> (usuario.equals(tramite.getUsuModif()) || usuario.equals(USUARIO_FEMP) || null == tramite.getUsuModif()))
 				.collect(Collectors.toList());
 
 	}
