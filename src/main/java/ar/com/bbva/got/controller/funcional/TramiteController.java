@@ -199,7 +199,7 @@ public class TramiteController {
         	
           	
             StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", tramite.getId().toString());
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.CREATED);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
             
             
@@ -419,7 +419,7 @@ cuit, tipo y doc empresa, estado y tipo de tramite.
         	
             tramiteDetalleService.save(tramiteDetalle);
             StatusResponse status = new StatusResponse("ok", "TramiteDetalle saved successfully", null);
-            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.CREATED);
+            ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
             return response;
         } catch (Exception e) {
             logger.error("", e);

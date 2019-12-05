@@ -86,7 +86,7 @@ public class AutorizadoController {
     }
     
     @ApiOperation(value = "Delete an autorizado")
-    @RequestMapping(value = "/{autorizadoId}/delete/", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/{autorizadoId}/delete", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> deleteAutorizado(@PathVariable Integer autorizadoId) {
     	
     	Autorizado autorizado = autorizadoService.getById(autorizadoId);
