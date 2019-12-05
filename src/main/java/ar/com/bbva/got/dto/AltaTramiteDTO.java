@@ -3,6 +3,9 @@ package ar.com.bbva.got.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.Data;
@@ -34,5 +37,27 @@ public class AltaTramiteDTO implements Serializable {
 //    private Date fechaFinalizacion;
 //    private Date fechaInicio;
 //    private Date fechaVencimiento;
+    
+    public JSONObject toJSONObject() {
+    	
+    	JSONObject jo = new JSONObject();
+    	
+    	try {
+        	jo.put("idTipoTramite", getIdTipoTramite())
+        	.put("nroClienteEmpresa", getNroClienteEmpresa())
+        	.put("cuitEmpresa", getCuitEmpresa())
+        	.put("idAutorizados", getIdAutorizados())
+        	.put("areaNegocio", getAreaNegocio())
+        	.put("sectorAlta", getSectorAlta())
+        	.put("detalle", getDetalle())
+        	.put("cuentaCobro", getCuentaCobro())
+        	.put("UsuarioAlta", getUsuarioAlta());
+        	
+    	} catch (JSONException e) {
+			//DO NOTHING
+		}
+    	
+    	return jo;
+    }
 
 }

@@ -1,6 +1,5 @@
 package ar.com.bbva.got.controller.funcional;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,6 +139,6 @@ public class AutorizadoControllerTests {
 		Mockito.when(autorizadoService.getById(autorizadoParaBorrar.getId())).thenReturn(null);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/" + autorizadoParaBorrar.getId() + "/delete/").accept(MediaType.APPLICATION_JSON))
-		.andExpect(MockMvcResultMatchers.content().json(respuesta.toString())); //"{\"status\": \"error\", \"message\":\"Autorizado not deleted\", \"description\":\"Autorizado no encontrado.\"}"
+		.andExpect(MockMvcResultMatchers.content().json(respuesta.toString()));
 	}
 }

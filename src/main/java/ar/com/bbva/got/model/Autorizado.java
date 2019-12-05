@@ -86,7 +86,7 @@ public class Autorizado {
 		jo.put("usuModif", getUsuModif());
 		jo.put("fechaModif", getFechaModif());
 		jo.put("activo", isActivo());
-		}catch (JSONException e) {
+		} catch (JSONException e) {
 			//DO NOTHING
 		}
 		

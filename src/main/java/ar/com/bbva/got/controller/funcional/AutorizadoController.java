@@ -1,6 +1,5 @@
 package ar.com.bbva.got.controller.funcional;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,8 +35,6 @@ import io.swagger.annotations.ApiResponses;
 public class AutorizadoController {
 
     private AutorizadoService autorizadoService;
-    
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     public void setAutorizadoService(AutorizadoService autorizadoService) {
