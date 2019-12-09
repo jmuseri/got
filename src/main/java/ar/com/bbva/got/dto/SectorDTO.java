@@ -2,6 +2,9 @@ package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -24,5 +27,18 @@ public class SectorDTO implements Serializable {
 	
 	@ApiModelProperty(notes = "The sector activo")
     private boolean activo;
+	
+	public JSONObject toJSONObject() {
+		JSONObject jo = new JSONObject();
+		try {
+			jo.put("canal", getCanal())
+			.put("sector", getSector())
+			.put("descripcion", getDescripcion())
+			.put("activo", isActivo());
+		}
+		catch (JSONException e) {
+		}
+		return jo;
+	}
     
 }

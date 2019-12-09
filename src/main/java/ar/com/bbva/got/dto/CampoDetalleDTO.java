@@ -2,6 +2,9 @@ package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -26,4 +29,16 @@ public class CampoDetalleDTO implements Serializable {
 	@ApiModelProperty(notes = "The Leyenda")
     private String leyenda;
 	
+	public JSONObject toJSONObject() {
+		JSONObject jo = new JSONObject();
+		try {
+			jo.put("nombre", getNombre());
+			jo.put("valor", getValor());
+			jo.put("descripcion", getDescripcion());
+			jo.put("leyenda", getLeyenda());
+		}
+		catch (JSONException e) {
+		}
+		return jo;
+	}	
 }

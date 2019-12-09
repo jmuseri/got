@@ -1,10 +1,12 @@
 package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -43,15 +45,26 @@ public class AltaTramiteDTO implements Serializable {
     	JSONObject jo = new JSONObject();
     	
     	try {
-        	jo.put("idTipoTramite", getIdTipoTramite())
+    		JSONArray ja = new JSONArray();
+    		for (Integer id : getIdAutorizados()) {
+    			ja.put(id);
+    		}
+    		
+        	jo.put("idTipoTramite",getIdTipoTramite())
         	.put("nroClienteEmpresa", getNroClienteEmpresa())
         	.put("cuitEmpresa", getCuitEmpresa())
-        	.put("idAutorizados", getIdAutorizados())
+        	.put("idAutorizados", ja)
         	.put("areaNegocio", getAreaNegocio())
-        	.put("sectorAlta", getSectorAlta())
-        	.put("detalle", getDetalle())
+        	.put("sectorAlta", getSectorAlta().toJSONObject())
         	.put("cuentaCobro", getCuentaCobro())
         	.put("UsuarioAlta", getUsuarioAlta());
+        	
+        	ja = new JSONArray();
+        	for (CampoDetalleDTO campo : getDetalle()) {
+        		ja.put(campo.toJSONObject());
+        	}
+        	
+        	jo.put("detalle",ja);
         	
     	} catch (JSONException e) {
 			//DO NOTHING
