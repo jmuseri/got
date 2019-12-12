@@ -80,6 +80,16 @@ public class AutorizadoControllerTests {
 	}
 	
 	@Test
+	public void testListException() throws Exception {
+		
+		Mockito.when(autorizadoService.listByNroClienteEmpresaOrCuitEmpresa(0,"a")).thenThrow(NullPointerException.class);
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/list?nroClienteEmpresa=0&cuitEmpresa=a").accept(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+		
+	}
+	
+	@Test
 	public void testListByTipoYNroDocumento() throws Exception {
 		JSONObject autorizadoDePruebaEnJSON = new JSONObject();
 		Autorizado autorizadoFiltrado = new Autorizado();
@@ -101,6 +111,17 @@ public class AutorizadoControllerTests {
 	}
 	
 	@Test
+	public void testShowException() throws Exception {
+		String tipoDocumentoFiltro = "DNI";
+		String nroDocumentoFiltro = "124";
+		
+		Mockito.when(autorizadoService.getByTipoAndNroDocumento(Mockito.any(String.class),Mockito.any(String.class))).thenThrow(NullPointerException.class);
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/funcional/autorizado/show/" + tipoDocumentoFiltro + "/" + nroDocumentoFiltro).accept(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+	}
+	
+	@Test
 	public void testAdd() throws Exception {
 		JSONArray autorizadosDePruebaEnJSON = new JSONArray();
 		autorizadosDePruebaEnJSON.put(autorizadosDePrueba.get(0).toJSONObject());
@@ -114,6 +135,19 @@ public class AutorizadoControllerTests {
 		Mockito.verify(autorizadoService).save(argumentCaptor.capture());
 		//Se verifican con nombre y numero de documento como ejemplo, no se puede verificar la igualdad del objeto entero debido a que se instancian nuevas fechas en el proceso de alta
 		Assert.assertEquals(autorizadosDePrueba.get(0).getNombre() + autorizadosDePrueba.get(0).getNroDocumento(), argumentCaptor.getValue().getNombre() + argumentCaptor.getValue().getNroDocumento());
+	}
+	
+	@Test
+	public void testAddException() throws Exception {
+		
+		JSONArray autorizadosDePruebaEnJSON = new JSONArray();
+		autorizadosDePruebaEnJSON.put(autorizadosDePrueba.get(0).toJSONObject());
+		
+		Mockito.when(autorizadoService.save(Mockito.any(Autorizado.class))).thenThrow(NullPointerException.class);
+		
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/add").contentType(MediaType.APPLICATION_JSON).content(autorizadosDePruebaEnJSON.toString()))
+		.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+		
 	}
 	
 	@Test
@@ -140,5 +174,15 @@ public class AutorizadoControllerTests {
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/" + autorizadoParaBorrar.getId() + "/delete/").accept(MediaType.APPLICATION_JSON))
 		.andExpect(MockMvcResultMatchers.content().json(respuesta.toString()));
+	}
+	
+	@Test
+	public void testDeleteException() throws Exception {
+		Autorizado autorizadoParaBorrar = autorizadosDePrueba.get(0);
+		
+		Mockito.when(autorizadoService.getById(Mockito.any(Integer.class))).thenThrow(NullPointerException.class);
+		
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/autorizado/" + autorizadoParaBorrar.getId() + "/delete/").accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.status().is5xxServerError());
 	}
 }
