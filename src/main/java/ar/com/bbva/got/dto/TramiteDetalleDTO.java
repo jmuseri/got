@@ -1,7 +1,13 @@
 package ar.com.bbva.got.dto;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -45,4 +51,25 @@ public class TramiteDetalleDTO implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     private Date fechaModif;
 	
+    public JSONObject toJSONObject() {
+    	JSONObject jo = new JSONObject();
+    	
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+    	
+    	try {    		
+        	jo.put("idTipoTramite",getIdTipoTramite())
+        	.put("tramiteId", getTramiteId())
+        	.put("campoDisponibleId", getCampoDisponibleId())
+        	.put("valor", getValor())
+        	.put("usuAlta", getUsuAlta())
+        	.put("usuModif", getUsuModif());
+        	
+        	if (getFechaAlta() != null) jo.put("fechaAlta", dateFormat.format(getFechaAlta()));
+        	if (getFechaModif() != null)jo.put("fechaModif",  dateFormat.format(getFechaModif()));        	
+    	} catch (JSONException e) {
+			//DO NOTHING
+		}
+    	
+    	return jo;
+    }
 }
