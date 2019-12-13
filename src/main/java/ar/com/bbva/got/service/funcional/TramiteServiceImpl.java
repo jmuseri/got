@@ -107,7 +107,7 @@ public class TramiteServiceImpl implements TramiteService {
 		
 		return this.buscarTramites(cuit, estado, idTipoTramite, idSector, DniAutorizado, tipoDocAutorizado).stream()
 				.filter(tramite -> (usuario.equals(tramite.getUsuModif()) || usuario.equals(USUARIO_FEMP) || null == tramite.getUsuModif()))
-				.filter(tramite -> (EstadoTramite.ACTIVO.equals(tramite.getEstado())
+				.filter(tramite -> (EstadoTramite.PENDIENTE.equals(tramite.getEstado())
 						|| EstadoTramite.FINALIZADO.equals(tramite.getEstado())
 						|| EstadoTramite.GESTION.equals(tramite.getEstado())))
 				.collect(Collectors.toList());
