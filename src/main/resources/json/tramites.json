@@ -130,7 +130,7 @@
       "sectorActual": {"id": { "canal": "web", "sector": "FNC" } },
       "detalle": null,
       "cuentaCobro": "Cuenta3",
-      "estado": "ACTIVO",
+      "estado": "PENDIENTE",
       "fechaInicio": "2019-06-01T12:24:50.045Z",
       "fechaFinalizacion": "2019-06-01T12:24:50.045Z",
       "fechaVencimiento": "2019-06-01T12:24:50.045Z",
