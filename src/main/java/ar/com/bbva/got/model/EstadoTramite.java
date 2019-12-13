@@ -6,9 +6,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public enum EstadoTramite {
 	
 	PENDIENTE_FIRMA,
-	ACTIVO,
+	PENDIENTE,
 	GESTION,
 	FINALIZADO,
+	VENCIDO,
 	CANCELADO,
 	RECHAZADO;
     

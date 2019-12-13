@@ -7,7 +7,8 @@ import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.Tramite;;
 
 public interface TramiteService {
-    Iterable<Tramite> listAll();
+    
+	Iterable<Tramite> listAll();
 
     List<Tramite> listBySectorActual(Sector sectorActual);
 

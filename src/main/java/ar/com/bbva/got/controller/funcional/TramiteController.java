@@ -30,7 +30,6 @@ import ar.com.bbva.got.mappers.TramiteDetalleMapper;
 import ar.com.bbva.got.mappers.TramiteMapper;
 import ar.com.bbva.got.model.Autorizado;
 import ar.com.bbva.got.model.EstadoTramite;
-import ar.com.bbva.got.model.Sector;
 import ar.com.bbva.got.model.TipoTramite;
 import ar.com.bbva.got.model.TipoTramiteCampo;
 import ar.com.bbva.got.model.TipoTramiteComision;
@@ -45,7 +44,6 @@ import ar.com.bbva.got.service.funcional.TipoTramiteComisionService;
 import ar.com.bbva.got.service.funcional.TramiteAutorizadoService;
 import ar.com.bbva.got.service.funcional.TramiteDetalleService;
 import ar.com.bbva.got.service.funcional.TramiteService;
-import ar.com.bbva.got.service.parametria.SectorService;
 import ar.com.bbva.got.service.parametria.TipoTramiteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -68,8 +66,6 @@ public class TramiteController {
 	@Autowired
     private AutorizadoService autorizadoService;
 	
-	@Autowired
-    private SectorService sectorService;
 	
 	@Autowired
     private TramiteAutorizadoService tramiteAutorizadoService;
@@ -106,16 +102,16 @@ public class TramiteController {
     	tramite.setEstado(EstadoTramite.PENDIENTE_FIRMA);
     	
     	
-        Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta().getSector(),altaTramiteDTO.getSectorAlta().getCanal());
-        
-        if (sectorAlta == null) {
-    		logger.error("Sector no encontrado");
-            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Sector no encontrado");
-            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-            return response;
-    	} 
-    	tramite.setSectorActual(sectorAlta);
-    	tramite.setSectorInicio(sectorAlta);
+//        Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta().getSector(),altaTramiteDTO.getSectorAlta().getCanal());
+//        
+//        if (sectorAlta == null) {
+//    		logger.error("Sector no encontrado");
+//            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Sector no encontrado");
+//            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//            return response;
+//    	} 
+    	tramite.setSectorActual(tipoTramite.getSectorInicial());
+    	tramite.setSectorInicio(tipoTramite.getSectorInicial());
     	
     	List<TramiteAutorizado> listaAutorizados = new ArrayList<TramiteAutorizado>();
     	

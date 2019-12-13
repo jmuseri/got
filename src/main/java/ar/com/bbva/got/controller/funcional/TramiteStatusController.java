@@ -186,7 +186,7 @@ public class TramiteStatusController {
         try {
         	       	
         	Tramite tramite = tramiteService.getById(id);
-        	tramite.setEstado(EstadoTramite.ACTIVO);
+        	tramite.setEstado(EstadoTramite.PENDIENTE);
         	tramite.setUsuModif(usuario);
         	tramite.setFechaModif(new Date());
         	tramiteService.save(tramite);

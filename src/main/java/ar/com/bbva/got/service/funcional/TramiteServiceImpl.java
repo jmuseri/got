@@ -98,11 +98,18 @@ public class TramiteServiceImpl implements TramiteService {
 	}
 	
 	
+	
+	/**
+	 * Al ser utilizado para AACC - Areas Centrales - este metodo va a traer solo los estados visibles par areas centrales.
+	 */
 	@Override
 	public List<Tramite> buscarTramites(String usuario, String cuit, String estado, Integer idTipoTramite, String idSector, String DniAutorizado, String tipoDocAutorizado) {
 		
 		return this.buscarTramites(cuit, estado, idTipoTramite, idSector, DniAutorizado, tipoDocAutorizado).stream()
 				.filter(tramite -> (usuario.equals(tramite.getUsuModif()) || usuario.equals(USUARIO_FEMP) || null == tramite.getUsuModif()))
+				.filter(tramite -> (EstadoTramite.ACTIVO.equals(tramite.getEstado())
+						|| EstadoTramite.FINALIZADO.equals(tramite.getEstado())
+						|| EstadoTramite.GESTION.equals(tramite.getEstado())))
 				.collect(Collectors.toList());
 
 	}
