@@ -271,6 +271,7 @@ public class TramiteControllerTests {
 		Mockito.when(autorizadoService.getById(tramiteDTO.getIdAutorizados().get(0))).thenReturn(listaAutorizados.get(0));
 		Mockito.when(autorizadoService.getById(tramiteDTO.getIdAutorizados().get(1))).thenReturn(listaAutorizados.get(1));
 		Mockito.when(autorizadoService.getById(tramiteDTO.getIdAutorizados().get(2))).thenReturn(listaAutorizados.get(2));
+		
 		Mockito.when(tramiteService.save(Mockito.any(Tramite.class))).thenThrow(NullPointerException.class);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/tramite/add").contentType(MediaType.APPLICATION_JSON).content(tramiteDTO.toJSONObject().toString()))

@@ -82,119 +82,125 @@ public class TramiteController {
     @ApiOperation(value = "Crear tramite")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> addTramite(@RequestBody AltaTramiteDTO altaTramiteDTO) {
-
-    	Tramite tramite = new Tramite();
-    	
-    	tramite.setNroClienteEmpresa(altaTramiteDTO.getNroClienteEmpresa());
-    	tramite.setCuitEmpresa(altaTramiteDTO.getCuitEmpresa());
-    	tramite.setCuentaCobro(altaTramiteDTO.getCuentaCobro());
-    	tramite.setAreaNegocio(altaTramiteDTO.getAreaNegocio());
-    	
-    	TipoTramite tipoTramite = tipoTramiteService.getById(altaTramiteDTO.getIdTipoTramite());
-    	
-    	if (tipoTramite == null) {
-    		logger.error("Tipo de tramite no encontrado");
-            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Tipo de tramite no encontrado");
+    	try {
+	    	Tramite tramite = new Tramite();
+	    	
+	    	tramite.setNroClienteEmpresa(altaTramiteDTO.getNroClienteEmpresa());
+	    	tramite.setCuitEmpresa(altaTramiteDTO.getCuitEmpresa());
+	    	tramite.setCuentaCobro(altaTramiteDTO.getCuentaCobro());
+	    	tramite.setAreaNegocio(altaTramiteDTO.getAreaNegocio());
+	    	
+	    	TipoTramite tipoTramite = tipoTramiteService.getById(altaTramiteDTO.getIdTipoTramite());
+	    	
+	    	if (tipoTramite == null) {
+	    		logger.error("Tipo de tramite no encontrado");
+	            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Tipo de tramite no encontrado");
+	            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	            return response;
+	    	}
+	    	tramite.setTipoTramite(tipoTramite);
+	    	tramite.setEstado(EstadoTramite.PENDIENTE_FIRMA);
+	    	
+	    	
+	//        Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta().getSector(),altaTramiteDTO.getSectorAlta().getCanal());
+	//        
+	//        if (sectorAlta == null) {
+	//    		logger.error("Sector no encontrado");
+	//            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Sector no encontrado");
+	//            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	//            return response;
+	//    	} 
+	    	tramite.setSectorActual(tipoTramite.getSectorInicial());
+	    	tramite.setSectorInicio(tipoTramite.getSectorInicial());
+	    	
+	    	List<TramiteAutorizado> listaAutorizados = new ArrayList<TramiteAutorizado>();
+	    	
+	    	for (Integer idAutorizado : altaTramiteDTO.getIdAutorizados()) {
+	    		
+	    		TramiteAutorizado tramiteAutorizado = new TramiteAutorizado();
+	    		Autorizado autorizado = autorizadoService.getById(idAutorizado);
+	    		
+	    		if (autorizado == null) {
+	        		logger.error("Autorizado no encontrado");
+	                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no encontrado");
+	                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	                return response;
+	        	}
+	    		
+	    		if (!autorizado.getNroClienteEmpresa().equals(altaTramiteDTO.getNroClienteEmpresa())) {
+	    			logger.error("Autorizado no corresponde a la empresa");
+	                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no corresponde a la empresa");
+	                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	                return response;
+	    		}
+	    		
+	    		TramiteAutorizadoKey tramiteAutorizadoKey = new TramiteAutorizadoKey();
+	    		tramiteAutorizadoKey.setAutorizadoId(idAutorizado);
+	    		tramiteAutorizadoKey.setTramiteId(0);
+	    		
+	    		tramiteAutorizado.setId(tramiteAutorizadoKey);
+	    		tramiteAutorizado.setAutorizado(autorizado);
+	    		tramiteAutorizado.setFechaAlta(new Date());
+	    		tramiteAutorizado.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+	    		tramiteAutorizado.setFinalizoTramite(false);
+	    		
+	    		
+	    		listaAutorizados.add(tramiteAutorizado);
+			}
+	    	
+	    	tramite.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+	    	tramite.setUsuModif(altaTramiteDTO.getUsuarioAlta());
+	    	tramite.setFechaAlta(new Date());
+	    	tramite.setFechaInicio(new Date());
+	    	tramite.setFechaModif(new Date());
+	    	
+	    	tramite = tramiteService.save(tramite);
+	    	
+	    	for (TramiteAutorizado tramiteAutorizado : listaAutorizados) {
+	    		tramiteAutorizado.getId().setTramiteId(tramite.getId());
+			}
+	    	
+	    	tramiteAutorizadoService.save(listaAutorizados);
+	    	
+	    	List<TramiteDetalle> listaDetalles = new ArrayList<TramiteDetalle>();
+	    	for (CampoDetalleDTO campoDetalleDTO : altaTramiteDTO.getDetalle()) {
+	    		TramiteDetalle tramiteDetalle = new TramiteDetalle();
+	    		
+	    		TipoTramiteCampo tipoTramiteCampo = getTipoTramiteCampoByName(campoDetalleDTO.getNombre(), tipoTramite.getCampos());
+	    		
+	    		if (tipoTramiteCampo == null) {
+	    			logger.error("Campo ingresado no corresponde al tipo de tramite");
+	                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Campo ingresado no corresponde al tipo de tramite");
+	                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	                return response;
+	    		}
+	    		
+	    		TramiteDetalleKey tramiteDetalleKey = new TramiteDetalleKey();
+	    		tramiteDetalleKey.setTramiteId(tramite.getId());
+	    		tramiteDetalleKey.setTipoTramiteCampoId(tipoTramiteCampo.getId());
+	    		
+	    		tramiteDetalle.setId(tramiteDetalleKey);
+	    		tramiteDetalle.setFechaAlta(new Date());
+	    		tramiteDetalle.setFechaModif(new Date());
+	    		tramiteDetalle.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
+	    		tramiteDetalle.setUsuModif(altaTramiteDTO.getUsuarioAlta());
+	    		tramiteDetalle.setValor(campoDetalleDTO.getValor());
+	    		
+	    		listaDetalles.add(tramiteDetalle);
+			}
+	    	
+	    	tramiteDetalleService.save(listaDetalles);
+	    	
+	      	
+	        StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", tramite.getId().toString());
+	        ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
+	        return response;
+    	} catch (Exception e) {
+            logger.error("", e);
+            StatusResponse statusResponse = new StatusResponse("error", "Tramite no insertado", e.getMessage());
             ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
             return response;
-    	}
-    	tramite.setTipoTramite(tipoTramite);
-    	tramite.setEstado(EstadoTramite.PENDIENTE_FIRMA);
-    	
-    	
-//        Sector sectorAlta = sectorService.getById(altaTramiteDTO.getSectorAlta().getSector(),altaTramiteDTO.getSectorAlta().getCanal());
-//        
-//        if (sectorAlta == null) {
-//    		logger.error("Sector no encontrado");
-//            StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Sector no encontrado");
-//            ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-//            return response;
-//    	} 
-    	tramite.setSectorActual(tipoTramite.getSectorInicial());
-    	tramite.setSectorInicio(tipoTramite.getSectorInicial());
-    	
-    	List<TramiteAutorizado> listaAutorizados = new ArrayList<TramiteAutorizado>();
-    	
-    	for (Integer idAutorizado : altaTramiteDTO.getIdAutorizados()) {
-    		
-    		TramiteAutorizado tramiteAutorizado = new TramiteAutorizado();
-    		Autorizado autorizado = autorizadoService.getById(idAutorizado);
-    		
-    		if (autorizado == null) {
-        		logger.error("Autorizado no encontrado");
-                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no encontrado");
-                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-                return response;
-        	}
-    		
-    		if (!autorizado.getNroClienteEmpresa().equals(altaTramiteDTO.getNroClienteEmpresa())) {
-    			logger.error("Autorizado no corresponde a la empresa");
-                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Autorizado no corresponde a la empresa");
-                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-                return response;
-    		}
-    		
-    		TramiteAutorizadoKey tramiteAutorizadoKey = new TramiteAutorizadoKey();
-    		tramiteAutorizadoKey.setAutorizadoId(idAutorizado);
-    		tramiteAutorizadoKey.setTramiteId(0);
-    		
-    		tramiteAutorizado.setId(tramiteAutorizadoKey);
-    		tramiteAutorizado.setAutorizado(autorizado);
-    		tramiteAutorizado.setFechaAlta(new Date());
-    		tramiteAutorizado.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
-    		tramiteAutorizado.setFinalizoTramite(false);
-    		
-    		
-    		listaAutorizados.add(tramiteAutorizado);
-		}
-    	
-    	tramite.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
-    	tramite.setUsuModif(altaTramiteDTO.getUsuarioAlta());
-    	tramite.setFechaAlta(new Date());
-    	tramite.setFechaInicio(new Date());
-    	tramite.setFechaModif(new Date());
-    	
-    	tramite = tramiteService.save(tramite);
-    	
-    	for (TramiteAutorizado tramiteAutorizado : listaAutorizados) {
-    		tramiteAutorizado.getId().setTramiteId(tramite.getId());
-		}
-    	
-    	tramiteAutorizadoService.save(listaAutorizados);
-    	
-    	List<TramiteDetalle> listaDetalles = new ArrayList<TramiteDetalle>();
-    	for (CampoDetalleDTO campoDetalleDTO : altaTramiteDTO.getDetalle()) {
-    		TramiteDetalle tramiteDetalle = new TramiteDetalle();
-    		
-    		TipoTramiteCampo tipoTramiteCampo = getTipoTramiteCampoByName(campoDetalleDTO.getNombre(), tipoTramite.getCampos());
-    		
-    		if (tipoTramiteCampo == null) {
-    			logger.error("Campo ingresado no corresponde al tipo de tramite");
-                StatusResponse statusResponse = new StatusResponse("error", "Tramite not saved", "Campo ingresado no corresponde al tipo de tramite");
-                ResponseEntity<?> response = new ResponseEntity<>(statusResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-                return response;
-    		}
-    		
-    		TramiteDetalleKey tramiteDetalleKey = new TramiteDetalleKey();
-    		tramiteDetalleKey.setTramiteId(tramite.getId());
-    		tramiteDetalleKey.setTipoTramiteCampoId(tipoTramiteCampo.getId());
-    		
-    		tramiteDetalle.setId(tramiteDetalleKey);
-    		tramiteDetalle.setFechaAlta(new Date());
-    		tramiteDetalle.setFechaModif(new Date());
-    		tramiteDetalle.setUsuAlta(altaTramiteDTO.getUsuarioAlta());
-    		tramiteDetalle.setUsuModif(altaTramiteDTO.getUsuarioAlta());
-    		tramiteDetalle.setValor(campoDetalleDTO.getValor());
-    		
-    		listaDetalles.add(tramiteDetalle);
-		}
-    	
-    	tramiteDetalleService.save(listaDetalles);
-    	
-      	
-        StatusResponse status = new StatusResponse("ok", "Alta de Tramite realizada", tramite.getId().toString());
-        ResponseEntity<?> response = new ResponseEntity<>(status, HttpStatus.OK);
-        return response;
+        }
     }
 
     private TipoTramiteCampo getTipoTramiteCampoByName (String nombreCampo, Set<TipoTramiteCampo> campos) {

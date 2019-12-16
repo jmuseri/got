@@ -38,6 +38,7 @@ public class AutorizadoServiceTests {
 		autorizadosDePrueba.add(new Autorizado());
 		autorizadosDePrueba.get(0).setId(1);
 		autorizadosDePrueba.get(0).setNombre("hola1");
+		autorizadosDePrueba.get(0).setTipoDocumento("DNI");
 		autorizadosDePrueba.get(0).setNroDocumento("123");
 		autorizadosDePrueba.get(0).setNroClienteEmpresa(1);
 		autorizadosDePrueba.get(0).setCuitEmpresa("2222");
@@ -45,6 +46,7 @@ public class AutorizadoServiceTests {
 		autorizadosDePrueba.add(new Autorizado());
 		autorizadosDePrueba.get(1).setId(2);
 		autorizadosDePrueba.get(1).setNombre("hola2");
+		autorizadosDePrueba.get(1).setTipoDocumento("DNI");
 		autorizadosDePrueba.get(1).setNroDocumento("124");
 		autorizadosDePrueba.get(1).setNroClienteEmpresa(2);
 		autorizadosDePrueba.get(1).setCuitEmpresa("2222");
@@ -52,6 +54,7 @@ public class AutorizadoServiceTests {
 		autorizadosDePrueba.add(new Autorizado());
 		autorizadosDePrueba.get(2).setId(3);
 		autorizadosDePrueba.get(2).setNombre("hola3");
+		autorizadosDePrueba.get(2).setTipoDocumento("DNI");
 		autorizadosDePrueba.get(2).setNroDocumento("125");
 		autorizadosDePrueba.get(2).setNroClienteEmpresa(2);
 		autorizadosDePrueba.get(2).setCuitEmpresa("3333");
@@ -129,21 +132,22 @@ public class AutorizadoServiceTests {
 		Assert.assertEquals(autorizadosDePrueba.get(nroAutorizado).getId(), argumentCaptor.getValue());
 	}
 	
-//	@Test
-//	public void testGetByNroDocumento() {
-//		String documento = "123";
-//		List<Autorizado> autorizadosPorNroDocumento = new ArrayList<Autorizado>();
-//		
-//		autorizadosDePrueba.forEach((x) -> {
-//			if(x.getNroDocumento() == documento) autorizadosPorNroDocumento.add(x);
-//		});
-//		
-//		Mockito.when(autorizadoRepository.findByNroDocumento(documento)).thenReturn(autorizadosPorNroDocumento);
-//		
-//		List<Autorizado> autorizadosRecibidos = autorizadoService.getByNroDocumento(documento);
-//
-//		Assert.assertEquals(autorizadosPorNroDocumento, autorizadosRecibidos);		
-//	}
+	@Test
+	public void testGetByTipoAndNroDocumento() {
+		String tipoDoc = "DNI";
+		String documento = "123";
+		List<Autorizado> autorizadosPorNroDocumento = new ArrayList<Autorizado>();
+		
+		autorizadosDePrueba.forEach((x) -> {
+			if(x.getNroDocumento() == documento) autorizadosPorNroDocumento.add(x);
+		});
+		
+		Mockito.when(autorizadoRepository.findByTipoDocumentoAndNroDocumento(tipoDoc,documento)).thenReturn(autorizadosPorNroDocumento.get(0));
+		
+		Autorizado autorizadosRecibido = autorizadoService.getByTipoAndNroDocumento(tipoDoc,documento);
+
+		Assert.assertEquals(autorizadosPorNroDocumento.get(0), autorizadosRecibido);		
+	}
 	
 	@Test
 	public void testListByNroClienteEmpresaOrCuitEmpresa() {
