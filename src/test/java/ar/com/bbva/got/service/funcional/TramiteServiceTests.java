@@ -37,7 +37,7 @@ public class TramiteServiceTests {
 	private TramiteRepository tramiteRepository;
 	
 	@InjectMocks
-	TramiteServiceImpl tramiteService;
+	private TramiteServiceImpl tramiteService;
 	
 	@BeforeClass
 	public static void setUp() {
