@@ -45,7 +45,8 @@ public class TramiteServiceTests {
 		listaTramites.get(0).setId(1);
 		listaTramites.get(0).setEstado(EstadoTramite.PENDIENTE);	
 		listaTramites.get(0).setNroClienteEmpresa(123);	
-		listaTramites.get(0).setCuitEmpresa("123");		
+		listaTramites.get(0).setCuitEmpresa("123");
+		listaTramites.get(0).setUsuModif("usuario1");
 		listaTramites.get(0).setTipoTramite(new TipoTramite());
 		listaTramites.get(0).getTipoTramite().setId(1);
 		listaTramites.get(0).setSectorActual(new Sector());
@@ -62,7 +63,7 @@ public class TramiteServiceTests {
 		
 		listaTramites.add(new Tramite());
 		listaTramites.get(1).setId(2);
-		listaTramites.get(1).setEstado(EstadoTramite.FINALIZADO);	
+		listaTramites.get(1).setEstado(EstadoTramite.RECHAZADO);	
 		listaTramites.get(1).setNroClienteEmpresa(1234);	
 		listaTramites.get(1).setCuitEmpresa("123");
 		listaTramites.get(1).setTipoTramite(new TipoTramite());
@@ -186,7 +187,7 @@ public class TramiteServiceTests {
 		listaTramites.get(7).getSectorActual().getId().setSector("sector1");
 		listaTramites.get(7).setSectorInicio(new Sector());
 		listaTramites.get(7).getSectorInicio().setId(new SectorKey());
-		listaTramites.get(7).getSectorInicio().getId().setSector("sectorotro");
+		listaTramites.get(7).getSectorInicio().getId().setSector("sector");
 		listaTramites.get(7).setAutorizado(new HashSet<TramiteAutorizado>());
 		listaTramites.get(7).getAutorizado().add(new TramiteAutorizado());
 		listaTramites.get(7).getAutorizado().iterator().next().setAutorizado(new Autorizado());
@@ -211,6 +212,143 @@ public class TramiteServiceTests {
 		listaTramites.get(8).getAutorizado().iterator().next().setAutorizado(new Autorizado());
 		listaTramites.get(8).getAutorizado().iterator().next().getAutorizado().setNroDocumento("1231234");
 		listaTramites.get(8).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(9).setId(10);
+		listaTramites.get(9).setEstado(EstadoTramite.FINALIZADO);	
+		listaTramites.get(9).setNroClienteEmpresa(123);	
+		listaTramites.get(9).setCuitEmpresa("123");
+		listaTramites.get(9).setTipoTramite(new TipoTramite());
+		listaTramites.get(9).getTipoTramite().setId(1);
+		listaTramites.get(9).setSectorActual(new Sector());
+		listaTramites.get(9).getSectorActual().setId(new SectorKey());
+		listaTramites.get(9).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(9).setSectorInicio(new Sector());
+		listaTramites.get(9).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(9).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(9).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(9).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(9).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(9).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(9).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(10).setId(11);
+		listaTramites.get(10).setEstado(EstadoTramite.GESTION);	
+		listaTramites.get(10).setNroClienteEmpresa(123);	
+		listaTramites.get(10).setCuitEmpresa("123");
+		listaTramites.get(10).setTipoTramite(new TipoTramite());
+		listaTramites.get(10).getTipoTramite().setId(1);
+		listaTramites.get(10).setSectorActual(new Sector());
+		listaTramites.get(10).getSectorActual().setId(new SectorKey());
+		listaTramites.get(10).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(10).setSectorInicio(new Sector());
+		listaTramites.get(10).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(10).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(10).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(10).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(10).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(10).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(10).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(11).setId(11);
+		listaTramites.get(11).setEstado(EstadoTramite.FINALIZADO);	
+		listaTramites.get(11).setNroClienteEmpresa(123);	
+		listaTramites.get(11).setCuitEmpresa("123");
+		listaTramites.get(11).setUsuModif("otrousuario");
+		listaTramites.get(11).setTipoTramite(new TipoTramite());
+		listaTramites.get(11).getTipoTramite().setId(1);
+		listaTramites.get(11).setSectorActual(new Sector());
+		listaTramites.get(11).getSectorActual().setId(new SectorKey());
+		listaTramites.get(11).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(11).setSectorInicio(new Sector());
+		listaTramites.get(11).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(11).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(11).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(11).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(11).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(11).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(11).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(12).setId(11);
+		listaTramites.get(12).setEstado(EstadoTramite.GESTION);	
+		listaTramites.get(12).setNroClienteEmpresa(123);	
+		listaTramites.get(12).setCuitEmpresa("123");
+		listaTramites.get(12).setUsuModif("otrousuario");
+		listaTramites.get(12).setTipoTramite(new TipoTramite());
+		listaTramites.get(12).getTipoTramite().setId(1);
+		listaTramites.get(12).setSectorActual(new Sector());
+		listaTramites.get(12).getSectorActual().setId(new SectorKey());
+		listaTramites.get(12).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(12).setSectorInicio(new Sector());
+		listaTramites.get(12).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(12).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(12).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(12).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(12).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(12).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(12).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(13).setId(11);
+		listaTramites.get(13).setEstado(EstadoTramite.PENDIENTE);	
+		listaTramites.get(13).setNroClienteEmpresa(123);	
+		listaTramites.get(13).setCuitEmpresa("123");
+		listaTramites.get(13).setUsuModif("otrousuario");
+		listaTramites.get(13).setTipoTramite(new TipoTramite());
+		listaTramites.get(13).getTipoTramite().setId(1);
+		listaTramites.get(13).setSectorActual(new Sector());
+		listaTramites.get(13).getSectorActual().setId(new SectorKey());
+		listaTramites.get(13).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(13).setSectorInicio(new Sector());
+		listaTramites.get(13).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(13).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(13).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(13).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(13).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(13).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(13).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(14).setId(11);
+		listaTramites.get(14).setEstado(EstadoTramite.PENDIENTE);	
+		listaTramites.get(14).setNroClienteEmpresa(123);	
+		listaTramites.get(14).setCuitEmpresa("123");
+		listaTramites.get(14).setTipoTramite(new TipoTramite());
+		listaTramites.get(14).getTipoTramite().setId(1);
+		listaTramites.get(14).setSectorActual(new Sector());
+		listaTramites.get(14).getSectorActual().setId(new SectorKey());
+		listaTramites.get(14).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(14).setSectorInicio(new Sector());
+		listaTramites.get(14).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(14).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(14).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(14).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(14).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(14).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(14).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
+		
+		listaTramites.add(new Tramite());
+		listaTramites.get(15).setId(11);
+		listaTramites.get(15).setEstado(EstadoTramite.RECHAZADO);	
+		listaTramites.get(15).setNroClienteEmpresa(123);	
+		listaTramites.get(15).setCuitEmpresa("123");
+		listaTramites.get(15).setUsuModif("usuario1");
+		listaTramites.get(15).setTipoTramite(new TipoTramite());
+		listaTramites.get(15).getTipoTramite().setId(1);
+		listaTramites.get(15).setSectorActual(new Sector());
+		listaTramites.get(15).getSectorActual().setId(new SectorKey());
+		listaTramites.get(15).getSectorActual().getId().setSector("sector1");
+		listaTramites.get(15).setSectorInicio(new Sector());
+		listaTramites.get(15).getSectorInicio().setId(new SectorKey());
+		listaTramites.get(15).getSectorInicio().getId().setSector("sector");
+		listaTramites.get(15).setAutorizado(new HashSet<TramiteAutorizado>());
+		listaTramites.get(15).getAutorizado().add(new TramiteAutorizado());
+		listaTramites.get(15).getAutorizado().iterator().next().setAutorizado(new Autorizado());
+		listaTramites.get(15).getAutorizado().iterator().next().getAutorizado().setNroDocumento("123123");
+		listaTramites.get(15).getAutorizado().iterator().next().getAutorizado().setTipoDocumento("DNI");
 	}
 	
 	@Test
@@ -416,6 +554,7 @@ public class TramiteServiceTests {
 	@Test
 	public void testBuscarTramitesAACC() {
 		List<Tramite> tramitesFiltrados = new ArrayList<Tramite>();
+		List<Tramite> tramitesFiltrados2 = new ArrayList<Tramite>();
 		String cuitAFiltrar = "123";
 		EstadoTramite estadoAFiltrar = EstadoTramite.PENDIENTE;
 		Integer idTipoTramiteAFiltrar = 1;
@@ -425,14 +564,65 @@ public class TramiteServiceTests {
 		
 		String usuario = "usuario1";
 		
-		tramitesFiltrados.add(listaTramites.get(0));
-		tramitesFiltrados.add(listaTramites.get(2));
+		for (Tramite tramite : listaTramites) {
+			if ((tramite.getEstado() == estadoAFiltrar || tramite.getEstado() == EstadoTramite.FINALIZADO || tramite.getEstado() == EstadoTramite.GESTION) &&
+					tramite.getCuitEmpresa() == cuitAFiltrar &&
+					tramite.getTipoTramite().getId() == idTipoTramiteAFiltrar &&
+					tramite.getSectorInicio().getId().getSector().equals(idSectorAFiltrar) &&
+					!(tramite.getAutorizado().stream().filter(autorizado -> autorizado.getAutorizado().getTipoDocumento().equals(tipoDocAutorizadoAFiltrar) && autorizado.getAutorizado().getNroDocumento().equals(DniAutorizadoAFiltrar)).collect(Collectors.toSet()).isEmpty())) tramitesFiltrados.add(tramite);
+		}
+		
+		tramitesFiltrados.add(listaTramites.get(15));
+		
+		tramitesFiltrados2 = tramitesFiltrados.stream()
+				.filter(tramite -> (EstadoTramite.PENDIENTE.equals(tramite.getEstado())
+						|| EstadoTramite.FINALIZADO.equals(tramite.getEstado())
+						|| EstadoTramite.GESTION.equals(tramite.getEstado())) &&
+						(usuario.equals(tramite.getUsuModif()) || null == tramite.getUsuModif()))
+				.collect(Collectors.toList());
+		
+		Mockito.when(tramiteService.buscarTramites(cuitAFiltrar, estadoAFiltrar.toString(), idTipoTramiteAFiltrar, idSectorAFiltrar, DniAutorizadoAFiltrar, tipoDocAutorizadoAFiltrar))
+		.thenReturn(tramitesFiltrados);
+		
+		List<Tramite> tramitesRecibidos = tramiteService.buscarTramites(usuario, cuitAFiltrar, estadoAFiltrar.toString(), idTipoTramiteAFiltrar, idSectorAFiltrar, DniAutorizadoAFiltrar, tipoDocAutorizadoAFiltrar);
+		
+		Assert.assertEquals(tramitesFiltrados2, tramitesRecibidos);
+	}
+	
+	@Test
+	public void testBuscarTramitesAACCUsuarioFNC() {
+		List<Tramite> tramitesFiltrados = new ArrayList<Tramite>();
+		List<Tramite> tramitesFiltrados2 = new ArrayList<Tramite>();
+		String cuitAFiltrar = "123";
+		EstadoTramite estadoAFiltrar = EstadoTramite.PENDIENTE;
+		Integer idTipoTramiteAFiltrar = 1;
+		String idSectorAFiltrar = "sector";
+		String DniAutorizadoAFiltrar = "123123";
+		String tipoDocAutorizadoAFiltrar = "DNI";
+		
+		String usuario = "FNC";
+		
+		for (Tramite tramite : listaTramites) {
+			if ((tramite.getEstado() == estadoAFiltrar || tramite.getEstado() == EstadoTramite.FINALIZADO || tramite.getEstado() == EstadoTramite.GESTION) &&
+					tramite.getCuitEmpresa() == cuitAFiltrar &&
+					tramite.getTipoTramite().getId() == idTipoTramiteAFiltrar &&
+					tramite.getSectorInicio().getId().getSector().equals(idSectorAFiltrar) &&
+					!(tramite.getAutorizado().stream().filter(autorizado -> autorizado.getAutorizado().getTipoDocumento().equals(tipoDocAutorizadoAFiltrar) && autorizado.getAutorizado().getNroDocumento().equals(DniAutorizadoAFiltrar)).collect(Collectors.toSet()).isEmpty())) tramitesFiltrados.add(tramite);
+		}
+		
+		tramitesFiltrados.add(listaTramites.get(15));
+		
+		tramitesFiltrados2 = tramitesFiltrados.stream()
+				.filter(tramite -> (EstadoTramite.PENDIENTE.equals(tramite.getEstado())
+						|| EstadoTramite.FINALIZADO.equals(tramite.getEstado())
+						|| EstadoTramite.GESTION.equals(tramite.getEstado())))
+				.collect(Collectors.toList());
 		
 		Mockito.when(tramiteService.buscarTramites(cuitAFiltrar, estadoAFiltrar.toString(), idTipoTramiteAFiltrar, idSectorAFiltrar, DniAutorizadoAFiltrar, tipoDocAutorizadoAFiltrar))
 		.thenReturn(tramitesFiltrados);
 		
 		List<Tramite> tramitesRecibidos = tramiteService.buscarTramites(usuario, cuitAFiltrar, estadoAFiltrar.toString(), idTipoTramiteAFiltrar, idSectorAFiltrar, DniAutorizadoAFiltrar, tipoDocAutorizadoAFiltrar);
 				
-		
+		Assert.assertEquals(tramitesFiltrados2, tramitesRecibidos);
 	}
 }
