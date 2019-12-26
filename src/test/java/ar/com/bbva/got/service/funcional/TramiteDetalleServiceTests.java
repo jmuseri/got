@@ -68,6 +68,7 @@ public class TramiteDetalleServiceTests {
 		
 		Iterable<TramiteDetalle> tramitesRecibidos = tramiteDetalleService.listAll();
 		
+		Mockito.verify(tramiteDetalleRepository).findAll();
 		Assert.assertEquals(listaTramites, tramitesRecibidos);
 	}
 	
@@ -83,6 +84,7 @@ public class TramiteDetalleServiceTests {
 		
 		TramiteDetalle tramiteDetalle = tramiteDetalleService.getById(id);
 		
+		Mockito.verify(tramiteDetalleRepository).findById(id);
 		Assert.assertEquals(tramiteDetalleMock, tramiteDetalle);
 		
 	}
@@ -94,9 +96,39 @@ public class TramiteDetalleServiceTests {
 		tramiteDetalleService.save(tramiteAGuardar);
 		
 		ArgumentCaptor<TramiteDetalle> argumentCaptor = ArgumentCaptor.forClass(TramiteDetalle.class);
+		
 		Mockito.verify(tramiteDetalleRepository).save(argumentCaptor.capture());
 		Assert.assertEquals(tramiteAGuardar, argumentCaptor.getValue());
+		Assert.assertNotEquals(listaTramites.get(1), argumentCaptor.getValue());
 	}
 	
+	@Test
+	public void testSaveList() {
+		List<TramiteDetalle> tramitesAGuardar = listaTramites;
+		
+		tramiteDetalleService.save(tramitesAGuardar);
+		
+		@SuppressWarnings("unchecked")
+		ArgumentCaptor<List<TramiteDetalle>> argumentCaptor = ArgumentCaptor.forClass(List.class);
+		
+		Mockito.verify(tramiteDetalleRepository).saveAll(argumentCaptor.capture());
+		Assert.assertEquals(tramitesAGuardar, argumentCaptor.getValue());
+	}
 	
+	@Test
+	public void testDelete() {
+		TramiteDetalle tramiteABorrar = listaTramites.get(0);
+		TramiteDetalleKey idABorrar = tramiteABorrar.getId();
+		
+		Mockito.when(tramiteDetalleRepository.findById(idABorrar)).thenReturn(tramiteABorrar);
+		
+		tramiteDetalleService.delete(idABorrar);
+		
+		ArgumentCaptor<TramiteDetalle> argumentCaptor = ArgumentCaptor.forClass(TramiteDetalle.class);
+		
+		
+		Mockito.verify(tramiteDetalleRepository).delete(argumentCaptor.capture());
+		Mockito.verify(tramiteDetalleRepository).findById(idABorrar);
+		Assert.assertEquals(tramiteABorrar, argumentCaptor.getValue());
+	}
 }
