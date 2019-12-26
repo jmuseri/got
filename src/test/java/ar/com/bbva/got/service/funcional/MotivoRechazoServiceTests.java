@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import ar.com.bbva.got.model.MotivoRechazo;
 import ar.com.bbva.got.model.TipoTramite;
-import ar.com.bbva.got.model.TramiteAutorizado;
 import ar.com.bbva.got.repository.MotivoRechazoRepository;
 
 @SpringBootTest
