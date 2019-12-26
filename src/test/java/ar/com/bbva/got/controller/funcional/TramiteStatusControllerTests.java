@@ -1,5 +1,6 @@
 package ar.com.bbva.got.controller.funcional;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,11 +52,24 @@ public class TramiteStatusControllerTests {
 		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/tramite/" + id.toString() + "/gestionar").accept(MediaType.APPLICATION_JSON))
 		.andExpect(MockMvcResultMatchers.status().isOk());
 		
-		ArgumentCaptor<Tramite> argumentCaptor = ArgumentCaptor.forClass(Tramite.class);
+		ArgumentCaptor<Integer> argumentCaptor = ArgumentCaptor.forClass(Integer.class);
+		ArgumentCaptor<Tramite> argumentCaptor2 = ArgumentCaptor.forClass(Tramite.class);
 		
-		Mockito.verify(tramiteService).getById(id);
-		Mockito.verify(tramiteService).save(argumentCaptor.capture());
+		Mockito.verify(tramiteService).getById(argumentCaptor.capture());
+		Assert.assertEquals(id, argumentCaptor.getValue());
+		Mockito.verify(tramiteService).save(argumentCaptor2.capture());	
 		
+	}
+	
+	@Test
+	public void gestionarTramiteExceptionTest() throws Exception {
 		
+		Integer id = 0;
+		
+		Mockito.when(tramiteService.getById(Mockito.any(Integer.class))).thenThrow(NullPointerException.class);
+		
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/tramite/" + id.toString() + "/gestionar").accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+
 	}
 }
