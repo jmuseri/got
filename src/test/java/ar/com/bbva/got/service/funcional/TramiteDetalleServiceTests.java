@@ -130,5 +130,6 @@ public class TramiteDetalleServiceTests {
 		Mockito.verify(tramiteDetalleRepository).delete(argumentCaptor.capture());
 		Mockito.verify(tramiteDetalleRepository).findById(idABorrar);
 		Assert.assertEquals(tramiteABorrar, argumentCaptor.getValue());
+		Assert.assertNotEquals(listaTramites.get(1), argumentCaptor.getValue());
 	}
 }
