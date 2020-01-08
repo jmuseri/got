@@ -41,7 +41,7 @@ public class ComisionServiceImpl implements ComisionService {
     @Override
     public void save(List<Comision> comision) {
         logger.debug("save called");
-        comisionRepository.saveAll(comision);
+        this.comisionRepository.saveAll(comision);
     }
 
     @Override
