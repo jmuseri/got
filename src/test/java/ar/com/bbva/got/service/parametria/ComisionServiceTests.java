@@ -44,8 +44,9 @@ public class ComisionServiceTests {
 		
 		Mockito.when(comisionRepository.findAll()).thenReturn(listaComision);
 		
-		iterableComisiones = (List<Comision>) comisionService.listAll();
+		iterableComisiones = (Iterable<Comision>) comisionService.listAll();
 		
+		Mockito.verify(comisionRepository, Mockito.times(1)).findAll();
 		Assert.assertEquals(listaComision, iterableComisiones);
 	}
 	
