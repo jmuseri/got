@@ -157,7 +157,7 @@ public class TramiteStatusController {
 
         	MotivoRechazo motivoRechazo= null; 
         	if (null!=motivoRechazoId) 
-        		motivoRechazoService.getById(motivoRechazoId);
+        		motivoRechazo = motivoRechazoService.getById(motivoRechazoId);
 
         	tramite.setMotivoRechazo(motivoRechazo);
         	tramite.setUsuModif(usuario);
