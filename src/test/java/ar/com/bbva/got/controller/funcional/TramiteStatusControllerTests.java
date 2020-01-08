@@ -186,4 +186,17 @@ public class TramiteStatusControllerTests {
 		Mockito.verify(tramiteService).save(argumentCaptor2.capture());
 		Assert.assertEquals(usuario, argumentCaptor2.getValue().getUsuModif());
 	}
+	
+	@Test
+	public void cancelarTramiteExceptionTest() throws Exception {
+		Integer id = 0;
+		String usuario = "Ana";
+		
+		Mockito.when(tramiteService.getById(id)).thenReturn(null);
+		
+		Mockito.when(tramiteService.save(Mockito.any(Tramite.class))).thenThrow(NullPointerException.class);
+		
+		mockMvc.perform(MockMvcRequestBuilders.post("/funcional/tramite/" + id.toString() + "/cancelar?usuario=" + usuario).accept(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.status().is5xxServerError());
+	}
 }
